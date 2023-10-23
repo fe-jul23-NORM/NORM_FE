@@ -1,0 +1,70 @@
+.card {
+  width: 287px;
+  height: 440px;
+  font-family: Mont;
+  border-radius: 8px;
+  border: 1px solid var(--gray-elements, #E2E6E9);
+  background: var(--gray-white, #FFF);
+  padding: 32px;
+  line-height: normal;
+  font-style: normal;
+
+  &__img {
+    width: 223px;
+    height: 130px;
+  }
+
+  &__title {
+    color: var(--gray-primary, #0F0F11);
+    font-size: 14px;    
+    font-weight: 600;
+    line-height: 21px;
+  }
+
+  &__price {
+    color: var(--gray-primary, #0F0F11);
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 140%;
+  }
+
+  &__description {
+    width: 100% 223px;
+    height: auto 77px;
+
+    &-item {
+      display: inline-block;;
+    }
+  }
+
+  &__card__footer {
+    &-button {
+      display: flex;
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &-favourite {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+.description-item {
+  &_title {
+    color: var(--gray-secondary, #89939A);
+    font-size: 12px;
+    font-weight: 700;
+    
+  }
+
+  &_value {
+    color: var(--gray-primary, #0F0F11);
+    text-align: right;
+    font-family: Mont;
+    font-size: 12px;
+    font-weight: 700;
+  }
+}
