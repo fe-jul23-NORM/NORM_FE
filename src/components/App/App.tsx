@@ -15,7 +15,7 @@ function App() {
        <Route path='/phones' element={<h1>111</h1>} />
        <Route path='*' element={<NotFoundPage />} />
     </Route>
- </Routes>
+   </Routes>
  <Header />
  <br />
  <Card/>
