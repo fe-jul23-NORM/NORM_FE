@@ -1,3 +1,6 @@
+import { Routes, Route } from 'react-router-dom'
+import Layout from '../HOC/Layout/Layout';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import './App.css';
 import Card from '../Card/Card';
 import Footer from '../Footer/Footer';
@@ -12,10 +15,13 @@ function App() {
        <Route path='/phones' element={<h1>111</h1>} />
        <Route path='*' element={<NotFoundPage />} />
     </Route>
- </Routes> */}
+ </Routes>
  <Header />
+ <br />
  <Card/>
+ <br />
  <Footer />
+ <br /> */}
  <ItemCard />
  </>
   );
