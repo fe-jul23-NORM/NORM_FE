@@ -1,0 +1,75 @@
+@font-face {
+  font-family: "Mont Regular";
+  src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot");
+  src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.svg#Mont Regular")format("svg");
+  font-size: 12px;
+  font-weight: 800;
+}
+
+$active-color: #0F0F11;
+
+.menu {
+  padding: 24px 0;
+  width: 100%;
+  height: 85vh;
+  background-color: #fff;
+  position: absolute;
+  z-index: 1;
+
+  &__navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__link {
+    padding: 8px 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 12px;
+    color: #89939A;
+
+    &:hover {
+      color: $active-color;
+      border-bottom: 3px solid $active-color;
+    }
+  }
+
+  &__icons {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid #E2E6E9;
+  }
+
+  &__icon {
+    height: 100%;
+    width: 50%;
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:hover {
+      border-bottom: 3px solid $active-color;
+    }
+
+    &--heart {
+      background-image: url(../../images/icons/heart-icon.svg);
+      border-right: 1px solid #E2E6E9;
+    }
+
+    &--cart {
+      background-image: url(../../images/icons/cart-icon.svg);
+    }
+  }
+}
