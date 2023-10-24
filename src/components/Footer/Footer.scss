@@ -2,6 +2,18 @@ $gray-secondary: #89939A;
 $gray-primary: #0F0F11;
 $gray-elements: #E2E6E9;
 
+@font-face {
+  font-family: "Mont Regular";
+  src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot");
+  src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.svg#Mont Regular")format("svg");
+  font-size: 12px;
+  font-weight: 800;
+}
+
 @mixin hover($property, $toValue) {
   transition: #{$property} 0.3s;
 
@@ -11,7 +23,6 @@ $gray-elements: #E2E6E9;
 }
 
 .footer {
-  font-family: sans-serif;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -33,7 +44,7 @@ $gray-elements: #E2E6E9;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.48px;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 12px;
     transition: color 300ms;
     text-transform: uppercase;
@@ -44,17 +55,19 @@ $gray-elements: #E2E6E9;
   }
 }
 
-.nav {
+.nav__links {
   display: flex;
   justify-content: space-between;
   align-items: center;
   line-height: 32px;
   width: 200px;
+}
 
+.footer__link {
   @include hover(transform, scale(1.2));
 }
 
-.button_scroll {
+.button__scroll {
   display: flex;
   flex-direction: row;
   column-gap: 16px;
@@ -62,22 +75,29 @@ $gray-elements: #E2E6E9;
   line-height: 32px;
   align-items: center;
   background: none;
-  color: inherit;
   border: none;
   padding: 0;
   font: inherit;
   cursor: pointer;
   outline: inherit;
+  color: $gray-secondary;
+  font-weight: 500;
+  font-size: 12px;
+
+  &--icon {
+    height: 32px;
+    width: 32px;
+
+    @include hover(transform, scale(1.2));
+  }
 
   &--text {
-    color: $gray-secondary;
-    font-weight: 500;
+    color: $gray-elements;
+    font-weight: 700;
     font-size: 12px;
     transition: color 300ms;
     margin: 0;
   }
-
-  @include hover(transform, scale(1.2));
 }
 
 @media (max-width: 539px) {
@@ -94,7 +114,7 @@ $gray-elements: #E2E6E9;
     }
   }
 
-  .nav {
+  .nav__links {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -103,7 +123,7 @@ $gray-elements: #E2E6E9;
     @include hover(transform, scale(1.2));
   }
 
-  .button_scroll {
+  .button__scroll {
     justify-content: center;
   }
 }
