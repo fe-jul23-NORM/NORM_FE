@@ -1,7 +1,6 @@
 import React from 'react';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Header.scss';
-import logo from '../../images/logo.svg';
 import classNames from 'classnames';
 
 export const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
@@ -13,29 +12,40 @@ const Header: React.FC = () => {
   return (
     <header className="header">
       <nav className="nav">
-        <div className="header__logo">
-          <a href="/">
-            <img src={logo} alt="nice-gadgets-logo" />
-          </a>
+        <NavLink
+          className='header__logo'
+          to="/"
+        />
+
+        <div className="nav__list">
+        <NavLink
+          className={getLinkClass}
+          to="/"
+        >
+          Home
+        </NavLink>
+
+        <NavLink
+          className={getLinkClass}
+          to="/phones"
+        >
+          Phones
+        </NavLink>
+
+        <NavLink
+          className={getLinkClass}
+          to="/tablets"
+        >
+          Tablets
+        </NavLink>
+
+        <NavLink
+          className={getLinkClass}
+          to="/accessories"
+        >
+          Accessories
+        </NavLink>
         </div>
-        
-        <ul className="nav__list">
-          <li className="nav__item">
-            <a href="/" className="nav__link">Home</a>
-          </li>
-
-          <li className="nav__item">
-            <a href="/phones" className="nav__link">Phones</a>
-          </li>
-
-          <li className="nav__item">
-            <a href="/tablets" className="nav__link">Tablets</a>
-          </li>
-
-          <li className="nav__item">
-            <a href="/accessories" className="nav__link">Accessories</a>
-          </li>
-        </ul>
       </nav>
 
       <div className='header__icons'>
