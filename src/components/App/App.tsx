@@ -2,6 +2,7 @@ import './App.css';
 import Card from '../Card/Card';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import ItemCard from '../ItemCard/ItemCard';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
  <Header />
  <Card/>
  <Footer />
+ <ItemCard />
  </>
   );
 }
