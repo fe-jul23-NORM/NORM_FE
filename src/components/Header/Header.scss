@@ -37,18 +37,24 @@ $active-color: #0F0F11;
     height: 64px;
   }
 
-  &__logo {
-    margin: 0 16px;
+  &__icons {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.logo {
+  margin: 0 16px;
+  display: block;
+  box-sizing: border-box;
+
+  &__image {
     height: 22px;
+    width: 68px;
 
     @include onDeskTop() {
       height: 28px;
     }
-  }
-
-  &__icons {
-    display: flex;
-    align-items: center;
   }
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import logo from '../../images/logo.svg';
 import classNames from 'classnames';
@@ -13,9 +13,13 @@ const Header: React.FC = () => {
   return (
     <header className="header">
       <nav className="nav">
-        <div className="header__logo">
+        <div className="header__logo logo">
           <a href="/">
-            <img src={logo} alt="nice-gadgets-logo" />
+            <img 
+            src={logo} 
+            alt="nice-gadgets-logo"
+            className='logo__image'
+            />
           </a>
         </div>
         
