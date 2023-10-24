@@ -37,24 +37,25 @@ $active-color: #0F0F11;
     height: 64px;
   }
 
-  &__icons {
-    display: flex;
-    align-items: center;
-  }
-}
+  &__logo {
+    margin: 0 16px;
+    display: block;
+    box-sizing: border-box;
 
-.logo {
-  margin: 0 16px;
-  display: block;
-  box-sizing: border-box;
-
-  &__image {
     height: 22px;
     width: 68px;
+    background-image: url(../../images/logo.svg);
+    background-repeat: no-repeat;
+    background-position: center;
 
     @include onDeskTop() {
       height: 28px;
     }
+  }
+
+  &__icons {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -67,39 +68,38 @@ $active-color: #0F0F11;
     display: none;
     gap: 32px;
     flex-wrap: wrap;
-    line-height: 60px;
+    line-height: 48px;
     height: 60px;
     margin: 0;
     padding: 0;
 
     @include onTablet() {
       display: flex;
+      align-items: center;
+      justify-content: center;
       gap: 32px;
     }
 
     @include onDeskTop() {
-      display: flex;
       gap: 64px;
+      line-height: 60px;
     }
   }
 
-  &__item {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
   &__link {
-    position: relative;
-    text-align: center;
+    box-sizing: border-box;
     text-decoration: none;
     font-weight: 800;
     font-size: 12px;
-    line-height: 11px;
     color: #89939A;
 
     &:hover {
       color: $active-color;
+    }
+
+    &--active {
+      color: $active-color;
+      border-bottom: 3px solid $active-color;
     }
   }
 }
