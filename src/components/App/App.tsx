@@ -7,12 +7,12 @@ import ItemCard from '../ItemCard/ItemCard';
 function App() {
   return (
    <>
-   {/* <Routes>
+   <Routes>
     <Route path='/' element={<Layout />}>
        <Route path='/phones' element={<h1>111</h1>} />
        <Route path='*' element={<NotFoundPage />} />
     </Route>
- </Routes> */}
+   </Routes>
  <Header />
  <Card/>
  <Footer />
