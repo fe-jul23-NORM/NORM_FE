@@ -1,5 +1,7 @@
 import './App.css';
 import Card from '../Card/Card';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
 
 function App() {
   return (
@@ -10,7 +12,9 @@ function App() {
        <Route path='*' element={<NotFoundPage />} />
     </Route>
  </Routes> */}
+ <Header />
  <Card/>
+ <Footer />
  </>
   );
 }
