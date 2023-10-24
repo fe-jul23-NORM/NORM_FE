@@ -3,6 +3,9 @@ import Card from '../Card/Card';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import ItemCard from '../ItemCard/ItemCard';
+import { Route, Routes } from 'react-router-dom';
+import Layout from '../HOC/Layout/Layout';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 
 function App() {
   return (
@@ -15,8 +18,8 @@ function App() {
    </Routes>
  <Header />
  <Card/>
- <Footer />
  <ItemCard />
+ <Footer />
  </>
   );
 }

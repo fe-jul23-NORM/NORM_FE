@@ -17,8 +17,8 @@ const Footer: React.FC = () => {
           src="https://i.imgur.com/3XBExxM.png"
           alt="NICE GAGETS logo" />
 
-        <div className="footer_nav">
-          <div className="nav">
+        <div className="footer__nav">
+          <div className="nav__links">
             <a className="footer__link" href="https://github.com/fe-jul23-NORM">Github</a>
             <a className="footer__link" href="/about">About</a>
             <a className="footer__link" href="/rights">Rights</a>
@@ -27,13 +27,13 @@ const Footer: React.FC = () => {
 
         <button
           type="button"
-          className="button button_scroll"
+          className="button__scroll"
           onClick={() => scrollToTop()}
         >
           <p className='button_scroll--text'>Back to top</p>
           <img
             src="https://i.imgur.com/43nHath.png"
-            className="button_scroll--icon"
+            className="button__scroll--icon"
             alt="Go To Top button"
           />
         </button>
