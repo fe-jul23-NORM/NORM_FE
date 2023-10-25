@@ -2,6 +2,27 @@ $gray-secondary: #89939A;
 $gray-primary: #0F0F11;
 $gray-elements: #E2E6E9;
 $gray-background: #FAFBFC;
+$gray-icons: #B4BDC3;
+
+@font-face {
+  font-family: "Mont Regular";
+  src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot");
+  src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.svg#Mont Regular")format("svg");
+  font-size: 12px;
+  font-weight: 800;
+}
+
+@mixin hover($property, $toValue) {
+  transition: #{$property} 0.3s;
+
+  &:hover {
+    #{$property}: $toValue;
+  }
+}
 
 @mixin onTablet {
   @media (min-width: 640px) {
@@ -33,6 +54,7 @@ $gray-background: #FAFBFC;
 }
 
 .catalog {
+  font-family: "Mont Regular", sans-serif;
   display: flex;
   flex-direction: column;
   padding-top: 20px;
@@ -48,6 +70,26 @@ $gray-background: #FAFBFC;
     padding-inline: 152px;
   }
 
+  &__nav {
+    display: flex;
+    column-gap: 8px;
+    height: 16px;
+
+    &-icon {
+      @include hover(transform, scale(1.2));
+    }
+
+    &-text {
+      display: block;
+      text-decoration: none;
+      color: $gray-secondary;
+      font-size: 12px;
+      line-height: 18px;
+      font-weight: 600;
+      align-items: center;
+    }
+  }
+
   &__form {
     &-wrapper {
       display: flex;
@@ -61,34 +103,38 @@ $gray-background: #FAFBFC;
     }
 
     &-type {
-      // @extend %smallText;
       font-size: 12px;
-      color: $gray-primary;
+      font-weight: 700;
+      color: $gray-secondary;
     }
 
     &-select {
+      margin-right: 16px;
+      width: 136px;
+      height: 40px;
+      box-sizing: border-box;
       width: max-content;
       padding: 4px 7px;
       min-width: 100px;
       border: 1px solid $gray-elements;
       border-radius: .5em;
       outline: none;
-      font-size: 12px;
+      font-size: 14px;
+      line-height: 21px;
     }
   }
 
   &__container {
-    margin: 0 auto;
+    margin: 24px auto;
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    row-gap: 40px;
-    column-gap: 10px;
     margin-top: 20px;
     justify-content: space-between;
 
     @include pageGrid;
+
+    @include onTablet {
+      margin: 24px auto 40px;
+    }
   }
 }
 
@@ -96,4 +142,57 @@ $gray-background: #FAFBFC;
   padding: 0;
 
   grid-column: span 6;
+}
+
+.page__title {
+  font-size: 32px;
+  margin: 24px 0 8px;
+}
+
+.page__items-amount {
+  margin: 0 0 32px;
+  color: $gray-secondary;
+}
+
+.page__pagination {
+  display: flex;
+  column-gap: 16px;
+  justify-content: center;
+  margin-bottom: 64px;
+}
+
+.pagination-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  border: 1px solid $gray-icons;
+  border-radius: 50%;
+  cursor: pointer;
+
+  @include hover(transform, scale(1.2));
+}
+
+.pagination-number {
+  display: flex;
+  height: 32px;
+  width: 32px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid $gray-elements;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 300ms;
+  transition: color 300ms;
+
+  &--active {
+    color: white;
+    background-color: $gray-primary;
+  }
+
+  &:hover {
+    color: white;
+    background-color: $gray-primary;
+  }
 }
