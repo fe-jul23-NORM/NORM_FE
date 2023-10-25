@@ -1,16 +1,11 @@
-// $--gray-elements: #E2E6E9;
-// $--gray-secondary: #89939A;
-// $--gray-secondary: #0F0F11;
-// $--Accent: #F86800;
-// $--gray-white: #FFF;
-// $--gray-icons-placeholders: #B4BDC3;
+@import '../../utils/variable.scss';
 
 .card {
-  width: 287px;
+  width: 272px;
   height: 440px;
   border-radius: 8px;
-  border: 1px solid #E2E6E9;
-  background: #FFF;
+  border: 1px solid $gray-elements;
+  background: $gray-white;
   padding: 32px;
   line-height: normal;
   font-style: normal;
@@ -22,7 +17,7 @@
   }
 
   &__title {
-    color:  #0F0F11;
+    color:  $gray-primary;
     font-size: 14px;    
     font-weight: 600;
     line-height: 21px;
@@ -34,19 +29,22 @@
     margin-bottom: 16px;
 
     &-actual{      
-      color: #0F0F11;
+      color: $gray-primary;
       font-size: 22px;
       font-weight: 800;
       line-height: 140%;
       margin: 0;
+      font-style: normal;
     }
 
     &-sale {
-      color: #89939A;
+      color: $gray-secondary;
       font-size: 22px;
       font-weight: 600;      
       text-decoration: line-through;
       margin: 0;
+      font-style: normal;
+      line-height: normal;
     }
   }
 
@@ -65,8 +63,8 @@
       align-items: center;
       border: none;
       border-radius: 8px;
-      background: #F86800;
-      color: #FFF;
+      background: $Accent;
+      color: $gray-white;
       text-align: center;
       font-size: 14px;
       font-weight: 700;
@@ -74,9 +72,9 @@
 
       &:active {
         border-radius: 8px;
-        border: 1px solid  #E2E6E9;
-        background: #FFF;
-        color: #F86800;       
+        border: 1px solid  $gray-elements;
+        background: $gray-white;
+        color: $Accent;       
       }
     }
 
@@ -87,8 +85,8 @@
       width: 40px;
       height: 40px;
       border-radius: 48px;
-      border: 1px solid #B4BDC3;
-      background-color: #FFF;
+      border: 1px solid $gray-icons-placeholders;
+      background-color: $gray-white;
 
       &:active {
         background-image: url("../../../public/images/card/heart_like.png");
@@ -106,14 +104,14 @@
   padding-top: 8px;
     
   &-title {
-    color:  #89939A;
+    color:  $gray-secondary;
     font-size: 12px;
     font-weight: 700;   
     padding: 4px 0;
   }
 
   &-value {
-    color: #0F0F11;
+    color: $gray-primary;
     text-align: right;
     font-size: 12px;
     font-weight: 700;
@@ -122,6 +120,6 @@
 
 hr {
   border-radius: 8px;
-  border: 1px solid #E2E6E9;
-  background: #FFF;
+  border: 1px solid $gray-elements;
+  background: $gray-white;
 }

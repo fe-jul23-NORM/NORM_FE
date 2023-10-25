@@ -1,3 +1,6 @@
+import { Routes, Route } from 'react-router-dom'
+import Layout from '../HOC/Layout/Layout';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import './App.css';
 import Card from '../Card/Card';
 import ItemCard from '../ItemCard/ItemCard';
