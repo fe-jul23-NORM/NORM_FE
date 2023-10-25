@@ -8,4 +8,20 @@
   @media (min-width: 1200px) {
     @content;
   }
+
+@mixin pageGrid {
+  --columns: 4;
+  display: grid;
+  row-gap: 24px;
+  column-gap: 16px;
+  column-width: 32px;
+  grid-template-columns: repeat(var(--columns), 1fr);
+
+  @include onTablet {
+    --columns: 12;
+  }
+
+  @include onDeskTop {
+    --columns: 24;
+  }
 }
