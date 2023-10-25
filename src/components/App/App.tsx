@@ -12,7 +12,7 @@ import Footer from '../Footer/Footer';
 function App() {
   return (
     <>
-      <Routes>
+      {/* <Routes>
     <Route path='/' element={<HomePage />}>
        <Route path='/phones' element={<h1>111</h1>} />
        <Route path='*' element={<NotFoundPage />} />
@@ -22,10 +22,10 @@ function App() {
  <Catalog />
  <Card/>
  <ItemCard />
- <Footer />
-<Header />
- <Catalog />
- <Footer />
+ <Footer /> */}
+      <Header />
+      <Catalog />
+      <Footer />
     </>
   );
 }
