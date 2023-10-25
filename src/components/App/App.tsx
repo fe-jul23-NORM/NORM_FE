@@ -10,8 +10,8 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route path='/phones' element={<Catalog />} />
-        <Route path='*' element={<NotFoundPage />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='*' element={<NotFoundPage />} />
       </Route>
     </Routes>
   );
