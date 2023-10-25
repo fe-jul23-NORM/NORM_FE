@@ -1,8 +1,15 @@
+import Bunner from '../../Banner/Banner';
 import Card from '../../Card/Card';
 import './HomePage.scss';
 
 const HomePage: React.FC = () => (
     <section className="main">
+        <div className="home-page">
+            <div className="home-page__title">
+                <h1>Welcome to Nice Gadgets store!</h1>
+            </div>
+            <Bunner />
+        </div>
         <div className="home-page-gallery">
             <div className="home-page-gallery__title">
                 <h2 className="home-page-gallery__title--value">Brand new model</h2>
