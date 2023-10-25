@@ -62,6 +62,7 @@ const Card: React.FC = () => {
           <button className='item-card__colors-color-1' />
           <button className='item-card__colors-color-2' />
           <button className='item-card__colors-color-3' />
+          <button className='item-card__colors-color-4' />
         </div>
 
         <hr />

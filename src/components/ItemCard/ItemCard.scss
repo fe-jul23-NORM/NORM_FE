@@ -1,16 +1,12 @@
-$--gray-primary: #0F0F11;
-$--gray-background: #FAFBFC;
-$--gray-secondary: #89939A;
-$--gray-icons-placeholders: #B4BDC3;
+@import '../../utils/variable.scss';
 
 .item-card {
   padding: 16px;
-  background: #FAFBFC;
-  border: 1px solid green;
+  background: $gray-background;
 
   &__title {
     margin: 0;
-    color: #0F0F11;
+    color: $gray-primary;
     font-size: 22px;
     font-style: normal;
     font-weight: 800;
@@ -43,7 +39,7 @@ $--gray-icons-placeholders: #B4BDC3;
     margin-top:  40px;
 
     &-title {
-      color:  #89939A;
+      color:  $gray-secondary;
       font-size: 12px;
       font-style: normal;
       font-weight: 600;
@@ -51,7 +47,7 @@ $--gray-icons-placeholders: #B4BDC3;
     }
 
     &-Id {
-      color: #B4BDC3;
+      color: $gray-icons-placeholders;
       font-size: 12px;
       font-style: normal;
       font-weight: 700;
@@ -67,7 +63,8 @@ $--gray-icons-placeholders: #B4BDC3;
 
     &-color-1,
     &-color-2,
-    &-color-3 {
+    &-color-3,
+    &-color-4 {
       width: 25px;
       height: 25px;
       border-radius: 50%;
@@ -76,7 +73,8 @@ $--gray-icons-placeholders: #B4BDC3;
 
     &-color-1:active,
     &-color-2:active,
-    &-color-3:active {
+    &-color-3:active,
+    &-color-4:active {
       width: 25px;
       height: 25px;
       border-radius: 50%;
@@ -94,10 +92,14 @@ $--gray-icons-placeholders: #B4BDC3;
     &-color-3 {
       background-color: #4C4C4C;
     }
+
+    &-color-4 {
+      background-color: #E2E6E9;
+    }
   }
 
   &__capcity-title {
-    color: #89939A;
+    color: $gray-secondary;
     font-size: 12px;
     font-style: normal;
     font-weight: 600;
@@ -119,7 +121,7 @@ $--gray-icons-placeholders: #B4BDC3;
     margin-top: 38px;
 
     &-actual{      
-      color: #0F0F11;
+      color: $gray-primary;
       font-size: 22px;
       font-weight: 800;
       line-height: 140%;
@@ -128,7 +130,7 @@ $--gray-icons-placeholders: #B4BDC3;
     }
 
     &-sale {
-      color: #89939A;
+      color: $gray-secondary;
       font-size: 22px;
       font-weight: 600;      
       text-decoration: line-through;
@@ -154,8 +156,8 @@ $--gray-icons-placeholders: #B4BDC3;
       align-items: center;
       border: none;
       border-radius: 8px;
-      background: #F86800;
-      color: #FFF;
+      background: $Accent;
+      color: $gray-white;
       text-align: center;
       font-size: 14px;
       font-weight: 700;
@@ -163,9 +165,9 @@ $--gray-icons-placeholders: #B4BDC3;
 
       &:active {
         border-radius: 8px;
-        border: 1px solid  #E2E6E9;
-        background: #FFF;
-        color: #F86800;       
+        border: 1px solid $gray-elements;
+        background: $gray-white;
+        color: $Accent;       
       }
     }
 
@@ -176,8 +178,8 @@ $--gray-icons-placeholders: #B4BDC3;
       width: 40px;
       height: 40px;
       border-radius: 48px;
-      border: 1px solid #B4BDC3;
-      background-color: #FFF;
+      border: 1px solid $gray-icons-placeholders;
+      background-color: $gray-white;
 
       &:active {
         background-image: url("../../../public/images/card/heart_like.png");
@@ -200,7 +202,7 @@ $--gray-icons-placeholders: #B4BDC3;
     &__chapter {
       &-title {
         margin: 32px 0 16px;
-        color: #0F0F11;
+        color: $gray-primary;
         font-size: 16px;
         font-style: normal;
         font-weight: 700;
@@ -209,7 +211,7 @@ $--gray-icons-placeholders: #B4BDC3;
       }
 
       &-description {
-        color: #89939A;
+        color: $gray-secondary;
         font-size: 14px;
         font-style: normal;
         font-weight: 600;
@@ -226,14 +228,14 @@ $--gray-icons-placeholders: #B4BDC3;
   padding-top: 4px;
     
   &-title {
-    color:  #89939A;
+    color: $gray-secondary;
     font-size: 12px;
     font-weight: 700;   
     padding: 2px 0;
   }
 
   &-value {
-    color: #0F0F11;
+    color: $gray-primary;
     text-align: right;
     font-size: 12px;
     font-weight: 700;
@@ -249,24 +251,24 @@ $--gray-icons-placeholders: #B4BDC3;
   font-style: normal;
   font-weight: 600;
   line-height: 21px;
-  background-color: #FAFBFC;
+  background-color: $gray-background;
   width: 60px;
   height: 32px;
   border-radius: 4px;
-  border: 1px solid #B4BDC3;
+  border: 1px solid $gray-icons-placeholders;
 }
 
 .gB_64:active,
 .gB_256:active,
 .gB_512:active {
-  color: #FAFBFC;
-  background-color: #0F0F11;
+  color: $gray-background;
+  background-color: $gray-primary;
 } 
 
 hr {
   border-radius: 8px;
-  border: 1px solid #E2E6E9;
-  background: #FFF;
+  border: 1px solid $gray-elements;
+  background: $gray-white;
 }
 
 .last {
