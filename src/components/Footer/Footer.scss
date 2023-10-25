@@ -31,6 +31,10 @@ $gray-elements: #E2E6E9;
   padding-block: 32px;
   padding-inline: 152px;
 
+  @media (max-width: 1199px) {
+    padding-inline: 24px;
+  }
+
   &__logo {
     height: 32px;
     width: 89px;

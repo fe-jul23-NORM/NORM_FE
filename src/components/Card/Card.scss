@@ -1,8 +1,9 @@
 @import '../../utils/variable.scss';
 
 .card {
+  box-sizing: border-box;
   width: 272px;
-  height: 440px;
+  height: 506px;
   border-radius: 8px;
   border: 1px solid $gray-elements;
   background: $gray-white;
@@ -69,6 +70,7 @@
       font-size: 14px;
       font-weight: 700;
       line-height: 21px;
+      cursor: pointer;
 
       &:active {
         border-radius: 8px;
@@ -87,6 +89,7 @@
       border-radius: 48px;
       border: 1px solid $gray-icons-placeholders;
       background-color: $gray-white;
+      cursor: pointer;
 
       &:active {
         background-image: url("../../../public/images/card/heart_like.png");
