@@ -6,8 +6,9 @@
 // $--gray-icons-placeholders: #B4BDC3;
 
 .card {
-  width: 287px;
-  height: 440px;
+  box-sizing: border-box;
+  width: 272px;
+  height: 506px;
   border-radius: 8px;
   border: 1px solid #E2E6E9;
   background: #FFF;
@@ -71,6 +72,7 @@
       font-size: 14px;
       font-weight: 700;
       line-height: 21px;
+      cursor: pointer;
 
       &:active {
         border-radius: 8px;
@@ -89,6 +91,7 @@
       border-radius: 48px;
       border: 1px solid #B4BDC3;
       background-color: #FFF;
+      cursor: pointer;
 
       &:active {
         background-image: url("../../../public/images/card/heart_like.png");
