@@ -2,32 +2,19 @@ import { Routes, Route } from 'react-router-dom'
 import Layout from '../HOC/Layout/Layout';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import './App.css';
-import Card from '../Card/Card';
-import ItemCard from '../ItemCard/ItemCard';
-// import { Route, Routes } from 'react-router-dom';
-// import Layout from '../HOC/Layout/Layout';
-// import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import Catalog from '../Catalog/Catalog';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import HomePage from '../pages/HomePage/HomePage';
 
 function App() {
   return (
     <>
-      {/* <Routes>
-    <Route path='/' element={<Layout />}>
-       <Route path='/phones' element={<h1>111</h1>} />
-       <Route path='*' element={<NotFoundPage />} />
-    </Route>
-   </Routes>
- <Header />
- <Catalog />
- <Card/>
- <ItemCard />
- <Footer /> */}
-<Header />
- <Catalog />
- <Footer /> 
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/phones' element={<Catalog />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Route>
+      </Routes>
     </>
   );
 }
