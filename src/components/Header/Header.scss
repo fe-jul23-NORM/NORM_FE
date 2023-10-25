@@ -142,4 +142,8 @@ $active-color: #0F0F11;
       display: none;
     }
   }
+
+  &--close {
+    background-image: url(../../images/icons/close-icon.svg);
+  }
 }
