@@ -1,3 +1,5 @@
+import Card from '../Card/Card';
+import ItemCard from '../ItemCard/ItemCard';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Layout from '../HOC/Layout/Layout';
