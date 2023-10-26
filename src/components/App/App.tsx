@@ -10,26 +10,31 @@ import ItemCard from '../ItemCard/ItemCard';
 import Catalog from '../Catalog/Catalog';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import { useAppDispatch } from '../../store';
+import { useEffect } from 'react';
+import { getProductsThunk } from '../../store/products/thunks';
+import { ProductTypesEnum } from '../../types/product.types';
 
 function App() {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getProductsThunk({
+      page: 1,
+      perPage: 10,
+      productType: ProductTypesEnum.Phones,
+    }));
+  }, []);
   return (
-    <>
-      {/* <Routes>
-    <Route path='/' element={<Layout />}>
-       <Route path='/phones' element={<h1>111</h1>} />
-       <Route path='*' element={<NotFoundPage />} />
-    </Route>
-   </Routes>
- <Header />
- <Catalog />
- <Card/>
- <ItemCard />
- <Footer /> */}
-<Header />
- <Catalog />
- <Footer /> 
-    </>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        {/* <Route path='/' element={<HomePage />} /> */}
+        <Route path='/phones' element={<Catalog />} />
+        {/* <Route path='/cart' element={<Cart />} /> */}
+        <Route path='*' element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
+
 }
 
 export default App;
