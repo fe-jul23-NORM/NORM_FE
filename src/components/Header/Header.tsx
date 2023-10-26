@@ -54,7 +54,10 @@ const Header: React.FC = () => {
 
         <div className='header__icons'>
           <a href="/favourites" className='icon icon--heart'> </a>
-          <a href="/cart" className='icon icon--cart'> </a>
+          <NavLink
+              className="icon icon--cart"
+              to="/cart"
+            />
           <a
             href="*"
             className={classNames('icon', { 'icon--menu': !isMenuVisible, 'icon--close': isMenuVisible })}

@@ -1,16 +1,6 @@
+@import '../../utils/mixins.scss';
+
 $active-color: #0F0F11;
-
-@mixin onTablet {
-  @media (min-width: 640px) {
-    @content;
-  }
-}
-
-@mixin onDeskTop {
-  @media (min-width: 1200px) {
-    @content;
-  }
-}
 
 @font-face {
   font-family: "Mont Regular";
