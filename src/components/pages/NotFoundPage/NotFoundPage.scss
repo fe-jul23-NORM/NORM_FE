@@ -1,10 +1,10 @@
 @media screen and (min-width: 320px) and (max-width: 639px) {
-  img {
+  .imageNotFoundPage {
     height: 300px;
     width: 300px;
   }
 
-  .container {
+  .container_notFaundPage {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,12 +19,12 @@
 }
 
 @media screen and (min-width: 640px) and (max-width: 1199px) {
-  img {
+  .imageNotFoundPage {
     height: 600px;
     width: 600px;
   }
 
-  .container {
+  .container_notFaundPage {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,12 +39,12 @@
 }
 
 @media screen and (min-width: 1200px) {
-  img {
+  .imageNotFoundPage {
     height: 700px;
     width: 700px;
   }
 
-  .container {
+  .container_notFaundPage {
     display: flex;
     flex-direction: column;
     justify-content: center;
