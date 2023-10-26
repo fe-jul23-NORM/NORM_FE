@@ -1,8 +1,18 @@
 @import '../../utils/variable.scss';
+@import '../../utils/normalize.scss';
+@import '../../utils/mixins.scss';
 
 .item-card {
-  padding: 16px;
-  background: $gray-background;
+  padding: 0 16px;
+  background: $gray-background;  
+
+  @include onTablet() {
+    padding: 0 24px;
+  }
+
+  @include onDeskTop() {
+    padding: 0 33px;
+  }
 
   &__title {
     margin: 0;
@@ -13,201 +23,302 @@
     line-height: 140%;
     text-align: left;
     margin-bottom: 32px;
-  }
 
-  &__img {
-    width: 274.345px;
-    height: 274.345px;
-    margin-bottom: 27px;
+    @include onTablet() {
+      font-size: 32px;
+      line-height: 41px;
+      letter-spacing: -0.32px;
+    }
   }
+}
 
-  &__miniatures {
-    width: 100%;
+.container {
+  @include onTablet() {
     display: flex;
-    flex-direction: row;
-    gap: 8.5px;
-
-    &-miniature {
-      height: 40.425px;
-    }
   }
 
-  &__availible {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top:  40px;
-
-    &-title {
-      color:  $gray-secondary;
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: normal;
-    }
-
-    &-Id {
-      color: $gray-icons-placeholders;
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-    }
+  @include onDeskTop() {
+    gap: 70px;
   }
 
-  &__colors {
-    margin-top: 8px;
-    margin-bottom: 24px;
-    display: flex;
-    gap: 8px;
-
-    &-color-1,
-    &-color-2,
-    &-color-3,
-    &-color-4 {
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      border: none;
+  &__images {
+    @include onTablet() {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 24px;
+      width: 55%;
     }
 
-    &-color-1:active,
-    &-color-2:active,
-    &-color-3:active,
-    &-color-4:active {
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      border: 1px solid #4C4C4C;
+    @include onDeskTop() {
+      width: 50%;
+      gap: 72px;
+    }
+    
+    &-main {
+      width: 274.345px;
+      height: 274.345px;
+      margin-bottom: 27px;
+
+      @include onTablet() {
+        width: 273.4px;
+        height: 273.4px;
+        margin-bottom: 0;
+      }
+
+      @include onDeskTop() {
+        width: 442px;
+        height: 442px;
+        margin-bottom: 0;
+      }      
     }
 
-    &-color-1 {      
-      background-color: #FCDBC1;
-    }
+    &-miniatures {
+      box-sizing: border-box;
+      margin-bottom: 8px;
+      width: 100%;
+      height: 49px;
 
-    &-color-2 {
-      background-color: #5F7170;
-    }
+      @include onTablet() {
+        width: 35px;
+        height: 207px; 
+      }
+   
+      &-item {
+        @include onTablet() {
+          width: 35px;
+          height: 35px;
+        }
 
-    &-color-3 {
-      background-color: #4C4C4C;
-    }
-
-    &-color-4 {
-      background-color: #E2E6E9;
-    }
-  }
-
-  &__capcity-title {
-    color: $gray-secondary;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    margin-top: 24px;
-    margin-bottom: 8px;
-  }
-
-  &__capcity-set {
-    display: flex;
-    flex-direction: row;
-    gap: 16px;
-    margin-bottom: 24px;
-  }
-
-  &__price {
-    display: flex;
-    gap: 8px;
-    margin-top: 38px;
-
-    &-actual{      
-      color: $gray-primary;
-      font-size: 22px;
-      font-weight: 800;
-      line-height: 140%;
-      margin: 0;
-      font-style: normal;
-    }
-
-    &-sale {
-      color: $gray-secondary;
-      font-size: 22px;
-      font-weight: 600;      
-      text-decoration: line-through;
-      margin: 0;
-      font-style: normal;
-      line-height: normal;
+        @include onDeskTop() {
+          width: 78px;
+          height: 78px;
+        }
+      }
     }
   }
+  
+  &__info {
+    @include onTablet() {
+      width: calc(100% - 50% - 64px);
+    }
 
-  &__footer {
-    padding-top: 16px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    gap: 8px;
-    margin-top: 16px;
-    margin-bottom: 32px;
+    &-availible {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 40px;
 
-    &-button {
-      height: 40px;
-      width: 80%;
-      justify-content: center;
-      align-items: center;
-      border: none;
-      border-radius: 8px;
-      background: $Accent;
-      color: $gray-white;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 21px;
+      @include onTablet() {
+        margin-top: 0;
+      }
 
-      &:active {
-        border-radius: 8px;
-        border: 1px solid $gray-elements;
-        background: $gray-white;
-        color: $Accent;       
+      &-title {
+        color:  $gray-secondary;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+      }
+
+      &-Id {
+        color: $gray-icons-placeholders;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
       }
     }
 
-    &-favourite {
-      background-image: url("../../../public/images/card/heart_unlike.png");
-      background-repeat: no-repeat ;
-      background-position: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 48px;
-      border: 1px solid $gray-icons-placeholders;
-      background-color: $gray-white;
+    &-colors {
+      margin-top: 8px;
+      margin-bottom: 24px;
+      display: flex;
+      gap: 8px;
 
-      &:active {
-        background-image: url("../../../public/images/card/heart_like.png");
+      &-color-1,
+      &-color-2,
+      &-color-3,
+      &-color-4 {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        border: none;
+      }
+
+      &-color-1:active,
+      &-color-2:active,
+      &-color-3:active,
+      &-color-4:active {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        border: 1px solid #4C4C4C;
+      }
+
+      &-color-1 {      
+        background-color: #FCDBC1;
+      }
+
+      &-color-2 {
+        background-color: #5F7170;
+      }
+
+      &-color-3 {
+        background-color: #4C4C4C;
+      }
+
+      &-color-4 {
+        background-color: #E2E6E9;
+      }
+    }
+
+    &-capcity {
+      &-title {
+        color: $gray-secondary;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        margin-top: 24px;
+        margin-bottom: 8px;
+      }
+
+      &-set {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+    }
+
+    &-price {
+      margin-top: 32px;
+      display: flex;
+      gap: 8px;
+
+      &-actual{      
+        margin: 0;
+        color: $gray-primary;
+        font-size: 32px;
+        font-weight: 800;
+        font-style: normal;
+      }
+
+      &-sale {
+        margin-top: 7px;
+        color: $gray-secondary;
+        font-size: 22px;
+        font-weight: 500;      
+        text-decoration: line-through;
+        font-style: normal;
+        line-height: normal;
+      }
+    }
+
+    &-cart {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      gap: 8px;
+      margin-bottom: 32px;
+
+      
+      @include onDeskTop() {
+        width: calc(100% - 35%);
+      }
+
+      &-button {
+        height: 48px;
+        width: calc(100% - 48px + 8px);
+        justify-content: center;
+        align-items: center;
+        border: none;
+        border-radius: 8px;
+        background: $Accent;
+        color: $gray-white;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 21px;
+
+        &:active {
+          border-radius: 8px;
+          border: 1px solid $gray-elements;
+          background: $gray-white;
+          color: $Accent;       
+        }
+      }
+
+      &-favourite {
+        background-image: url("../../../public/images/card/heart_unlike.png");
         background-repeat: no-repeat ;
         background-position: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 40px;
+        border: 1px solid $gray-icons-placeholders;
+        background-color: $gray-white;
+
+        &:active {
+          background-image: url("../../../public/images/card/heart_like.png");
+          background-repeat: no-repeat ;
+          background-position: center;
+        }
+      }  
+    }
+
+    &-description {
+      @include onDeskTop() {
+        width: calc(100% - 35%);
       }
-    }  
+    }
+  }  
+}
+
+.main {
+  @include onDeskTop() {
+    display: flex;
+    gap: 67px;
   }
 
-  &__section {
-    margin: 56px 0 16px;    
-    color: #0F0F11;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    align-self: stretch;
-  }
+  &__about {  
+    @include onDeskTop() {
+      width: 50%;
+    }
 
-    &__chapter {
-      &-title {
+    &-title {  
+      @include onDeskTop() {
+        margin: 56px 0 0;
+      } 
+
+      margin: 56px 0 16px;
+      color: #0F0F11;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+
+      @include onTablet() {
+        font-size: 22px;
+        font-weight: 800;
+        line-height: 140%;
+      }   
+    }
+
+    &-chapter {
+      &-title { 
         margin: 32px 0 16px;
         color: $gray-primary;
         font-size: 16px;
         font-style: normal;
         font-weight: 700;
         line-height: normal;
-        align-self: stretch;
+
+        @include onTablet() {
+          font-size: 20px;
+          font-weight: 700;
+          line-height: normal;
+        }
       }
 
       &-description {
@@ -215,23 +326,56 @@
         font-size: 14px;
         font-style: normal;
         font-weight: 600;
-        line-height: 21px; 
-        align-self: stretch;
+        line-height: 21px;
+      }
+    }
+  }
+
+  &__specs {
+    @include onDeskTop() {
+      width: calc(100% - 50% - 64px);
+    }
+
+    &-title {
+      margin: 56px 0 16px;
+      color: #0F0F11;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+
+      @include onTablet() {
+        font-size: 22px;
+        font-weight: 800;
+        line-height: 140%;
+      }
+
+      @include onDeskTop() {
+        margin: 56px 0 0;
+      } 
+    }
+
+    &-description {
+      @include onDeskTop() {
+        margin-top: 32px;
       }      
     }
+  }
 }
 
 .description-item {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 4px;
+  margin-bottom: 4px;
+
+
     
   &-title {
     color: $gray-secondary;
     font-size: 12px;
     font-weight: 700;   
-    padding: 2px 0;
+    padding: 4px 0;
   }
 
   &-value {
@@ -269,8 +413,4 @@ hr {
   border-radius: 8px;
   border: 1px solid $gray-elements;
   background: $gray-white;
-}
-
-.last {
-  margin-top: 30px;
 }

@@ -1,0 +1,101 @@
+@import '../../utils/variable.scss';
+@import '../../utils/mixins.scss';
+
+@font-face {
+  font-family: "Mont Regular";
+  src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot");
+  src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.svg#Mont Regular")format("svg");
+  font-size: 16px;
+  font-weight: 800;
+}
+
+p,
+span {
+  margin: 0;
+  padding: 0;
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  border: 1px solid $gray-elements;
+  border-radius: 16px;
+  box-sizing: border-box;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+
+  @include onTablet {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+  }
+
+  &__info {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 32px;
+
+    @include onTablet {
+      width: 200px;
+    }
+  }
+
+  &__delete {
+    height: 16px;
+    width: 16px;
+    background-image: url(../../images/icons/close-disabled-icon.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  &__picture {
+    height: 66px;
+    width: 66px;
+  }
+
+  &__number {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+  }
+
+  &__button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid $gray-icons-placeholders;
+    border-radius: 50%;
+    background: #fff;
+    font-size: 16px;
+
+    &--disabled {
+      border: 1px solid $gray-elements;
+      color: $gray-elements;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #fff;
+      font-size: 16px;
+    }
+  }
+
+  &__price {
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 30.8px;
+  }
+}
