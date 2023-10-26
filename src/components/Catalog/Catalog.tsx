@@ -5,29 +5,32 @@ import Card from '../Card/Card';
 const Catalog: React.FC = () => {
   return (
     <section className="catalog">
-      <div className="catalog__nav">
-        <a href="/" className="catalog__nav-icon">
-          <img src="https://i.imgur.com/WmTuk3L.png" alt="home" />
-        </a>
-        <img
-          src="https://i.imgur.com/zNeLDRA.png"
-          alt="arrow-right"
-          className="catalog__nav-icon" />
+      <div className="head-container">
 
-        <a href="/" className="catalog__nav-text">
-          Phones
-        </a>
-      </div>
+        <div className="title-container">
+        <div className="catalog__nav">
+          <a href="/" className="catalog__nav-icon">
+            <img src="https://i.imgur.com/WmTuk3L.png" alt="home" />
+          </a>
+          <img
+            src="https://i.imgur.com/zNeLDRA.png"
+            alt="arrow-right"
+            className="catalog__nav-icon" />
 
-      <h1 className='page__title'>
-        Mobile phones
-      </h1>
+          <a href="/" className="catalog__nav-text">
+            Phones
+          </a>
+        </div>
+          <h1 className='page__title'>
+            Mobile phones
+          </h1>
 
-      <p className="page__items-amount">
-        95 models
-      </p>
-
-      <form method="post" className="catalog__form">
+          <p className="page__items-amount">
+            95 models
+          </p>
+        </div>
+        
+        <form method="post" className="catalog__form">
         <div className="catalog__form-wrapper">
           <label htmlFor="perPage" className="catalog__form-item">
             <span className="catalog__form-type">Sort by</span>
@@ -59,8 +62,10 @@ const Catalog: React.FC = () => {
           </label>
         </div>
       </form>
+      </div>
 
       <div className="catalog__container">
+
         <div className="productCard">
           <Card />
         </div>
@@ -89,14 +94,14 @@ const Catalog: React.FC = () => {
 
       <div className="page__pagination">
         <div className="pagination-icon">
-        <img src="https://i.imgur.com/dB7Z9gF.png" alt="arrow-left" className="pagination-icon--left" />
+          <img src="https://i.imgur.com/dB7Z9gF.png" alt="arrow-left" className="pagination-icon--left" />
         </div>
         <span className="pagination-number pagination-number--active">1</span>
         <span className="pagination-number">2</span>
         <span className="pagination-number">3</span>
         <span className="pagination-number">4</span>
         <div className="pagination-icon">
-        <img src="https://i.imgur.com/dPv3LqE.png" alt="arrow-right" className="pagination-icon--right" />
+          <img src="https://i.imgur.com/dPv3LqE.png" alt="arrow-right" className="pagination-icon--right" />
         </div>
       </div>
     </section>
