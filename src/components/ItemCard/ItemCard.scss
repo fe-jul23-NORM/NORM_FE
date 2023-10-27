@@ -15,7 +15,6 @@
   }
 
   &__title {
-    margin: 0;
     color: $gray-primary;
     font-size: 22px;
     font-style: normal;
@@ -53,7 +52,7 @@
       width: 50%;
       gap: 72px;
     }
-    
+
     &-main {
       width: 274.345px;
       height: 274.345px;
@@ -69,7 +68,7 @@
         width: 442px;
         height: 442px;
         margin-bottom: 0;
-      }      
+      }
     }
 
     &-miniatures {

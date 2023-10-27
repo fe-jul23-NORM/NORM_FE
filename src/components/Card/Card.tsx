@@ -19,9 +19,7 @@ const Card: React.FC<Props> = () => {
       />
       
       <p className="card__title">
-        Apple iPhone 14 Pro 128GB Silver 
-        <br/>
-        (MQ023)          
+        Apple iPhone 14 Pro 128GB Silver (MQ023)
       </p>
 
       <div className="card__price">
