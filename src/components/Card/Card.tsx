@@ -1,7 +1,12 @@
 import React from 'react';
 import './Card.scss';
+import { IProduct } from '../../types/product.types';
 
-const Card: React.FC = () => {
+type Props = {
+  product: IProduct,
+}
+
+const Card: React.FC<Props> = () => {
   return (
     <div className="card">
       <img 
