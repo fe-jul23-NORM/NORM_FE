@@ -20,6 +20,7 @@ import { getProductsThunk } from '../../store/products/thunks';
 import { IProduct, ProductTypesEnum } from '../../types/product.types';
 import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
+import FavouritesPage from '../pages/FavouritesPage/FavouritesPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -44,11 +45,12 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/phones' element={<Catalog />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/favourites' element={<FavouritesPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
     </Routes>
 
-    {allProducts.map((product) => {
+    {/* {allProducts.map((product) => {
       return (
         <div>
           <p>{product.name}</p>
@@ -56,7 +58,7 @@ function App() {
           <button onClick={() => handleClick(product)}>jopa</button>
         </div>
       )
-    })}
+    })} */}
     </>
   );
 }
