@@ -1,7 +1,18 @@
+import React, { useEffect } from 'react';
 import Card from '../../Card/Card';
 import './FavouritesPage.scss';
+import { useAppDispatch, useAppSelector } from '../../../store';
+import { selectNewProducts } from '../../../store/products/selectors';
+import { getNewProductsThunk } from '../../../store/products/thunks';
 
 const FavouritesPage: React.FC = () => {
+  const products = useAppSelector((state) => state.product.new);
+  const dispatch = useAppDispatch();
+  
+  useEffect(() => {
+    dispatch(getNewProductsThunk());
+  }, [])
+
   return (
     <div className="favourites__wrapper">
 
@@ -34,29 +45,13 @@ const FavouritesPage: React.FC = () => {
         </div>
 
         <div className="favourites__container">
-          <div className="favourites__item">
-            <Card />
-          </div>
-          <div className="favourites__item">
-            <Card />
-          </div>
-          <div className="favourites__item">
-            <Card />
-          </div>
-          <div className="favourites__item">
-            <Card />
-          </div>
-          <div className="favourites__item">
-            <Card />
-          </div>
-
-          {/* {favouriteProducts.map(product => {
-    return (
-      <div className="favourites__item">
-        <Card />
-      </div>
-    )
-  })} */}
+          {products.map(product => {
+            return (
+              <div key={product.id} className="favourites__item">
+                <Card product={product} />
+              </div>
+            )
+          })}
         </div>
       </section>
     </div>
