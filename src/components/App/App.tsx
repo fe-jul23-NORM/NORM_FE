@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from '../HOC/Layout/Layout';
 import Catalog from '../Catalog/Catalog';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
-import HomePage from '../pages/HomePage/HomePage';
+// import HomePage from '../pages/HomePage/HomePage';
 import Cart from '../Cart/Cart';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { getProductsThunk } from '../../store/products/thunks';
@@ -17,6 +17,7 @@ import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
 import FavouritesPage from '../pages/FavouritesPage/FavouritesPage';
 import ItemCard from '../ItemCard/ItemCard';
+import HomePage from '../pages/HomePage/HomePage';
 
 function App() {
   
