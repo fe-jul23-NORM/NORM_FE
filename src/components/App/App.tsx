@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import './App.css';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -20,6 +21,7 @@ import { getProductsThunk } from '../../store/products/thunks';
 import { IProduct, ProductTypesEnum } from '../../types/product.types';
 import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
+import ItemCard from '../ItemCard/ItemCard';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -50,7 +52,7 @@ function App() {
 
     {allProducts.map((product) => {
       return (
-        <div>
+        <div key={product.id}>
           <p>{product.name}</p>
           <img src={`${BASE_URI}/${product.image}`} />
           <button onClick={() => handleClick(product)}>jopa</button>

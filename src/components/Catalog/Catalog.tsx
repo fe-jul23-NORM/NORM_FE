@@ -77,7 +77,7 @@ const Catalog: React.FC = () => {
       <div className="catalog__container">
         {allProducts.map(product => {
           return (
-            <div className="productCard">
+            <div key={product.id} className="productCard">
               <Card product={product} />
             </div>
           )
@@ -90,6 +90,7 @@ const Catalog: React.FC = () => {
         </div>
         {paginationArray.map(page => {
           return (
+            // eslint-disable-next-line react/jsx-key
             <span className="pagination-number pagination-number--active1">{page}</span>
           )
         })}
