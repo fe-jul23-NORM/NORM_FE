@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import CartItem from "./CartItem";
 import './Cart.scss';
 import { useNavigate } from "react-router";
@@ -11,14 +12,14 @@ const Cart = () => {
   return (
     <div className="cart">
 
-      <div className="cart__back">
+      <div className="cart__return">
         <button
           className="cart__arrow"
           onClick={goBack}
         />
 
         <button
-          className="cart__word"
+          className="cart__back"
           onClick={goBack}
         >
           Back

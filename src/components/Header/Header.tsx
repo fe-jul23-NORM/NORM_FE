@@ -4,13 +4,35 @@ import './Header.scss';
 import classNames from 'classnames';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
-export const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
+const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
   'nav__link',
   { 'nav__link--active': isActive },
 );
 
+const getFavoritesClass = ({ isActive }: { isActive: boolean }) => classNames(
+  'icon icon--heart',
+  { 'icon--active': isActive },
+);
+
+const getCartClass = ({ isActive }: { isActive: boolean }) => classNames(
+  'icon icon--cart',
+  { 'icon--active': isActive },
+);
+
 const Header: React.FC = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
+
+  const openMenu = () => {
+    setIsMenuVisible(true);
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+  }
+
+  const closeMenu = () => {
+    setIsMenuVisible(false);
+    document.body.style.overflow = 'auto';
+    document.documentElement.style.overflow = 'auto';
+  }
 
   return (
     <>
@@ -53,19 +75,23 @@ const Header: React.FC = () => {
         </nav>
 
         <div className='header__icons'>
-          <a href="/favourites" className='icon icon--heart'> </a>
           <NavLink
-              className="icon icon--cart"
-              to="/cart"
-            />
+            className={getFavoritesClass}
+            to="/favourites"
+          />
+
+          <NavLink
+            className={getCartClass}
+            to="/cart"
+          />
+
           <a
             href="*"
             className={classNames('icon', { 'icon--menu': !isMenuVisible, 'icon--close': isMenuVisible })}
             onClick={(e) => {
               e.preventDefault()
-              setIsMenuVisible(!isMenuVisible)
-            }
-            }
+              isMenuVisible ? closeMenu() : openMenu()
+            }}
           > </a>
         </div>
       </header>
