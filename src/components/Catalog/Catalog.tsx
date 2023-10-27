@@ -9,7 +9,9 @@ const Catalog: React.FC = () => {
   const totalProducts = useAppSelector(selectProductsCount);
   console.log(totalProducts);
 
-  const [perPage, setPerPage] = useState(10);
+  // const [perPage, setPerPage] = useState(10);
+  const [perPage] = useState(10);
+
 
   const paginationArray = Array.from(Array((Math.ceil(totalProducts / perPage)) + 1).keys()).slice(1);
 
