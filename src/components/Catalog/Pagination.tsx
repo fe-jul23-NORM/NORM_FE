@@ -3,14 +3,21 @@ import classnames from 'classnames';
 import { usePagination, DOTS } from './usePagination';
 import './Pagination.scss';
 
-const Pagination = props => {
+type Props = {
+  onPageChange: (page: React.SetStateAction<number>) => void,
+  totalCount: number,
+  siblingCount: number,
+  currentPage: number,
+  pageSize: number,
+}
+
+const Pagination = (props: Props) => {
   const {
     onPageChange,
     totalCount,
     siblingCount = 1,
     currentPage,
     pageSize,
-    className
   } = props;
 
   const paginationRange = usePagination({
@@ -19,6 +26,10 @@ const Pagination = props => {
     siblingCount,
     pageSize
   });
+
+  if (paginationRange === undefined) {
+    return null;
+  }
 
   if (currentPage === 0 || paginationRange.length < 2) {
     return null;
@@ -32,10 +43,10 @@ const Pagination = props => {
     onPageChange(currentPage - 1);
   };
 
-  let lastPage = paginationRange[paginationRange.length - 1];
+  const lastPage = paginationRange[paginationRange.length - 1];
   return (
     <ul
-      className={classnames('pagination-container', { [className]: className })}
+      className={classnames('pagination-container', {})}
     >
       <li
         className={classnames('pagination-item', {
@@ -47,11 +58,16 @@ const Pagination = props => {
       </li>
       {paginationRange.map(pageNumber => {
         if (pageNumber === DOTS) {
-          return <li className="pagination-item dots">&#8230;</li>;
+          return (
+            <li
+              key={pageNumber}
+              className="pagination-item dots">&#8230;</li>
+          );
         }
 
         return (
           <li
+            key={pageNumber}
             className={classnames('pagination-item pagination-item--number', {
               selected: pageNumber === currentPage
             })}

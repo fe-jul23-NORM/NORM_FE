@@ -105,7 +105,7 @@ const Catalog: React.FC = () => {
       <div className="catalog__container">
         {allProducts.map(product => {
           return (
-            <div className="productCard">
+            <div key={product.id} className="productCard">
               <Card product={product} />
             </div>
           )
@@ -114,12 +114,12 @@ const Catalog: React.FC = () => {
 
       <div className="page__pagination">
         <Pagination
-              className="pagination-bar"
-              currentPage={currentPage}
-              totalCount={totalProducts}
-              pageSize={productsPerPage}
-              onPageChange={(page: React.SetStateAction<number>) => setCurrentPage(page)}
-            />
+          siblingCount={1}
+          currentPage={currentPage}
+          totalCount={totalProducts}
+          pageSize={productsPerPage}
+          onPageChange={(page: React.SetStateAction<number>) => setCurrentPage(page)}
+        />
       </div>
     </section>
   )
