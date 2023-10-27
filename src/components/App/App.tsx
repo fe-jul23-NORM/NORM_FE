@@ -11,7 +11,6 @@ import { getProductsThunk } from '../../store/products/thunks';
 
 import { selectAllProducts } from '../../store/products/selectors';
 
-
 import { IProduct, ProductTypesEnum } from '../../types/product.types';
 import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
@@ -36,7 +35,7 @@ function App() {
   }, []);
 
   return (
-    <>
+  <>
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route path='/' element={<HomePage />} />
@@ -54,7 +53,7 @@ function App() {
             src={`${BASE_URI}/${product.image}`} 
             alt=""
           />
-          <button onClick={() => handleClick(product)}>jopa</button>
+          <button onClick={() => handleClick(product)}>jopa</button>         
         </div>
       )
     })}
