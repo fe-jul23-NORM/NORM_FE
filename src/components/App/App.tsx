@@ -9,15 +9,14 @@ import Cart from '../Cart/Cart';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { getProductsThunk } from '../../store/products/thunks';
 
-<!-- 
-import { ProductTypesEnum } from '../../types/product.types';
-import { selectAllProducts } from '../../store/products/selectors';
+// import { ProductTypesEnum } from '../../types/product.types';
+// import { selectAllProducts } from '../../store/products/selectors';
 
-  const dispatch = useAppDispatch();
-  const allProducts = useAppSelector(selectAllProducts)
-  const isLoading = useAppSelector((state) => state.product.isLoading)
-  console.log(allProducts)
- -->
+//   const dispatch = useAppDispatch();
+//   const allProducts = useAppSelector(selectAllProducts)
+//   const isLoading = useAppSelector((state) => state.product.isLoading)
+//   console.log(allProducts)
+
 import { IProduct, ProductTypesEnum } from '../../types/product.types';
 import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
