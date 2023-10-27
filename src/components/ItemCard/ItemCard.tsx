@@ -2,48 +2,69 @@ import React from 'react';
 import './ItemCard.scss';
 import ButtonCart from '../ButtonCart/ButtonCart';
 
-const Card: React.FC = () => {
+const ItemCard: React.FC = () => {
   return (
     <>
       <div className='item-card'>
+        <div className="item-card__nav">
+          <a href="/" className="item-card__nav-icon">
+            <img src="https://i.imgur.com/WmTuk3L.png" alt="home" />
+          </a>
+          <img
+            src="https://i.imgur.com/zNeLDRA.png"
+            alt="arrow-right"
+            className="item-card__nav-icon" />
+
+          <a href="/" className="catalog__nav-text">
+            Phones
+          </a>
+          <img
+            src="https://i.imgur.com/zNeLDRA.png"
+            alt="arrow-right"
+            className="item-card__nav-icon" />
+
+          <a href="/" className="catalog__nav-text">
+            Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
+          </a>
+        </div>
         <p className="item-card__title">
           Apple iPhone 11 Pro Max  64GB Gold (iMT9G2FS/A)
         </p>
 
         <div className="container">
           <div className="container__images">
-              <img className="container__images-main"
-                src="/images/card/item-card-main.png"
-                alt="phone"
-              />
+            <img className="container__images-main"
+              src="/images/card/item-card-main.png"
+              alt="phone"
+            />
 
             <div className="container__images-miniatures">
-              <img 
+              <img
                 className="container__images-miniatures-item"
                 src="/images/card/miniature.png"
                 alt="phone"
               />
 
-              <img 
+              <img
                 className="container__images-miniatures-item"
                 src="/images/card/miniature.png"
                 alt="phone"
               />
 
-              <img 
+              <img
                 className="container__images-miniatures-item"
                 src="/images/card/miniature.png"
                 alt="phone"
               />
 
 
-              <img 
+              <img
                 className="container__images-miniatures-item"
                 src="/images/card/miniature.png"
                 alt="phone"
               />
 
-              <img 
+              <img
                 className="container__images-miniatures-item"
                 src="/images/card/miniature.png"
                 alt="phone"
@@ -97,7 +118,7 @@ const Card: React.FC = () => {
             <div className="container__info-cart">
               <ButtonCart />
 
-              <button className="container__info-cart-favourite"/>
+              <button className="container__info-cart-favourite" />
             </div>
 
             <div className="container__info-description">
@@ -106,25 +127,25 @@ const Card: React.FC = () => {
                   Screen
                 </span>
                 <span className="description-item-value">
-                6.5” OLED
-                </span>
-              </div>
-              
-              <div className="description-item">
-                <span className="description-item-title">
-                Resolution
-                </span>
-                <span className="description-item-value">
-                2688x1242
+                  6.5” OLED
                 </span>
               </div>
 
               <div className="description-item">
                 <span className="description-item-title">
-                Processor
+                  Resolution
                 </span>
                 <span className="description-item-value">
-                Apple A12 Bionic
+                  2688x1242
+                </span>
+              </div>
+
+              <div className="description-item">
+                <span className="description-item-title">
+                  Processor
+                </span>
+                <span className="description-item-value">
+                  Apple A12 Bionic
                 </span>
               </div>
 
@@ -143,7 +164,7 @@ const Card: React.FC = () => {
         <div className="main">
           <div className="main__about">
             <p className="main__about-title">
-            About
+              About
             </p>
 
             <hr />
@@ -156,55 +177,55 @@ const Card: React.FC = () => {
               <p className="main__about-chapter-description">
                 A transformative triple-camera system
                 that adds tons of capability withoutu
-                complexity. 
+                complexity.
                 <br />
                 <br />
                 An unprecedented leap in battery life.
                 And a mind-blowing chip that doubles
-                down on machine learning and pushes 
+                down on machine learning and pushes
                 the boundaries of what a smartphone
                 can do. Welcome to the first iPhone
                 powerful enough to be called Pro.
               </p>
             </div>
 
-          <div className="main__about-chapter">
-            <p className="main__about-chapter-title">
-              Camera
-            </p>
+            <div className="main__about-chapter">
+              <p className="main__about-chapter-title">
+                Camera
+              </p>
 
-            <p className="main__about-chapter-description">
-              Meet the first triple-camera system to combine
-              cutting-edge technology with the legendary
-              simplicity of iPhone. Capture up to four times more
-              scene. Get beautiful images in drastically lower light.
-              Shoot the highest-quality video in a smartphone — then
-              edit with the same tools you love for photos. 
-              You've never shot with anything like it.
-            </p>
-          </div>
+              <p className="main__about-chapter-description">
+                Meet the first triple-camera system to combine
+                cutting-edge technology with the legendary
+                simplicity of iPhone. Capture up to four times more
+                scene. Get beautiful images in drastically lower light.
+                Shoot the highest-quality video in a smartphone — then
+                edit with the same tools you love for photos.
+                You`&#39;`ve never shot with anything like it.
+              </p>
+            </div>
 
-          <div className="main__about-chapter">
-            <p className="main__about-chapter-title">
-              Shoot it. Flip it. Zoom it. Crop it. Cut it. 
-              Light it. Tweak it. Love it.
-            </p>
+            <div className="main__about-chapter">
+              <p className="main__about-chapter-title">
+                Shoot it. Flip it. Zoom it. Crop it. Cut it.
+                Light it. Tweak it. Love it.
+              </p>
 
-            <p className="main__about-chapter-description">
-              iPhone 11 Pro lets you capture videos that are 
-              beautifully true to life, with greater detail 
-              and smoother motion. Epic processing power means 
-              it can shoot 4K video with extended dynamic range 
-              and cinematic video stabilization — all at 60 fps. 
-              You get more creative control, too, with four times
-              more scene and powerful new editing tools to play with.
-            </p>
-          </div>
+              <p className="main__about-chapter-description">
+                iPhone 11 Pro lets you capture videos that are
+                beautifully true to life, with greater detail
+                and smoother motion. Epic processing power means
+                it can shoot 4K video with extended dynamic range
+                and cinematic video stabilization — all at 60 fps.
+                You get more creative control, too, with four times
+                more scene and powerful new editing tools to play with.
+              </p>
+            </div>
           </div>
 
           <div className="main__specs">
             <p className="main__specs-title">
-            Tech specs
+              Tech specs
             </p>
 
             <hr />
@@ -215,16 +236,16 @@ const Card: React.FC = () => {
                   Screen
                 </span>
                 <span className="description-item-value">
-                6.5” OLED
+                  6.5” OLED
                 </span>
               </div>
-            
+
               <div className="description-item">
                 <span className="description-item-title">
-                Resolution
+                  Resolution
                 </span>
                 <span className="description-item-value">
-                2688x1242
+                  2688x1242
                 </span>
               </div>
 
@@ -284,10 +305,10 @@ const Card: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>  
-      </div> 
+        </div>
+      </div>
     </>
   )
 };
 
-export default Card;
+export default ItemCard;

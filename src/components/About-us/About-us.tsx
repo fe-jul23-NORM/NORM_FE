@@ -19,7 +19,7 @@ const AboutUs: React.FC = () => {
         </ul>
         <h3>Server Side:</h3>
         <ul>
-          <li>REST API: We've designed a robust RESTful API to facilitate data retrieval, manipulation, and seamless integration with the front-end.</li>
+          <li>REST API: We`&lsquo;`ve designed a robust RESTful API to facilitate data retrieval, manipulation, and seamless integration with the front-end.</li>
           <li>Node.js: Our server-side logic is powered by Node.js, offering lightning-fast performance and scalability.</li>
           <li>Express: We use the Express framework to streamline the development of server-side features and routing.</li>
           <li>CORS: Cross-Origin Resource Sharing (CORS) support ensures secure data exchange between different domains and origins.</li>
@@ -36,8 +36,8 @@ const AboutUs: React.FC = () => {
           <li>User Reviews: Read and leave reviews and ratings for products, helping others make informed decisions.</li>
           <li>Responsive Design: Enjoy a consistent shopping experience across desktop and mobile devices, thanks to our responsive design.</li>
           <li>Secure Transactions: We prioritize security, ensuring that your personal and financial information is protected with the latest encryption technologies.</li>
-          <li>Real-Time Updates: Stay informed about your order's status and receive real-time notifications on the latest deals and promotions.</li>
-          <li>Order Tracking: Keep track of your orders from shipment to delivery, so you're always in the loop.</li>
+          <li>Real-Time Updates: Stay informed about your order`&lsquo;`s status and receive real-time notifications on the latest deals and promotions.</li>
+          <li>Order Tracking: Keep track of your orders from shipment to delivery, so you`&lsquo;`re always in the loop.</li>
         </ul>
       </div>
       <h2>Our Team:</h2>
@@ -51,7 +51,7 @@ const AboutUs: React.FC = () => {
           <li>Chernetska Tamara - chernetska.tamara.dev@gmail.com</li>
         </ul>
       </div>
-      <p>Our E-Commerce Web Application for buying phones, tablets, and accessories is your one-stop destination for all things tech. Whether you're a tech guru or a casual shopper, our platform offers a seamless, secure, and enjoyable shopping experience. Shop with confidence and explore the world of technology with us!</p>
+      <p>Our E-Commerce Web Application for buying phones, tablets, and accessories is your one-stop destination for all things tech. Whether you`&lsquo;`re a tech guru or a casual shopper, our platform offers a seamless, secure, and enjoyable shopping experience. Shop with confidence and explore the world of technology with us!</p>
     </body>
   )
 };
