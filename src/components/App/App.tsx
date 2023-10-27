@@ -15,6 +15,7 @@ import { selectAllProducts } from '../../store/products/selectors';
 import { IProduct, ProductTypesEnum } from '../../types/product.types';
 import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
+import FavouritesPage from '../pages/FavouritesPage/FavouritesPage';
 import ItemCard from '../ItemCard/ItemCard';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         {/* <Route path='/' element={<HomePage />} /> */}
         <Route path='/phones' element={<Catalog />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/favourites' element={<FavouritesPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
     </Routes>
