@@ -6,7 +6,7 @@ import { selectNewProducts } from '../../../store/products/selectors';
 import { getNewProductsThunk } from '../../../store/products/thunks';
 
 const FavouritesPage: React.FC = () => {
-  const products = useAppSelector((state) => state.product.new);
+  const products = useAppSelector(selectNewProducts);
   const dispatch = useAppDispatch();
   
   useEffect(() => {
