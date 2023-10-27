@@ -8,4 +8,5 @@ export interface IProductState {
   recommended: IProduct[],
   all: IProduct[],
   currentProduct: ICurrentProduct | null,
+  favorites: IProduct[],
 }

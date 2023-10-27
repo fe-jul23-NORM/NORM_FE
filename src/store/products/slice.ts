@@ -8,19 +8,24 @@ import {
 } from './thunks';
 
 const initialState: IProductState = {
-  isLoading: false,
+  isLoading: true,
   totalCount: 0,
   all: [],
   new: [],
   currentProduct: null,
   discount: [],
   recommended: [],
+  favorites: [],
 }
 
 export const productSlice = createSlice({
   name: 'product',
   initialState,
-  reducers: {},
+  reducers: {
+    addToFavorites: (state, {payload}) =>{
+      state.favorites =  [...state.favorites, payload]
+    }},
+
   extraReducers: (builder) => {
     builder
       .addCase(getProductsThunk.pending, (state) => {
@@ -55,3 +60,5 @@ export const productSlice = createSlice({
       });
   }
 })
+
+export const { addToFavorites } = productSlice.actions;

@@ -227,28 +227,6 @@
         width: calc(100% - 35%);
       }
 
-      &-button {
-        height: 48px;
-        width: calc(100% - 48px + 8px);
-        justify-content: center;
-        align-items: center;
-        border: none;
-        border-radius: 8px;
-        background: $Accent;
-        color: $gray-white;
-        text-align: center;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 21px;
-
-        &:active {
-          border-radius: 8px;
-          border: 1px solid $gray-elements;
-          background: $gray-white;
-          color: $Accent;       
-        }
-      }
-
       &-favourite {
         background-image: url("../../../public/images/card/heart_unlike.png");
         background-repeat: no-repeat ;
