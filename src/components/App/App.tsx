@@ -12,49 +12,43 @@ import { IProduct, ProductTypesEnum } from '../../types/product.types';
 import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
 
+function App() {
+  const dispatch = useAppDispatch();
+  const allProducts = useAppSelector((state) => state.product.all);
 
-function App() {  
-    const dispatch = useAppDispatch();
-    const isLoading = useAppSelector((state) => state.product.isLoading);
-    const allProducts = useAppSelector((state) => state.product.all);
+  const handleClick = (product: IProduct) => {
+    dispatch(addToFavorites(product))
+  }
 
-    const handleClick = (product: IProduct) => {
-      dispatch(addToFavorites(product))
-    }
+  useEffect(() => {
+    dispatch(getProductsThunk({
+      page: 2,
+      perPage: 10,
+      productType: ProductTypesEnum.Phones,
+    }))
+  }, [])
 
-    useEffect(() => {
-      dispatch(getProductsThunk({
-        page: 1,
-        perPage: 10,
-        productType: ProductTypesEnum.Phones,
-      }));
-    }, [])
+  return (
+    <>
+    <Routes>
+      <Route path='/' element={<Layout />}>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/phones' element={<Catalog />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='*' element={<NotFoundPage />} />
+      </Route>
+    </Routes>
 
-    return (
-      <>      
-        <Routes>
-          <Route path='/' element={<Layout />}>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/phones' element={<Catalog />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='*' element={<NotFoundPage />} />
-          </Route>
-        </Routes>  
-
-      {allProducts.map((product) => {
-          return (
-            <div>
-              <p>{product.name}</p>
-              <img 
-                src={`${BASE_URI}${product.image}`} 
-                alt=""
-              />
-
-              <button onClick={() => handleClick(product)}></button>
-            </div>
-          )
-        })} 
-      </>
+    {allProducts.map((product) => {
+      return (
+        <div>
+          <p>{product.name}</p>
+          <img src={`${BASE_URI}/${product.image}`} />
+          <button onClick={() => handleClick(product)}>jopa</button>
+        </div>
+      )
+    })}
+    </>
   );
 }
 

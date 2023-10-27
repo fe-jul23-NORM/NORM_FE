@@ -1,8 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 
 import './Banner.scss';
 
@@ -31,13 +29,13 @@ const Bunner: React.FC = () => {
         }}
       >
         <SwiperSlide>
-          <img src="https://i.imgur.com/CbH8vf0.jpg" alt="banner" />
+          <img src="https://github.com/mate-academy/product_catalog/blob/main/public/img/banner-phones.png?raw=true" alt="banner" />
         </SwiperSlide>
         <SwiperSlide>
           <img src="https://i.imgur.com/fO6RD9f.jpg" alt="banner" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://i.imgur.com/8OsadCk.png" alt="banner" />
+          <img src="https://github.com/mate-academy/product_catalog/blob/main/public/img/category-accessories.png?raw=true" alt="banner" />
         </SwiperSlide>
       </Swiper>
 

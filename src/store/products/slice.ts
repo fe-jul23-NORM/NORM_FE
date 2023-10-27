@@ -22,10 +22,11 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    addToFavorites: (state, {payload}) =>{
-      state.favorites =  [...state.favorites, payload]
-    }},
 
+    addToFavorites: (state, {payload}) => {
+      state.favorites = [...state.favorites, payload]
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getProductsThunk.pending, (state) => {
