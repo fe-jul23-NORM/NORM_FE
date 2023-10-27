@@ -15,7 +15,7 @@ const ItemCard: React.FC = () => {
             alt="arrow-right"
             className="item-card__nav-icon" />
 
-          <a href="/" className="catalog__nav-text">
+          <a href="/phones" className="item-card__nav-textPhones">
             Phones
           </a>
           <img
@@ -23,8 +23,18 @@ const ItemCard: React.FC = () => {
             alt="arrow-right"
             className="item-card__nav-icon" />
 
-          <a href="/" className="catalog__nav-text">
+          <a href="#" className="item-card__nav-textPhone">
             Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
+          </a>
+        </div>
+        <div className="item-card__back">
+          <img
+            src="https://i.imgur.com/dB7Z9gF.png"
+            alt="arrow-right"
+            className="item-card__back-icon" />
+
+          <a href="/Phones" className="item-card__back-text">
+            Back
           </a>
         </div>
         <p className="item-card__title">

@@ -25,9 +25,9 @@ function App() {
   const isLoading = useAppSelector((state) => state.product.isLoading)
   // console.log(allProducts)
 
-  const handleClick = (product: IProduct) => {
-    dispatch(addToFavorites(product))
-  }
+  // const handleClick = (product: IProduct) => {
+  //   dispatch(addToFavorites(product))
+  // }
 
   useEffect(() => {
     dispatch(getProductsThunk({
@@ -48,7 +48,7 @@ function App() {
       </Route>
     </Routes>
 
-    {allProducts.map((product) => {
+    {/* {allProducts.map((product) => {
       return (
         <div key={product.id}>
           <p>{product.name}</p>
@@ -59,7 +59,7 @@ function App() {
           <button onClick={() => handleClick(product)}>jopa</button>
         </div>
       )
-    })}
+    })} */}
     </>
   );
 }
