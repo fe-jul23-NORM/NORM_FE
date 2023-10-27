@@ -8,7 +8,7 @@ import {
 } from './thunks';
 
 const initialState: IProductState = {
-  isLoading: false,
+  isLoading: true,
   totalCount: 0,
   all: [],
   new: [],
