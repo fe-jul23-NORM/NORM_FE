@@ -1,6 +1,9 @@
 import React from 'react';
 import './Card.scss';
 import { IProduct } from '../../types/product.types';
+import ButtonCart from '../ButtonCart/ButtonCart';
+import { Form } from 'react-router-dom';
+
 
 type Props = {
   product: IProduct,
@@ -63,9 +66,7 @@ const Card: React.FC<Props> = () => {
       </div>
 
       <div className="card__footer">
-        <button className="card__footer-button">
-          Add to cart
-        </button>
+        <ButtonCart />
 
         <button className="card__footer-favourite"/>
       </div>
