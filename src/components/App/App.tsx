@@ -14,6 +14,7 @@ import { selectAllProducts } from '../../store/products/selectors';
 import { IProduct, ProductTypesEnum } from '../../types/product.types';
 import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
+import ItemCard from '../ItemCard/ItemCard';
 
 function App() {
   
@@ -35,15 +36,16 @@ function App() {
   }, []);
 
   return (
-  <>
-    <Routes>
-      <Route path='/' element={<Layout />}>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/phones' element={<Catalog />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='*' element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+    <>
+    <ItemCard />
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/phones' element={<Catalog />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Route>
+      </Routes>  
 
     {allProducts.map((product) => {
       return (
