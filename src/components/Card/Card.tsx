@@ -1,5 +1,7 @@
 import React from 'react';
 import './Card.scss';
+import ButtonCart from '../ButtonCart/ButtonCart';
+import { Form } from 'react-router-dom';
 
 const Card: React.FC = () => {
   return (
@@ -58,9 +60,7 @@ const Card: React.FC = () => {
       </div>
 
       <div className="card__footer">
-        <button className="card__footer-button">
-          Add to cart
-        </button>
+        <ButtonCart />
 
         <button className="card__footer-favourite"/>
       </div>

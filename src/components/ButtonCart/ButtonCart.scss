@@ -1,0 +1,27 @@
+@import '../../utils/variable.scss';
+@import '../../utils/normalize.scss';
+@import '../../utils/mixins.scss';
+
+
+.cart-button {
+  height: 40px;
+  width: calc(100% - 40px - 8px);
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 8px;
+  background: $Accent;
+  color: $gray-white;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+  cursor: pointer;
+
+  &:active {
+    border-radius: 8px;
+    border: 1px solid  $gray-elements;
+    background: $gray-white;
+    color: $Accent;       
+  }
+}

@@ -22,6 +22,7 @@ export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
+
     addToFavorites: (state, {payload}) => {
       state.favorites = [...state.favorites, payload]
     }
