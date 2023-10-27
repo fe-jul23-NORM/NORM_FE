@@ -2,35 +2,42 @@ import React from 'react';
 import './Card.scss';
 import { IProduct } from '../../types/product.types';
 import ButtonCart from '../ButtonCart/ButtonCart';
-import { Form } from 'react-router-dom';
-
+import { BASE_URI } from '../../constants/core';
 
 type Props = {
   product: IProduct,
 }
 
-const Card: React.FC<Props> = () => {
+const Card: React.FC<Props> = ({ product }) => {
+  const {
+    name,
+    fullPrice,
+    price,
+    screen,
+    ram,
+    capacity,
+    image
+  } = product;
+
   return (
     <div className="card">
       <img 
         className="card__img"
-        src="/images/card/card_img.png"
-        alt="phone"
+        src={`${BASE_URI}/${image}`}
+        alt=""
       />
       
       <p className="card__title">
-        Apple iPhone 14 Pro 128GB Silver 
-        <br/>
-        (MQ023)          
+        {name}
       </p>
 
       <div className="card__price">
         <p className="card__price-actual">
-          $999
+          {`$${fullPrice}`}
         </p>
 
         <p className="card__price-sale">
-          $999
+        {`$${price}`}
         </p>
       </div>
 
@@ -42,7 +49,7 @@ const Card: React.FC<Props> = () => {
             Screen
           </span>
           <span className="description-item-value">
-          6.1” OLED
+            {screen}
           </span>
         </div>
 
@@ -51,7 +58,7 @@ const Card: React.FC<Props> = () => {
           Capacity
           </span>
           <span className="description-item-value">
-            128 GB
+            {capacity}
           </span>
         </div>
 
@@ -60,7 +67,7 @@ const Card: React.FC<Props> = () => {
             RAM
           </span>
           <span className="description-item-value">
-            6 GB
+            {ram}
           </span>
         </div>
       </div>

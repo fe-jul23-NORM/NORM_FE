@@ -1,20 +1,6 @@
 body {
-  margin: 0;
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif; */
-    font-family: "Mont Regular";
-    src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot");
-    src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot?#iefix")format("embedded-opentype"),
-      url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff2")format("woff2"),
-      url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff")format("woff"),
-      url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.ttf")format("truetype"),
-      url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.svg#Mont Regular")format("svg");
+  font-family: 'Rubik', sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }

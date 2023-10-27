@@ -16,6 +16,8 @@ const Catalog: React.FC = () => {
   // const [sortBy, setSortBy] = useState('');
   const [productsPerPage, setProductsPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
+    // const [perPage, setPerPage] = useState(10);
+    const [perPage] = useState(10);
 
   // const paginationArray = Array
   //   .from(Array((Math.ceil(totalProducts / productsPerPage)) + 1)

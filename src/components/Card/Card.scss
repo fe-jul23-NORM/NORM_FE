@@ -13,34 +13,34 @@
   font-style: normal;
 
   &__img {
-    width: 208px;
-    height: 196px;
-    margin-bottom: 24px;
+    max-width: 208px;
+    max-height: 196px;
   }
 
-  &__title {   
+  &__title {
+    height: 42px;
     color: $gray-primary;
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;
+    padding-top: 24px;
+    padding-bottom: 8px;
   }
 
-  &__price {
+  &__price {  
     display: flex;
     gap: 8px;
-    margin-bottom: 16px;
-    padding-top: 16px;
+    margin-bottom: 8px;
 
     &-actual{ 
-      margin: 0;     
       color: $gray-primary;
       font-size: 22px;
       font-weight: 800;
       font-style: normal;
+      line-height: 140%;
     }
 
     &-sale {
-      margin: 0;
       color: $gray-secondary;
       font-size: 22px;
       font-weight: 500;      
@@ -51,15 +51,15 @@
   }
 
   &__description {
-    padding-top: 8px;
+    padding-top: 1px;
   }
 
   &__footer {
-    margin-top: 16px;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     gap: 8px;
+    padding: 0;
 
     &-favourite {
       background-image: url("../../../public/images/card/heart_unlike.png");
