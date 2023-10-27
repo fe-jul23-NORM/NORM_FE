@@ -5,7 +5,6 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from '../HOC/Layout/Layout';
 import Catalog from '../Catalog/Catalog';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
-// import HomePage from '../pages/HomePage/HomePage';
 import Cart from '../Cart/Cart';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { getProductsThunk } from '../../store/products/thunks';
@@ -16,6 +15,7 @@ import { IProduct, ProductTypesEnum } from '../../types/product.types';
 import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
 import ItemCard from '../ItemCard/ItemCard';
+import HomePage from '../pages/HomePage/HomePage';
 
 function App() {
   
@@ -32,7 +32,7 @@ function App() {
   <>
     <Routes>
       <Route path='/' element={<Layout />}>
-        {/* <Route path='/' element={<HomePage />} /> */}
+        <Route path='/' element={<HomePage />} />
         <Route path='/phones' element={<Catalog />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='*' element={<NotFoundPage />} />
