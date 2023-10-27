@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import Bunner from '../../Banner/Banner';
 import Card from '../../Card/Card';
 import './HomePage.scss';
@@ -20,18 +21,18 @@ const HomePage: React.FC = () => (
             </div>
             <div className="home-page-gallery--cards">
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
-            </div>
+            </div> 
         </div>
         <div className="shop-by-category">
             <h2 className="shop-by-category--title">Shop by category</h2>
@@ -70,16 +71,16 @@ const HomePage: React.FC = () => (
 
             <div className="home-page-gallery--cards">
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
             </div>
         </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import CartItem from "./CartItem";
 import './Cart.scss';
 import { useNavigate } from "react-router";
