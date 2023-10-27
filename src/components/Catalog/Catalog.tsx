@@ -9,7 +9,9 @@ const Catalog: React.FC = () => {
   const totalProducts = useAppSelector(selectProductsCount);
   console.log(totalProducts);
 
-  const [perPage, setPerPage] = useState(10);
+  // const [perPage, setPerPage] = useState(10);
+  const [perPage] = useState(10);
+
 
   const paginationArray = Array.from(Array((Math.ceil(totalProducts / perPage)) + 1).keys()).slice(1);
 
@@ -77,7 +79,7 @@ const Catalog: React.FC = () => {
       <div className="catalog__container">
         {allProducts.map(product => {
           return (
-            <div className="productCard">
+            <div key={product.id} className="productCard">
               <Card product={product} />
             </div>
           )
@@ -90,6 +92,7 @@ const Catalog: React.FC = () => {
         </div>
         {paginationArray.map(page => {
           return (
+            // eslint-disable-next-line react/jsx-key
             <span className="pagination-number pagination-number--active1">{page}</span>
           )
         })}
