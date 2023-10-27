@@ -15,7 +15,6 @@
   }
 
   &__title {
-    margin: 0;
     color: $gray-primary;
     font-size: 22px;
     font-style: normal;
@@ -53,7 +52,7 @@
       width: 50%;
       gap: 72px;
     }
-    
+
     &-main {
       width: 274.345px;
       height: 274.345px;
@@ -69,7 +68,7 @@
         width: 442px;
         height: 442px;
         margin-bottom: 0;
-      }      
+      }
     }
 
     &-miniatures {
@@ -225,28 +224,6 @@
       
       @include onDeskTop() {
         width: calc(100% - 35%);
-      }
-
-      &-button {
-        height: 48px;
-        width: calc(100% - 48px + 8px);
-        justify-content: center;
-        align-items: center;
-        border: none;
-        border-radius: 8px;
-        background: $Accent;
-        color: $gray-white;
-        text-align: center;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 21px;
-
-        &:active {
-          border-radius: 8px;
-          border: 1px solid $gray-elements;
-          background: $gray-white;
-          color: $Accent;       
-        }
       }
 
       &-favourite {

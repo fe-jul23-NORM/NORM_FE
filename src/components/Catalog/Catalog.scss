@@ -40,16 +40,18 @@ $gray-icons: #B4BDC3;
   --columns: 4;
   display: grid;
   row-gap: 24px;
-  column-gap: 16px;
   column-width: 32px;
   grid-template-columns: repeat(var(--columns), 1fr);
+  grid-column-gap: 16px;
 
   @include onTablet {
     --columns: 12;
+    max-width: 592px;
   }
 
   @include onDeskTop {
     --columns: 24;
+    max-width: 1136px;
   }
 }
 
@@ -62,18 +64,23 @@ $gray-icons: #B4BDC3;
   background-color: $gray-background;
   justify-content: center;
 
-  @include onTablet {
-    padding-inline: 24px;
-  }
+  // @include onTablet {
+  //   padding-inline: 24px;
+  // }
 
-  @include onDeskTop {
-    padding-inline: 152px;
-  }
+  // @include onDeskTop {
+  //   padding-inline: 32px;
+  // }
+
+  // @media (min-width: 1400px) {
+  //   padding-inline: 152px;
+  // }
 
   &__nav {
     display: flex;
     column-gap: 8px;
     height: 16px;
+    
 
     &-icon {
       @include hover(transform, scale(1.2));
@@ -141,7 +148,15 @@ $gray-icons: #B4BDC3;
 .productCard {
   padding: 0;
 
-  grid-column: span 6;
+  grid-column: span 3;
+
+  @include onTablet() {
+    grid-column: span 6;
+  }
+
+  @include onDeskTop() {
+    grid-column: span 6;
+  }
 }
 
 .page__title {
@@ -194,5 +209,29 @@ $gray-icons: #B4BDC3;
   &:hover {
     color: white;
     background-color: $gray-primary;
+  }
+}
+
+.head-container {
+  // @include pageGrid;
+  // row-gap: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 80vw;
+}
+
+.title-container {
+  display: block;
+  min-width: 1036;
+  // flex-direction: column;
+  grid-column: span 2;
+
+  @include onTablet() {
+    grid-column: span 2;
+  }
+
+  @include onDeskTop() {
+    grid-column: span 24;
   }
 }

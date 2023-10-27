@@ -1,7 +1,15 @@
 import React from 'react';
 import './Card.scss';
+import { IProduct } from '../../types/product.types';
+import ButtonCart from '../ButtonCart/ButtonCart';
+import { Form } from 'react-router-dom';
 
-const Card: React.FC = () => {
+
+type Props = {
+  product: IProduct,
+}
+
+const Card: React.FC<Props> = () => {
   return (
     <div className="card">
       <img 
@@ -11,9 +19,7 @@ const Card: React.FC = () => {
       />
       
       <p className="card__title">
-        Apple iPhone 14 Pro 128GB Silver 
-        <br/>
-        (MQ023)          
+        Apple iPhone 14 Pro 128GB Silver (MQ023)
       </p>
 
       <div className="card__price">
@@ -58,9 +64,7 @@ const Card: React.FC = () => {
       </div>
 
       <div className="card__footer">
-        <button className="card__footer-button">
-          Add to cart
-        </button>
+        <ButtonCart />
 
         <button className="card__footer-favourite"/>
       </div>

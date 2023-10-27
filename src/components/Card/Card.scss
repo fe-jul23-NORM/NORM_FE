@@ -14,8 +14,7 @@
 
   &__img {
     width: 208px;
-    height: 196px;
-    margin-bottom: 24px;
+    padding-bottom: 24px;
   }
 
   &__title {   
@@ -23,6 +22,7 @@
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;
+    padding-bottom: 16px;
   }
 
   &__price {
@@ -32,7 +32,6 @@
     padding-top: 16px;
 
     &-actual{ 
-      margin: 0;     
       color: $gray-primary;
       font-size: 22px;
       font-weight: 800;
@@ -40,7 +39,6 @@
     }
 
     &-sale {
-      margin: 0;
       color: $gray-secondary;
       font-size: 22px;
       font-weight: 500;      
@@ -51,38 +49,15 @@
   }
 
   &__description {
-    padding-top: 8px;
+    padding-top: 16px;
   }
 
   &__footer {
-    margin-top: 16px;
+    padding-top: 8px;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     gap: 8px;
-
-    &-button {
-      height: 40px;
-      width: calc(100% - 40px - 8px);
-      justify-content: center;
-      align-items: center;
-      border: none;
-      border-radius: 8px;
-      background: $Accent;
-      color: $gray-white;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 21px;
-      cursor: pointer;
-
-      &:active {
-        border-radius: 8px;
-        border: 1px solid  $gray-elements;
-        background: $gray-white;
-        color: $Accent;       
-      }
-    }
 
     &-favourite {
       background-image: url("../../../public/images/card/heart_unlike.png");
@@ -108,7 +83,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
    
   &-title {
     color:  $gray-secondary;
