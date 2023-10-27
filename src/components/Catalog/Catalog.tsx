@@ -7,22 +7,24 @@ import { getProductsThunk } from '../../store/products/thunks';
 import { ProductTypesEnum, SortProductByEnum } from '../../types/product.types';
 import Pagination from './Pagination';
 
+const isPlural = (number: number) => {
+  const stringTotal = number.toString();
+
+  if (stringTotal[stringTotal.length - 1] !== '1') {
+    return true;
+  }
+
+  return false;
+}
+
 const Catalog: React.FC = () => {
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts);
   const totalProducts = useAppSelector(selectProductsCount);
-  console.log(totalProducts);
 
   // const [sortBy, setSortBy] = useState('');
   const [productsPerPage, setProductsPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
-    // const [perPage, setPerPage] = useState(10);
-    const [perPage] = useState(10);
-
-  // const paginationArray = Array
-  //   .from(Array((Math.ceil(totalProducts / productsPerPage)) + 1)
-  //     .keys())
-  //   .slice(1);
 
   useEffect(() => {
     dispatch(getProductsThunk({
@@ -36,8 +38,6 @@ const Catalog: React.FC = () => {
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setProductsPerPage(+event.target.value);
   };
-
-  // const visiblePages = paginationArray.slice(currentPage - 1, currentPage + 3)
 
   return (
     <section className="catalog">
@@ -62,7 +62,7 @@ const Catalog: React.FC = () => {
           </h1>
 
           <p className="page__items-amount">
-            {`${totalProducts} ${totalProducts > 1 ? 'models' : 'model'}`}
+            {`${totalProducts} ${isPlural(totalProducts) ? 'models' : 'model'}`}
           </p>
         </div>
 

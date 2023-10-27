@@ -11,17 +11,21 @@ $gray-icons: #B4BDC3;
   .pagination-item {
     padding: 0 12px;
     height: 32px;
+    width: 32px;
     text-align: center;
     margin: auto 4px;
     color: $gray-primary;
     display: flex;
     box-sizing: border-box;
     align-items: center;
-    letter-spacing: 0.01071em;
     border-radius: 32px;
     border: 1px solid $gray-elements;
-    line-height: 1.43;
-    min-width: 32px;
+
+    &--number {
+      @media (max-width: 639px) {
+        display: none;
+      }
+    }
 
     &.dots:hover {
       background-color: transparent;
@@ -40,9 +44,7 @@ $gray-icons: #B4BDC3;
     .arrow {
       &::before {
         position: relative;
-        /* top: 3pt; Uncomment this to lower the icons as requested in comments*/
         content: '';
-        /* By using an em scale, the arrows will size with the font */
         display: inline-block;
         width: 0.4em;
         height: 0.4em;
