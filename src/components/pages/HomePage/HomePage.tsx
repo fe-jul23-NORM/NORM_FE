@@ -19,7 +19,7 @@ const HomePage: React.FC = () => (
                     <div className="button-right"></div>
                 </div>
             </div>
-            {/* <div className="home-page-gallery--cards">
+            <div className="home-page-gallery--cards">
                 <div className="productCard">
                     {/* <Card /> */}
                 </div>
@@ -32,7 +32,7 @@ const HomePage: React.FC = () => (
                 <div className="productCard">
                     {/* <Card /> */}
                 </div>
-            </div> */}
+            </div> 
         </div>
         <div className="shop-by-category">
             <h2 className="shop-by-category--title">Shop by category</h2>
@@ -69,7 +69,7 @@ const HomePage: React.FC = () => (
                 </div>
             </div>
 
-            {/* <div className="home-page-gallery--cards">
+            <div className="home-page-gallery--cards">
                 <div className="productCard">
                     {/* <Card /> */}
                 </div>
@@ -82,7 +82,7 @@ const HomePage: React.FC = () => (
                 <div className="productCard">
                     {/* <Card /> */}
                 </div>
-            </div> */}
+            </div>
         </div>
     </section>
 )
