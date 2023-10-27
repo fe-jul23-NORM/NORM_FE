@@ -2,17 +2,7 @@ $gray-secondary: #89939A;
 $gray-primary: #0F0F11;
 $gray-elements: #E2E6E9;
 
-@font-face {
-  font-family: "Mont Regular";
-  src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot");
-  src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot?#iefix")format("embedded-opentype"),
-    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff2")format("woff2"),
-    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff")format("woff"),
-    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.ttf")format("truetype"),
-    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.svg#Mont Regular")format("svg");
-  font-size: 12px;
-  font-weight: 800;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Rubik:wght@400;600&display=swap');
 
 @mixin hover($property, $toValue) {
   transition: #{$property} 0.3s;
@@ -23,13 +13,15 @@ $gray-elements: #E2E6E9;
 }
 
 .footer {
+  font-family: 'Rubik', sans-serif;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border-top: 1px solid $gray-elements;
   height: 32px;
   padding-block: 32px;
   padding-inline: 152px;
+
+  border-top: 1px solid $gray-elements;
 
   @media (max-width: 1199px) {
     padding-inline: 24px;
@@ -50,8 +42,9 @@ $gray-elements: #E2E6E9;
     letter-spacing: 0.48px;
     font-weight: 800;
     font-size: 12px;
-    transition: color 300ms;
     text-transform: uppercase;
+
+    transition: color 300ms;
 
     &:hover {
       color: $gray-primary;
@@ -63,8 +56,8 @@ $gray-elements: #E2E6E9;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  line-height: 32px;
   width: 200px;
+  line-height: 32px;
 }
 
 .footer__link {
@@ -76,17 +69,19 @@ $gray-elements: #E2E6E9;
   flex-direction: row;
   column-gap: 16px;
   justify-content: space-between;
-  line-height: 32px;
   align-items: center;
-  background: none;
-  border: none;
   padding: 0;
+
+  line-height: 32px;
   font: inherit;
-  cursor: pointer;
   outline: inherit;
   color: $gray-secondary;
   font-weight: 500;
   font-size: 12px;
+
+  border: none;
+  background: none;
+  cursor: pointer;
 
   &--icon {
     height: 32px;
@@ -96,22 +91,24 @@ $gray-elements: #E2E6E9;
   }
 
   &--text {
+    margin: 0;
+
     color: $gray-elements;
     font-weight: 700;
     font-size: 12px;
+
     transition: color 300ms;
-    margin: 0;
   }
 }
 
 @media (max-width: 539px) {
   .footer {
-    height: min-content;
-    padding: 32px 16px;
-    row-gap: 32px;
-
     flex-direction: column;
     align-items: unset;
+    padding: 32px 16px;
+    row-gap: 32px;
+    height: min-content;
+
 
     &__logo {
       margin: 0;
