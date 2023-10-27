@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import Bunner from '../../Banner/Banner';
-import Card from '../../Card/Card';
+// import Card from '../../Card/Card';
 import './HomePage.scss';
 
 const HomePage: React.FC = () => (
