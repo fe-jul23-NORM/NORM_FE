@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Catalog.scss';
 import Card from '../Card/Card';
 import { useAppSelector } from '../../store';
-import { selectAllProducts } from '../../store/products/selectors';
+import { selectAllProducts, selectProductsCount } from '../../store/products/selectors';
 
 const Catalog: React.FC = () => {
   const allProducts = useAppSelector(selectAllProducts);
+  const totalProducts = useAppSelector(selectProductsCount);
+  console.log(totalProducts);
+
+  const [perPage, setPerPage] = useState(10);
+
+  const paginationArray = Array.from(Array((Math.ceil(totalProducts / perPage)) + 1).keys()).slice(1);
 
   return (
     <section className="catalog">
@@ -72,7 +78,7 @@ const Catalog: React.FC = () => {
         {allProducts.map(product => {
           return (
             <div className="productCard">
-              <Card />
+              <Card product={product} />
             </div>
           )
         })}
@@ -82,10 +88,11 @@ const Catalog: React.FC = () => {
         <div className="pagination-icon">
           <img src="https://i.imgur.com/dB7Z9gF.png" alt="arrow-left" className="pagination-icon--left" />
         </div>
-        <span className="pagination-number pagination-number--active">1</span>
-        <span className="pagination-number">2</span>
-        <span className="pagination-number">3</span>
-        <span className="pagination-number">4</span>
+        {paginationArray.map(page => {
+          return (
+            <span className="pagination-number pagination-number--active1">{page}</span>
+          )
+        })}
         <div className="pagination-icon">
           <img src="https://i.imgur.com/dPv3LqE.png" alt="arrow-right" className="pagination-icon--right" />
         </div>
