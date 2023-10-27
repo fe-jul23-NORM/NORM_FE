@@ -1,5 +1,5 @@
 import Bunner from '../../Banner/Banner';
-import Card from '../../Card/Card';
+// import Card from '../../Card/Card';
 import './HomePage.scss';
 
 const HomePage: React.FC = () => (
@@ -20,16 +20,16 @@ const HomePage: React.FC = () => (
             </div>
             <div className="home-page-gallery--cards">
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
             </div>
         </div>
@@ -70,16 +70,16 @@ const HomePage: React.FC = () => (
 
             <div className="home-page-gallery--cards">
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
                 <div className="productCard">
-                    <Card />
+                    {/* <Card /> */}
                 </div>
             </div>
         </div>

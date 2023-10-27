@@ -176,42 +176,6 @@ $gray-icons: #B4BDC3;
   margin-bottom: 64px;
 }
 
-.pagination-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  width: 32px;
-  border: 1px solid $gray-icons;
-  border-radius: 50%;
-  cursor: pointer;
-
-  @include hover(transform, scale(1.2));
-}
-
-.pagination-number {
-  display: flex;
-  height: 32px;
-  width: 32px;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid $gray-elements;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 300ms;
-  transition: color 300ms;
-
-  &--active {
-    color: white;
-    background-color: $gray-primary;
-  }
-
-  &:hover {
-    color: white;
-    background-color: $gray-primary;
-  }
-}
-
 .head-container {
   // @include pageGrid;
   // row-gap: 0;

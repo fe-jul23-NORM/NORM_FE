@@ -1,17 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Catalog.scss';
 import Card from '../Card/Card';
-import { useAppSelector } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
 import { selectAllProducts, selectProductsCount } from '../../store/products/selectors';
+import { getProductsThunk } from '../../store/products/thunks';
+import { ProductTypesEnum, SortProductByEnum } from '../../types/product.types';
+import Pagination from './Pagination';
 
 const Catalog: React.FC = () => {
+  const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts);
   const totalProducts = useAppSelector(selectProductsCount);
   console.log(totalProducts);
 
-  const [perPage, setPerPage] = useState(10);
+  // const [sortBy, setSortBy] = useState('');
+  const [productsPerPage, setProductsPerPage] = useState(8);
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const paginationArray = Array.from(Array((Math.ceil(totalProducts / perPage)) + 1).keys()).slice(1);
+  // const paginationArray = Array
+  //   .from(Array((Math.ceil(totalProducts / productsPerPage)) + 1)
+  //     .keys())
+  //   .slice(1);
+
+  useEffect(() => {
+    dispatch(getProductsThunk({
+      page: currentPage,
+      perPage: productsPerPage,
+      productType: ProductTypesEnum.Phones,
+      sortBy: SortProductByEnum.Name,
+    }))
+  }, [currentPage, dispatch, productsPerPage]);
+
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setProductsPerPage(+event.target.value);
+  };
+
+  // const visiblePages = paginationArray.slice(currentPage - 1, currentPage + 3)
 
   return (
     <section className="catalog">
@@ -36,7 +60,7 @@ const Catalog: React.FC = () => {
           </h1>
 
           <p className="page__items-amount">
-            95 models
+            {`${totalProducts} ${totalProducts > 1 ? 'models' : 'model'}`}
           </p>
         </div>
 
@@ -63,11 +87,13 @@ const Catalog: React.FC = () => {
                 name="itemsPerPage"
                 id="perPage"
                 className="catalog__form-select"
+                value={productsPerPage}
+                onChange={handleChange}
               >
                 <option value="8">8</option>
                 <option value="16">16</option>
-                <option value="24">24</option>
-                <option value="All">All</option>
+                <option value="32">32</option>
+                <option value={totalProducts}>All</option>
               </select>
             </label>
           </div>
@@ -85,17 +111,13 @@ const Catalog: React.FC = () => {
       </div>
 
       <div className="page__pagination">
-        <div className="pagination-icon">
-          <img src="https://i.imgur.com/dB7Z9gF.png" alt="arrow-left" className="pagination-icon--left" />
-        </div>
-        {paginationArray.map(page => {
-          return (
-            <span className="pagination-number pagination-number--active1">{page}</span>
-          )
-        })}
-        <div className="pagination-icon">
-          <img src="https://i.imgur.com/dPv3LqE.png" alt="arrow-right" className="pagination-icon--right" />
-        </div>
+        <Pagination
+              className="pagination-bar"
+              currentPage={currentPage}
+              totalCount={totalProducts}
+              pageSize={productsPerPage}
+              onPageChange={(page: React.SetStateAction<number>) => setCurrentPage(page)}
+            />
       </div>
     </section>
   )
