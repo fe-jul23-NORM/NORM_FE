@@ -11,7 +11,7 @@ import { getProductsThunk } from '../../store/products/thunks';
 
 import { selectAllProducts } from '../../store/products/selectors';
 
-import { IProduct, ProductTypesEnum } from '../../types/product.types';
+import { Product, ProductTypesEnum } from '../../types/product.types';
 import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
 import FavouritesPage from '../pages/FavouritesPage/FavouritesPage';
@@ -25,7 +25,7 @@ function App() {
   const isLoading = useAppSelector((state) => state.product.isLoading)
   // console.log(allProducts)
 
-  const handleClick = (product: IProduct) => {
+  const handleClick = (product: Product) => {
     dispatch(addToFavorites(product))
   }
 
@@ -45,11 +45,11 @@ function App() {
       return (
         <div key={product.id}>
           <p>{product.name}</p>
-          <img 
-            src={`${BASE_URI}/${product.image}`} 
+          <img
+            src={`${BASE_URI}/${product.image}`}
             alt=""
           />
-          <button onClick={() => handleClick(product)}>jopa</button>         
+          <button onClick={() => handleClick(product)}>jopa</button>
         </div>
       )
     })} */}
