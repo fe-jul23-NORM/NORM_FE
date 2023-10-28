@@ -2,7 +2,7 @@
 @import '../../utils/mixins.scss';
 
 .item-card {
-  padding: 0 16px;
+  padding: 0 16px 0 17px;
   max-width: 1136px;
   margin: auto;
   background: $gray-background;  
@@ -192,7 +192,7 @@
     }
 
     &-price {
-      margin: 32px 0 22px 0;
+      margin-top: 32px ;
       display: flex;
       gap: 8px;
 
@@ -217,13 +217,25 @@
 
     &-cart {
       display: flex;
-      justify-content: space-between;
       flex-direction: row;
-      gap: 8px;
       margin-bottom: 32px;
-      
+     
       @include onDeskTop() {
-        width: calc(100% - 35%);
+        max-width: calc(100% - 35%);
+      }
+
+      &-button {
+        margin-right: 8px;
+        width: 231px;
+        height: 100%;
+
+        @include onTablet {
+          width: 180px;
+        }
+
+        @include onDeskTop {
+          width: 263px;
+        }
       }
 
       &-favourite {
@@ -363,12 +375,12 @@
 .gB_512 {
   color: #0F0F11;
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 21px;
   background-color: $gray-background;
-  width: 60px;
+  min-width: 40px;
   height: 32px;
   border-radius: 4px;
   border: 1px solid $gray-icons-placeholders;

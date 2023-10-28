@@ -5,7 +5,6 @@ import Heart from '../Heart/Heart';
 
 const ItemCard: React.FC = () => {
   return (
-    <>
       <div className='item-card'>
         <div className="item-card__nav">
           <a href="/" className="item-card__nav-icon">
@@ -117,11 +116,14 @@ const ItemCard: React.FC = () => {
             </div>
 
             <div className="container__info-cart">
+              <div className="container__info-cart-button">
               <ButtonCart />
+              </div>
 
               <div className="container__info-cart-favourite">
                 <Heart />
               </div>
+            </div>
 
             <div className="container__info-description">
               <div className="description-item">
@@ -309,7 +311,6 @@ const ItemCard: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
   )
 };
 

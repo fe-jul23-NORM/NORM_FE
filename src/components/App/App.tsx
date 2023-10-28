@@ -15,7 +15,6 @@ import { IProduct, ProductTypesEnum } from '../../types/product.types';
 import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
 import FavouritesPage from '../pages/FavouritesPage/FavouritesPage';
-import ItemCard from '../ItemCard/ItemCard';
 import HomePage from '../pages/HomePage/HomePage';
 
 function App() {
@@ -41,7 +40,7 @@ function App() {
       </Route>
     </Routes>
 
-    {/* {allProducts.map((product) => {
+    {allProducts.map((product) => {
       return (
         <div key={product.id}>
           <p>{product.name}</p>
@@ -52,7 +51,7 @@ function App() {
           <button onClick={() => handleClick(product)}>jopa</button>         
         </div>
       )
-    })} */}
+    })}
     </>
   );
 }
