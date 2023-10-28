@@ -1,6 +1,6 @@
 import React from 'react';
 import './ItemCard.scss';
-import ButtonCart from '../ButtonCart/ButtonCart';
+// import Button from '../Button/Button';
 
 const ItemCard: React.FC = () => {
   return (
@@ -116,7 +116,7 @@ const ItemCard: React.FC = () => {
             </div>
 
             <div className="container__info-cart">
-              <ButtonCart />
+              {/* <Button /> */}
 
               <button className="container__info-cart-favourite" />
             </div>

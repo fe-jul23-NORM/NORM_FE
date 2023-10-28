@@ -17,6 +17,7 @@ import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
 import FavouritesPage from '../pages/FavouritesPage/FavouritesPage';
 import ItemCard from '../ItemCard/ItemCard';
+import '../../utils/_reset.scss';
 
 function App() {
   

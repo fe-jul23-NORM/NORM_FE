@@ -1,8 +1,10 @@
 import React from 'react';
 import './Card.scss';
 import { IProduct } from '../../types/product.types';
-import ButtonCart from '../ButtonCart/ButtonCart';
+import Button from '../Button/Button';
 import { BASE_URI } from '../../constants/core';
+import { useAppDispatch } from '../../store';
+import { addToCart } from '../../store/cart/slice';
 
 type Props = {
   product: IProduct,
@@ -19,14 +21,20 @@ const Card: React.FC<Props> = ({ product }) => {
     image
   } = product;
 
+  const dispatch = useAppDispatch();
+
+  const addItemToCart = () => {
+    dispatch(addToCart(product))
+  }
+
   return (
     <div className="card">
-      <img 
+      <img
         className="card__img"
         src={`${BASE_URI}/${image}`}
         alt=""
       />
-      
+
       <p className="card__title">
         {name}
       </p>
@@ -37,7 +45,7 @@ const Card: React.FC<Props> = ({ product }) => {
         </p>
 
         <p className="card__price-sale">
-        {`$${price}`}
+          {`$${price}`}
         </p>
       </div>
 
@@ -55,7 +63,7 @@ const Card: React.FC<Props> = ({ product }) => {
 
         <div className="description-item">
           <span className="description-item-title">
-          Capacity
+            Capacity
           </span>
           <span className="description-item-value">
             {capacity}
@@ -73,9 +81,12 @@ const Card: React.FC<Props> = ({ product }) => {
       </div>
 
       <div className="card__footer">
-        <ButtonCart />
+        <Button
+          text='Add to cart'
+          handleClick={addItemToCart}
+        />
 
-        <button className="card__footer-favourite"/>
+        <button className="card__footer-favourite" />
       </div>
     </div>
   )

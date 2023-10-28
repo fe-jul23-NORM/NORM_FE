@@ -19,10 +19,10 @@
   line-height: 21px;
   cursor: pointer;
 
-  &:active {
+  &--selected {
     border-radius: 8px;
     border: 1px solid  $gray-elements;
     background: $gray-white;
-    color: $Accent;       
+    color: $Accent;
   }
 }

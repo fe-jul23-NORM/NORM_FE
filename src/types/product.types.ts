@@ -14,6 +14,10 @@ export interface IProduct {
   image: string;
 }
 
+export interface CartProduct extends IProduct{
+  quantity: number;
+}
+
 export interface ICurrentProduct {
   id: string,
   namespaceId: string,
