@@ -12,7 +12,7 @@ span {
   flex-direction: column;
   gap: 16px;
   padding: 16px;
-  border: 1px solid $gray-elements;
+  border: 1px solid $Elements;
   border-radius: 16px;
   box-sizing: border-box;
   font-weight: 600;
@@ -64,14 +64,14 @@ span {
   &__button {
     width: 32px;
     height: 32px;
-    border: 1px solid $gray-icons-placeholders;
+    border: 1px solid $Icons;
     border-radius: 50%;
     background: #fff;
     font-size: 16px;
 
     &--disabled {
-      border: 1px solid $gray-elements;
-      color: $gray-elements;
+      border: 1px solid $Elements;
+      color: $Elements;
       width: 32px;
       height: 32px;
       border-radius: 50%;

@@ -1,6 +1,6 @@
-import { IProduct } from './product.types';
+import { Product } from './product.types';
 
 export interface IGetAllProductsResponse {
-  result: IProduct[],
+  result: Product[],
   total: number,
 }
