@@ -1,5 +1,5 @@
-export enum AvailableColors {
-  Gb64 = 'gb64',
-  Gb256 = 'gb256',
-  Gb512 = 'gb512',
+export enum Capacity {
+  Gb64 = '64 Gb',
+  Gb256 = '256 Gb',
+  Gb512 = '512 Gb',
 }

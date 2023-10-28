@@ -16,6 +16,7 @@ import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
 import FavouritesPage from '../pages/FavouritesPage/FavouritesPage';
 import HomePage from '../pages/HomePage/HomePage';
+import ItemCard from '../ItemCard/ItemCard';
 
 function App() {
   
@@ -30,7 +31,7 @@ function App() {
 
   return (
   <>
-    <Routes>
+    {/* <Routes>
       <Route path='/' element={<Layout />}>
         <Route path='/' element={<HomePage />} />
         <Route path='/phones' element={<Catalog />} />
@@ -38,7 +39,8 @@ function App() {
         <Route path='/favourites' element={<FavouritesPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Route>
-    </Routes>
+    </Routes> */}
+    <ItemCard />
 
     {allProducts.map((product) => {
       return (

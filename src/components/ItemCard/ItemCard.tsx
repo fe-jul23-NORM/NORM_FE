@@ -2,8 +2,14 @@ import React from 'react';
 import './ItemCard.scss';
 import ButtonCart from '../ButtonCart/ButtonCart';
 import Heart from '../Heart/Heart';
+import { AvailableColors } from '../../types/AvailableColors';
+import { Capacity } from '../../types/Capacity';
+
 
 const ItemCard: React.FC = () => {
+  const availableColors = Object.entries(AvailableColors);
+  const capacity = Object.entries(Capacity);
+
   return (
       <div className='item-card'>
         <div className="item-card__nav">
@@ -83,10 +89,13 @@ const ItemCard: React.FC = () => {
             </div>
 
             <div className="container__info-colors">
-              <button className='container__info-colors-color-1' />
-              <button className='container__info-colors-color-2' />
-              <button className='container__info-colors-color-3' />
-              <button className='container__info-colors-color-4' />
+              {availableColors.map(([key, value]) => (
+                <button 
+                  className="container__info-colors-color"
+                  style={{backgroundColor: `${value}`}}
+                  key={key}
+                />
+              ))}
             </div>
 
             <hr />
@@ -97,9 +106,14 @@ const ItemCard: React.FC = () => {
               </div>
 
               <div className="container__info-capcity-set">
-                <button className="gB_64">64 GB</button>
-                <button className="gB_256">256 GB</button>
-                <button className="gB_512">512 GB</button>
+                {capacity.map(([key, value]) => (
+                  <button
+                    className="gB"
+                    key={key}
+                  >
+                    {value}
+                  </button>
+                ))}
               </div>
             </div>
 

@@ -9,7 +9,7 @@
   border: none;
   border-radius: 8px;
   background: $Accent;
-  color: $gray-white;
+  color: $White;
   text-align: center;
   font-size: 14px;
   font-weight: 700;
@@ -23,8 +23,8 @@
 
   &:active {
     border-radius: 8px;
-    border: 1px solid  $gray-elements;
-    background: $gray-white;
+    border: 1px solid  $Elements;
+    background: $White;
     color: $Accent;
   }
 }
