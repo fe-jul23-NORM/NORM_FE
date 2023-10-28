@@ -1,11 +1,11 @@
 import React from 'react';
 import './Card.scss';
-import { IProduct } from '../../types/product.types';
+import { Product } from '../../types/product.types';
 import ButtonCart from '../ButtonCart/ButtonCart';
 import { BASE_URI } from '../../constants/core';
 
 type Props = {
-  product: IProduct,
+  product: Product,
 }
 
 const Card: React.FC<Props> = ({ product }) => {
@@ -21,7 +21,7 @@ const Card: React.FC<Props> = ({ product }) => {
 
   return (
     <div className="card">
-      <img 
+      <img
         className="card__img"
         src={`${BASE_URI}/${image}`}
         alt=""
