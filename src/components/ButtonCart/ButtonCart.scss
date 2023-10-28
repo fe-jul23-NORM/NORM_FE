@@ -1,7 +1,4 @@
 @import '../../utils/variable.scss';
-@import '../../utils/normalize.scss';
-@import '../../utils/mixins.scss';
-
 
 .cart-button {
   padding: 0;
@@ -19,10 +16,15 @@
   line-height: 21px;
   cursor: pointer;
 
+  &-product {
+    height: 48px;
+  }
+
   &:active {
     border-radius: 8px;
     border: 1px solid  $gray-elements;
     background: $gray-white;
-    color: $Accent;       
+    color: $Accent;
   }
 }
+

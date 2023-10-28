@@ -62,22 +62,16 @@
     padding: 0;
 
     &-favourite {
-      background-image: url("../../../public/images/card/heart_unlike.png");
-      background-repeat: no-repeat ;
-      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 40px;
       height: 40px;
       border-radius: 48px;
       border: 1px solid $gray-icons-placeholders;
       background-color: $gray-white;
       cursor: pointer;
-
-      &:active {
-        background-image: url("../../../public/images/card/heart_like.png");
-        background-repeat: no-repeat ;
-        background-position: center;
-      }
-    }  
+    }
   }
 }
 
