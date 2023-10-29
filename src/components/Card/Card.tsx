@@ -1,10 +1,10 @@
 import React from 'react';
 import './Card.scss';
-import { Product } from '../../types/product.types';
+import { CartProduct, Product } from '../../types/product.types';
 import Button from '../Button/Button';
 import { BASE_URI } from '../../constants/core';
 import Heart from '../Heart/Heart';
-import { useAppDispatch, useAppSelector } from '../../store';
+import { useAppDispatch } from '../../store';
 import { addToCart } from '../../store/cart/slice';
 
 type Props = {
@@ -23,7 +23,7 @@ const Card: React.FC<Props> = ({ product }) => {
   } = product;
 
   const dispatch = useAppDispatch();
-  const cart = useAppSelector((state) => state.cart.cart);
+  const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
 
   const addItemToCart = () => {
     dispatch(addToCart(product));

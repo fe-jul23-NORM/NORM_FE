@@ -34,6 +34,9 @@ const Header: React.FC = () => {
     document.documentElement.style.overflow = 'auto';
   }
 
+  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+  const hasProductsInCart = cart.length;
+
   return (
     <>
       <header className="header">
@@ -75,15 +78,19 @@ const Header: React.FC = () => {
         </nav>
 
         <div className='header__icons'>
+
           <NavLink
             className={getFavoritesClass}
             to="/favourites"
           />
 
-          <NavLink
-            className={getCartClass}
-            to="/cart"
-          />
+          <div className={classNames({ 'number': cart.length > 0 })}>
+            <div className={hasProductsInCart ? 'number--hasProducts' : 'number--disabled' }>{cart.length}</div> {/*Change on number of products!!!!*/}
+            <NavLink
+              className={getCartClass}
+              to="/cart"
+            />
+          </div>
 
           <a
             href="*"
