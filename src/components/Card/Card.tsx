@@ -32,6 +32,8 @@ const Card: React.FC<Props> = ({ product }) => {
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   }
 
+  const isSelected = cart.some(({ id }) => id === product.id);
+
   return (
     <div className="card">
       <img
@@ -86,10 +88,11 @@ const Card: React.FC<Props> = ({ product }) => {
       </div>
 
       <div className="card__footer">
-        <Button
-          text='Add to cart'
-          handleClick={addItemToCart}
-        />
+          <Button
+            text={isSelected ? 'Added to cart' : 'Add to cart'}
+            handleClick={addItemToCart}
+            isSelected={isSelected}
+          />
 
         <div className="card__footer-favourite" >
           <Heart />
