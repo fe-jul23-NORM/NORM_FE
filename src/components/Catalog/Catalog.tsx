@@ -45,7 +45,7 @@ const Catalog: React.FC = () => {
   const sortByOptions = Object.keys(SortProductByEnum);
 
   const itemsOnPage = Number(searchParams.get('itemsOnPage'))
-    || totalProducts;
+    || +itemsOnPageOptions[0];
 
   const sortedBy = searchParams.get('sort')
     || sortByOptions[0];
