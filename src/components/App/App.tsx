@@ -16,13 +16,13 @@ import { addToFavorites } from '../../store/products/slice';
 import { BASE_URI } from '../../constants/core';
 import FavouritesPage from '../pages/FavouritesPage/FavouritesPage';
 import HomePage from '../pages/HomePage/HomePage';
+import AuthorisationsPage from '../pages/AuthorisationsPage/AuthorisationsPage';
 
 function App() {
   
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts)
   const isLoading = useAppSelector((state) => state.product.isLoading)
-  // console.log(allProducts)
 
   const handleClick = (product: IProduct) => {
     dispatch(addToFavorites(product))
@@ -37,6 +37,7 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/favourites' element={<FavouritesPage />} />
         <Route path='*' element={<NotFoundPage />} />
+        <Route path='/authorisations' element={<AuthorisationsPage />} />
       </Route>
     </Routes>
 
