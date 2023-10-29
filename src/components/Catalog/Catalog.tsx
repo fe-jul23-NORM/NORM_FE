@@ -5,7 +5,9 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { selectAllProducts, selectProductsCount } from '../../store/products/selectors';
 import { getProductsThunk } from '../../store/products/thunks';
 import { ProductTypesEnum, SortProductByEnum } from '../../types/product.types';
-import Pagination from './Pagination';
+import Pagination from '../Pagination/Pagination';
+import { useSearchParams } from 'react-router-dom';
+import { Dropdown } from '../Dropdown/Dropdown';
 
 const isPlural = (number: number) => {
   const stringTotal = number.toString();
@@ -15,29 +17,50 @@ const isPlural = (number: number) => {
   }
 
   return false;
-}
+};
 
 const Catalog: React.FC = () => {
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts);
   const totalProducts = useAppSelector(selectProductsCount);
+  const [searchParams] = useSearchParams();
 
-  // const [sortBy, setSortBy] = useState('');
-  const [productsPerPage, setProductsPerPage] = useState(8);
-  const [currentPage, setCurrentPage] = useState(1);
+  const itemsOnPageOptions = ['8', '16', '32', 'All'];
+  const sortByOptions = Object.keys(SortProductByEnum);
+
+  const itemsOnPage = Number(searchParams.get('itemsOnPage'))
+    || totalProducts;
+
+  const sortedBy = searchParams.get('sort')
+    || sortByOptions[0];
+
+  const currentPage = searchParams.get('page')
+  || 1;
+
+  const setSortBy = (value: string) => {
+    if (value === 'age') {
+      return SortProductByEnum.Age;
+    }
+    if (value === 'name') {
+      return SortProductByEnum.Name;
+    }
+
+    return SortProductByEnum.Price;
+  };
 
   useEffect(() => {
     dispatch(getProductsThunk({
-      page: currentPage,
-      perPage: productsPerPage,
+      page: +currentPage,
+      perPage: itemsOnPage,
       productType: ProductTypesEnum.Phones,
-      sortBy: SortProductByEnum.Name,
+      sortBy: setSortBy(sortedBy),
     }))
-  }, [currentPage, dispatch, productsPerPage]);
+  }, [currentPage, dispatch, itemsOnPage, sortedBy],);
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setProductsPerPage(+event.target.value);
+  const normalizeQuery = (query: string) => {
+    return `${query[0].toUpperCase()}${query.slice(1)}`
   };
+
 
   return (
     <section className="catalog">
@@ -66,59 +89,49 @@ const Catalog: React.FC = () => {
           </p>
         </div>
 
-        <form method="post" className="catalog__form">
-          <div className="catalog__form-wrapper">
-            <label htmlFor="perPage" className="catalog__form-item">
-              <span className="catalog__form-type">Sort by</span>
+        <div className="catalog__form-wrapper">
+          <Dropdown
+            label="Sort by"
+            classModificator="sort"
+            options={sortByOptions}
+            startValue={normalizeQuery(sortedBy)}
+            searchParamsKey="sort"
+          />
 
-              <select
-                name="itemsPerPage"
-                id="perPage"
-                className="catalog__form-select"
-              >
-                <option value="year">Newest</option>
-                <option value="name">Alphabetically</option>
-                <option value="price">Cheapest</option>
-              </select>
-            </label>
-
-            <label htmlFor="perPage" className="catalog__form-item">
-              <span className="catalog__form-type">items on page</span>
-
-              <select
-                name="itemsPerPage"
-                id="perPage"
-                className="catalog__form-select"
-                value={productsPerPage}
-                onChange={handleChange}
-              >
-                <option value="8">8</option>
-                <option value="16">16</option>
-                <option value="32">32</option>
-                <option value={totalProducts}>All</option>
-              </select>
-            </label>
-          </div>
-        </form>
+          <Dropdown
+            label="Items on page"
+            classModificator="items"
+            options={itemsOnPageOptions}
+            startValue={itemsOnPageOptions[0]}
+            searchParamsKey="itemsOnPage"
+          />
+        </div>
       </div>
 
       <div className="catalog__container">
         {allProducts.map(product => {
           return (
-            <div key={product.id} className="productCard">
-              <Card product={product} />
-            </div>
+              <Card product={product} key={product.id} />
           )
         })}
       </div>
 
-      <div className="page__pagination">
+      {/* <div className="page__pagination">
         <Pagination
+          className="pagination-bar"
           siblingCount={1}
           currentPage={currentPage}
           totalCount={totalProducts}
-          pageSize={productsPerPage}
+          pageSize={itemsOnPage}
           onPageChange={(page: React.SetStateAction<number>) => setCurrentPage(page)}
+        />
+      </div> */}
+
+      <div className="page__pagination">
+        <Pagination
+          page={String(currentPage)}
+          total={totalProducts}
+          perPage={itemsOnPage}
         />
       </div>
     </section>

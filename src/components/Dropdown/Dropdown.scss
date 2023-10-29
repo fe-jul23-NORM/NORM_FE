@@ -1,0 +1,93 @@
+$gray-secondary: #89939A;
+$gray-primary: #0F0F11;
+$gray-elements: #E2E6E9;
+$gray-background: #FAFBFC;
+$gray-icons: #B4BDC3;
+
+.dropdown {
+  position: relative;
+
+  &_sort {
+    width: 176px;
+  }
+
+  &_items {
+    width: 128px;
+  }
+
+  &__label {
+    color: $gray-secondary;
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  &__select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid $gray-elements;
+    border-radius: .5em;
+    background-color: white;
+    padding: 10px;
+    height: 40px;
+    width: 128px;
+    outline: none;
+    color: $gray-primary;
+    width: 100%;
+    // size: 14px;
+    // text-transform: capitalize;
+    transition: 0.3s;
+    // appearance: none;
+    // -webkit-appearance: none;
+    // -moz-appearance: none;
+  }
+
+  &__arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s;
+    background: center/contain no-repeat;
+    background-image: url("https://i.gstatvb.com/7b0c5a911403e372d5b0aace017605fc1689328395.rng.png");
+
+    &_opened {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__list {
+    list-style: none;
+    position: absolute;
+    text-transform: capitalize;
+    z-index: 1;
+    width: 100%;
+    margin-top: 4px;
+    background-color: #fff;
+    border: 1px solid $gray-elements;
+    box-shadow: 0 2px 15px 0 rgba(0,0,0,0.05);
+    padding: 0;
+    border-radius: .5em;
+  }
+
+  &__link {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    color: $gray-primary;
+    transition: all 0.3s linear;
+    width: 128px;
+    box-sizing: border-box;
+    font-size: 13px;
+
+    &--active {
+      width: 100%;
+      // color: black;
+      // border: 1px solid $gray-elements;
+      background-color: $gray-elements;
+      border-radius: .2em;
+    }
+  }
+}
