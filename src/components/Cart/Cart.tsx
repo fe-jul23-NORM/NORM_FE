@@ -1,27 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import './Cart.scss';
 import { useNavigate } from "react-router";
-import { useAppDispatch, useAppSelector } from "../../store";
+import { useAppDispatch } from "../../store";
 import { createOrderByGuest } from "../../store/cart/thunks";
+import { CartProduct } from "../../types/product.types";
 
-const Cart = () => {
-  const cart = useAppSelector((state) => state.cart.cart);
-  const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
-  }
+const Cart: React.FC = () => {
+  const cartFromLocalStorage: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+  const [cart, setCart] = useState<CartProduct[]>(cartFromLocalStorage);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
+
   let numberOfProducts = 0;
   cart.forEach(item => numberOfProducts += item.quantity);
 
   const totalPrice = cart
     .map(({ price, quantity }) => price * quantity)
     .reduce((acc, price) => acc + price, 0);
-    
+
   const dispatch = useAppDispatch();
 
   const handleCheckout = () => {
     dispatch(createOrderByGuest('test@gmail.com'))
+  }
+
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
   }
 
   return (
@@ -50,7 +58,7 @@ const Cart = () => {
               {cart.map((item) => {
                 return (
                   <div key={item.id} className="cart__item">
-                    <CartItem item={item} />
+                    <CartItem item={item} handleSetCart={setCart} />
                   </div>
                 )
               })}
