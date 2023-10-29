@@ -123,4 +123,8 @@
       margin-top: 24px;
     }
   }
+
+  &__no-products {
+    grid-column: 1 / -1;
+  }
 }

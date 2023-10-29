@@ -1,9 +1,9 @@
 import React from 'react';
 import './ItemCard.scss';
-import ButtonCart from '../ButtonCart/ButtonCart';
+import Button from '../Button/Button';
 import Heart from '../Heart/Heart';
-import { AvailableColors } from '../../types/AvailableColors';
-import { Capacity } from '../../types/Capacity';
+import { AvailableColors } from '../../types/availableColors';
+import { Capacity } from '../../types/capacity';
 
 
 const ItemCard: React.FC = () => {
@@ -131,7 +131,7 @@ const ItemCard: React.FC = () => {
 
             <div className="container__info-cart">
               <div className="container__info-cart-button">
-              <ButtonCart />
+              {/* <Button /> */}
               </div>
 
               <div className="container__info-cart-favourite">

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IProductState } from './types';
+import { ProductState } from './types';
 import {
   getCurrentProductThunk,
   getDiscountProductsThunk, getNewProductsThunk,
@@ -7,7 +7,7 @@ import {
   getRecommendedProductsThunk
 } from './thunks';
 
-const initialState: IProductState = {
+const initialState: ProductState = {
   isLoading: true,
   totalCount: 0,
   all: [],
