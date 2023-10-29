@@ -1,0 +1,85 @@
+@import '../../../utils/variable.scss';
+@import '../../../utils/mixins.scss';
+
+.favourites {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  padding: 24px 16px;
+
+  @include onTablet {
+    padding: 24px;
+    padding-bottom: 64px;
+  }
+
+  @include onDeskTop {
+    padding: 24px 32px 64px;
+    max-width: 1200px;
+    justify-content: center;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    height: 16px;
+    margin-bottom: 24px;
+
+    @include onTablet {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__nav-text {
+    font-size: 12px;
+    font-weight: 700;
+    color: $Secondary;
+  }
+
+  &__amount {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    color: $Secondary;
+  }
+
+  &__container {
+    margin: 24px auto;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: space-between;
+
+    @include pageGrid;
+
+    @include onTablet {
+      margin: 24px auto 40px;
+    }
+  }
+
+  &__item {
+    padding: 0;
+
+    grid-column: span 3;
+
+    @include onTablet() {
+      grid-column: span 6;
+    }
+
+    @include onDeskTop() {
+      grid-column: span 6;
+    }
+  }
+}

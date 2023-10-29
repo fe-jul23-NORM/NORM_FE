@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './Catalog.scss';
 import Card from '../Card/Card';
 import { useAppDispatch, useAppSelector } from '../../store';
@@ -8,6 +8,8 @@ import { ProductTypesEnum, SortProductByEnum } from '../../types/product.types';
 import Pagination from '../Pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { Dropdown } from '../Dropdown/Dropdown';
+
+const itemsOnPageOptions = ['8', '16', '32', 'All'];
 
 const isPlural = (number: number) => {
   const stringTotal = number.toString();
@@ -19,13 +21,27 @@ const isPlural = (number: number) => {
   return false;
 };
 
+const normalizeQuery = (query: string) => {
+  return `${query[0].toUpperCase()}${query.slice(1)}`
+};
+
+const setSortBy = (value: string) => {
+  if (value === 'age') {
+    return SortProductByEnum.Age;
+  }
+  if (value === 'name') {
+    return SortProductByEnum.Name;
+  }
+
+  return SortProductByEnum.Price;
+};
+
 const Catalog: React.FC = () => {
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts);
   const totalProducts = useAppSelector(selectProductsCount);
   const [searchParams] = useSearchParams();
 
-  const itemsOnPageOptions = ['8', '16', '32', 'All'];
   const sortByOptions = Object.keys(SortProductByEnum);
 
   const itemsOnPage = Number(searchParams.get('itemsOnPage'))
@@ -37,17 +53,6 @@ const Catalog: React.FC = () => {
   const currentPage = searchParams.get('page')
   || 1;
 
-  const setSortBy = (value: string) => {
-    if (value === 'age') {
-      return SortProductByEnum.Age;
-    }
-    if (value === 'name') {
-      return SortProductByEnum.Name;
-    }
-
-    return SortProductByEnum.Price;
-  };
-
   useEffect(() => {
     dispatch(getProductsThunk({
       page: +currentPage,
@@ -56,10 +61,6 @@ const Catalog: React.FC = () => {
       sortBy: setSortBy(sortedBy),
     }))
   }, [currentPage, dispatch, itemsOnPage, sortedBy],);
-
-  const normalizeQuery = (query: string) => {
-    return `${query[0].toUpperCase()}${query.slice(1)}`
-  };
 
 
   return (
@@ -115,17 +116,6 @@ const Catalog: React.FC = () => {
           )
         })}
       </div>
-
-      {/* <div className="page__pagination">
-        <Pagination
-          className="pagination-bar"
-          siblingCount={1}
-          currentPage={currentPage}
-          totalCount={totalProducts}
-          pageSize={itemsOnPage}
-          onPageChange={(page: React.SetStateAction<number>) => setCurrentPage(page)}
-        />
-      </div> */}
 
       <div className="page__pagination">
         <Pagination

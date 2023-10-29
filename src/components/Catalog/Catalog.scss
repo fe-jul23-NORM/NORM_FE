@@ -1,7 +1,7 @@
-$gray-secondary: #89939A;
-$gray-primary: #0F0F11;
-$gray-elements: #E2E6E9;
-$gray-background: #FAFBFC;
+$Secondary: #89939A;
+$Primary: #0F0F11;
+$Elements: #E2E6E9;
+$HoverBg: #FAFBFC;
 $gray-icons: #B4BDC3;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Rubik:wght@400;600&display=swap');
@@ -55,7 +55,7 @@ $gray-icons: #B4BDC3;
   flex-direction: column;
   padding-top: 20px;
   padding-inline: 16px;
-  background-color: $gray-background;
+  background-color: $HoverBg;
   justify-content: center;
 
   &__nav {
@@ -72,7 +72,7 @@ $gray-icons: #B4BDC3;
     &-text {
       display: block;
       text-decoration: none;
-      color: $gray-secondary;
+      color: $Secondary;
       font-size: 12px;
       line-height: 18px;
       font-weight: 500;
@@ -100,7 +100,7 @@ $gray-icons: #B4BDC3;
     &-type {
       font-size: 12px;
       font-weight: 400;
-      color: $gray-secondary;
+      color: $Secondary;
     }
 
     &-select {
@@ -111,7 +111,7 @@ $gray-icons: #B4BDC3;
       width: max-content;
       padding: 4px 7px;
       min-width: 100px;
-      border: 1px solid $gray-elements;
+      border: 1px solid $Elements;
       border-radius: .5em;
       outline: none;
       font-size: 14px;
@@ -144,7 +144,7 @@ $gray-icons: #B4BDC3;
 
 .page__items-amount {
   margin: 0 0 32px;
-  color: $gray-secondary;
+  color: $Secondary;
 }
 
 .page__pagination {
