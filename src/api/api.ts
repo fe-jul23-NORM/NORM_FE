@@ -28,7 +28,7 @@ export const axiosPrivate = axios.create({
 //     return Promise.reject(error);
 //   },
 // );
-//
+
 // axiosPrivate.interceptors.response.use(
 //   (response) => response,
 //   async (error) => {

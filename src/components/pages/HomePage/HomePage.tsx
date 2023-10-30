@@ -44,11 +44,27 @@ const HomePage: React.FC = () => {
                 <div className="home-page-gallery--cards">
                     <Swiper
                         modules={[Navigation, A11y]}
-                        slidesPerView={4}
+                        slidesPerView={1}
                         loop
                         navigation={{
                             nextEl: '.new-models__button-right',
                             prevEl: '.new-models__button-left',
+                        }}
+                        breakpoints={{
+                            // when window width is >= 640px
+                            640: {
+                                width: 640,
+                                slidesPerView: 1,
+                            },
+                            // when window width is >= 768px
+                            768: {
+                                width: 768,
+                                slidesPerView: 2,
+                            },
+                            1200: {
+                                width: 1200,
+                                slidesPerView: 4,
+                            },
                         }}
                     >
                         {newProducts.map(product => (
