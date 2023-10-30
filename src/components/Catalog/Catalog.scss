@@ -36,7 +36,7 @@ $gray-icons: #B4BDC3;
 
   @include onTablet {
     --columns: 2;
-    max-width: 592px;
+    max-width: 560px;
   }
 
   @include onDeskTop {
@@ -164,13 +164,13 @@ $gray-icons: #B4BDC3;
 
 .title-container {
   display: block;
-  grid-column: span 4;
+  grid-column: span 1;
 
   @include onTablet() {
-    grid-column: span 12;
+    grid-column: span 2;
   }
 
   @include onDeskTop() {
-    grid-column: span 24;
+    grid-column: span 4;
   }
 }

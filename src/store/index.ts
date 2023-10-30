@@ -10,6 +10,7 @@ export const store = configureStore({
     [authSlice.name]: authSlice.reducer,
     [productSlice.name]: productSlice.reducer,
     [cartSlice.name]: cartSlice.reducer,
+    [authSlice.name]: authSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });

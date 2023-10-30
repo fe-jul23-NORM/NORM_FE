@@ -5,7 +5,7 @@ import { refresh, register } from "./thunks";
 const initialState: AuthState = { 
   isLoading: true,
   user: null,
-}
+};
 
 export const authSlice = createSlice({
   name: 'auth',
