@@ -42,11 +42,11 @@ const Card: React.FC<Props> = ({ product }) => {
 
       <div className="card__price">
         <p className="card__price-actual">
-          {`$${fullPrice}`}
+          {`$${price}`}
         </p>
 
         <p className="card__price-sale">
-          {`$${price}`}
+          {`$${fullPrice}`}
         </p>
       </div>
 

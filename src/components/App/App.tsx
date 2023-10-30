@@ -19,13 +19,14 @@ import FavouritesPage from '../pages/FavouritesPage/FavouritesPage';
 import ItemCard from '../ItemCard/ItemCard';
 import '../../utils/_reset.scss';
 import HomePage from '../pages/HomePage/HomePage';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import RegisterPage from '../pages/RegisterPage/RegisterPage'
 
 function App() {
   
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts)
   const isLoading = useAppSelector((state) => state.product.isLoading)
-  // console.log(allProducts)
 
   const handleClick = (product: Product) => {
     dispatch(addToFavorites(product))
@@ -40,21 +41,12 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/favourites' element={<FavouritesPage />} />
         <Route path='*' element={<NotFoundPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/register' element={<RegisterPage />} />
       </Route>
     </Routes>
 
-    {/* {allProducts.map((product) => {
-      return (
-        <div key={product.id}>
-          <p>{product.name}</p>
-          <img
-            src={`${BASE_URI}/${product.image}`}
-            alt=""
-          />
-          <button onClick={() => handleClick(product)}>jopa</button>
-        </div>
-      )
-    })} */}
+    {/* <LoginPage /> */}
     </>
   );
 }
