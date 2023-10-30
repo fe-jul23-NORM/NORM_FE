@@ -1,0 +1,7 @@
+export const NAME_REGEX = /^[A-Za-zА-Яа-яЁё'-]+$/;
+export const EMAIL_REGEX = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
+export const DEFAULT_REGEX_EXP = /^[А-ЩЬЮЯҐЄІЇа-щьюяґєіїA-Za-z_0-9.\-?,#@"*%&$!= ']+$/;
+export const PASSWORD_REGEX = /^[A-Za-z_0-9]+$/;
+export const UPPER_CASE_REGEX = /[A-Z]/;
+export const NUMBER_REGEX = /[0-9]/;
+export const ONLY_NUMBER_REGEX = /^[0-9]+(\.[0-9]{1,2})?$/;

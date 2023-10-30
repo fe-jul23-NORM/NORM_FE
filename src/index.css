@@ -1,6 +1,5 @@
 body {
   font-family: 'Rubik', sans-serif;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -32,6 +31,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-user:before {
+  content: "\e90f";
+}
+.icon-hide:before {
+  content: "\e90d";
+}
+.icon-show:before {
+  content: "\e90e";
+}
 .icon-down:before {
   content: "\e900";
 }

@@ -4,13 +4,15 @@ import './Button.scss';
 type Props = {
   text: string,
   handleClick: (e: React.MouseEvent) => void,
+  disabled?: boolean,
 }
 
-const Button: React.FC<Props> = ({ text, handleClick }) => {
+const Button: React.FC<Props> = ({ text, handleClick, disabled }) => {
   return (
     <button
       className="cart-button"
       onClick={handleClick}
+      disabled={disabled}
     >
       {text}
     </button>
