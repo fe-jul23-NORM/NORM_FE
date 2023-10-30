@@ -13,4 +13,9 @@ export const ORDER_ROUTES = {
 export const AUTH_ROUTES = {
   REGISTER: '/auth/register',
   REFRESH: '/auth/refresh',
+}
+
+export const AUTH_ROUTES = {
+  REGISTER: '/auth/register',
+  REFRESH: '/auth/refresh',
 };

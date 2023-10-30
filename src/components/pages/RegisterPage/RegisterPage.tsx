@@ -2,92 +2,57 @@ import React, { useCallback, useState } from 'react';
 import './RegisterPage.scss';
 import Input from '../../Input/Input';
 import Button from '../../Button/Button';
-import { registration } from '../../../store/auth/thunks';
-import { useAppDispatch } from '../../../store';
 
 const RegisterPage: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const logIn = () => { logIn() }
-
-  const [values, setValues] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
-
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setValues(prev => {
-      return {
-        ...prev,
-        [e.target.name]: e.target.value,
-      }
-    })
-  }, []);
-
-  const handleSubmit = (e: React.MouseEvent) => {
-    e.preventDefault();
-    dispatch(registration(values));
-  };
-
+  const logIn = () => {logIn()}
+ 
   return (
     <div className="wrapper-form">
       <form action="logIn-form"
         className="logIn-form">
         <h2>Sign up</h2>
 
-        <div className="input-container">
-          <Input
-            name="firstName"
-            placeholder="Enter first name ..."
-            onChange={handleChange}
-            value={values.firstName}
-          />
-        </div>
+          <div className="input-container">
+            <Input 
+              name="first name"
+              placeholder="Enter first name ..."
+            />
+          </div>
 
-        <div className="input-container">
-          <Input
-            name="lastName"
-            placeholder="Enter last name ..."
-            onChange={handleChange}
-            value={values.lastName}
-          />
-        </div>
+          <div className="input-container">
+            <Input 
+              name="last name"
+              placeholder="Enter last name ..."
+            />
+          </div>
 
-        <div className="input-container">
-          <Input
-            name="email"
-            placeholder="Enter e-mail ..."
-            onChange={handleChange}
-            value={values.email}
-          />
-        </div>
+          <div className="input-container">
+            <Input 
+              name="e-mail"
+              placeholder="Enter e-mail ..."
+            />
+          </div>
 
-        <div className="input-container">
-          <Input
-            name="password"
-            placeholder="Enter password ..."
-            onChange={handleChange}
-            value={values.password}
-          />
-        </div>
+          <div className="input-container">
+            <Input 
+              name="password"
+              placeholder="Enter password ..."
+            />
+          </div>
 
-        <div className="input-container">
-          <Input
-            name="confirmPassword"
-            placeholder="Confirm password ..."
-            onChange={handleChange}
-            value={values.confirmPassword}
-          />
-        </div>
+          <div className="input-container">
+            <Input 
+              name="password"
+              placeholder="Confirm password ..."
+            />
+          </div>
 
-        <div className="button-container">
-          <Button
-            text='Log in'
-            handleClick={handleSubmit}
-          />
-        </div>
+          <div className="button-container">
+            <Button 
+              text='Log in'
+              handleClick={logIn}
+            />
+          </div> 
       </form>
     </div>
 

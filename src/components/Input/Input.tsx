@@ -4,7 +4,7 @@ import './Input.scss';
 type Props = {
   name: string,
   placeholder: string,
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
   value: string,
 }
 

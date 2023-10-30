@@ -4,8 +4,8 @@ import { AUTH_ROUTES } from "../../constants/routes";
 
 const MODULE_NAME = 'auth';
 
-export const registration = createAsyncThunk(
-  `${MODULE_NAME}/registration`,
+export const register = createAsyncThunk(
+  `${MODULE_NAME}/register`, 
   async (values: any, { rejectWithValue }) => {
     try {
       const responce = await axiosPublic.post(AUTH_ROUTES.REGISTER, values);
@@ -17,7 +17,7 @@ export const registration = createAsyncThunk(
 );
 
 export const refresh = createAsyncThunk(
-  `${MODULE_NAME}/refresh`,
+  `${MODULE_NAME}/refresh`, 
   async (_, { rejectWithValue }) => {
     try {
       const responce = await axiosPublic.get(AUTH_ROUTES.REFRESH);
