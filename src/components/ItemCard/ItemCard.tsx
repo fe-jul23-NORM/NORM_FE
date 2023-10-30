@@ -2,8 +2,8 @@ import React from 'react';
 import './ItemCard.scss';
 import Button from '../Button/Button';
 import Heart from '../Heart/Heart';
-import { AvailableColors } from '../../types/availableColors';
-import { Capacity } from '../../types/capacity';
+import { AvailableColors } from '../../types/AvailableColors';
+import { Capacity } from '../../types/Capacity';
 
 
 const ItemCard: React.FC = () => {
