@@ -18,7 +18,8 @@ import FavouritesPage from '../pages/FavouritesPage/FavouritesPage';
 import ItemCard from '../ItemCard/ItemCard';
 import '../../utils/_reset.scss';
 import HomePage from '../pages/HomePage/HomePage';
-import AuthorisationsPage from '../pages/AuthorisationsPage/AuthorisationsPage';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import RegisterPage from '../pages/RegisterPage/RegisterPage'
 
 function App() {
   
@@ -39,22 +40,12 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/favourites' element={<FavouritesPage />} />
         <Route path='*' element={<NotFoundPage />} />
-        <Route path='/authorisations' element={<AuthorisationsPage />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/register' element={<RegisterPage />} />
       </Route>
     </Routes>
 
-    {/* {allProducts.map((product) => {
-      return (
-        <div key={product.id}>
-          <p>{product.name}</p>
-          <img
-            src={`${BASE_URI}/${product.image}`}
-            alt=""
-          />
-          <button onClick={() => handleClick(product)}>jopa</button>
-        </div>
-      )
-    })} */}
+    {/* <LoginPage /> */}
     </>
   );
 }

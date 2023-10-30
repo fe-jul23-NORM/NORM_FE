@@ -3,7 +3,7 @@
 .cart-button {
   padding: 0;
   height: 40px;
-  width: 100%;
+  width: calc(100% - 40px - 8px);
   justify-content: center;
   align-items: center;
   border: none;
@@ -15,6 +15,11 @@
   font-weight: 700;
   line-height: 21px;
   cursor: pointer;
+
+  // &-product {
+  //   height: 48px;
+  //   width: 100%;
+  // }
 
   &--selected {
     border-radius: 8px;

@@ -1,17 +1,25 @@
 import React from 'react';
 import './Input.scss';
 
-const Input: React.FC = () => {
+type Props = {
+  name: string,
+  placeholder: string,
+}
+
+const Input: React.FC<Props> = ({ name, placeholder }) => {
   return (
-    label
-    <input
+    <div className="wrapper">
+      <input
+          name={name}
           value=""
-          placeholder="Start entering ..."
+          placeholder={placeholder}
           className="input-field"
-          type="password"
-          // disabled
-        >          
+      >          
       </input>
+
+      <label></label>
+      
+    </div>    
   )
 };
 
