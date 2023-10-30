@@ -12,7 +12,7 @@ const LoginPage: React.FC = () => {
           className="logIn-form">
           <h2>Sign in</h2>
    
-          <div className="input-container">
+          {/* <div className="input-container">
             <Input 
               name="e-mail"
               placeholder="Enter e-mail ..."
@@ -24,7 +24,7 @@ const LoginPage: React.FC = () => {
               name="password"
               placeholder="Enter password ..."
             />
-          </div>
+          </div> */}
 
           <div className="button-container">
             <Button 

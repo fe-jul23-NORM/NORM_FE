@@ -21,9 +21,10 @@ import '../../utils/_reset.scss';
 import HomePage from '../pages/HomePage/HomePage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage'
+import { refresh } from '../../store/auth/thunks';
 
 function App() {
-  
+  const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts)
   const isLoading = useAppSelector((state) => state.product.isLoading)
@@ -32,21 +33,27 @@ function App() {
     dispatch(addToFavorites(product))
   }
 
-  return (
-  <>
-    <Routes>
-      <Route path='/' element={<Layout />}>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/phones' element={<Catalog />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/favourites' element={<FavouritesPage />} />
-        <Route path='*' element={<NotFoundPage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/register' element={<RegisterPage />} />
-      </Route>
-    </Routes>
+  useEffect(() => {
+    dispatch(refresh());
+  }, [])
 
-    {/* <LoginPage /> */}
+  return (
+    <>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/phones' element={<Catalog product={'phones'} />} />
+          <Route path='/tablets' element={<Catalog product={'tablets'} />} />
+          <Route path='/accessories' element={<Catalog product={'accessories'} />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/favourites' element={<FavouritesPage />} />
+          <Route path='*' element={<NotFoundPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/register' element={<RegisterPage />} />
+        </Route>
+      </Routes>
+
+      {/* <LoginPage /> */}
     </>
   );
 }
