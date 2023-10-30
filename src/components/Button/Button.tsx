@@ -3,7 +3,7 @@ import './Button.scss';
 
 type Props = {
   text: string,
-  handleClick: () => void,
+  handleClick: (e: React.MouseEvent) => void,
 }
 
 const Button: React.FC<Props> = ({ text, handleClick }) => {

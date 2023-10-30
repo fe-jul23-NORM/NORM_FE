@@ -21,9 +21,10 @@ import '../../utils/_reset.scss';
 import HomePage from '../pages/HomePage/HomePage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage'
+import { refresh } from '../../store/auth/thunks';
 
 function App() {
-  
+  const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts)
   const isLoading = useAppSelector((state) => state.product.isLoading)
@@ -35,8 +36,15 @@ function App() {
     dispatch(addToFavorites(product))
   }
 
+  useEffect(() => {
+    dispatch(refresh());
+  }, []);
+
   return (
   <>
+    {user && (
+      <p>{`Hello ${user.firstName} ${user.lastName}`}</p>
+    )}
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route path='/' element={<HomePage />} />
