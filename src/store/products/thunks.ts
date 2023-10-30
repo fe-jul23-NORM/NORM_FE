@@ -2,9 +2,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { axiosPublic } from '../../api/api';
 import { PRODUCT_ROUTES } from '../../constants/routes';
 import {
-  ICurrentProduct,
-  IProduct,
-  IProductsQuery,
+  CurrentProduct,
+  Product,
+  ProductsQuery,
   ProductTypesEnum,
 } from '../../types/product.types';
 import { IGetAllProductsResponse } from '../../types/response.types';
@@ -14,7 +14,7 @@ const MODULE_NAME = 'product';
 export const getProductsThunk = createAsyncThunk(
   `${MODULE_NAME}/getAll`,
   async (
-    {page, perPage, productType, query, sortBy}: IProductsQuery,
+    {page, perPage, productType, query, sortBy}: ProductsQuery,
     { rejectWithValue }
   ) => {
     try {
@@ -34,7 +34,7 @@ export const getCurrentProductThunk = createAsyncThunk(
   `${MODULE_NAME}/getCurrent`,
   async (id: number | string, { rejectWithValue }) => {
     try {
-      const response = await axiosPublic.get<ICurrentProduct>(`${PRODUCT_ROUTES.GET}/${id}`);
+      const response = await axiosPublic.get<CurrentProduct>(`${PRODUCT_ROUTES.GET}/${id}`);
       
       return response.data;
     } catch (e: any) {
@@ -47,7 +47,7 @@ export const getRecommendedProductsThunk = createAsyncThunk(
   `${MODULE_NAME}/getRecommended`,
   async (id: number | string, { rejectWithValue }) => {
     try {
-      const response = await axiosPublic.get<IProduct[]>(`${PRODUCT_ROUTES.GET}/${id}/recommended`);
+      const response = await axiosPublic.get<Product[]>(`${PRODUCT_ROUTES.GET}/${id}/recommended`);
       
       return response.data;
     } catch (e: any) {
@@ -60,7 +60,7 @@ export const getDiscountProductsThunk = createAsyncThunk(
   `${MODULE_NAME}/getDiscount`,
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axiosPublic.get<IProduct[]>(PRODUCT_ROUTES.GET_DISCOUNT);
+      const response = await axiosPublic.get<Product[]>(PRODUCT_ROUTES.GET_DISCOUNT);
       
       return response.data;
     } catch (e: any) {
@@ -73,7 +73,7 @@ export const getNewProductsThunk = createAsyncThunk(
   `${MODULE_NAME}/getNew`,
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axiosPublic.get<IProduct[]>(PRODUCT_ROUTES.GET_NEW);
+      const response = await axiosPublic.get<Product[]>(PRODUCT_ROUTES.GET_NEW);
       
       return response.data;
     } catch (e: any) {

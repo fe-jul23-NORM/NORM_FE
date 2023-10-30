@@ -71,12 +71,12 @@
     color: #89939A;
 
     &:hover {
-      color: $gray-primary;
+      color: $Primary;
     }
 
     &--active {
-      color: $gray-primary;
-      border-bottom: 3px solid $gray-primary;
+      color: $Primary;
+      border-bottom: 3px solid $Primary;
     }
   }
 }
@@ -126,6 +126,6 @@
   }
 
   &--active {
-    border-bottom: 3px solid $gray-primary;
+    border-bottom: 3px solid $Primary;
   }
 }

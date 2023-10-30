@@ -1,18 +1,6 @@
 @import '../../utils/variable.scss';
 @import '../../utils/mixins.scss';
 
-@font-face {
-  font-family: "Mont Regular";
-  src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot");
-  src: url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.eot?#iefix")format("embedded-opentype"),
-    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff2")format("woff2"),
-    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.woff")format("woff"),
-    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.ttf")format("truetype"),
-    url("https://db.onlinewebfonts.com/t/6cce6b8c74a8ac84c45963dbac1e025a.svg#Mont Regular")format("svg");
-  font-size: 16px;
-  font-weight: 800;
-}
-
 p,
 span {
   margin: 0;
@@ -24,7 +12,7 @@ span {
   flex-direction: column;
   gap: 16px;
   padding: 16px;
-  border: 1px solid $gray-elements;
+  border: 1px solid $Elements;
   border-radius: 16px;
   box-sizing: border-box;
   font-weight: 600;
@@ -65,7 +53,6 @@ span {
 
   &__picture {
     height: 66px;
-    width: 66px;
   }
 
   &__number {
@@ -77,14 +64,14 @@ span {
   &__button {
     width: 32px;
     height: 32px;
-    border: 1px solid $gray-icons-placeholders;
+    border: 1px solid $Icons;
     border-radius: 50%;
     background: #fff;
     font-size: 16px;
 
     &--disabled {
-      border: 1px solid $gray-elements;
-      color: $gray-elements;
+      border: 1px solid $Elements;
+      color: $Elements;
       width: 32px;
       height: 32px;
       border-radius: 50%;

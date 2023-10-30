@@ -1,13 +1,12 @@
-import { ICurrentProduct, IProduct } from '../../types/product.types';
+import { CurrentProduct, Product } from '../../types/product.types';
 
-export interface IProductState {
+export interface ProductState {
   isLoading: boolean,
   totalCount: number,
-  discount: IProduct[],
-  new: IProduct[],
-  recommended: IProduct[],
-  all: IProduct[],
-  currentProduct: ICurrentProduct | null,
-
-  favorites: IProduct[]
+  discount: Product[],
+  new: Product[],
+  recommended: Product[],
+  all: Product[],
+  currentProduct: CurrentProduct | null,
+  favorites: Product[]
 }

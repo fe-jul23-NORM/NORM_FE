@@ -1,5 +1,4 @@
 @import '../../utils/variable.scss';
-@import '../../utils/normalize.scss';
 @import '../../utils/mixins.scss';
 
 
@@ -12,7 +11,7 @@
 }
 
 .item-card {
-  padding: 0 16px;
+  padding: 0 16px 0 17px;
   max-width: 1136px;
   margin: auto;
   background: $gray-background; 
@@ -69,6 +68,7 @@
     }
   }
 
+  background: $HoverBg;  
 
   @include onTablet() {
     padding: 0 24px;
@@ -79,7 +79,7 @@
   }
 
   &__title {
-    color: $gray-primary;
+    color: $Primary;
     font-size: 22px;
     font-style: normal;
     font-weight: 800;
@@ -202,7 +202,7 @@
       }
 
       &-title {
-        color:  $gray-secondary;
+        color:  $Secondary;
         font-size: 12px;
         font-style: normal;
         font-weight: 600;
@@ -210,7 +210,7 @@
       }
 
       &-Id {
-        color: $gray-icons-placeholders;
+        color: $Icons;
         font-size: 12px;
         font-style: normal;
         font-weight: 700;
@@ -224,46 +224,24 @@
       display: flex;
       gap: 8px;
 
-      &-color-1,
-      &-color-2,
-      &-color-3,
-      &-color-4 {
+      &-color {
         width: 25px;
         height: 25px;
         border-radius: 50%;
         border: none;
-      }
 
-      &-color-1:active,
-      &-color-2:active,
-      &-color-3:active,
-      &-color-4:active {
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        border: 1px solid #4C4C4C;
-      }
-
-      &-color-1 {      
-        background-color: #FCDBC1;
-      }
-
-      &-color-2 {
-        background-color: #5F7170;
-      }
-
-      &-color-3 {
-        background-color: #4C4C4C;
-      }
-
-      &-color-4 {
-        background-color: #E2E6E9;
+        &:active {
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          border: 1px solid #4C4C4C;
+        }
       }
     }
 
     &-capcity {
       &-title {
-        color: $gray-secondary;
+        color: $Secondary;
         font-size: 12px;
         font-style: normal;
         font-weight: 600;
@@ -281,13 +259,13 @@
     }
 
     &-price {
-      margin-top: 32px;
+      margin-top: 32px ;
       display: flex;
       gap: 8px;
 
-      &-actual{      
+      &-actual{
         margin: 0;
-        color: $gray-primary;
+        color: $Primary;
         font-size: 32px;
         font-weight: 800;
         font-style: normal;
@@ -295,7 +273,7 @@
 
       &-sale {
         margin-top: 7px;
-        color: $gray-secondary;
+        color: $Secondary;
         font-size: 22px;
         font-weight: 500;      
         text-decoration: line-through;
@@ -306,32 +284,38 @@
 
     &-cart {
       display: flex;
-      justify-content: space-between;
       flex-direction: row;
-      gap: 8px;
       margin-bottom: 32px;
-
-      
+     
       @include onDeskTop() {
-        width: calc(100% - 35%);
+        max-width: calc(100% - 35%);
+      }
+
+      &-button {
+        margin-right: 8px;
+        width: 231px;
+        height: 100%;
+
+        @include onTablet {
+          width: 180px;
+        }
+
+        @include onDeskTop {
+          width: 263px;
+        }
       }
 
       &-favourite {
-        background-image: url("../../../public/images/card/heart_unlike.png");
-        background-repeat: no-repeat ;
-        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         width: 48px;
         height: 48px;
         border-radius: 40px;
-        border: 1px solid $gray-icons-placeholders;
-        background-color: $gray-white;
-
-        &:active {
-          background-image: url("../../../public/images/card/heart_like.png");
-          background-repeat: no-repeat ;
-          background-position: center;
-        }
-      }  
+        border: 1px solid $Icons;
+        background-color: $White;
+        cursor: pointer;
+      }
     }
 
     &-description {
@@ -375,7 +359,7 @@
     &-chapter {
       &-title { 
         margin: 32px 0 16px;
-        color: $gray-primary;
+        color: $Primary;
         font-size: 16px;
         font-style: normal;
         font-weight: 700;
@@ -389,7 +373,7 @@
       }
 
       &-description {
-        color: $gray-secondary;
+        color: $Secondary;
         font-size: 14px;
         font-style: normal;
         font-weight: 600;
@@ -439,45 +423,41 @@
 
     
   &-title {
-    color: $gray-secondary;
+    color: $Secondary;
     font-size: 12px;
     font-weight: 700;   
     padding: 4px 0;
   }
 
   &-value {
-    color: $gray-primary;
+    color: $Primary;
     text-align: right;
     font-size: 12px;
     font-weight: 700;
   }
 }
 
-.gB_64,
-.gB_256,
-.gB_512 {
+.gB {
   color: #0F0F11;
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 21px;
-  background-color: $gray-background;
-  width: 60px;
+  background-color: $HoverBg;
+  min-width: 40px;
   height: 32px;
   border-radius: 4px;
-  border: 1px solid $gray-icons-placeholders;
+  border: 1px solid $Icons;
+  
+  &:active {
+    color: $HoverBg;
+    background-color: $Primary;
+  }
 }
-
-.gB_64:active,
-.gB_256:active,
-.gB_512:active {
-  color: $gray-background;
-  background-color: $gray-primary;
-} 
 
 hr {
   border-radius: 8px;
-  border: 1px solid $gray-elements;
-  background: $gray-white;
+  border: 1px solid $Elements;
+  background: $White;
 }

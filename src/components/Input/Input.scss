@@ -1,0 +1,40 @@
+@import '../../utils/variable.scss';
+
+.wrapper {
+  width: 100%; 
+}
+
+.input-field {
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 1%;
+  border: 1px solid $Icons;
+  margin-bottom: 5px;
+  font-size: 14px;
+  line-height: 2em;
+  font-style: normal;
+  font-weight: 600;
+  width: 100%;
+  padding-left: 5px;
+
+  &:focus {
+    outline: none;
+    border: 1px solid $Secondary;
+  }
+}
+
+label {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 21px; 
+  color: $Secondary;
+}
+
+::placeholder {
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 21px;
+  color: $Secondary;
+}

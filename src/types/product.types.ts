@@ -1,7 +1,6 @@
-export interface IProduct {
+export interface Product {
   id: number;
   category: string;
-  phoneId: string;
   itemId: string;
   name: string;
   fullPrice: number;
@@ -14,7 +13,11 @@ export interface IProduct {
   image: string;
 }
 
-export interface ICurrentProduct {
+export interface CartProduct extends Product{
+  quantity: number;
+}
+
+export interface CurrentProduct {
   id: string,
   namespaceId: string,
   name: string,
@@ -25,7 +28,7 @@ export interface ICurrentProduct {
   colorsAvailable: string[],
   color: string,
   images: string[],
-  description: IProductDescription[],
+  description: ProductDescription[],
   screen: string,
   resolution: string,
   processor: string,
@@ -35,7 +38,7 @@ export interface ICurrentProduct {
   cell: string[],
 }
 
-export interface IProductDescription {
+export interface ProductDescription {
   title: string,
   text: string,
 }
@@ -52,7 +55,7 @@ export enum ProductTypesEnum {
   Accessories = 'accessories'
 }
 
-export interface IProductsQuery {
+export interface ProductsQuery {
   page: number,
   perPage: number,
   productType: ProductTypesEnum,
