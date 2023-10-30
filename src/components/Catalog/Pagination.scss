@@ -1,7 +1,7 @@
-$gray-secondary: #89939A;
-$gray-primary: #0F0F11;
-$gray-elements: #E2E6E9;
-$gray-background: #FAFBFC;
+$Secondary: #89939A;
+$Primary: #0F0F11;
+$Elements: #E2E6E9;
+$HoverBg: #FAFBFC;
 $gray-icons: #B4BDC3;
 
 .pagination-container {
@@ -14,12 +14,12 @@ $gray-icons: #B4BDC3;
     width: 32px;
     text-align: center;
     margin: auto 4px;
-    color: $gray-primary;
+    color: $Primary;
     display: flex;
     box-sizing: border-box;
     align-items: center;
     border-radius: 32px;
-    border: 1px solid $gray-elements;
+    border: 1px solid $Elements;
 
     &--number {
       @media (max-width: 639px) {
@@ -32,12 +32,12 @@ $gray-icons: #B4BDC3;
       cursor: default;
     }
     &:hover {
-      background-color: $gray-elements;
+      background-color: $Elements;
       cursor: pointer;
     }
 
     &.selected {
-      background-color: $gray-primary;
+      background-color: $Primary;
       color: white;
     }
 
@@ -48,8 +48,8 @@ $gray-icons: #B4BDC3;
         display: inline-block;
         width: 0.4em;
         height: 0.4em;
-        border-right: 0.12em solid $gray-primary;
-        border-top: 0.12em solid $gray-primary;
+        border-right: 0.12em solid $Primary;
+        border-top: 0.12em solid $Primary;
       }
 
       &.left {
@@ -65,8 +65,8 @@ $gray-icons: #B4BDC3;
       pointer-events: none;
 
       .arrow::before {
-        border-right: 0.12em solid $gray-primary;
-        border-top: 0.12em solid $gray-primary;
+        border-right: 0.12em solid $Primary;
+        border-top: 0.12em solid $Primary;
       }
 
       &:hover {

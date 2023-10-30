@@ -1,20 +1,20 @@
-import React from 'react';
-import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
-import Banner from '../../Banner/Banner';
-import Card from '../../Card/Card';
+import React, { useEffect } from 'react';
 import './HomePage.scss';
+import Banner from '../../Banner/Banner';
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, A11y } from 'swiper/modules';
+import 'swiper/css';
+import { Navigation, A11y, Autoplay } from 'swiper/modules';
 import { useAppDispatch, useAppSelector } from '../../../store';
-import { useEffect } from 'react';
-import { getDiscountProductsThunk, getNewProductsThunk } from '../../../store/products/thunks';
 import { selectDiscountProducts, selectNewProducts } from '../../../store/products/selectors';
+import { getDiscountProductsThunk, getNewProductsThunk } from '../../../store/products/thunks';
+import Card from '../../Card/Card';
 
-const HomePage: React.FC = () => {
+
+const RebuildHomePage = () => {
     const dispatch = useAppDispatch();
     const newProducts = useAppSelector(selectNewProducts)
     const hotPrices = useAppSelector(selectDiscountProducts);
-    console.log(newProducts);
 
     useEffect(() => {
         dispatch(getNewProductsThunk())
@@ -22,17 +22,15 @@ const HomePage: React.FC = () => {
     }, []);
 
     return (
-        <section className="main">
-            <div className="home-page">
-                <div className="home-page__title">
-                    <h1>Welcome to Nice Gadgets store!</h1>
-                </div>
+        <main className="main">
+            <section className="banner">
+                <h1 className="home-page__title title">Welcome to Nice Gadgets store!</h1>
                 <Banner />
-            </div>
-            <div className="home-page-gallery">
-                <div className="home-page-gallery__title">
-                    <h2 className="home-page-gallery__title--value">Brand new model</h2>
-                    <div className="home-page-gallery__title--buttons">
+            </section>
+            <section className="new-models">
+                <div className="new-models__title title">
+                    <h1 className="new-models__title--value">Brand new model</h1>
+                    <div className="new-models__title--buttons">
                         <div className="new-models__button-left">
                             <MdOutlineKeyboardArrowLeft />
                         </div>
@@ -41,30 +39,15 @@ const HomePage: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="home-page-gallery--cards">
+                <div className="new-models__swiper">
                     <Swiper
-                        modules={[Navigation, A11y]}
-                        slidesPerView={1}
+                        modules={[Navigation, A11y, Autoplay]}
+                        autoplay
                         loop
+                        slidesPerView={4}
                         navigation={{
                             nextEl: '.new-models__button-right',
                             prevEl: '.new-models__button-left',
-                        }}
-                        breakpoints={{
-                            // when window width is >= 640px
-                            640: {
-                                width: 640,
-                                slidesPerView: 1,
-                            },
-                            // when window width is >= 768px
-                            768: {
-                                width: 768,
-                                slidesPerView: 2,
-                            },
-                            1200: {
-                                width: 1200,
-                                slidesPerView: 4,
-                            },
                         }}
                     >
                         {newProducts.map(product => (
@@ -74,37 +57,32 @@ const HomePage: React.FC = () => {
                         ))}
                     </Swiper>
                 </div>
-            </div>
-            <div className="shop-by-category">
-                <h2 className="shop-by-category--title">Shop by category</h2>
-                <div className="shop-by-category__categories">
-                    <div className="shop-by-category__categories--category">
-                        <div className="shop-by-category__categories--category-image" />
-                        <h3 className="shop-by-category__categories--category-title">
-                            Phones
-                        </h3>
-                        <p className="shop-by-category__categories--category-count">Count models</p>
-                    </div>
-                    <div className="shop-by-category__categories--category">
-                        <div className="shop-by-category__categories--category-image" />
-                        <h3 className="shop-by-category__categories--category-title">
-                            Tablets
-                        </h3>
-                        <p className="shop-by-category__categories--category-count">Count models</p>
-                    </div>
-                    <div className="shop-by-category__categories--category">
-                        <div className="shop-by-category__categories--category-image" />
-                        <h3 className="shop-by-category__categories--category-title">
-                            Accessories
-                        </h3>
-                        <p className="shop-by-category__categories--category-count">Count models</p>
-                    </div>
+            </section>
+            <section className="categories">
+                <h1 className="categories__title title">Shop by category</h1>
+                <div className="categories__wrapper">
+                    <article className="categories__phones block">
+                        <div className="categories__phones--image block__image phones"></div>
+                        <h3 className="categories__phones--title categories__title">Phones</h3>
+                        <p className="categories__phones--count categories__count">Count models</p>
+                    </article>
+                    <article className="categories__tablets block">
+                        <div className="categories__tablets--image block__image tablets"></div>
+                        <h3 className="categories__tablets--title categories__title">Tablets</h3>
+                        <p className="categories__tablets--count categories__count">Count models</p>
+                    </article>
+                    <article className="categories__accessories block">
+                        <div className="categories__accessories--image block__image accessories"></div>
+                        <h3 className="categories__accessories--title categories__title">Accessories</h3>
+                        <p className="categories__accessories--count categories__count">Count models</p>
+                    </article>
                 </div>
-            </div>
-            <div className="home-page-gallery">
-                <div className="home-page-gallery__title">
-                    <h2 className="home-page-gallery__title--value">Hot Prices</h2>
-                    <div className="home-page-gallery__title--buttons">
+
+            </section>
+            <section className="hot-prices">
+                <div className="hot-prices__title title">
+                    <h1 className="hot-prices__title--value">Brand new model</h1>
+                    <div className="hot-prices__title--buttons">
                         <div className="hot-prices__button-left">
                             <MdOutlineKeyboardArrowLeft />
                         </div>
@@ -113,11 +91,12 @@ const HomePage: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="home-page-gallery--cards">
+                <div className="hot-prices__swiper">
                     <Swiper
-                        modules={[Navigation, A11y]}
-                        slidesPerView={4}
+                        modules={[Navigation, A11y, Autoplay]}
+                        autoplay
                         loop
+                        slidesPerView={4}
                         navigation={{
                             nextEl: '.hot-prices__button-right',
                             prevEl: '.hot-prices__button-left',
@@ -130,9 +109,9 @@ const HomePage: React.FC = () => {
                         ))}
                     </Swiper>
                 </div>
-            </div>
-        </section>
+            </section>
+        </main>
     )
 }
 
-export default HomePage;
+export default RebuildHomePage;

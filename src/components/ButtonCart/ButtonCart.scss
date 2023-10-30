@@ -1,7 +1,4 @@
 @import '../../utils/variable.scss';
-@import '../../utils/normalize.scss';
-@import '../../utils/mixins.scss';
-
 
 .cart-button {
   padding: 0;
@@ -12,17 +9,23 @@
   border: none;
   border-radius: 8px;
   background: $Accent;
-  color: $gray-white;
+  color: $White;
   text-align: center;
   font-size: 14px;
   font-weight: 700;
   line-height: 21px;
   cursor: pointer;
 
-  &:active {
+  // &-product {
+  //   height: 48px;
+  //   width: 100%;
+  // }
+
+  &--selected {
     border-radius: 8px;
-    border: 1px solid  $gray-elements;
-    background: $gray-white;
-    color: $Accent;       
+    border: 1px solid  $Elements;
+    background: $White;
+    color: $Accent;
   }
 }
+

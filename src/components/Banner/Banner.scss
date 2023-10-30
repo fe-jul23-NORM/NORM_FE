@@ -21,7 +21,7 @@ $height-mobile: 320px;
   margin: 0 auto 66px;
   padding: 0;
   height: 189px;
-  max-width: 1026px;
+  max-width: 1152px;
 
   @include onTablet {
     margin-bottom: 74px;
@@ -29,7 +29,7 @@ $height-mobile: 320px;
   }
 
   @include onDesktop {
-    margin-bottom: 90px;
+    // margin-bottom: 90px;
     padding: 0 50px;
     height: 400px;
   }
