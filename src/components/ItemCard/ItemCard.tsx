@@ -6,22 +6,23 @@ import { getCurrentProductThunk } from '../../store/products/thunks';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { useLocation } from 'react-router-dom';
 import { selectCurrentProduct } from '../../store/products/selectors';
+import { BASE_URI, STATIC_URL } from '../../constants/core';
 
 
 const ItemCard: React.FC = () => {
   const dispatch = useAppDispatch();
   const product = useAppSelector(selectCurrentProduct);
-  const [mainImage, setMainImage] = useState(product?.images[0]);
-
+  
   const { pathname } = useLocation();
   const id = pathname.slice(1);
-
+  
   console.log(product);
-
+  
   useEffect(() => {
     dispatch(getCurrentProductThunk(id))
   }, [id],);
-
+  
+  const [mainImage, setMainImage] = useState(`${product?.images[0]}`);
   return (
     <div className='item-card'>
       <div className="item-card__nav">
@@ -62,7 +63,7 @@ const ItemCard: React.FC = () => {
       <div className="container">
         <div className="container__images">
           <img className="container__images-main"
-            src={mainImage}
+            src={`${BASE_URI}/${mainImage}`}
             alt="phone"
           />
 
@@ -72,9 +73,9 @@ const ItemCard: React.FC = () => {
                 <img
                   key={index}
                   className="container__images-miniatures-item"
-                  src={image}
+                  src={`${BASE_URI}/${image}`}
                   alt="phone"
-                  onClick={() => { setMainImage(image) }}
+                  onClick={() => {setMainImage(`${image}`)}}
                 />
               )
             })}

@@ -7,6 +7,7 @@ import { login } from '../../../store/auth/thunks';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { useNavigate } from 'react-router';
 import { selectAuthLoading, selectUser } from '../../../store/auth/selectors';
+import Input from '../../Input/Input';
 
 const LoginPage: React.FC = () => {
   const [values, setValues] = useState<ILogin>({

@@ -230,6 +230,7 @@
         border: 2px solid $Elements;
         box-shadow: 0 0 0 1px $Secondary;
         border-radius: 50%;
+        cursor: pointer;
 
         &:active {
           width: 25px;
