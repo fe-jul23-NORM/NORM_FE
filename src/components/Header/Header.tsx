@@ -8,6 +8,7 @@ import { HEADER_LINKS } from '../../constants/core';
 import { CartProduct } from '../../types/product.types';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { getTotalQuantity } from '../../store/cart/slice';
+import Search from '../GlobalSearch/GlobalSearch';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
   'nav__link',
@@ -78,9 +79,11 @@ const Header: React.FC = () => {
             })}
 
           </div>
-        </nav>
+        </nav>   
 
         <div className='header__icons'>
+
+          <Search />
 
           <NavLink
             className={({ isActive }) => getIconClass(isActive, 'icon-user')}
