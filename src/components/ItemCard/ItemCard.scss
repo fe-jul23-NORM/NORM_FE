@@ -14,7 +14,7 @@
   padding: 0 16px 0 17px;
   max-width: 1136px;
   margin: auto;
-  background: $gray-background; 
+  background: $Secondary; 
   
   &__nav {
     margin-top: 25px;
@@ -29,7 +29,7 @@
     &-textPhone {
       display: block;
       text-decoration: none;
-      color: $gray-secondary;
+      color: $Secondary;
       font-size: 12px;
       line-height: 18px;
       font-weight: 600;
@@ -39,7 +39,7 @@
     &-textPhones {
       display: block;
       text-decoration: none;
-      color: $gray-primary;
+      color: $Secondary;
       font-size: 12px;
       line-height: 18px;
       font-weight: 600;
@@ -60,7 +60,7 @@
     &-text {
       display: block;
       text-decoration: none;
-      color: $gray-primary;
+      color: $Secondary;
       font-size: 12px;
       line-height: 18px;
       font-weight: 600;
@@ -223,18 +223,19 @@
       margin-bottom: 24px;
       display: flex;
       gap: 8px;
-
+      
       &-color {
         width: 25px;
         height: 25px;
+        border: 2px solid $Elements;
+        box-shadow: 0 0 0 1px $Secondary;
         border-radius: 50%;
-        border: none;
 
         &:active {
           width: 25px;
           height: 25px;
           border-radius: 50%;
-          border: 1px solid #4C4C4C;
+          box-shadow: 0 0 0 1px  $Primary;
         }
       }
     }
@@ -382,7 +383,7 @@
     }
   }
 
-  &__specs {
+  &__specss {
     @include onDeskTop() {
       width: calc(100% - 50% - 64px);
     }
