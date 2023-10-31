@@ -18,7 +18,17 @@ import { Loader } from '../Loader/Loader';
 
 function App() {
   const dispatch = useAppDispatch();
-  const [isLoading, setLoading] = useState(true);
+
+  const allProducts = useAppSelector(selectAllProducts)
+  const isLoading = useAppSelector((state) => state.product.isLoading)
+  
+
+  // const handleClick = (product: IProduct) => {
+  //   dispatch(addToFavorites(product))
+  // }
+  const handleClick = (product: Product) => {
+    dispatch(addToFavorites(product))
+  }
 
   useEffect(() => {
     dispatch(refresh())
