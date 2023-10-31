@@ -55,7 +55,7 @@ const Catalog: React.FC<Props> = ({ product }) => {
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts);
   const totalProducts = useAppSelector(selectProductsCount);
-  const [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();  
 
   const productsType = setProductsType(product);
 
@@ -78,7 +78,6 @@ const Catalog: React.FC<Props> = ({ product }) => {
       sortBy: setSortBy(sortedBy),
     }))
   }, [currentPage, dispatch, itemsOnPage, sortedBy, productsType],);
-
 
   return (
     <section className="catalog">

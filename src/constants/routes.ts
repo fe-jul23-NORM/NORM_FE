@@ -4,6 +4,11 @@ export const PRODUCT_ROUTES = {
   GET_DISCOUNT: '/products/discount',
 }
 
+export const AUTH_ROUTES = {
+  REGISTER: '/auth/register',
+  REFRESH: '/auth/refresh',
+}
+
 export const ORDER_ROUTES = {
   CREATE_BY_USER: '/order/user-create',
   CREATE_BY_GUEST: '/order/guest-create',
