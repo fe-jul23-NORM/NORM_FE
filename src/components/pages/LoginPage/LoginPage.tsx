@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import './LoginPage.scss';
-// import Input from '../../Input/Input';
+import Input from '../../Input/Input';
 import Button from '../../Button/Button';
 import { ILogin } from '../../../types/auth.types';
 import { login } from '../../../store/auth/thunks';
