@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ProductState } from './types';
 import {
+  addFavouriteThunk,
   getCurrentProductThunk,
-  getDiscountProductsThunk, getNewProductsThunk,
+  getDiscountProductsThunk, getFavouritesProductsThunk, getNewProductsThunk,
   getProductsThunk,
-  getRecommendedProductsThunk
+  getRecommendedProductsThunk,
+  removeFavouriteThunk
 } from './thunks';
 
 const initialState: ProductState = {
@@ -15,16 +17,27 @@ const initialState: ProductState = {
   currentProduct: null,
   discount: [],
   recommended: [],
-  favorites: [],
-}
+  favourites: [],
+};
 
 export const productSlice = createSlice({
   name: 'product',
   initialState,
   reducers: {
-    addToFavorites: (state, {payload}) => {
-      state.favorites = [...state.favorites, payload]
-    }
+    setStateFavourites: (state, {payload}) => {
+      state.favourites = payload;
+    },
+    addToFavourites: (state, {payload}) => {
+      const item = state.favourites.find(({ id }) => id === payload.id);
+
+      if(!item) {
+        state.favourites = [...state.favourites, payload];
+      }
+    },
+    removeFromFavourites: (state, { payload }) => {
+      const removeFromFavourites = state.favourites.filter((item) => item.id !== payload.id);
+      state.favourites = removeFromFavourites;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -57,8 +70,17 @@ export const productSlice = createSlice({
       })
       .addCase(getNewProductsThunk.fulfilled, (state, {payload}) => {
         state.new = payload;
+      })
+      .addCase(getFavouritesProductsThunk.fulfilled, (state, {payload}) => {
+        state.favourites = payload;
+      })
+      .addCase(addFavouriteThunk.fulfilled, (state, {payload}) => {
+        state.favourites = [...state.favourites, payload];
+      })
+      .addCase(removeFavouriteThunk.fulfilled, (state, {payload}) => {
+        state.favourites = state.favourites.filter(({ id }) => id !== payload);
       });
   }
 })
 
-export const { addToFavorites } = productSlice.actions;
+export const { setStateFavourites, addToFavourites, removeFromFavourites } = productSlice.actions;
