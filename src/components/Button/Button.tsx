@@ -7,9 +7,10 @@ type Props = {
   item?: CartProduct,
   text: string,
   handleClick: (e: React.MouseEvent) => void,
+  disabled?: boolean,
 }
 
-const Button: React.FC<Props> = ({ item, text, handleClick }) => {  
+const Button: React.FC<Props> = ({ item, text, handleClick, disabled }) => {  
   const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
   const [isSelected, setIsSelected] = useState(false);
   const [currentText, setCurrentText] = useState(text);
@@ -29,6 +30,7 @@ const Button: React.FC<Props> = ({ item, text, handleClick }) => {
     <button
       className={classNames("cart-button", {"cart-button--selected": (isSelected)})}
       onClick={handleClick}
+      disabled={disabled}
     >
       {currentText}
     </button>

@@ -36,11 +36,28 @@ const setSortBy = (value: string) => {
   return SortProductByEnum.Price;
 };
 
-const Catalog: React.FC = () => {
+const setProductsType = (product: string) => {
+  if (product === ProductTypesEnum.Phones) {
+    return ProductTypesEnum.Phones;
+  }
+  if (product === ProductTypesEnum.Accessories) {
+    return ProductTypesEnum.Accessories;
+  }
+
+  return ProductTypesEnum.Tablets;
+};
+
+type Props = {
+  product: string,
+}
+
+const Catalog: React.FC<Props> = ({ product }) => {
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts);
   const totalProducts = useAppSelector(selectProductsCount);
-  const [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();  
+
+  const productsType = setProductsType(product);
 
   const sortByOptions = Object.keys(SortProductByEnum);
 
@@ -51,17 +68,16 @@ const Catalog: React.FC = () => {
     || sortByOptions[0];
 
   const currentPage = searchParams.get('page')
-  || 1;
+    || 1;
 
   useEffect(() => {
     dispatch(getProductsThunk({
       page: +currentPage,
       perPage: itemsOnPage,
-      productType: ProductTypesEnum.Phones,
+      productType: productsType,
       sortBy: setSortBy(sortedBy),
     }))
-  }, [currentPage, dispatch, itemsOnPage, sortedBy],);
-
+  }, [currentPage, dispatch, itemsOnPage, sortedBy, productsType],);
 
   return (
     <section className="catalog">
@@ -78,11 +94,11 @@ const Catalog: React.FC = () => {
               className="catalog__nav-icon" />
 
             <a href="/" className="catalog__nav-text">
-              Phones
+              {normalizeQuery(productsType)}
             </a>
           </div>
           <h1 className='page__title'>
-            Mobile phones
+            {normalizeQuery(productsType)}
           </h1>
 
           <p className="page__items-amount">
@@ -112,7 +128,7 @@ const Catalog: React.FC = () => {
       <div className="catalog__container">
         {allProducts.map(product => {
           return (
-              <Card product={product} key={product.id} />
+            <Card product={product} key={product.id} />
           )
         })}
       </div>
