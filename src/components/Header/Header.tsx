@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import classNames from 'classnames';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
+import { CartProduct } from '../../types/product.types';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { getTotalQuantity } from '../../store/cart/slice';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
   'nav__link',
@@ -34,9 +37,15 @@ const Header: React.FC = () => {
     document.documentElement.style.overflow = 'auto';
   }
 
-  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-  const hasProductsInCart = cart.length;
+  const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+  const numberOfProducts = useAppSelector(state => state.cart.totalQuantity);
 
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getTotalQuantity());
+  }, []);
+  
   return (
     <>
       <header className="header">
@@ -85,7 +94,7 @@ const Header: React.FC = () => {
           />
 
           <div className={classNames({ 'number': cart.length > 0 })}>
-            <div className={hasProductsInCart ? 'number--hasProducts' : 'number--disabled' }>{cart.length}</div> {/*Change on number of products!!!!*/}
+            <div className={cart.length ? 'number--active' : 'number--disabled'}>{numberOfProducts}</div>
             <NavLink
               className={getCartClass}
               to="/cart"

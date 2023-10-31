@@ -21,6 +21,7 @@ import '../../utils/_reset.scss';
 import HomePage from '../pages/HomePage/HomePage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage'
+import { refresh } from '../../store/auth/thunks';
 
 function App() {
   
@@ -31,6 +32,10 @@ function App() {
   const handleClick = (product: Product) => {
     dispatch(addToFavorites(product))
   }
+
+  useEffect(() => {
+    dispatch(refresh())
+  }, []);
 
   return (
   <>

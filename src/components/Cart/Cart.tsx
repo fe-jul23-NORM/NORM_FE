@@ -2,26 +2,26 @@ import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem";
 import './Cart.scss';
 import { useNavigate } from "react-router";
-import { useAppDispatch } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
 import { createOrderByGuest } from "../../store/cart/thunks";
 import { CartProduct } from "../../types/product.types";
+import { setStateCart, getTotalQuantity } from "../../store/cart/slice";
 
 const Cart: React.FC = () => {
   const cartFromLocalStorage: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
   const [cart, setCart] = useState<CartProduct[]>(cartFromLocalStorage);
-
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart))
-  }, [cart])
-
-  let numberOfProducts = 0;
-  cart.forEach(item => numberOfProducts += item.quantity);
+  const numberOfProducts = useAppSelector((state) => state.cart.totalQuantity)
 
   const totalPrice = cart
     .map(({ price, quantity }) => price * quantity)
     .reduce((acc, price) => acc + price, 0);
 
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setStateCart(cart));
+    dispatch(getTotalQuantity());
+  }, []);
 
   const handleCheckout = () => {
     dispatch(createOrderByGuest('test@gmail.com'))

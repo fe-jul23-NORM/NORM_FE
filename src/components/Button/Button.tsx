@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Button.scss';
 import classNames from 'classnames';
+import { CartProduct } from '../../types/product.types';
 
 type Props = {
+  item?: CartProduct,
   text: string,
-  handleClick: () => void,
-  isSelected?: boolean,
+  handleClick: (e: React.MouseEvent) => void,
 }
 
-const Button: React.FC<Props> = ({ text, handleClick , isSelected }) => {
+const Button: React.FC<Props> = ({ item, text, handleClick }) => {  
+  const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+  const [isSelected, setIsSelected] = useState(false);
+  const [currentText, setCurrentText] = useState(text);
+
+  useEffect(() => {
+    if (item) {
+      const itemInCart = cart.find(({ id }) => id === item.id);
+      setIsSelected(!!itemInCart);
+
+      if (!isSelected && itemInCart) {
+        setCurrentText('Added to cart');
+      }
+    }
+  }, [item, cart, isSelected]);
+
   return (
     <button
-      className={classNames("cart-button", {"cart-button--selected": isSelected})}
+      className={classNames("cart-button", {"cart-button--selected": (isSelected)})}
       onClick={handleClick}
     >
-      {text}
+      {currentText}
     </button>
   )
 };

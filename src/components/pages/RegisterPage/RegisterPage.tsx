@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import './RegisterPage.scss';
 import Input from '../../Input/Input';
 import Button from '../../Button/Button';
+import { useAppDispatch } from '../../../store';
+import { register } from '../../../store/auth/thunks';
 
 const RegisterPage: React.FC = () => {
-  const logIn = () => {logIn()}
+  const [values, setValues] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
  
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setValues(prev => {
+      return {...prev, [e.target.name]: e.target.value}
+    })
+  }, [])
+
+  const dispatch = useAppDispatch();
+
+  const handleSubmit = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    dispatch(register(values))
+  }
+
   return (
     <div className="wrapper-form">
         <form action="logIn-form"
@@ -14,22 +36,28 @@ const RegisterPage: React.FC = () => {
 
           <div className="input-container">
             <Input 
-              name="first name"
+              name="firstName"
               placeholder="Enter first name ..."
+              onChange={handleChange}
+              value={values.firstName}
             />
           </div>
 
           <div className="input-container">
             <Input 
-              name="last name"
+              name="lastName"
               placeholder="Enter last name ..."
+              onChange={handleChange}
+              value={values.lastName}
             />
           </div>
 
           <div className="input-container">
             <Input 
-              name="e-mail"
+              name="email"
               placeholder="Enter e-mail ..."
+              onChange={handleChange}
+              value={values.email}
             />
           </div>
 
@@ -37,20 +65,24 @@ const RegisterPage: React.FC = () => {
             <Input 
               name="password"
               placeholder="Enter password ..."
+              onChange={handleChange}
+              value={values.password}
             />
           </div>
 
           <div className="input-container">
             <Input 
-              name="password"
+              name="confirmPassword"
               placeholder="Confirm password ..."
+              onChange={handleChange}
+              value={values.confirmPassword}
             />
           </div>
 
           <div className="button-container">
             <Button 
               text='Log in'
-              handleClick={logIn}
+              handleClick={handleSubmit}
             />
           </div> 
       </form>

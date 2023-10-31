@@ -9,3 +9,8 @@ export const ORDER_ROUTES = {
   CREATE_BY_GUEST: '/order/guest-create',
   GET: '/order/get',
 };
+
+export const AUTH_ROUTES = {
+  REGISTER: '/auth/register',
+  REFRESH: '/auth/refresh',
+};

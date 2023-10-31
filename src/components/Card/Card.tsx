@@ -4,7 +4,7 @@ import { CartProduct, Product } from '../../types/product.types';
 import Button from '../Button/Button';
 import { BASE_URI } from '../../constants/core';
 import Heart from '../Heart/Heart';
-import { useAppDispatch } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
 import { addToCart } from '../../store/cart/slice';
 
 type Props = {
@@ -23,7 +23,7 @@ const Card: React.FC<Props> = ({ product }) => {
   } = product;
 
   const dispatch = useAppDispatch();
-  const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+  const cart: CartProduct[] = useAppSelector(state => state.cart.cart)
 
   const addItemToCart = () => {
     dispatch(addToCart(product));
@@ -31,8 +31,6 @@ const Card: React.FC<Props> = ({ product }) => {
     const updatedCart = [...cart, { ...product, quantity: 1 }];
     localStorage.setItem('cart', JSON.stringify(updatedCart));
   }
-
-  const isSelected = cart.some(({ id }) => id === product.id);
 
   return (
     <div className="card">
@@ -88,11 +86,11 @@ const Card: React.FC<Props> = ({ product }) => {
       </div>
 
       <div className="card__footer">
-          <Button
-            text={isSelected ? 'Added to cart' : 'Add to cart'}
-            handleClick={addItemToCart}
-            isSelected={isSelected}
-          />
+        <Button
+          item={{ ...product, quantity: 1 }}
+          text={'Add to cart'}
+          handleClick={addItemToCart}
+        />
 
         <div className="card__footer-favourite" >
           <Heart />
