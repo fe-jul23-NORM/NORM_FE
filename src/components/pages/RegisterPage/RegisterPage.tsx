@@ -6,9 +6,11 @@ import { useAppDispatch } from '../../../store';
 import { register } from '../../../store/auth/thunks';
 
 const RegisterPage: React.FC = () => {
-  const dispatch = useAppDispatch();
-  
-  const [values, setValues] = useState({
+  const dispach = useAppDispatch();
+
+  const logIn = () => {logIn()}
+
+  const [values, setValues] = useState({ 
     firstName: '',
     lastName: '',
     email: '',
@@ -21,15 +23,16 @@ const RegisterPage: React.FC = () => {
       return {
         ...prev,
         [e.target.name]: e.target.value,
-      }
+      };
     })
   }, []);
 
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(register(values));
-  };
 
+    dispach(register(values))
+  };
+ 
   return (
     <div className="wrapper-form">
         <form action="logIn-form"

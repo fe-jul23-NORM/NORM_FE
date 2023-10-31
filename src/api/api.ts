@@ -11,8 +11,6 @@ export const axiosPrivate = axios.create({
   withCredentials: true,
 });
 
-// ЦЕ НАМ ЗНАДОБИТЬСЯ ДЛЯ АВТОРИЗАЦІЇ
-
 // axiosPrivate.interceptors.request.use(
 //   (config) => {
 //     const user = store.getState().auth.user;

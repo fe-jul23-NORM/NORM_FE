@@ -8,21 +8,16 @@ type Props = {
   value: string,
 }
 
-const Input: React.FC<Props> = ({
-  name,
-  placeholder,
-  onChange,
-  value,
-}) => {``
+const Input: React.FC<Props> = ({ name, placeholder, onChange, value }) => {
   return (
     <div className="wrapper">
       <input
-        name={name}
-        value={value}
-        placeholder={placeholder}
-        className="input-field"
-        onChange={onChange}
-      >
+          onChange={onChange}
+          name={name}
+          value={value}
+          placeholder={placeholder}
+          className="input-field"
+      >          
       </input>
 
       <label></label>

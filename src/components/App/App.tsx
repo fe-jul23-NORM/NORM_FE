@@ -23,35 +23,40 @@ import RegisterPage from '../pages/RegisterPage/RegisterPage'
 import { refresh } from '../../store/auth/thunks';
 
 function App() {
-  
+  const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts)
   const isLoading = useAppSelector((state) => state.product.isLoading)
   
 
+  // const handleClick = (product: IProduct) => {
+  //   dispatch(addToFavorites(product))
+  // }
   const handleClick = (product: Product) => {
     dispatch(addToFavorites(product))
   }
 
   useEffect(() => {
     dispatch(refresh());
-  }, []);
+  }, [])
 
   return (
-  <>
-    <Routes>
-      <Route path='/' element={<Layout />}>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/phones' element={<Catalog />} />
-        <Route path='/cart' element={<Cart />} />
-        <Route path='/favourites' element={<FavouritesPage />} />
-        <Route path='*' element={<NotFoundPage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/register' element={<RegisterPage />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/phones' element={<Catalog product={'phones'} />} />
+          <Route path='/tablets' element={<Catalog product={'tablets'} />} />
+          <Route path='/accessories' element={<Catalog product={'accessories'} />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path='/favourites' element={<FavouritesPage />} />
+          <Route path='*' element={<NotFoundPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/register' element={<RegisterPage />} />
+        </Route>
+      </Routes>
 
-    {/* <LoginPage /> */}
+      {/* <LoginPage /> */}
     </>
   );
 }
