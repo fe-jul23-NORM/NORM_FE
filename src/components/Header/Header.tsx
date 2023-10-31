@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import classNames from 'classnames';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
-import { useAppSelector } from '../../store';
 import { selectUser } from '../../store/auth/selectors';
 import { HEADER_LINKS } from '../../constants/core';
+import { CartProduct } from '../../types/product.types';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { getTotalQuantity } from '../../store/cart/slice';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
   'nav__link',
@@ -35,7 +37,15 @@ const Header: React.FC = () => {
       document.documentElement.style.overflow = 'hidden';
     }
   }
+  const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+  const numberOfProducts = useAppSelector(state => state.cart.totalQuantity);
 
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getTotalQuantity());
+  }, []);
+  
   return (
     <>
       <header className="header">
@@ -69,7 +79,7 @@ const Header: React.FC = () => {
         </nav>
 
         <div className='header__icons'>
-          
+
           <NavLink
             className={({ isActive }) => getIconClass(isActive, 'icon-user')}
             to={user ? '/orders' : '/login'}
@@ -80,10 +90,13 @@ const Header: React.FC = () => {
             to='/favourites'
           />
           
-          <NavLink
-            className={({ isActive }) => getIconClass(isActive, 'icon-cart')}
-            to='/cart'
-          />
+          <div className={classNames({ 'number': cart.length > 0 })}>
+            <div className={cart.length ? 'number--active' : 'number--disabled'}>{numberOfProducts}</div>
+            <NavLink
+              className={({ isActive }) => getIconClass(isActive, 'icon-cart')}
+              to="/cart"
+            />
+          </div>
 
           <span
             className={classNames('icon', { 'icon--menu': !isMenuVisible, 'icon-close': isMenuVisible })}

@@ -8,24 +8,48 @@ import { useAppDispatch } from "../../store";
 
 type Props = {
   item: CartProduct,
+  handleSetCart: (items: CartProduct[]) => void;
 }
 
-const CartItem: React.FC<Props> = ({ item }) => {
+const CartItem: React.FC<Props> = ({ item, handleSetCart }) => {
   const { name, quantity, image, price } = item;
   const totalProductPrice = price * quantity;
   const dispatch = useAppDispatch();
+  const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
 
-  const remove = (e: React.MouseEvent) => {
+  const handleRemoveFromCart = (e: React.MouseEvent) => {
     e.preventDefault();
     dispatch(removeFromCart(item))
+
+    const updatedCart = cart.filter(({ id }) => id !== item.id);
+    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    handleSetCart(updatedCart);
   }
 
   const handeleIncrementQuantity = () => {
-    dispatch(incrementQuantity(item))
+    dispatch(incrementQuantity(item));
+
+    const currentProduct = cart.find(({ id }) => id === item.id);
+    
+    if (currentProduct) {
+      const updatedProduct = {...currentProduct, quantity: currentProduct?.quantity + 1}
+      const updatedCart = cart.map((product) => product.id !== currentProduct.id ? product : updatedProduct);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      handleSetCart(updatedCart);
+    }
   }
 
   const handleDecrementQuantity = () => {
-    dispatch(decrementQuantity(item))
+    dispatch(decrementQuantity(item));
+
+    const currentProduct = cart.find(({ id }) => id === item.id);
+    
+    if (currentProduct) {
+      const updatedProduct = {...currentProduct, quantity: currentProduct?.quantity - 1}
+      const updatedCart = cart.map((product) => product.id !== currentProduct.id ? product : updatedProduct);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+      handleSetCart(updatedCart);
+    }
   }
 
   return (
@@ -34,7 +58,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
       <div className="cart-item__info">
         <span
           className="cart-item__delete"
-          onClick={remove}
+          onClick={handleRemoveFromCart}
         >
 
         </span>
