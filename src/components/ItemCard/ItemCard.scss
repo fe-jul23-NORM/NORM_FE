@@ -327,7 +327,7 @@
   }  
 }
 
-.main {
+.main-item {
   @include onDeskTop() {
     display: flex;
     gap: 67px;
@@ -383,7 +383,7 @@
     }
   }
 
-  &__specss {
+  &__specs {
     @include onDeskTop() {
       width: calc(100% - 50% - 64px);
     }

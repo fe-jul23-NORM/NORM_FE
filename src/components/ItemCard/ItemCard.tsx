@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './ItemCard.scss';
 import Button from '../Button/Button';
 import Heart from '../Heart/Heart';
-import { Capacity } from '../../types/capacity';
 import { getCurrentProductThunk } from '../../store/products/thunks';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { useLocation } from 'react-router-dom';
@@ -12,7 +11,6 @@ import { selectCurrentProduct } from '../../store/products/selectors';
 const ItemCard: React.FC = () => {
   const dispatch = useAppDispatch();
   const product = useAppSelector(selectCurrentProduct);
-  const capacity = Object.entries(Capacity);
   const [mainImage, setMainImage] = useState(product?.images[0]);
 
   const { pathname } = useLocation();
@@ -76,12 +74,12 @@ const ItemCard: React.FC = () => {
                   className="container__images-miniatures-item"
                   src={image}
                   alt="phone"
-                  onClick={() => {setMainImage(image)}}
+                  onClick={() => { setMainImage(image) }}
                 />
               )
             })}
 
-            
+
           </div>
         </div>
 
@@ -128,11 +126,11 @@ const ItemCard: React.FC = () => {
 
           <div className="container__info-price">
             <p className="container__info-price-actual">
-              $999
+              {`$${product?.priceDiscount}`}
             </p>
 
             <p className="container__info-price-sale">
-              $999
+              {`$${product?.priceRegular}`}
             </p>
           </div>
 
@@ -152,7 +150,7 @@ const ItemCard: React.FC = () => {
                 Screen
               </span>
               <span className="description-item-value">
-                6.5” OLED
+                {product?.screen}
               </span>
             </div>
 
@@ -161,7 +159,7 @@ const ItemCard: React.FC = () => {
                 Resolution
               </span>
               <span className="description-item-value">
-                2688x1242
+                {product?.resolution}
               </span>
             </div>
 
@@ -170,7 +168,7 @@ const ItemCard: React.FC = () => {
                 Processor
               </span>
               <span className="description-item-value">
-                Apple A12 Bionic
+                {product?.processor}
               </span>
             </div>
 
@@ -179,89 +177,50 @@ const ItemCard: React.FC = () => {
                 RAM
               </span>
               <span className="description-item-value">
-                3 GB
+                {product?.ram}
               </span>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="main">
-        <div className="main__about">
-          <p className="main__about-title">
+      <div className="main-item">
+        <div className="main-item__about">
+          <p className="main-item__about-title">
             About
           </p>
 
           <hr />
 
-          <div className="main__about-chapter">
-            <p className="main__about-chapter-title">
-              And then there was Pro
-            </p>
+          {product?.description.map((descript, ind) => {
+            return (
+              <div key={ind} className="main-item__about-chapter">
+                <p className="main-item__about-chapter-title">
+                  {descript.title}
+                </p>
 
-            <p className="main__about-chapter-description">
-              A transformative triple-camera system
-              that adds tons of capability withoutu
-              complexity.
-              <br />
-              <br />
-              An unprecedented leap in battery life.
-              And a mind-blowing chip that doubles
-              down on machine learning and pushes
-              the boundaries of what a smartphone
-              can do. Welcome to the first iPhone
-              powerful enough to be called Pro.
-            </p>
-          </div>
-
-          <div className="main__about-chapter">
-            <p className="main__about-chapter-title">
-              Camera
-            </p>
-
-            <p className="main__about-chapter-description">
-              Meet the first triple-camera system to combine
-              cutting-edge technology with the legendary
-              simplicity of iPhone. Capture up to four times more
-              scene. Get beautiful images in drastically lower light.
-              Shoot the highest-quality video in a smartphone — then
-              edit with the same tools you love for photos.
-              You`&#39;`ve never shot with anything like it.
-            </p>
-          </div>
-
-          <div className="main__about-chapter">
-            <p className="main__about-chapter-title">
-              Shoot it. Flip it. Zoom it. Crop it. Cut it.
-              Light it. Tweak it. Love it.
-            </p>
-
-            <p className="main__about-chapter-description">
-              iPhone 11 Pro lets you capture videos that are
-              beautifully true to life, with greater detail
-              and smoother motion. Epic processing power means
-              it can shoot 4K video with extended dynamic range
-              and cinematic video stabilization — all at 60 fps.
-              You get more creative control, too, with four times
-              more scene and powerful new editing tools to play with.
-            </p>
-          </div>
+                <p className="main-item__about-chapter-description">
+                  {descript.text}
+                </p>
+              </div>
+            )
+          })}
         </div>
 
-        <div className="main__specs">
-          <p className="main__specs-title">
+        <div className="main-item__specs">
+          <p className="main-item__specs-title">
             Tech specs
           </p>
 
           <hr />
 
-          <div className="main__specs-description">
+          <div className="main-item__specs-description">
             <div className="description-item">
               <span className="description-item-title">
                 Screen
               </span>
               <span className="description-item-value">
-                6.5” OLED
+                {product?.screen}
               </span>
             </div>
 
@@ -270,7 +229,7 @@ const ItemCard: React.FC = () => {
                 Resolution
               </span>
               <span className="description-item-value">
-                2688x1242
+                {product?.resolution}
               </span>
             </div>
 
@@ -279,7 +238,7 @@ const ItemCard: React.FC = () => {
                 Processor
               </span>
               <span className="description-item-value">
-                Apple A12 Bionic
+                {product?.processor}
               </span>
             </div>
 
@@ -288,7 +247,7 @@ const ItemCard: React.FC = () => {
                 RAM
               </span>
               <span className="description-item-value">
-                3 GB
+                {product?.ram}
               </span>
             </div>
 
@@ -297,27 +256,31 @@ const ItemCard: React.FC = () => {
                 Built in memory
               </span>
               <span className="description-item-value">
-                64 GB
+                {product?.capacity}
               </span>
             </div>
 
-            <div className="description-item">
-              <span className="description-item-title">
-                Camera
-              </span>
-              <span className="description-item-value">
-                12 Mp + 12 Mp + 12 Mp (Triple)
-              </span>
-            </div>
+            {product?.camera && (
+              <div className="description-item">
+                <span className="description-item-title">
+                  Camera
+                </span>
+                <span className="description-item-value">
+                  {product?.camera}
+                </span>
+              </div>
+            )}
 
-            <div className="description-item">
-              <span className="description-item-title">
-                Zoom
-              </span>
-              <span className="description-item-value">
-                Optical, 2x
-              </span>
-            </div>
+            {product?.zoom && (
+              <div className="description-item">
+                <span className="description-item-title">
+                  Zoom
+                </span>
+                <span className="description-item-value">
+                  {product?.zoom}
+                </span>
+              </div>
+            )}
 
             <div className="description-item">
               <span className="description-item-title">
@@ -325,7 +288,7 @@ const ItemCard: React.FC = () => {
               </span>
 
               <span className="description-item-value">
-                GSM, LTE, UMTS
+                {product?.cell}
               </span>
             </div>
           </div>

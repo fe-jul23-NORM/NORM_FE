@@ -15,6 +15,7 @@ import RegisterPage from '../pages/RegisterPage/RegisterPage'
 import { refresh } from '../../store/auth/thunks';
 import AuthLayout from '../HOC/AuthLayout/AuthLayout';
 import { Loader } from '../Loader/Loader';
+import ItemCard from '../ItemCard/ItemCard';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -46,6 +47,7 @@ function App() {
             <Route path='/accessories' element={<Catalog product={'accessories'} />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/favourites' element={<FavouritesPage />} />
+            <Route path='/176' element={<ItemCard />} />
             <Route path='*' element={<NotFoundPage />} />
           </Route>
           <Route path='/' element={<AuthLayout/>}>
