@@ -15,12 +15,30 @@
   font-weight: 700;
   line-height: 21px;
   cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: $AccentHover;
+  }
 
   &--selected {
     border-radius: 8px;
     border: 1px solid  $Elements;
     background: $White;
     color: $Accent;
+  }
+
+  &:disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    background-color: $DisabledColor;
+    color: $LightTextColor;
+
+    &:hover {
+      cursor: not-allowed;
+      background-color: $DisabledColor;
+      color: $LightTextColor;
+    }
   }
 }
 

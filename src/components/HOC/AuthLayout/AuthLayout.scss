@@ -1,0 +1,35 @@
+@import '../../../utils/mixins.scss';
+@import '../../../utils/variable.scss';
+
+.auth-header {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 10px;
+}
+
+.auth-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+
+  @include onTablet {
+    justify-content: flex-start;
+  }
+
+  img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+
+    @include onTablet {
+      width: 80px;
+      height: 80px;
+      justify-content: flex-start;
+    }
+  }
+}
+

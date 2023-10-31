@@ -1,51 +1,52 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './BurgerMenu.scss';
+import { useAppSelector } from '../../store';
+import { selectUser } from '../../store/auth/selectors';
+import { HEADER_LINKS } from '../../constants/core';
+import classNames from 'classnames';
 
 type Props = {
-  setIsMenuVisible: (isVisibile: boolean) => void;
+  setIsMenuVisible: () => void;
 }
 
+const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
+  'menu__link',
+  { 'menu__link--active': isActive },
+);
+
 const BurgerMenu: React.FC<Props> = ({ setIsMenuVisible }) => {
+  const user = useAppSelector(selectUser);
+  
   return (
     <div className='menu'>
       <div className="menu__navigation">
         <NavLink
-          className="menu__link"
+          className={getLinkClass}
           to="/"
-          onClick={() => setIsMenuVisible(false)}
+          onClick={setIsMenuVisible}
         >
           Home
         </NavLink>
-
-        <NavLink
-          className="menu__link"
-          to="/phones"
-          onClick={() => setIsMenuVisible(false)}
-        >
-          Phones
-        </NavLink>
-
-        <NavLink
-          className="menu__link"
-          to="/tablets"
-          onClick={() => setIsMenuVisible(false)}
-        >
-          Tablets
-        </NavLink>
-
-        <NavLink
-          className="menu__link"
-          to="/accessories"
-          onClick={() => setIsMenuVisible(false)}
-        >
-          Accessories
-        </NavLink>
+        
+        {HEADER_LINKS.map((link) => {
+          return (
+            <NavLink
+              key={link}
+              className={getLinkClass}
+              to={`/${link.toLowerCase()}`}
+              onClick={setIsMenuVisible}
+            >
+              {link}
+            </NavLink>
+          )
+        })}
       </div>
 
       <div className='menu__icons'>
-        <a href="/favourites" className='menu__icon menu__icon--heart'> </a>
-        <a href="/cart" className='menu__icon menu__icon--cart'> </a>
+        <a href="/favourites" className='menu__icon icon-heart' />
+        <a href={user ? '/orders' : '/login'} className='icon-user menu__icon icon-user'/>
+        <a href="/cart" className='menu__icon icon-cart'/>
       </div>
     </div>
   )

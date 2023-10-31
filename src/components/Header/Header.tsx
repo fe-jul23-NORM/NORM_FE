@@ -3,35 +3,37 @@ import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import classNames from 'classnames';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
+import { useAppSelector } from '../../store';
+import { selectUser } from '../../store/auth/selectors';
+import { HEADER_LINKS } from '../../constants/core';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
   'nav__link',
   { 'nav__link--active': isActive },
 );
 
-const getFavoritesClass = ({ isActive }: { isActive: boolean }) => classNames(
-  'icon icon--heart',
-  { 'icon--active': isActive },
-);
-
-const getCartClass = ({ isActive }: { isActive: boolean }) => classNames(
-  'icon icon--cart',
-  { 'icon--active': isActive },
-);
+const getIconClass = (isActive: boolean, icon: string) => {
+  return classNames(
+    'icon',
+    'icon--nav',
+    { 'icon--active': isActive },
+    icon,
+  )
+};
 
 const Header: React.FC = () => {
+  const user = useAppSelector(selectUser);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-
-  const openMenu = () => {
-    setIsMenuVisible(true);
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-  }
-
-  const closeMenu = () => {
-    setIsMenuVisible(false);
-    document.body.style.overflow = 'auto';
-    document.documentElement.style.overflow = 'auto';
+  
+  const toggleMenu = () => {
+    setIsMenuVisible(!isMenuVisible);
+    if (isMenuVisible) {
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+    } else {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
   }
 
   return (
@@ -50,54 +52,48 @@ const Header: React.FC = () => {
             >
               Home
             </NavLink>
-
-            <NavLink
-              className={getLinkClass}
-              to="/phones"
-            >
-              Phones
-            </NavLink>
-
-            <NavLink
-              className={getLinkClass}
-              to="/tablets"
-            >
-              Tablets
-            </NavLink>
-
-            <NavLink
-              className={getLinkClass}
-              to="/accessories"
-            >
-              Accessories
-            </NavLink>
+            
+            {HEADER_LINKS.map((link) => {
+              return (
+                <NavLink
+                  key={link}
+                  className={getLinkClass}
+                  to={`/${link.toLowerCase()}`}
+                >
+                  {link}
+                </NavLink>
+              )
+            })}
+            
           </div>
         </nav>
 
         <div className='header__icons'>
+          
           <NavLink
-            className={getFavoritesClass}
-            to="/favourites"
+            className={({ isActive }) => getIconClass(isActive, 'icon-user')}
+            to={user ? '/orders' : '/login'}
+          />
+          
+          <NavLink
+            className={({ isActive }) => getIconClass(isActive, 'icon-heart')}
+            to='/favourites'
+          />
+          
+          <NavLink
+            className={({ isActive }) => getIconClass(isActive, 'icon-cart')}
+            to='/cart'
           />
 
-          <NavLink
-            className={getCartClass}
-            to="/cart"
+          <span
+            className={classNames('icon', { 'icon--menu': !isMenuVisible, 'icon-close': isMenuVisible })}
+            onClick={toggleMenu}
           />
-
-          <a
-            href="*"
-            className={classNames('icon', { 'icon--menu': !isMenuVisible, 'icon--close': isMenuVisible })}
-            onClick={(e) => {
-              e.preventDefault()
-              isMenuVisible ? closeMenu() : openMenu()
-            }}
-          > </a>
         </div>
       </header>
 
       {isMenuVisible
-        && <BurgerMenu setIsMenuVisible={setIsMenuVisible} />}
+        && <BurgerMenu setIsMenuVisible={toggleMenu} />}
     </>
   )
 };
