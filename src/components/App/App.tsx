@@ -16,9 +16,9 @@ import { refresh } from '../../store/auth/thunks';
 import AuthLayout from '../HOC/AuthLayout/AuthLayout';
 import { Loader } from '../Loader/Loader';
 import ItemCard from '../ItemCard/ItemCard';
-import { addToFavorites } from '../../store/products/slice';
-import { Product } from '../../types/product.types';
 import { selectAllProducts } from '../../store/products/selectors';
+import { Product } from '../../types/product.types';
+import { addToFavorites } from '../../store/products/slice';
 
 function App() {
   const dispatch = useAppDispatch();
