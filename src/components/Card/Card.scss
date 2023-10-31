@@ -53,6 +53,7 @@
 
   &__description {
     padding-top: 1px;
+    margin-bottom: 17px;
   }
 
   &__footer {
@@ -68,6 +69,7 @@
       align-items: center;
       width: 40px;
       height: 40px;
+      min-width: 40px;
       border-radius: 48px;
       border: 1px solid $Icons;
       background-color: $White;

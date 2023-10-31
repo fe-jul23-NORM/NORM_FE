@@ -1,7 +1,7 @@
 @import '../../utils/variable.scss';
 
 .wrapper {
-  width: 100%; 
+  width: 100%;
 }
 
 .input-field {
@@ -27,7 +27,7 @@ label {
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
-  line-height: 21px; 
+  line-height: 21px;
   color: $Secondary;
 }
 
@@ -37,4 +37,94 @@ label {
   font-weight: 600;
   line-height: 21px;
   color: $Secondary;
+}
+
+
+.input-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-label {
+  margin-bottom: 8px;
+  font-weight: 700;
+  display: inline-block;
+  font-size: 14px;
+}
+
+
+.input-holder {
+  height: 48px;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+
+.input-secure-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  user-select: none;
+  color: $Icons;
+  font-size: 20px;
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    color: $Primary;
+  }
+}
+
+
+.input-elem {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f6fa;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+
+  &:hover {
+    border-color: $BorderColorHover;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $BorderColorActive;
+  }
+
+  &::placeholder {
+    color: $LightTextColor;
+    font-size: 14px;
+    font-family: $FontFamily;
+    font-weight: 400;
+  }
+
+  &--secured {
+    padding: 10px 35px 10px 15px;
+  }
+
+  &--invalid {
+    border-color: $DangerColorLight;
+    background-color: $DangerColorTransparent;
+
+    &:hover {
+      border-color: $DangerColorHover;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $DangerColor;
+    }
+
+    &::placeholder {
+      color: $DangerColor;
+      font-size: 16px;
+    }
+  }
 }

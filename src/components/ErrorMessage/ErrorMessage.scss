@@ -1,0 +1,30 @@
+@import '../../utils/variable.scss';
+
+.error-wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.error-icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  margin-right: 5px;
+  background-color: $DangerColorLight;
+  border-radius: 50%;
+
+  &:before {
+    content: '!';
+    position: absolute;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.error-text {
+  font-size: 13px;
+  color: $Primary;
+}

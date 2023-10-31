@@ -1,11 +1,11 @@
 @import '../../../utils/variable.scss';
 @import '../../../utils/mixins.scss';
 
-.wrapper-form {  
-  width: 100%;  
+.wrapper-form {
+  width: 100%;
   background-color: $HoverBg;
   box-sizing: border-box;
-  align-items: center;  
+  align-items: center;
   display: flex;
   justify-content: center;
   padding: 15%;
@@ -41,4 +41,65 @@ h2 {
   font-weight: 800;
   line-height: 140%;
   color: $Secondary;
+}
+
+.login-page-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.login-content-wrapper {
+  flex-grow: 1;
+  margin-top: 10px;
+  max-width: 420px;
+  box-sizing: border-box;
+  padding: 0 15px;
+
+  @media screen and (min-width: 1200px) {
+    margin-top: 30px;
+  }
+}
+
+.login-content-holder {
+  border-radius: 10px;
+  background-color: #f5f6fa;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.login-form {
+  border-radius: 10px;
+  padding: 24px;
+  width: 100%;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.login-button-container {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.login-title {
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  color: $Primary;
+  margin: 0 0 25px;
+  text-align: center;
+}
+
+.login-page-link-wrapper {
+  border-top: 1px solid $BorderColor;
+  margin-top: 15px;
+  padding-top: 15px;
+  text-align: center;
+  color: $Secondary;
+}
+
+.login-page-link {
+  font-weight: 700;
+  color: $Accent;
+  margin-left: 5px;
 }
