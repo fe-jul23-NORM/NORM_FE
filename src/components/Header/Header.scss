@@ -6,9 +6,9 @@
   justify-content: space-between;
   height: 48px;
   width: 100%;
-
   text-transform: uppercase;
   border-bottom: 1px solid #E2E6E9;
+  z-index: 100;
 
   @include onDeskTop() {
     height: 64px;
@@ -34,6 +34,7 @@
     display: flex;
     align-items: center;
   }
+
 }
 
 .nav {
@@ -46,7 +47,7 @@
     gap: 32px;
     flex-wrap: wrap;
     line-height: 48px;
-    height: 60px;
+    height: 100%;
     margin: 0;
     padding: 0;
 
@@ -66,17 +67,44 @@
   &__link {
     box-sizing: border-box;
     text-decoration: none;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 12px;
     color: #89939A;
+    position: relative;
+    height: 100%;
+    transition: all 0.2s;
+
+    &:after {
+      content: '';
+      height: 3px;
+      width: 100%;
+      background-color: transparent;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transition: all 0.2s;
+    }
 
     &:hover {
       color: $Primary;
+
+      &:after {
+        background-color: $BorderColor;
+      }
     }
 
     &--active {
       color: $Primary;
-      border-bottom: 3px solid $Primary;
+
+      &:hover {
+        &:after {
+          background-color: $Primary;
+        }
+      };
+
+      &:after {
+        background-color: $Primary;
+      }
     }
   }
 }
@@ -85,31 +113,37 @@
   height: 48px;
   width: 48px;
   box-sizing: border-box;
-
+  font-size: 18px;
   background-repeat: no-repeat;
   background-position: center;
   border-left: 1px solid #E2E6E9;
+  text-decoration: none;
+  color: $Primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &:after {
+    content: '';
+    height: 3px;
+    width: 100%;
+    background-color: transparent;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: all 0.2s;
+  }
 
   @include onDeskTop() {
     height: 64px;
     width: 64px;
   }
 
-  &--heart {
+  &--nav {
     display: none;
-    background-image: url(../../images/icons/heart-icon.svg);
-
     @include onTablet() {
-      display: block;
-    }
-  }
-
-  &--cart {
-    display: none;
-    background-image: url(../../images/icons/cart-icon.svg);
-
-    @include onTablet() {
-      display: block;
+      display: flex;
     }
   }
 
@@ -121,11 +155,33 @@
     }
   }
 
-  &--close {
-    background-image: url(../../images/icons/close-icon.svg);
+  &-close {
+    z-index: 100;
+
+    @include onTablet() {
+      display: none;
+    }
+  }
+
+  &:hover {
+    color: $Primary;
+
+    &:after {
+      background-color: $BorderColor;
+    }
   }
 
   &--active {
-    border-bottom: 3px solid $Primary;
+    color: $Primary;
+
+    &:hover {
+      &:after {
+        background-color: $Primary;
+      }
+    };
+
+    &:after {
+      background-color: $Primary;
+    }
   }
 }
