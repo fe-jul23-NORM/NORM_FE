@@ -26,7 +26,7 @@ const getIconClass = (isActive: boolean, icon: string) => {
 const Header: React.FC = () => {
   const user = useAppSelector(selectUser);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
-  
+
   const toggleMenu = () => {
     setIsMenuVisible(!isMenuVisible);
     if (isMenuVisible) {
@@ -45,7 +45,9 @@ const Header: React.FC = () => {
   useEffect(() => {
     dispatch(getTotalQuantity());
   }, []);
-  
+
+  const favourites = useAppSelector(state => state.product.favourites);
+
   return (
     <>
       <header className="header">
@@ -62,7 +64,7 @@ const Header: React.FC = () => {
             >
               Home
             </NavLink>
-            
+
             {HEADER_LINKS.map((link) => {
               return (
                 <NavLink
@@ -74,7 +76,7 @@ const Header: React.FC = () => {
                 </NavLink>
               )
             })}
-            
+
           </div>
         </nav>
 
@@ -84,25 +86,28 @@ const Header: React.FC = () => {
             className={({ isActive }) => getIconClass(isActive, 'icon-user')}
             to={user ? '/orders' : '/login'}
           />
-          
-          <NavLink
-            className={({ isActive }) => getIconClass(isActive, 'icon-heart')}
-            to='/favourites'
-          />
-          
-          <div className={classNames({ 'number': cart.length > 0 })}>
-            <div className={cart.length ? 'number--active' : 'number--disabled'}>{numberOfProducts}</div>
+
+          <div className={classNames({ 'number': favourites.length > 0 })}>
+            <div className={favourites.length ? 'number--active' : 'number--disabled'}>{favourites.length}</div>
             <NavLink
-              className={({ isActive }) => getIconClass(isActive, 'icon-cart')}
-              to="/cart"
+              className={({ isActive }) => getIconClass(isActive, 'icon-heart')}
+              to='/favourites'
             />
           </div>
 
-          <span
-            className={classNames('icon', { 'icon--menu': !isMenuVisible, 'icon-close': isMenuVisible })}
-            onClick={toggleMenu}
-          />
-        </div>
+            <div className={classNames({ 'number': cart.length > 0 })}>
+              <div className={cart.length ? 'number--active' : 'number--disabled'}>{numberOfProducts}</div>
+              <NavLink
+                className={({ isActive }) => getIconClass(isActive, 'icon-cart')}
+                to="/cart"
+              />
+            </div>
+
+            <span
+              className={classNames('icon', { 'icon--menu': !isMenuVisible, 'icon-close': isMenuVisible })}
+              onClick={toggleMenu}
+            />
+          </div>
       </header>
 
       {isMenuVisible

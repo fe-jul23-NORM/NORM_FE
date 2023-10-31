@@ -145,7 +145,7 @@ const ItemCard: React.FC = () => {
               </div>
 
               <div className="container__info-cart-favourite">
-                <Heart />
+                {/* <Heart /> */}
               </div>
             </div>
 

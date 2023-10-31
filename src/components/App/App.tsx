@@ -16,8 +16,7 @@ import { refresh } from '../../store/auth/thunks';
 import AuthLayout from '../HOC/AuthLayout/AuthLayout';
 import { Loader } from '../Loader/Loader';
 import { selectAllProducts } from '../../store/products/selectors';
-import { Product } from '../../types/product.types';
-import { addToFavorites } from '../../store/products/slice';
+import { initThunk } from '../../store/core/thunks';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -25,16 +24,8 @@ function App() {
   const allProducts = useAppSelector(selectAllProducts)
   const [isLoading, setLoading] = useState(true);
   
-
-  // const handleClick = (product: IProduct) => {
-  //   dispatch(addToFavorites(product))
-  // }
-  const handleClick = (product: Product) => {
-    dispatch(addToFavorites(product))
-  }
-
   useEffect(() => {
-    dispatch(refresh())
+    dispatch(initThunk())
       .unwrap()
       .catch((e) => {
         // TODO
