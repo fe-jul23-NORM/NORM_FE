@@ -81,3 +81,16 @@ export const getNewProductsThunk = createAsyncThunk(
     }
   },
 );
+
+export const getFoundProductsThunk = createAsyncThunk(
+  `${MODULE_NAME}/getByName`,
+  async (name: string, { rejectWithValue }) => {
+    try {
+      const response = await axiosPublic.get<Product[]>(`${PRODUCT_ROUTES.GET_BY_NAME}?name=${name}`);
+
+      return response.data;
+    } catch (e: any) {
+      return rejectWithValue(e?.response?.data?.message);
+    }
+  },
+);

@@ -14,3 +14,5 @@ export const selectCurrentProduct = (state: RootState): CurrentProduct | null =>
 export const selectProductsIsLoading = (state: RootState): boolean => state.product.isLoading;
 
 export const selectProductsCount = (state: RootState): number => state.product.totalCount;
+
+export const selectGlobalSearchProducts = (state: RootState): Product[] => state.product.globalSearchProducts;

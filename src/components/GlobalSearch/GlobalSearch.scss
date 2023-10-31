@@ -1,0 +1,9 @@
+@import '../../utils/variable.scss';
+@import '../../utils/mixins.scss';
+
+.search-container {   
+    @include onDeskTop() {
+      width: 192px;
+      margin-right: 20px;
+    }
+}

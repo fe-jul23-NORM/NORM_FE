@@ -4,7 +4,8 @@ import {
   getCurrentProductThunk,
   getDiscountProductsThunk, getNewProductsThunk,
   getProductsThunk,
-  getRecommendedProductsThunk
+  getRecommendedProductsThunk,
+  getFoundProductsThunk
 } from './thunks';
 
 const initialState: ProductState = {
@@ -16,6 +17,7 @@ const initialState: ProductState = {
   discount: [],
   recommended: [],
   favorites: [],
+  globalSearchProducts: [],
 }
 
 export const productSlice = createSlice({
@@ -57,7 +59,10 @@ export const productSlice = createSlice({
       })
       .addCase(getNewProductsThunk.fulfilled, (state, {payload}) => {
         state.new = payload;
-      });
+      })
+      .addCase(getFoundProductsThunk.fulfilled, (state, {payload}) => {
+        state.globalSearchProducts = payload;
+      })
   }
 })
 
