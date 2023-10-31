@@ -1,5 +1,5 @@
 import React, { useState, useCallback }  from 'react';
-import './Search.scss';
+import './GlobalSearch.scss';
 import Input from '../Input/Input';
 import { useAppDispatch } from '../../store';
 import { getFoundProductsThunk } from '../../store/products/thunks';
