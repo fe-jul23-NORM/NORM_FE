@@ -1,4 +1,4 @@
-import React, { useState, useCallback }  from 'react';
+import React, { useState, useCallback, memo } from 'react';
 import './GlobalSearch.scss';
 import Input from '../Input/Input';
 import { useAppDispatch } from '../../store';
@@ -31,7 +31,7 @@ const GlobalSearch: React.FC = () => {
   
   return (
     <div className="search-container">
-      <Input 
+      <Input
         name="search"
         placeholder="Search ..."
         onChange={handleChange}
@@ -41,4 +41,4 @@ const GlobalSearch: React.FC = () => {
   )
 };
 
-export default GlobalSearch;
+export default memo(GlobalSearch);
