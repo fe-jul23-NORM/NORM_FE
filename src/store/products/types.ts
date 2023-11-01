@@ -8,5 +8,6 @@ export interface ProductState {
   recommended: Product[],
   all: Product[],
   currentProduct: CurrentProduct | null,
-  favorites: Product[]
+  globalSearchProducts: Product[],
+  favourites: Product[],
 }

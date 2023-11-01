@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { axiosPublic } from '../../api/api';
+import { axiosPrivate, axiosPublic } from '../../api/api';
 import { PRODUCT_ROUTES } from '../../constants/routes';
 import {
   CurrentProduct,
@@ -76,6 +76,57 @@ export const getNewProductsThunk = createAsyncThunk(
       const response = await axiosPublic.get<Product[]>(PRODUCT_ROUTES.GET_NEW);
       
       return response.data;
+    } catch (e: any) {
+      return rejectWithValue(e?.response?.data?.message);
+    }
+  },
+);
+
+export const getFoundProductsThunk = createAsyncThunk(
+  `${MODULE_NAME}/getByName`,
+  async (name: string, { rejectWithValue }) => {
+    try {
+      const response = await axiosPublic.get<Product[]>(`${PRODUCT_ROUTES.GET_BY_NAME}?name=${name}`);
+            return response.data;
+    } catch (e: any) {
+      return rejectWithValue(e?.response?.data?.message);
+    }
+  },
+);
+
+export const getFavouritesProductsThunk = createAsyncThunk(
+  `${MODULE_NAME}/getFavourites`,
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axiosPrivate.get<Product[]>(PRODUCT_ROUTES.GET_FAVOURITES);
+      return response.data;
+    } catch (e: any) {
+      return rejectWithValue(e?.response?.data?.message);
+    }
+  },
+);
+
+export const addFavouriteThunk = createAsyncThunk(
+  `${MODULE_NAME}/addFavourite`,
+  async (id: number | string, { rejectWithValue }) => {
+    try {
+      const response = await axiosPrivate.post(`${PRODUCT_ROUTES.ADD_TO_FAVOURITES}/${id}`);
+      console.log(response);
+      
+      return response.data.product;
+    } catch (e: any) {
+      return rejectWithValue(e?.response?.data?.message);
+    }
+  },
+);
+
+export const removeFavouriteThunk = createAsyncThunk(
+  `${MODULE_NAME}/removeFavourite`,
+  async (id: number | string, { rejectWithValue }) => {
+    try {
+      await axiosPrivate.delete<CurrentProduct>(`${PRODUCT_ROUTES.REMOVE_FROM_FAVORITES}/${id}`);
+      
+      return id;
     } catch (e: any) {
       return rejectWithValue(e?.response?.data?.message);
     }

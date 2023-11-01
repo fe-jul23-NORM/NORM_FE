@@ -1,35 +1,27 @@
-@mixin onTablet {
-  @media (min-width: 640px) {
-    @content;
-  }
-}
+@import "../../utils/mixins";
 
-@mixin onDesktop {
-  @media (min-width:  1200px) {
-    @content;
-  }
-}
-
-$heigth: 400px;
+$height: 400px;
 $height-tablet: 189px;
 $height-mobile: 320px;
 
 .banner__slider {
   box-sizing: border-box;
-  width: 100%;
+  //max-width: 100%;
   position: relative;
   margin: 0 auto 66px;
+  //width: auto;
   padding: 0;
   height: 189px;
-  max-width: 1152px;
+  max-width: 100%;
 
-  @include onTablet {
+  @include onTablet() {
     margin-bottom: 74px;
     padding: 0 50px;
   }
 
-  @include onDesktop {
+  @include onDeskTop() {
     // margin-bottom: 90px;
+    max-width: 1136px;
     padding: 0 50px;
     height: 400px;
   }
@@ -48,7 +40,7 @@ $height-mobile: 320px;
         border-radius: 8px;
       }
 
-      @include onDesktop {
+      @include onDeskTop() {
         border-radius: 8px;
       }
     }
@@ -76,7 +68,7 @@ $height-mobile: 320px;
       transform: scale(1.01);
     }
 
-    @include onDesktop {
+    @include onDeskTop() {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -105,7 +97,7 @@ $height-mobile: 320px;
       transform: scale(1.01);
     }
 
-    @include onDesktop {
+    @include onDeskTop() {
       display: flex;
       align-items: center;
       justify-content: center;

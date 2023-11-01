@@ -1,22 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Card from '../../Card/Card';
 import './FavouritesPage.scss';
-import { useAppDispatch, useAppSelector } from '../../../store';
-import { selectNewProducts } from '../../../store/products/selectors';
-import { getNewProductsThunk } from '../../../store/products/thunks';
+import { useAppSelector } from '../../../store';
 
 const FavouritesPage: React.FC = () => {
-  const products = useAppSelector(selectNewProducts);
-  const dispatch = useAppDispatch();
-  
-  useEffect(() => {
-    dispatch(getNewProductsThunk());
-  }, [])
+  const favourites = useAppSelector(state => state.product.favourites);
 
   return (
-    <div className="favourites__wrapper">
+    <div className="favourites">
 
-      <section className="favourites">
+      <section className="favourites__wrapper">
 
         <div className="favourites__top">
           <div className="favourites__nav">
@@ -40,12 +33,14 @@ const FavouritesPage: React.FC = () => {
           </h1>
 
           <p className="favourites__amount">
-            5 items
+            {favourites.length > 1
+            ? `${favourites.length} items`
+            : `${favourites.length} item`}
           </p>
         </div>
 
         <div className="favourites__container">
-          {products.map(product => {
+          {favourites.map(product => {
             return (
               <div key={product.id} className="favourites__item">
                 <Card product={product} />
