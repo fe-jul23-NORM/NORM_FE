@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import './GlobalSearch.scss';
 import { useAppDispatch } from '../../store';
 import { getFoundProductsThunk } from '../../store/products/thunks';
