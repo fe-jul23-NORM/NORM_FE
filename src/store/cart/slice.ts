@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ICartState } from './types';
-import { getOrders } from './thunks';
+import { createOrderByGuest, createOrderByUser, getOrders } from './thunks';
 
 const initialState: ICartState = {
   isLoading: true,
@@ -51,9 +51,17 @@ export const cartSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(getOrders.fulfilled, (state, { payload }) => {
+    builder
+      .addCase(getOrders.fulfilled, (state, { payload }) => {
       state.orders = payload;
     })
+      .addCase(createOrderByUser.fulfilled, (state, { payload }) => {
+        state.cart = []
+        state.orders = [...state.orders, payload];
+      })
+      .addCase(createOrderByGuest.fulfilled, (state) => {
+        state.cart = [];
+      })
   }
 });
 

@@ -19,7 +19,30 @@ export const createOrderByGuest = createAsyncThunk(
 
     try {
       const response = await axiosPublic.post(ORDER_ROUTES.CREATE_BY_GUEST, {products: cartDTO, email});
-      
+      localStorage.setItem('cart', '[]');
+
+      return response.data;
+    } catch (e: any) {
+      return rejectWithValue(e?.response?.data?.message);
+    }
+  },
+);
+
+export const createOrderByUser = createAsyncThunk(
+  `${MODULE_NAME}/createByUser`,
+  async (_, { rejectWithValue, getState }) => {
+    const cart = (getState() as RootState).cart.cart;
+    const cartDTO = cart.map((item) => {
+      return {
+        productId: item.id,
+        quantity: item.quantity,
+      }
+    })
+
+    try {
+      const response = await axiosPrivate.post(ORDER_ROUTES.CREATE_BY_USER, {products: cartDTO});
+      localStorage.setItem('cart', '[]');
+
       return response.data;
     } catch (e: any) {
       return rejectWithValue(e?.response?.data?.message);
