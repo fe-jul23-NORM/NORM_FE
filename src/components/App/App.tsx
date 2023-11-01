@@ -13,20 +13,14 @@ import LoginPage from '../pages/LoginPage/LoginPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage'
 import AuthLayout from '../HOC/AuthLayout/AuthLayout';
 import { Loader } from '../Loader/Loader';
-import { selectAllProducts } from '../../store/products/selectors';
-import { Product } from '../../types/product.types';
-// import { addToFavorites } from '../../store/products/slice';
-import { selectAuthLoading } from '../../store/auth/selectors';
 import CatalogPage from '../pages/CatalogPage/CatalogPage';
 import AboutUs from '../About-us/About-us';
-
 import { initThunk } from '../../store/core/thunks';
 import RequiredAuth from '../HOC/RequiredAuth/RequiredAuth';
+import OrdersPage from '../pages/OrdersPage/OrdersPage';
 
 function App() {
   const dispatch = useAppDispatch();
-
-  const allProducts = useAppSelector(selectAllProducts)
   const [isLoading, setLoading] = useState(true);
 
   
@@ -60,7 +54,7 @@ function App() {
             <Route path='*' element={<NotFoundPage />} />
             
             <Route path='/' element={<RequiredAuth/>}>
-              <Route path='/orders' element={<p >Orders</p>} />
+              <Route path='/orders' element={<OrdersPage/>} />
             </Route>
           </Route>
           <Route path='/' element={<AuthLayout/>}>

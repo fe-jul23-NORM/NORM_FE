@@ -2,13 +2,13 @@
 
 .back-button {
   padding: 4px 7px;
-  display: flex;
-  align-items: center;
+  display: inline-block;
   font-size: 14px;
   border: 1px solid transparent;
   border-radius: 3px;
   transition: all 0.2s;
   cursor: pointer;
+  flex-grow: 0;
 
   &:hover {
     border: 1px solid $BorderColor;

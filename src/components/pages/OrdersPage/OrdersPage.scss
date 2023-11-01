@@ -1,0 +1,10 @@
+@import '../../../utils/mixins.scss';
+@import '../../../utils/variable.scss';
+@import '../../../utils/reset.scss';
+
+.orders {
+
+  &__title {
+    margin-bottom: 16px;
+  }
+}
