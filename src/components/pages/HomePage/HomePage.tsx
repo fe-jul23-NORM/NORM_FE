@@ -6,21 +6,38 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation, A11y, Autoplay } from 'swiper/modules';
 import { useAppDispatch, useAppSelector } from '../../../store';
-import { selectDiscountProducts, selectNewProducts } from '../../../store/products/selectors';
-import { getDiscountProductsThunk, getNewProductsThunk } from '../../../store/products/thunks';
+import { selectDiscountProducts, selectNewProducts, selectProductsCategoryCount } from '../../../store/products/selectors';
+import { getDiscountProductsThunk, getNewProductsThunk, getProductsCategoryCountThunk } from '../../../store/products/thunks';
 import Card from '../../Card/Card';
+import { STATIC_URL } from '../../../constants/core';
 import { SLIDER_BREAKPOINTS } from '../../../constants/core';
+import { useNavigate } from 'react-router-dom';
 
-
-const RebuildHomePage = () => {
+const HomePage = () => {
     const dispatch = useAppDispatch();
     const newProducts = useAppSelector(selectNewProducts)
     const hotPrices = useAppSelector(selectDiscountProducts);
+    const { phones, tablets, accessories } = useAppSelector(selectProductsCategoryCount)
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getNewProductsThunk())
         dispatch(getDiscountProductsThunk());
+        dispatch(getProductsCategoryCountThunk());
     }, []);
+
+    const handleRoutePhones = () => {
+        navigate(`/phones`);
+    };
+
+    const handleRouteTablets = () => {
+        navigate(`/tablets`);
+    };
+
+    const handleRouteAccessories = () => {
+        navigate(`/accessories`);
+    };
 
     return (
         <main className="main">
@@ -43,7 +60,7 @@ const RebuildHomePage = () => {
                 <div className="new-models__swiper">
                     <Swiper
                         modules={[Navigation, A11y, Autoplay]}
-                        autoplay
+                        // autoplay
                         loop
                         breakpoints={SLIDER_BREAKPOINTS}
                         navigation={{
@@ -52,7 +69,7 @@ const RebuildHomePage = () => {
                         }}
                     >
                         {newProducts.map(product => (
-                            <SwiperSlide key={product.id}>
+                            <SwiperSlide key={`new-model-${product.id}`}>
                                 <Card product={product} />
                             </SwiperSlide>
                         ))}
@@ -60,29 +77,58 @@ const RebuildHomePage = () => {
                 </div>
             </section>
             <section className="categories">
-                <h1 className="categories__title title">Shop by category</h1>
+                <h1 className="categories__main--title title">Shop by category</h1>
                 <div className="categories__wrapper">
                     <article className="categories__phones block">
-                        <div className="categories__phones--image block__image phones"></div>
-                        <h3 className="categories__phones--title categories__title">Phones</h3>
-                        <p className="categories__phones--count categories__count">Count models</p>
+                        <img
+                            onClick={handleRoutePhones}
+                            className="categories__phones--image block__image phones"
+                            src={`${STATIC_URL}/home/image-6.png`}
+                            alt="Phones category"
+                        />
+                        <h3
+                            className="categories__phones--title categories__title"
+                            onClick={handleRoutePhones}
+                        >
+                            Phones
+                        </h3>
+                        <p className="categories__phones--count categories__count">{phones} models</p>
                     </article>
                     <article className="categories__tablets block">
-                        <div className="categories__tablets--image block__image tablets"></div>
-                        <h3 className="categories__tablets--title categories__title">Tablets</h3>
-                        <p className="categories__tablets--count categories__count">Count models</p>
+                        <img
+                            onClick={handleRouteTablets}
+                            className="categories__tablets--image block__image tablets"
+                            src={`${STATIC_URL}/home/image-5.png`}
+                            alt="Tablets category"
+                        />
+                        <h3
+                            className="categories__tablets--title categories__title"
+                            onClick={handleRouteTablets}
+                        >
+                            Tablets
+                        </h3>
+                        <p className="categories__tablets--count categories__count">{tablets} models</p>
                     </article>
                     <article className="categories__accessories block">
-                        <div className="categories__accessories--image block__image accessories"></div>
-                        <h3 className="categories__accessories--title categories__title">Accessories</h3>
-                        <p className="categories__accessories--count categories__count">Count models</p>
+                        <img
+                            onClick={handleRouteAccessories}
+                            className="categories__accessories--image block__image accessories"
+                            src={`${STATIC_URL}/home/image-7.png`}
+                            alt="Accessories category"
+                        />
+                        <h3
+                            className="categories__accessories--title categories__title"
+                            onClick={handleRouteAccessories}
+                        >
+                            Accessories
+                        </h3>
+                        <p className="categories__accessories--count categories__count">{accessories} models</p>
                     </article>
                 </div>
-            
             </section>
             <section className="hot-prices">
                 <div className="hot-prices__title title">
-                    <h1 className="hot-prices__title--value">Brand new model</h1>
+                    <h1 className="hot-prices__title--value">Hot prices</h1>
                     <div className="hot-prices__title--buttons">
                         <div className="hot-prices__button-left">
                             <MdOutlineKeyboardArrowLeft />
@@ -105,7 +151,7 @@ const RebuildHomePage = () => {
                         }}
                     >
                         {hotPrices.map(product => (
-                            <SwiperSlide key={product.id}>
+                            <SwiperSlide key={`hot-prices-${product.id}`}>
                                 <Card product={product} />
                             </SwiperSlide>
                         ))}
@@ -116,4 +162,4 @@ const RebuildHomePage = () => {
     )
 }
 
-export default RebuildHomePage;
+export default HomePage;
