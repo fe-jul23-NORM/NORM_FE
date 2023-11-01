@@ -19,12 +19,12 @@
   padding: 32px;
   line-height: normal;
   font-style: normal;
+  cursor: pointer;
 
   &__img {
     margin: 0px 32px;
     max-width: 208px;
     max-height: 196px;
-    cursor: pointer;
   }
 
   &__title {
@@ -78,7 +78,7 @@
 
   &:hover {
     border-color: $Icons;
-    box-shadow: 0 8px 7px $Icons;
+    box-shadow: 0 8px 15px #41414129;
   }
 }
 

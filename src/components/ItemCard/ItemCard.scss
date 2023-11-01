@@ -168,6 +168,10 @@
   max-width: 1300px;
   margin: auto;
   background: $Secondary; 
+
+  &__back-wrapper {
+    margin-top: 40px;
+  }
   
   &__nav {
     margin-top: 25px;
@@ -487,6 +491,8 @@
     &-cart {
       display: flex;
       flex-direction: row;
+      gap: 8px;
+      margin-top: 16px;
       margin-bottom: 32px;
      
       @include onDeskTop() {
@@ -513,9 +519,7 @@
         align-items: center;
         width: 48px;
         height: 48px;
-        border-radius: 40px;
-        border: 1px solid $Icons;
-        background-color: $White;
+          background-color: $White;
         cursor: pointer;
       }
     }

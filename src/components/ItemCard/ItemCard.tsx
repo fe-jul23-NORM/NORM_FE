@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import './ItemCard.scss';
 import Button from '../Button/Button';
 import Heart from '../Heart/Heart';
-import { getCurrentProductThunk, getDiscountProductsThunk } from '../../store/products/thunks';
+import { addFavouriteThunk, getCurrentProductThunk, getDiscountProductsThunk, removeFavouriteThunk } from '../../store/products/thunks';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { useNavigate, useParams } from 'react-router-dom';
-import { selectCurrentProduct, selectDiscountProducts } from '../../store/products/selectors';
+import { selectCurrentProduct, selectDiscountProducts, selectFavorites } from '../../store/products/selectors';
 import { BASE_URI, SLIDER_BREAKPOINTS } from '../../constants/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -13,12 +13,16 @@ import { Navigation, A11y, Autoplay } from 'swiper/modules';
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import Card from '../Card/Card';
 import { selectCart } from '../../store/cart/selectors';
-import { CartProduct } from '../../types/product.types';
+import { CartProduct, CurrentProduct, Product } from '../../types/product.types';
+import BackButton from '../BackButton/BackButton';
+import { addToFavourites, removeFromFavourites } from '../../store/products/slice';
+import { shallowEqual, useSelector } from 'react-redux';
+import { addToCart } from '../../store/cart/slice';
 
 
 const ItemCard: React.FC = () => {
   const dispatch = useAppDispatch();
-  const product = useAppSelector(selectCurrentProduct);
+  const product = useAppSelector(selectCurrentProduct) as CurrentProduct;
   const navigate = useNavigate();
   const { id } = useParams();
   const capacityWithColor = product?.id.split(product.namespaceId) || ['', ''];
@@ -37,16 +41,44 @@ const ItemCard: React.FC = () => {
     return color;
   }) || [''];
 
-  // const isSelected = useMemo(() => cart.some(({ id }) => id === product.id), [cart]);
+  const cart: CartProduct[] = useAppSelector(selectCart);
+  const isSelected = useMemo(() => cart.some(({ id }) => id === product?.productPassport.id), [cart]);
+  const favourites: Product[] = useSelector(selectFavorites, shallowEqual);
+  const isFavourite = useMemo(() => {
+    return favourites.some(({ id }) => id === product?.productPassport.id);
+  }, [favourites, id]);
+  const user = useAppSelector(state => state.auth.user);
 
-  // const addItemToCart = useCallback(() => {
-  //   if (!isSelected) {
-  //     dispatch(addToCart(product));
+  const addItemToCart = useCallback((e: any) => {
+    e.stopPropagation()
 
-  //     const updatedCart = [...cart, { ...product, quantity: 1 }];
-  //     localStorage.setItem('cart', JSON.stringify(updatedCart));
-  //   }
-  // }, [isSelected, cart])
+    if (!isSelected) {
+      dispatch(addToCart(product.productPassport));
+
+      const updatedCart = [...cart, { ...product, quantity: 1 }];
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
+    }
+  }, [isSelected, cart])
+
+  const handleFavourites = useCallback(() => {
+    if (user) {
+      if (isFavourite) {
+        dispatch(removeFavouriteThunk(product.productPassport.id));
+      } else {
+        dispatch(addFavouriteThunk(product.productPassport.id));
+      }
+    } else {
+      if (isFavourite) {
+        dispatch(removeFromFavourites(product));
+        const updatedFavourites = favourites.filter((favProduct) => favProduct.id !== product.productPassport.id);
+        localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
+      } else {
+        dispatch(addToFavourites(product));
+        const updatedFavourites = [...favourites, product];
+        localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
+      }
+    }
+  }, [user, isFavourite]);
 
 
   const actualCapacity = capacityWithColor[1].split('-')[1];
@@ -62,9 +94,10 @@ const ItemCard: React.FC = () => {
         navigate('/');
       });
     dispatch(getDiscountProductsThunk());
-  }, []);
+  }, [id]);
 
   const [mainImage, setMainImage] = useState(0);
+
   return (
     product && (
       <div className='item-card'>
@@ -89,15 +122,8 @@ const ItemCard: React.FC = () => {
             {product?.name}
           </a>
         </div>
-        <div className="item-card__back">
-          <img
-            src="https://i.imgur.com/dB7Z9gF.png"
-            alt="arrow-right"
-            className="item-card__back-icon" />
-
-          <a href="/Phones" className="item-card__back-text">
-            Back
-          </a>
+        <div className="item-card__back-wrapper">
+          <BackButton />
         </div>
         <p className="item-card__title">
           {product?.name}
@@ -111,7 +137,6 @@ const ItemCard: React.FC = () => {
                 alt="phone"
               />
             </div>
-            {/* // {mainImage === index && } */}
 
             <div className="container__images-miniatures">
               {product?.images.map((image, index) => {
@@ -160,7 +185,7 @@ const ItemCard: React.FC = () => {
                   return (
                     <button
                       className="container__info-colors-color"
-                      style={{ 
+                      style={{
                         backgroundColor: `${color}`,
                         border: `2px solid #000`,
                         cursor: 'not-allowed',
@@ -175,7 +200,6 @@ const ItemCard: React.FC = () => {
                     className="container__info-colors-color"
                     onClick={() => {
                       navigate(`/${product.namespaceId}-${actualCapacity}-${color}`);
-                      window.location.reload();
                     }}
                     style={{ backgroundColor: `${color}` }}
                     key={ind}
@@ -198,7 +222,7 @@ const ItemCard: React.FC = () => {
                       <button
                         className="gB"
                         key={ind}
-                        style={{ 
+                        style={{
                           border: `2px solid #000`,
                           cursor: 'not-allowed',
                         }}
@@ -215,7 +239,7 @@ const ItemCard: React.FC = () => {
                         navigate(`/${product.namespaceId}-${value.toLowerCase()}-${product.color}`);
                         window.location.reload();
                       }}
-                      style={{ 
+                      style={{
                         cursor: 'pointer',
                       }}
                     >
@@ -239,17 +263,12 @@ const ItemCard: React.FC = () => {
             </div>
 
             <div className="container__info-cart">
-              <div className="container__info-cart-button">
-                {/* <Button
-                  isSelected={isSelected}
-                  text={isSelected ? 'Added to to cart' : 'Add to cart'}
-                  handleClick={addItemToCart}
-                /> */}
-              </div>
-
-              <div className="container__info-cart-favourite">
-                {/* <Heart /> */}
-              </div>
+              <Button
+                isSelected={isSelected}
+                text={isSelected ? 'Added to to cart' : 'Add to cart'}
+                handleClick={addItemToCart}
+              />
+              <Heart handleClick={handleFavourites} isFavourite={isFavourite} />
             </div>
 
             <div className="container__info-description">

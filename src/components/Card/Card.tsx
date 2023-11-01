@@ -69,16 +69,17 @@ const Card: React.FC<Props> = ({ product }) => {
     }
   }, [user, isFavourite]);
 
+  const handleNavigate = () => {
+    navigate(`/${itemId}`);
+  }
+
   return (
     <div 
       className="card"
+      onClick={handleNavigate}
     >
       <img
         className="card__img"
-        onClick={() => {
-          navigate(`/${itemId}`);
-          window.location.reload();
-        }}
         src={`${BASE_URI}/${image}`}
         alt=""
       />
