@@ -7,6 +7,7 @@ import { CartProduct } from "../../types/product.types";
 import { setStateCart, getTotalQuantity } from "../../store/cart/slice";
 import BackButton from '../BackButton/BackButton';
 import Button from '../Button/Button';
+import PageNavigation from "../PageNavigation/PageNavigation";
 
 const Cart: React.FC = () => {
   const cartFromLocalStorage: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -31,7 +32,11 @@ const Cart: React.FC = () => {
   return (
     <div className="cart">
 
-      <BackButton/>
+      <div className="cart__nav">
+        <PageNavigation links={[{ link: 'cart', text: 'Cart' }]} />
+      </div>
+
+      <BackButton />
 
       <h1 className="cart__title">Cart</h1>
 
@@ -54,7 +59,7 @@ const Cart: React.FC = () => {
                 <span className="cart__number">{`$${totalPrice}`}</span>
                 <span className="cart__total">{`Total for ${numberOfProducts} ${numberOfProducts === 1 ? 'item' : 'items'}`}</span>
               </div>
-              
+
               <Button
                 handleClick={handleCheckout}
                 text='Checkout'

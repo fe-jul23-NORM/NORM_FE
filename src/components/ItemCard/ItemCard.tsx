@@ -44,6 +44,8 @@ const ItemCard: React.FC = () => {
     return color;
   }) || [''];
 
+  console.log(product)
+
   const cart: CartProduct[] = useAppSelector(selectCart);
   const isSelected = useMemo(() => cart.some(({ id }) => id === product?.productPassport.id), [cart]);
   const favourites: Product[] = useSelector(selectFavorites, shallowEqual);
@@ -105,26 +107,15 @@ const ItemCard: React.FC = () => {
     product && (
       <div className='item-card'>
         <div className="item-card__nav">
-          {/* <a href="/" className="item-card__nav-icon">
-            <img src="https://i.imgur.com/WmTuk3L.png" alt="home" />
-          </a>
-          <img
-            src="https://i.imgur.com/zNeLDRA.png"
-            alt="arrow-right"
-            className="item-card__nav-icon" />
-
-          <a href="/phones" className="item-card__nav-textPhones">
-            Phones
-          </a>
-          <img
-            src="https://i.imgur.com/zNeLDRA.png"
-            alt="arrow-right"
-            className="item-card__nav-icon" />
-
-          <a href="#" className="item-card__nav-textPhone">
-            {product?.name}
-          </a> */}
-          <PageNavigation productsType={normalizeQuery('phones')} productName={product?.name} />
+          <PageNavigation links={[
+            {
+              link: `${product.productPassport.category}`,
+              text: `${normalizeQuery(product.productPassport.category)}`
+            }, {
+              link: `${id}`, text: `${product?.name}`
+              }
+            ]}
+          />
         </div>
         <div className="item-card__back-wrapper">
           <BackButton />

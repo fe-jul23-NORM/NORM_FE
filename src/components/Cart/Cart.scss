@@ -3,7 +3,9 @@
 @import '../../utils/reset.scss';
 
 .cart {
-  padding-top: 10px;
+  &__nav {
+    margin-bottom: 24px;
+  }
 
   &__title {
     @include title();
