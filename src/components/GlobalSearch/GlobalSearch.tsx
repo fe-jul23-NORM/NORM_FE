@@ -3,11 +3,12 @@ import './GlobalSearch.scss';
 import { useAppDispatch } from '../../store';
 import { getFoundProductsThunk } from '../../store/products/thunks';
 import { useSelector } from 'react-redux';
-import { selectGlobalSearchProducts } from '../../store/products/selectors';
+import { selectGlobalSearchProducts } from '../../store/products/selectors';r
 import { BASE_URI } from '../../constants/core';
 import { PrimeReactProvider } from 'primereact/api';
 import { AutoComplete } from "primereact/autocomplete";
 import { Product } from '../../types/product.types';
+
 
 const GlobalSearch: React.FC = () => {
   const [value, setValue] = useState({

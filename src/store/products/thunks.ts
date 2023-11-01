@@ -4,6 +4,7 @@ import { PRODUCT_ROUTES } from '../../constants/routes';
 import {
   CurrentProduct,
   Product,
+  ProductsCount,
   ProductsQuery,
   ProductTypesEnum,
 } from '../../types/product.types';
@@ -14,13 +15,28 @@ const MODULE_NAME = 'product';
 export const getProductsThunk = createAsyncThunk(
   `${MODULE_NAME}/getAll`,
   async (
-    {page, perPage, productType, query, sortBy}: ProductsQuery,
+    { page, perPage, productType, query, sortBy }: ProductsQuery,
     { rejectWithValue }
   ) => {
     try {
       const response = await axiosPublic.get<IGetAllProductsResponse>(
         `${PRODUCT_ROUTES.GET}?page=${page || 1}&perPage=${perPage || 4}&productType=${productType || ProductTypesEnum.Phones}&sortBy=${sortBy || ''}&query=${query || ''}
         `
+      );
+      return response.data;
+
+    } catch (e: any) {
+      return rejectWithValue(e?.response?.data?.message);
+    }
+  },
+);
+
+export const getPhonesCountThunk = createAsyncThunk(
+  `${MODULE_NAME}/getAll`,
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axiosPublic.get<IGetAllProductsResponse>(
+        `${PRODUCT_ROUTES.GET}?productType=${ProductTypesEnum.Phones}`
       );
       return response.data;
       
@@ -35,7 +51,7 @@ export const getCurrentProductThunk = createAsyncThunk(
   async (id: number | string, { rejectWithValue }) => {
     try {
       const response = await axiosPublic.get<CurrentProduct>(`${PRODUCT_ROUTES.GET}/${id}`);
-      
+
       return response.data;
     } catch (e: any) {
       return rejectWithValue(e?.response?.data?.message);
@@ -48,7 +64,7 @@ export const getRecommendedProductsThunk = createAsyncThunk(
   async (id: number | string, { rejectWithValue }) => {
     try {
       const response = await axiosPublic.get<Product[]>(`${PRODUCT_ROUTES.GET}/${id}/recommended`);
-      
+
       return response.data;
     } catch (e: any) {
       return rejectWithValue(e?.response?.data?.message);
@@ -61,7 +77,7 @@ export const getDiscountProductsThunk = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosPublic.get<Product[]>(PRODUCT_ROUTES.GET_DISCOUNT);
-      
+
       return response.data;
     } catch (e: any) {
       return rejectWithValue(e?.response?.data?.message);
@@ -74,7 +90,7 @@ export const getNewProductsThunk = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axiosPublic.get<Product[]>(PRODUCT_ROUTES.GET_NEW);
-      
+
       return response.data;
     } catch (e: any) {
       return rejectWithValue(e?.response?.data?.message);
@@ -127,6 +143,19 @@ export const removeFavouriteThunk = createAsyncThunk(
       await axiosPrivate.delete<CurrentProduct>(`${PRODUCT_ROUTES.REMOVE_FROM_FAVORITES}/${id}`);
       
       return id;
+    } catch (e: any) {
+      return rejectWithValue(e?.response?.data?.message);
+    }
+  },
+);
+
+export const getProductsCategoryCountThunk = createAsyncThunk(
+  `${MODULE_NAME}/get-category-count`,
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axiosPublic.get<ProductsCount>(PRODUCT_ROUTES.GET_CATEGORY_COUNT);
+      
+      return response.data;
     } catch (e: any) {
       return rejectWithValue(e?.response?.data?.message);
     }

@@ -83,7 +83,7 @@ const Header: React.FC = () => {
 
         <div className='header__icons'>
 
-          <Search />
+          {/* <Search /> */}
 
           <NavLink
             className={({ isActive }) => getIconClass(isActive, 'icon-user')}

@@ -27,7 +27,6 @@ const Card: React.FC<Props> = ({ product }) => {
     capacity,
     image,
     id,
-    itemId,
   } = product;
 
   const dispatch = useAppDispatch();
@@ -69,23 +68,26 @@ const Card: React.FC<Props> = ({ product }) => {
     }
   }, [user, isFavourite]);
 
+  const handleNavigate = () => {
+    navigate(`/${id}`);
+    window.location.reload();
+  }
+
   return (
-    <div 
+    <div
       className="card"
     >
       <img
+        onClick={handleNavigate}
         className="card__img"
-        onClick={() => {
-          navigate(`/${itemId}`);
-          window.location.reload();
-        }}
         src={`${BASE_URI}/${image}`}
         alt=""
       />
 
-      <p className="card__title">
+      <p className="card__title" onClick={handleNavigate}>
         {name}
       </p>
+
 
       <div className="card__price">
         <p className="card__price-actual">

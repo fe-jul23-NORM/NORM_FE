@@ -1,16 +1,5 @@
-$Secondary: #89939A;
-$Primary: #0F0F11;
-$Elements: #E2E6E9;
-$HoverBg: #FAFBFC;
-$gray-icons: #B4BDC3;
-
-@mixin hover($property, $toValue) {
-  transition: #{$property} 0.3s;
-
-  &:hover {
-    #{$property}: $toValue;
-  }
-}
+@import '../../utils/mixins.scss';
+@import '../../utils/variable.scss';
 
 .catalog__nav {
   display: flex;
@@ -33,5 +22,7 @@ $gray-icons: #B4BDC3;
     line-height: 18px;
     font-weight: 500;
     align-items: center;
+
+    @include hover(color, $Primary);
   }
 }

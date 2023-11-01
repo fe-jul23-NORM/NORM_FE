@@ -20,6 +20,18 @@ export const register = createAsyncThunk(
   },
 );
 
+export const logout = createAsyncThunk(
+  `${MODULE_NAME}/logout`,
+  async (values: any, { rejectWithValue, dispatch }) => {
+    try {
+      await axiosPublic.post(AUTH_ROUTES.LOGOUT, values);
+      
+    } catch(e: any) {
+      return rejectWithValue(e?.response?.data?.message);
+    }
+  },
+);
+
 export const refresh = createAsyncThunk(
   `${MODULE_NAME}/refresh`,
   async (_, { rejectWithValue }) => {
