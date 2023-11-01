@@ -76,15 +76,18 @@ const Card: React.FC<Props> = ({ product }) => {
   return (
     <div 
       className="card"
-      onClick={handleNavigate}
     >
       <img
+        onClick={handleNavigate}
         className="card__img"
         src={`${BASE_URI}/${image}`}
         alt=""
       />
 
-      <p className="card__title">
+      <p
+        onClick={handleNavigate}
+        className="card__title"
+      >
         {name}
       </p>
 

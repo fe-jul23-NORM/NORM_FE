@@ -237,7 +237,6 @@ const ItemCard: React.FC = () => {
                       key={ind}
                       onClick={() => {
                         navigate(`/${product.namespaceId}-${value.toLowerCase()}-${product.color}`);
-                        window.location.reload();
                       }}
                       style={{
                         cursor: 'pointer',
@@ -445,7 +444,7 @@ const ItemCard: React.FC = () => {
               }}
             >
               {hotPrices.map(productt => (
-                <SwiperSlide key={product.id}>
+                <SwiperSlide key={`${product.id}123`}>
                   <Card product={productt} />
                 </SwiperSlide>
               ))}
