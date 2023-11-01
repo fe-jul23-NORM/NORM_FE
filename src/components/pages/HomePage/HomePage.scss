@@ -1,10 +1,10 @@
+@import "../../../utils/mixins";
+
 .main {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-    padding: 0 24px;
-    max-width: 1200px;
+    row-gap: 57px;
 
     h1 {
         font-size: 22px;
@@ -13,21 +13,29 @@
             font-size: 32px;
         }
     }
+
+    @media screen and (min-width: 916px) {
+        row-gap: 80px;
+    }
 }
 
 .title {
-    padding: 24px 0;
+    padding: 0 0 24px;
 }
 
 .new-models,
 .hot-prices {
-    overflow-x: hidden;
-
     &__title {
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
+
+        @include onTablet {
+            flex-direction: row;
+        }
 
         &--buttons {
+            margin-top: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -36,7 +44,12 @@
     }
 
     &__swiper {
-        width: 1152px;
+        max-width: 1152px;
+        margin: 0 -24px;
+
+        @include onDeskTop() {
+            margin: unset;
+        }
     }
 }
 
@@ -60,19 +73,16 @@
 }
 
 .phones {
-    // background-image: url('../../../images/home/image-6.png');
     background-color: #6D6474;
     border-radius: 8px;
 }
 
 .tablets {
-    // background-image: url('../../../images/home/image-5.png');
     background-color: #8d8d92;
     border-radius: 8px;
 }
 
 .accessories {
-    // background-image: url('../../../images/home/image-7.png');
     background-color: #973d5f;
     border-radius: 8px;
 }
@@ -94,6 +104,15 @@
         font-size: 20px;
         font-style: normal;
         font-weight: 700;
+        cursor: pointer;
+
+        @media screen and (min-width: 916px) {
+            &:hover {
+                transition: transform 1s ease;
+
+                transform: scale(1.05);
+            }
+        }
     }
 
     &__count {
@@ -106,9 +125,6 @@
 
 .block {
     &__image {
-        // background-repeat: no-repeat;
-        // background-position: center;
-        // background-size: cover;
         cursor: pointer;
 
         @media screen and (max-width: 355px) {
@@ -134,7 +150,7 @@
 
             &:hover {
                 transition: transform 1s ease;
-            
+
                 transform: scale(1.05);
             }
         }
@@ -146,7 +162,7 @@
 
             &:hover {
                 transition: transform 1s ease;
-            
+
                 transform: scale(1.05);
             }
         }

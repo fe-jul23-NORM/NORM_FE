@@ -1,4 +1,23 @@
+@import '../../utils/variable.scss';
+
 .icon-heart-button {
   width: 16px;
   height: 16px;
+}
+
+.icon__favourite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 48px;
+  border: 1px solid $Icons;
+  background-color: $White;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid #0F0F11;
+  }
 }

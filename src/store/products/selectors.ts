@@ -16,3 +16,7 @@ export const selectProductsIsLoading = (state: RootState): boolean => state.prod
 export const selectProductsCount = (state: RootState): number => state.product.totalCount;
 
 export const selectProductsCategoryCount = (state: RootState): ProductsCount => state.product.productsCount;
+
+export const selectFavorites = (state: RootState): Product[] => state.product.favourites;
+
+export const selectGlobalSearchProducts = (state: RootState): Product[] => state.product.globalSearchProducts;

@@ -1,10 +1,6 @@
-$Secondary: #89939A;
-$Primary: #0F0F11;
-$Elements: #E2E6E9;
-$HoverBg: #FAFBFC;
-$gray-icons: #B4BDC3;
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Rubik:wght@400;600&display=swap');
+@import "../../../utils/variable";
+@import "../../../utils/mixins";
+@import "../../../utils/variable";
 
 @mixin hover($property, $toValue) {
   transition: #{$property} 0.3s;
@@ -45,16 +41,10 @@ $gray-icons: #B4BDC3;
   }
 }
 
-.page__title {
-  font-size: 48px;
-}
-
 .catalog {
   font-family: 'Rubik', sans-serif;
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
-  padding-inline: 16px;
   background-color: $HoverBg;
   justify-content: center;
 
@@ -63,7 +53,7 @@ $gray-icons: #B4BDC3;
     column-gap: 8px;
     height: 16px;
     min-width: 272px;
-    
+
 
     &-icon {
       @include hover(transform, scale(1.2));
@@ -105,7 +95,6 @@ $gray-icons: #B4BDC3;
 
     &-select {
       margin-right: 16px;
-      width: 136px;
       height: 40px;
       box-sizing: border-box;
       width: max-content;
@@ -120,9 +109,8 @@ $gray-icons: #B4BDC3;
   }
 
   &__container {
-    margin: 24px auto;
+    margin: 20px auto 24px;
     width: 100%;
-    margin-top: 20px;
     justify-content: space-between;
 
     @include pageGrid;
@@ -138,8 +126,7 @@ $gray-icons: #B4BDC3;
 }
 
 .page__title {
-  font-size: 32px;
-  margin: 24px 0 8px;
+  @include title();
 }
 
 .page__items-amount {

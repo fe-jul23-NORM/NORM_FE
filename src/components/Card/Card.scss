@@ -1,6 +1,14 @@
 @import '../../utils/variable.scss';
 @import '../../utils/normalize.scss';
 
+@mixin hover($property, $toValue) {
+  transition: #{$property} 0.3s;
+
+  &:hover {
+    #{$property}: $toValue;
+  }
+}
+
 .card {
   box-sizing: border-box;
   width: 272px;
@@ -16,6 +24,7 @@
     margin: 0px 32px;
     max-width: 208px;
     max-height: 196px;
+    cursor: pointer;
   }
 
   &__title {
@@ -62,19 +71,14 @@
     flex-direction: row;
     gap: 8px;
     padding: 0;
+  }
 
-    &-favourite {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 40px;
-      min-width: 40px;
-      border-radius: 48px;
-      border: 1px solid $Icons;
-      background-color: $White;
-      cursor: pointer;
-    }
+  @include hover(box-shadow, scale(1.2));
+  @include hover(transform, scale(1.02));
+
+  &:hover {
+    border-color: $Icons;
+    box-shadow: 0 8px 7px $Icons;
   }
 }
 
