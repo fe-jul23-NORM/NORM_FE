@@ -3,10 +3,10 @@
 @import '../../utils/reset.scss';
 
 .cart {
-  padding-top: 12px;
 
   &__title {
     @include title();
+    margin-top: 20px;
   }
 
   &__content {
