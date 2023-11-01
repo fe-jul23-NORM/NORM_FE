@@ -40,6 +40,8 @@
       background-color: $Primary;
       color: white;
     }
+
+    @include hover(border-color, $Primary);
   }
 
   &__button {
@@ -61,5 +63,7 @@
       background-color: white;
       color: $Icons;
     }
+
+    @include hover(border-color, $Primary);
   }
 }
