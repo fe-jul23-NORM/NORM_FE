@@ -37,6 +37,10 @@ $gray-icons: #B4BDC3;
     color: $gray-primary;
     width: 100%;
     transition: 0.3s;
+
+    &:hover {
+      border-color: $gray-primary
+    }
   }
 
   &__arrow {
