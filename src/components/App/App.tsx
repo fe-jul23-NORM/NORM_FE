@@ -13,6 +13,11 @@ import LoginPage from '../pages/LoginPage/LoginPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage'
 import AuthLayout from '../HOC/AuthLayout/AuthLayout';
 import { Loader } from '../Loader/Loader';
+import ItemCard from '../ItemCard/ItemCard';
+import { selectAllProducts } from '../../store/products/selectors';
+import { Product } from '../../types/product.types';
+// import { addToFavorites } from '../../store/products/slice';
+import { selectAuthLoading } from '../../store/auth/selectors';
 import CatalogPage from '../pages/CatalogPage/CatalogPage';
 import AboutUs from '../About-us/About-us';
 import { initThunk } from '../../store/core/thunks';
@@ -50,6 +55,7 @@ function App() {
             <Route path='/accessories' element={<CatalogPage product={'accessories'} />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/favourites' element={<FavouritesPage />} />
+            <Route path='/:id' element={<ItemCard />} />
             <Route path='/about' element={<AboutUs />} />
             <Route path='*' element={<NotFoundPage />} />
             
