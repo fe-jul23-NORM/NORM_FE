@@ -97,6 +97,7 @@ const RebuildHomePage = () => {
                         modules={[Navigation, A11y, Autoplay]}
                         autoplay
                         loop
+                        spaceBetween={20}
                         breakpoints={SLIDER_BREAKPOINTS}
                         navigation={{
                             nextEl: '.hot-prices__button-right',

@@ -38,6 +38,20 @@ export interface CurrentProduct {
   cell: string[],
 }
 
+export interface Order {
+  id: number,
+  createdAt: Date,
+  status: OrderStatusEnum,
+  user_email: string,
+  products: OrderProduct[],
+}
+
+export interface OrderProduct {
+  id: number,
+  quantity: number,
+  product: Product,
+}
+
 export interface ProductDescription {
   title: string,
   text: string,
@@ -61,4 +75,12 @@ export interface ProductsQuery {
   productType: ProductTypesEnum,
   query?: string,
   sortBy?: SortProductByEnum
+}
+
+export enum OrderStatusEnum {
+  Created = 'created',
+  Processing = 'processing',
+  Shipped = 'shipped',
+  Refunded = 'refunded',
+  Canceled = 'canceled',
 }
