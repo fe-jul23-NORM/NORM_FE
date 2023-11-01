@@ -44,9 +44,9 @@ const Card: React.FC<Props> = ({ product }) => {
       const updatedCart = [...cart, { ...product, quantity: 1 }];
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
-  }, [])
+  }, [isSelected])
 
-  const handleFavourites = () => {
+  const handleFavourites = useCallback(() => {
     if (user) {
       if (isFavourite) {
         dispatch(removeFavouriteThunk(product.id));
@@ -64,7 +64,7 @@ const Card: React.FC<Props> = ({ product }) => {
         localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
       }
     }
-  };
+  }, [user, isFavourite]);
 
   return (
     <div className="card">

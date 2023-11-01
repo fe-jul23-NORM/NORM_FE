@@ -1,8 +1,5 @@
-$Secondary: #89939A;
-$Primary: #0F0F11;
-$Elements: #E2E6E9;
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Rubik:wght@400;600&display=swap');
+@import "../../utils/mixins";
+@import "../../utils/variable";
 
 @mixin hover($property, $toValue) {
   transition: #{$property} 0.3s;
@@ -19,13 +16,13 @@ $Elements: #E2E6E9;
   justify-content: space-between;
   height: 32px;
   padding-block: 32px;
-  padding-inline: 152px;
-
+  padding-inline: 19px;
+  background-color: $White;
   border-top: 1px solid $Elements;
 
-  @media (max-width: 1199px) {
-    padding-inline: 24px;
-  }
+  //@include onDeskTop() {
+  //  padding-inline: 152px;
+  //}
 
   &__logo {
     height: 32px;
@@ -42,7 +39,6 @@ $Elements: #E2E6E9;
     letter-spacing: 0.48px;
     font-weight: 800;
     font-size: 12px;
-    text-transform: uppercase;
 
     transition: color 300ms;
 

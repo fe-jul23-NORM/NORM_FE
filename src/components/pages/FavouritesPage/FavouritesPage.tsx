@@ -7,9 +7,9 @@ const FavouritesPage: React.FC = () => {
   const favourites = useAppSelector(state => state.product.favourites);
 
   return (
-    <div className="favourites__wrapper">
+    <div className="favourites">
 
-      <section className="favourites">
+      <section className="favourites__wrapper">
 
         <div className="favourites__top">
           <div className="favourites__nav">
