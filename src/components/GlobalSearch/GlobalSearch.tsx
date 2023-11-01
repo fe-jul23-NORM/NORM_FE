@@ -59,7 +59,8 @@ const GlobalSearch: React.FC = () => {
             suggestions={products} 
             completeMethod={(event => (handleChange(event.query)))} 
             //onChange={(e) => setSelectedCountry(e.value)} 
-            placeholder="Search ..."
+
+            placeholder="Search"
             itemTemplate={itemTemplate}
           />
         </div>
