@@ -1,5 +1,5 @@
-@import '../../utils/variable.scss';
-@import '../../utils/mixins.scss';
+@import '../../../utils/variable';
+@import '../../../utils/mixins';
 
 p,
 span {
@@ -46,7 +46,7 @@ span {
   &__delete {
     height: 16px;
     width: 16px;
-    background-image: url(../../images/icons/close-disabled-icon.svg);
+    background-image: url(../../../images/icons/close-disabled-icon.svg);
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;

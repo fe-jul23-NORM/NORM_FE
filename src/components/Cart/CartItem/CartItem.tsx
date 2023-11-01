@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 import './CartItem.scss';
 import classNames from "classnames";
-import { CartProduct } from "../../types/product.types";
-import { BASE_URI } from "../../constants/core";
-import { decrementQuantity, incrementQuantity, removeFromCart } from "../../store/cart/slice";
-import { useAppDispatch } from "../../store";
+import { CartProduct } from "../../../types/product.types";
+import { BASE_URI } from "../../../constants/core";
+import { decrementQuantity, incrementQuantity, removeFromCart } from "../../../store/cart/slice";
+import { useAppDispatch } from "../../../store";
 
 type Props = {
   item: CartProduct,

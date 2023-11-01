@@ -53,9 +53,6 @@ $gray-icons: #B4BDC3;
   font-family: 'Rubik', sans-serif;
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
-  padding-inline: 16px;
-  background-color: $HoverBg;
   justify-content: center;
 
   &__nav {
@@ -63,7 +60,7 @@ $gray-icons: #B4BDC3;
     column-gap: 8px;
     height: 16px;
     min-width: 272px;
-    
+
 
     &-icon {
       @include hover(transform, scale(1.2));

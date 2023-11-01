@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../../store';
 import { selectDiscountProducts, selectNewProducts } from '../../../store/products/selectors';
 import { getDiscountProductsThunk, getNewProductsThunk } from '../../../store/products/thunks';
 import Card from '../../Card/Card';
+import { SLIDER_BREAKPOINTS } from '../../../constants/core';
 
 
 const RebuildHomePage = () => {
@@ -44,7 +45,7 @@ const RebuildHomePage = () => {
                         modules={[Navigation, A11y, Autoplay]}
                         autoplay
                         loop
-                        slidesPerView={4}
+                        breakpoints={SLIDER_BREAKPOINTS}
                         navigation={{
                             nextEl: '.new-models__button-right',
                             prevEl: '.new-models__button-left',
@@ -77,7 +78,7 @@ const RebuildHomePage = () => {
                         <p className="categories__accessories--count categories__count">Count models</p>
                     </article>
                 </div>
-
+            
             </section>
             <section className="hot-prices">
                 <div className="hot-prices__title title">
@@ -96,7 +97,7 @@ const RebuildHomePage = () => {
                         modules={[Navigation, A11y, Autoplay]}
                         autoplay
                         loop
-                        slidesPerView={4}
+                        breakpoints={SLIDER_BREAKPOINTS}
                         navigation={{
                             nextEl: '.hot-prices__button-right',
                             prevEl: '.hot-prices__button-left',

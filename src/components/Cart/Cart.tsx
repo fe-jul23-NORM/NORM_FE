@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CartItem from "./CartItem";
+import CartItem from "./CartItem/CartItem";
 import './Cart.scss';
 import { useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../store";

@@ -4,15 +4,6 @@
 
 .cart {
   @include pageGrid;
-  margin: 24px 16px;
-
-  @include onTablet {
-    margin: 40px 24px;
-  }
-
-  @include onDeskTop {
-    margin: 40px 32px;
-  }
 
   &__return {
     display: flex;

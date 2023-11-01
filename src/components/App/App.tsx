@@ -6,22 +6,19 @@ import Layout from '../HOC/Layout/Layout';
 import Catalog from '../Catalog/Catalog';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import Cart from '../Cart/Cart';
-import { useAppDispatch, useAppSelector } from '../../store';
+import { useAppDispatch } from '../../store';
 import FavouritesPage from '../pages/FavouritesPage/FavouritesPage';
 import '../../utils/_reset.scss';
 import HomePage from '../pages/HomePage/HomePage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage'
-import { refresh } from '../../store/auth/thunks';
 import AuthLayout from '../HOC/AuthLayout/AuthLayout';
 import { Loader } from '../Loader/Loader';
-import { selectAllProducts } from '../../store/products/selectors';
 import { initThunk } from '../../store/core/thunks';
+import RequiredAuth from '../HOC/RequiredAuth/RequiredAuth';
 
 function App() {
   const dispatch = useAppDispatch();
-
-  const allProducts = useAppSelector(selectAllProducts)
   const [isLoading, setLoading] = useState(true);
   
   useEffect(() => {
@@ -51,6 +48,10 @@ function App() {
             <Route path='/cart' element={<Cart />} />
             <Route path='/favourites' element={<FavouritesPage />} />
             <Route path='*' element={<NotFoundPage />} />
+            
+            <Route path='/' element={<RequiredAuth/>}>
+              <Route path='/orders' element={<p >Orders</p>} />
+            </Route>
           </Route>
           <Route path='/' element={<AuthLayout/>}>
             <Route path='/login' element={<LoginPage />} />

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './RegisterPage.scss';
 import Input from '../../Input/Input';
 import Button from '../../Button/Button';
@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../store';
 import { register } from '../../../store/auth/thunks';
 import { getRegisterValidation } from '../../../validation/auth.validation';
 import { IRegister } from '../../../types/auth.types';
-import { selectAuthLoading } from '../../../store/auth/selectors';
+import { selectAuthLoading, selectUser } from '../../../store/auth/selectors';
 import { useNavigate } from 'react-router';
 
 const initialValues = {
@@ -23,9 +23,16 @@ const RegisterPage: React.FC = () => {
     ...initialValues,
     errors: getRegisterValidation(initialValues)
   });
+  const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectAuthLoading);
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (user) {
+      navigate('/')
+    }
+  }, [user])
   
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValues(prev => {
