@@ -9,6 +9,7 @@ import { PrimeReactProvider } from 'primereact/api';
 import { AutoComplete } from "primereact/autocomplete";
 import { Product } from '../../types/product.types';
 
+
 const GlobalSearch: React.FC = () => {
   const [value, setValue] = useState({
     name: '',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 import './Dropdown.scss'
 import { Link, useSearchParams } from 'react-router-dom';
@@ -12,6 +12,23 @@ export type Props = {
   searchParamsKey: string,
 };
 
+export function useOutsideClick(ref: RefObject<HTMLElement>, func: () => void, spectate: any = null): void {
+  useEffect(() => {
+    function handleClick(event: MouseEvent) {
+      const target = event.target as Node;
+      if (ref.current && !ref.current.contains(target)) {
+        func();
+      }
+    }
+    
+    document.addEventListener('mousedown', handleClick);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, [ref, spectate]);
+}
+
 export const Dropdown: React.FC<Props> = ({
   label,
   classModificator,
@@ -22,10 +39,14 @@ export const Dropdown: React.FC<Props> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [searchParams] = useSearchParams();
   const [value, setValue] = useState(startValue);
+  const menuRef = useRef<HTMLDivElement>(null);
+
 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+
+  useOutsideClick(menuRef, () => setIsOpen(false));
 
   const handleChangeValue = (option: string) => {
     setValue(option);
@@ -45,7 +66,7 @@ export const Dropdown: React.FC<Props> = ({
   };
 
   return (
-    <div className={`dropdown dropdown_${classModificator}`}>
+    <div ref={menuRef} className={`dropdown dropdown_${classModificator}`}>
       <label
         htmlFor="dropdownSelect"
         className="dropdown__label"

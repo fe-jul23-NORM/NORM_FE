@@ -1,9 +1,18 @@
 @import "../../../utils/mixins";
 
+@mixin hover($property, $toValue) {
+    transition: #{$property} 0.3s;
+
+    &:hover {
+        #{$property}: $toValue;
+    }
+}
+
 .main {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    row-gap: 57px;
 
     h1 {
         font-size: 22px;
@@ -11,6 +20,10 @@
         @media screen and (min-width: 640px) {
             font-size: 32px;
         }
+    }
+
+    @media screen and (min-width: 916px) {
+        row-gap: 80px;
     }
 }
 
@@ -20,8 +33,6 @@
 
 .new-models,
 .hot-prices {
-    //overflow-x: hidden;
-
     &__title {
         display: flex;
         justify-content: space-between;
@@ -70,19 +81,16 @@
 }
 
 .phones {
-    background-image: url('../../../images/home/image-6.png');
     background-color: #6D6474;
     border-radius: 8px;
 }
 
 .tablets {
-    background-image: url('../../../images/home/image-5.png');
     background-color: #8d8d92;
     border-radius: 8px;
 }
 
 .accessories {
-    background-image: url('../../../images/home/image-7.png');
     background-color: #973d5f;
     border-radius: 8px;
 }
@@ -104,6 +112,7 @@
         font-size: 20px;
         font-style: normal;
         font-weight: 700;
+        cursor: pointer;
     }
 
     &__count {
@@ -116,9 +125,6 @@
 
 .block {
     &__image {
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
         cursor: pointer;
 
         @media screen and (max-width: 355px) {
@@ -141,12 +147,33 @@
         @media screen and (min-width: 916px) and (max-width: 1170px) {
             width: 288px;
             height: 288px;
+
+            @include hover(box-shadow, scale(1.2));
+            @include hover(transform, scale(1.05));
         }
 
         @media screen and (min-width: 1170px) {
             width: 368px;
             height: 368px;
             border-radius: 0;
+
+            @include hover(box-shadow, scale(1.2));
+            @include hover(transform, scale(1.05));
         }
     }
+}
+
+// .swiper-container {
+//     // overflow: visible;
+// }
+
+// .swiper-slide {
+//     opacity: 0;
+//     visibility: hidden;
+// }
+
+.swiper-slide.swiper-slide-active,
+.swiper-slide.swiper-slide-next,
+.swiper-slide.swiper-slide-prev {
+    overflow: visible;
 }
