@@ -4,6 +4,8 @@ $gray-elements: #E2E6E9;
 $gray-background: #FAFBFC;
 $gray-icons: #B4BDC3;
 
+@import '../../utils/variable.scss';
+
 .dropdown {
   position: relative;
 
@@ -34,12 +36,7 @@ $gray-icons: #B4BDC3;
     outline: none;
     color: $gray-primary;
     width: 100%;
-    // size: 14px;
-    // text-transform: capitalize;
     transition: 0.3s;
-    // appearance: none;
-    // -webkit-appearance: none;
-    // -moz-appearance: none;
   }
 
   &__arrow {
@@ -78,14 +75,14 @@ $gray-icons: #B4BDC3;
     padding: 6px 12px;
     color: $gray-primary;
     transition: all 0.3s linear;
-    width: 128px;
     box-sizing: border-box;
     font-size: 13px;
 
+    &:hover {
+      background-color: $Elements;
+    }
+
     &--active {
-      width: 100%;
-      // color: black;
-      // border: 1px solid $gray-elements;
       background-color: $gray-elements;
       border-radius: .2em;
     }
