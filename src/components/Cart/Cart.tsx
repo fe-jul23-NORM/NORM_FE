@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem/CartItem";
 import './Cart.scss';
-import { useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { createOrderByGuest } from "../../store/cart/thunks";
 import { CartProduct } from "../../types/product.types";
 import { setStateCart, getTotalQuantity } from "../../store/cart/slice";
 import BackButton from '../BackButton/BackButton';
+import Button from '../Button/Button';
 
 const Cart: React.FC = () => {
   const cartFromLocalStorage: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -37,7 +37,7 @@ const Cart: React.FC = () => {
 
       {cart.length
         ? (
-          <>
+          <div className='cart__content'>
             <div className="cart__wrapper">
               {cart.map((item) => {
                 return (
@@ -54,14 +54,13 @@ const Cart: React.FC = () => {
                 <span className="cart__number">{`$${totalPrice}`}</span>
                 <span className="cart__total">{`Total for ${numberOfProducts} ${numberOfProducts === 1 ? 'item' : 'items'}`}</span>
               </div>
-
-              <button
-                className="cart__buy"
-                onClick={handleCheckout}
-              >
-                Checkout</button>
+              
+              <Button
+                handleClick={handleCheckout}
+                text='Checkout'
+              />
             </div>
-          </>
+          </div>
         )
         : <h3 className="cart__no-products">No products in the cart yet</h3>
       }
