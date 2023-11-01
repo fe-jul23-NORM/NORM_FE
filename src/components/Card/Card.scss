@@ -1,6 +1,14 @@
 @import '../../utils/variable.scss';
 @import '../../utils/normalize.scss';
 
+@mixin hover($property, $toValue) {
+  transition: #{$property} 0.3s;
+
+  &:hover {
+    #{$property}: $toValue;
+  }
+}
+
 .card {
   box-sizing: border-box;
   width: 272px;
@@ -62,6 +70,13 @@
     flex-direction: row;
     gap: 8px;
     padding: 0;
+  }
+
+  @include hover(box-shadow, scale(1.2));
+
+  &:hover {
+    border-color: $Icons;
+    box-shadow: 0 8px 7px $Icons; 
   }
 }
 

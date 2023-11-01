@@ -1,20 +1,5 @@
-$gray-secondary: #89939A;
-$gray-primary: #0F0F11;
-$gray-elements: #E2E6E9;
-$gray-background: #FAFBFC;
-$gray-icons: #B4BDC3;
-
-@mixin onTablet {
-  @media (min-width: 640px) {
-    @content;
-  }
-}
-
-@mixin onDeskTop {
-  @media (min-width: 1200px) {
-    @content;
-  }
-}
+@import '../../utils/mixins.scss';
+@import '../../utils/variable.scss';
 
 .pagination {
   display: flex;
@@ -42,17 +27,17 @@ $gray-icons: #B4BDC3;
   &__item {
     display: flex;
     justify-content: center;
-    border: 1px solid $gray-icons;
+    border: 1px solid $Icons;
     border-radius: 50%;
     width: 16px;
     height: 24px;
     margin: 0;
     padding: 5px 10px;
-    color: $gray-primary;
+    color: $Primary;
     text-decoration: none;
 
     &--active {
-      background-color: $gray-primary;
+      background-color: $Primary;
       color: white;
     }
   }
@@ -61,20 +46,20 @@ $gray-icons: #B4BDC3;
     all: unset;
     display: flex;
     justify-content: center;
-    line-height: 24px;
-    border: 1px solid $gray-icons;
+    align-items: center;
+    border: 1px solid $Icons;
     border-radius: 50%;
     min-width: 16px;
     height: 24px;
     padding: 5px 10px;
     text-decoration: none;
-    color: $gray-primary;
+    color: $Primary;
     cursor: pointer;
 
     &--disabled {
       pointer-events: none;
       background-color: white;
-      color: $gray-icons;
+      color: $Icons;
     }
   }
 }

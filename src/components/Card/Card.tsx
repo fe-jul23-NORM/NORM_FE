@@ -8,9 +8,9 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { addToCart } from '../../store/cart/slice';
 import { addToFavourites, removeFromFavourites } from '../../store/products/slice';
 import { addFavouriteThunk, removeFavouriteThunk } from '../../store/products/thunks';
-import { selectFavorites } from '../../store/products/selectors';
 import { selectCart } from '../../store/cart/selectors';
 import { shallowEqual, useSelector } from 'react-redux';
+import { selectFavorites } from '../../store/products/selectors';
 
 type Props = {
   product: Product,
