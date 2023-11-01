@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { createOrderByGuest } from "../../store/cart/thunks";
 import { CartProduct } from "../../types/product.types";
 import { setStateCart, getTotalQuantity } from "../../store/cart/slice";
+import BackButton from '../BackButton/BackButton';
 
 const Cart: React.FC = () => {
   const cartFromLocalStorage: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -27,27 +28,10 @@ const Cart: React.FC = () => {
     dispatch(createOrderByGuest('test@gmail.com'))
   }
 
-  const navigate = useNavigate();
-  const goBack = () => {
-    navigate(-1);
-  }
-
   return (
     <div className="cart">
 
-      <div className="cart__return">
-        <button
-          className="cart__arrow"
-          onClick={goBack}
-        />
-
-        <button
-          className="cart__back"
-          onClick={goBack}
-        >
-          Back
-        </button>
-      </div>
+      <BackButton/>
 
       <h1 className="cart__title">Cart</h1>
 
