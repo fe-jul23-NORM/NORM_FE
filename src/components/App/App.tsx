@@ -60,7 +60,7 @@ function App() {
             <Route path='/accessories' element={<Catalog product={'accessories'} />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/favourites' element={<FavouritesPage />} />
-            <Route path='/23' element={<ItemCard />} />
+            <Route path='/:id' element={<ItemCard />} />
             <Route path='*' element={<NotFoundPage />} />
           </Route>
           <Route path='/' element={<AuthLayout/>}>
