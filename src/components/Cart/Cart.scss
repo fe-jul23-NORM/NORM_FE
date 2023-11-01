@@ -3,6 +3,7 @@
 @import '../../utils/reset.scss';
 
 .cart {
+  padding-top: 10px;
 
   &__title {
     @include title();
@@ -13,6 +14,11 @@
     display: flex;
     gap: 16px;
     margin-top: 32px;
+    flex-direction: column;
+
+    @include onDeskTop {
+      flex-direction: row;
+    }
   }
 
   &__wrapper {

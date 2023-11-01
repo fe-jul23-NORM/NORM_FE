@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useId, useState } from 'react';
+import React, { ChangeEvent, memo, useCallback, useId, useState } from 'react';
 import cn from 'classnames';
 import './Input.scss';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -71,4 +71,4 @@ const Input: React.FC<Props> = ({ name, placeholder, onChange, value, error, isI
   );
 };
 
-export default Input;
+export default memo(Input);

@@ -5,8 +5,7 @@
 
 .card {
   box-sizing: border-box;
-  width: 272px;
-  height: 506px;
+  max-width: 272px;
   border-radius: 8px;
   border: 1px solid $Elements;
   background: $White;
@@ -15,14 +14,14 @@
   font-style: normal;
 
   &__img {
-    margin: 0px 32px;
+    margin: 0 32px;
     max-width: 208px;
     max-height: 196px;
     cursor: pointer;
   }
 
   &__title {
-    height: 42px;
+    height: 72px;
     color: $Primary;
     font-size: 14px;
     font-weight: 600;
@@ -32,15 +31,14 @@
     cursor: pointer;
 
     @include hover(color, $Accent);
-
   }
 
-  &__price {  
+  &__price {
     display: flex;
     gap: 8px;
     margin-bottom: 8px;
 
-    &-actual{ 
+    &-actual{
       color: $Primary;
       font-size: 22px;
       font-weight: 800;
@@ -76,7 +74,7 @@
 
   &:hover {
     border-color: $Icons;
-    box-shadow: 0 8px 7px $Icons;
+    box-shadow: 0 8px 15px #41414129;
   }
 }
 
@@ -85,11 +83,11 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 8px;
-   
+
   &-title {
     color:  $Secondary;
     font-size: 12px;
-    font-weight: 600;   
+    font-weight: 600;
   }
 
   &-value {
@@ -103,5 +101,5 @@
 hr {
   border-radius: 8px;
   border: 1px solid $Elements;
-  background: $White;  
+  background: $White;
 }

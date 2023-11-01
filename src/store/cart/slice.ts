@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ICartState } from './types';
+import { getOrders } from './thunks';
 
 const initialState: ICartState = {
   isLoading: true,
   cart: [],
+  orders: [],
   totalQuantity: 0,
 }
 
@@ -39,7 +41,7 @@ export const cartSlice = createSlice({
       }
       state.totalQuantity++;
     },
-
+    
     decrementQuantity: (state, { payload }) => {
       const itemInCart = state.cart.find((item) => item.id === payload.id);
       if (itemInCart) {
@@ -47,6 +49,11 @@ export const cartSlice = createSlice({
       }
       state.totalQuantity--;
     }
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getOrders.fulfilled, (state, { payload }) => {
+      state.orders = payload;
+    })
   }
 });
 
