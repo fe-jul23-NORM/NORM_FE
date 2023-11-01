@@ -17,7 +17,7 @@ import ItemCard from '../ItemCard/ItemCard';
 import { selectAllProducts } from '../../store/products/selectors';
 import { Product } from '../../types/product.types';
 // import { addToFavorites } from '../../store/products/slice';
-import { selectAuthLoading } from '../../store/auth/selectors';ev
+import { selectAuthLoading } from '../../store/auth/selectors';
 import CatalogPage from '../pages/CatalogPage/CatalogPage';
 import AboutUs from '../About-us/About-us';
 import { initThunk } from '../../store/core/thunks';
