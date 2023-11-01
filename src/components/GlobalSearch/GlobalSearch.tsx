@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import { selectGlobalSearchProducts } from '../../store/products/selectors';
 import { AutoComplete } from 'rsuite';
 import 'rsuite/dist/rsuite-no-reset.min.css';
-import { ItemDataType } from 'rsuite/esm/@types/common';
 import { BASE_URI } from '../../constants/core';
+import { ItemDataType } from 'rsuite/esm/@types/common';
 
 const GlobalSearch: React.FC = () => {
   const [value, setValue] = useState({
@@ -52,7 +52,7 @@ const GlobalSearch: React.FC = () => {
         data={productCards}
         onChange={handleChange}
         style={{ width: 224 }}
-        renderMenuItem={(item, itemData) => {
+        renderMenuItem={(item: any, itemData: any) => {
         return (
           <div className='search-item'>
             <span>

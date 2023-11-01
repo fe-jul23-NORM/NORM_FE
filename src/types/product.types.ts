@@ -19,6 +19,7 @@ export interface CartProduct extends Product{
 
 export interface CurrentProduct {
   id: string,
+  productPassport: Product;
   namespaceId: string,
   name: string,
   capacityAvailable: string[],
