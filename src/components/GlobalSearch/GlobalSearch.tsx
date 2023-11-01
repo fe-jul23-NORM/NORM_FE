@@ -73,4 +73,4 @@ const GlobalSearch: React.FC = () => {
   )
 };
 
-export default GlobalSearch;
+export default memo(GlobalSearch);

@@ -1,10 +1,9 @@
+@import "../../../utils/mixins";
+
 .main {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-    padding: 0 24px;
-    max-width: 1200px;
 
     h1 {
         font-size: 22px;
@@ -16,18 +15,24 @@
 }
 
 .title {
-    padding: 24px 0;
+    padding: 0 0 24px;
 }
 
 .new-models,
 .hot-prices {
-    overflow-x: hidden;
+    //overflow-x: hidden;
 
     &__title {
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
+
+        @include onTablet {
+            flex-direction: row;
+        }
 
         &--buttons {
+            margin-top: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -36,7 +41,12 @@
     }
 
     &__swiper {
-        width: 1152px;
+        max-width: 1152px;
+        margin: 0 -24px;
+
+        @include onDeskTop() {
+            margin: unset;
+        }
     }
 }
 

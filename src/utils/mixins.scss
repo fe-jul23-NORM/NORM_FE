@@ -1,11 +1,11 @@
 @mixin onTablet {
-  @media (min-width: 640px) {
+  @media screen and (min-width: 640px) {
     @content;
   }
 }
 
 @mixin onDeskTop {
-  @media (min-width: 1200px) {
+  @media screen and (min-width: 1200px) {
     @content;
   }
 }
@@ -25,4 +25,17 @@
   @include onDeskTop {
     --columns: 24;
   }
+}
+
+@mixin hover($property, $toValue) {
+  transition: #{$property} 0.3s;
+
+  &:hover {
+    #{$property}: $toValue;
+  }
+}
+
+@mixin title {
+  font-size: 32px;
+  margin: 24px 0 8px;
 }

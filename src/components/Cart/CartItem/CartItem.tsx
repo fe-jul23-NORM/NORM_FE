@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 import './CartItem.scss';
 import classNames from "classnames";
-import { CartProduct } from "../../types/product.types";
-import { BASE_URI } from "../../constants/core";
-import { decrementQuantity, incrementQuantity, removeFromCart } from "../../store/cart/slice";
-import { useAppDispatch } from "../../store";
+import { CartProduct } from "../../../types/product.types";
+import { BASE_URI } from "../../../constants/core";
+import { decrementQuantity, incrementQuantity, removeFromCart } from "../../../store/cart/slice";
+import { useAppDispatch } from "../../../store";
 
 type Props = {
   item: CartProduct,
@@ -57,18 +57,15 @@ const CartItem: React.FC<Props> = ({ item, handleSetCart }) => {
 
       <div className="cart-item__info">
         <span
-          className="cart-item__delete"
+          className="cart-item__delete icon-close"
           onClick={handleRemoveFromCart}
-        >
-
-        </span>
+        />
 
         <img src={`${BASE_URI}/${image}`} alt="iPhone" className="cart-item__picture" />
 
         <p>
           {name}
           <br />
-          {/* (MQ023) */}
         </p>
       </div>
 
@@ -76,21 +73,25 @@ const CartItem: React.FC<Props> = ({ item, handleSetCart }) => {
 
         <div className="cart-item__number">
           <button
-            className={classNames(quantity > 1 ? "cart-item__button" : "cart-item__button--disabled")}
+            className={classNames("cart-item__button", quantity <= 1 && "cart-item__button--disabled")}
             onClick={handleDecrementQuantity}
             disabled={quantity === 1}
           >
-            -
+            <span className='icon-minus'/>
           </button>
+          
+          <span className="cart-item__number-text">
+            {quantity}
+          </span>
 
-          {quantity}
+          
 
           <button
             type="button"
             className="cart-item__button"
             onClick={handeleIncrementQuantity}
           >
-            +
+            <span className='icon-plus'/>
           </button>
         </div>
 

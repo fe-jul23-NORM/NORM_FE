@@ -18,7 +18,6 @@ const initialState: ProductState = {
   currentProduct: null,
   discount: [],
   recommended: [],
-  favorites: [],
   globalSearchProducts: [],
   favourites: [],
 };
@@ -39,8 +38,7 @@ export const productSlice = createSlice({
       }
     },
     removeFromFavourites: (state, { payload }) => {
-      const removeFromFavourites = state.favourites.filter((item) => item.id !== payload.id);
-      state.favourites = removeFromFavourites;
+      state.favourites = state.favourites.filter((item) => item.id !== payload.id);
     },
   },
   extraReducers: (builder) => {
