@@ -12,6 +12,8 @@ import { selectCart } from '../../store/cart/selectors';
 import { shallowEqual, useSelector } from 'react-redux';
 import { selectFavorites } from '../../store/products/selectors';
 import { useNavigate } from 'react-router-dom';
+import { getNotification } from '../../utils/notification';
+import { NotificationEnum, NotificationTypeEnum } from '../../types/notification.types';
 
 type Props = {
   product: Product,
@@ -46,6 +48,8 @@ const Card: React.FC<Props> = ({ product }) => {
 
       const updatedCart = [...cart, { ...product, quantity: 1 }];
       localStorage.setItem('cart', JSON.stringify(updatedCart));
+      
+      getNotification(NotificationEnum.ProductInCart, NotificationTypeEnum.success)
     }
   }, [isSelected, cart])
 
@@ -70,6 +74,7 @@ const Card: React.FC<Props> = ({ product }) => {
   }, [user, isFavourite]);
 
   const handleNavigate = () => {
+    window.scrollTo({top: 0, behavior: 'auto'})
     navigate(`/${itemId}`);
   }
 

@@ -7,6 +7,10 @@ import { useAppDispatch, useAppSelector } from '../../../store';
 import { useNavigate } from 'react-router';
 import { selectAuthLoading, selectUser } from '../../../store/auth/selectors';
 import Input from '../../Input/Input';
+import { NavLink } from 'react-router-dom';
+import { errorManager } from '../../../utils/errorManager';
+import { getNotification } from '../../../utils/notification';
+import { NotificationEnum, NotificationTypeEnum } from '../../../types/notification.types';
 
 const LoginPage: React.FC = () => {
   const [values, setValues] = useState<ILogin>({
@@ -39,11 +43,11 @@ const LoginPage: React.FC = () => {
     dispatch(login(values))
       .unwrap()
       .then(() => {
+        getNotification(NotificationEnum.WelcomeBack, NotificationTypeEnum.success)
         navigate('/')
       })
       .catch((e) => {
-        // TODO
-        console.log(e);
+        errorManager(e);
       });
   };
   
@@ -84,7 +88,7 @@ const LoginPage: React.FC = () => {
             
             <div className="login-page-link-wrapper">
               <span>Don&lsquo;t have an account yet?</span>
-              <a href="/register" className="register-page-link">Sign up</a>
+              <NavLink to='/register' className="register-page-link">Sign up</NavLink>
             </div>
           </form>
         </div>

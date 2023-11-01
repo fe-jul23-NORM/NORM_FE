@@ -5,7 +5,7 @@ import PageNavigation from '../PageNavigation/PageNavigation';
 const AboutUs: React.FC = () => {
   return (
     <body className='about'>
-      <PageNavigation productsType={'About Us'} />
+      <PageNavigation links={[{link: '/about', text: 'About us'}]} />
       <h1 className='page__title'>About Us</h1>
       <div className="about-container">
         <p className='section__text'>Welcome to Nice Gadgets, your ultimate destination for tech enthusiasts.

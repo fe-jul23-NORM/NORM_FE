@@ -33,6 +33,17 @@
     }
   }
 
+  &--danger {
+    border: 1px solid  $DangerColor;
+    background: $DangerColor;
+    color: $White;
+
+    &:hover {
+      border: 1px solid  $DangerColorHover;
+      background: $DangerColorHover;
+    }
+  }
+
   &:disabled,
   &[disabled] {
     cursor: not-allowed;

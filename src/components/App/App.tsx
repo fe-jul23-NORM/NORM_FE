@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from '../HOC/Layout/Layout';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import Cart from '../Cart/Cart';
-import { useAppDispatch, useAppSelector } from '../../store';
+import { useAppDispatch } from '../../store';
 import FavouritesPage from '../pages/FavouritesPage/FavouritesPage';
 import '../../utils/_reset.scss';
 import HomePage from '../pages/HomePage/HomePage';
@@ -14,15 +14,13 @@ import RegisterPage from '../pages/RegisterPage/RegisterPage'
 import AuthLayout from '../HOC/AuthLayout/AuthLayout';
 import { Loader } from '../Loader/Loader';
 import ItemCard from '../ItemCard/ItemCard';
-import { selectAllProducts } from '../../store/products/selectors';
-import { Product } from '../../types/product.types';
-// import { addToFavorites } from '../../store/products/slice';
-import { selectAuthLoading } from '../../store/auth/selectors';
+import 'react-toastify/dist/ReactToastify.css';
 import CatalogPage from '../pages/CatalogPage/CatalogPage';
 import AboutUs from '../About-us/About-us';
 import { initThunk } from '../../store/core/thunks';
 import RequiredAuth from '../HOC/RequiredAuth/RequiredAuth';
 import OrdersPage from '../pages/OrdersPage/OrdersPage';
+import { errorManager } from '../../utils/errorManager';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -33,8 +31,7 @@ function App() {
     dispatch(initThunk())
       .unwrap()
       .catch((e) => {
-        // TODO
-        console.log(e);
+        errorManager(e);
       })
       .finally(() => {
         setLoading(false);

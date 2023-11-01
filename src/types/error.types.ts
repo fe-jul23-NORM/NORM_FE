@@ -13,7 +13,20 @@ export enum ErrorEnum {
   UndefinedToken = 'UNDEFINED_TOKEN',
   TokenExpired = 'TOKEN_EXPIRED',
   NotAuthorized = 'NOT_AUTHORIZED',
-  EmptyCard = 'EMPTY_CART',
+  EmptyCart = 'EMPTY_CART',
   UndefinedProduct = 'UNDEFINED_PRODUCT',
   AlreadyInFavorites = 'ALREADY_IN_FAVORITES',
+}
+
+export enum ErrorNotificationEnum {
+  InvalidData = 'Invalid data',
+  WrongLoginPassword = 'Wrong login or password',
+  UserAlreadyExist = 'User already exists',
+  UndefinedToken = 'Undefined token',
+  TokenExpired = 'Token expired',
+  NotAuthorized = 'Not authorized',
+  EmptyCart = 'Empty cart',
+  UndefinedProduct = 'Product not found',
+  AlreadyInFavorites = 'Already in favorites',
+  SomethingWentWrong = 'Something went wrong',
 }
