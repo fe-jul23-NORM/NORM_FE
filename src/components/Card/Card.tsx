@@ -27,6 +27,7 @@ const Card: React.FC<Props> = ({ product }) => {
     capacity,
     image,
     id,
+    itemId,
   } = product;
 
   const dispatch = useAppDispatch();
@@ -69,8 +70,7 @@ const Card: React.FC<Props> = ({ product }) => {
   }, [user, isFavourite]);
 
   const handleNavigate = () => {
-    navigate(`/${id}`);
-    window.location.reload();
+    navigate(`/${itemId}`);
   }
 
   return (
