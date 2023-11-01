@@ -70,7 +70,8 @@ const Card: React.FC<Props> = ({ product }) => {
   }, [user, isFavourite]);
 
   const handleNavigate = () => {
-    navigate(`/${itemId}`);
+    navigate(`/${id}`);
+    window.location.reload();
   }
 
   return (

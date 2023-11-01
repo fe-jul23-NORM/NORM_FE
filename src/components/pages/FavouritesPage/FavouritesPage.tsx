@@ -14,20 +14,7 @@ const FavouritesPage: React.FC = () => {
 
         <div className="favourites__top">
           <div className="favourites__nav">
-
-            {/* <a href="/" className="favourites__nav-icon">
-              <img src="https://i.imgur.com/WmTuk3L.png" alt="home" />
-            </a>
-
-            <img
-              src="https://i.imgur.com/zNeLDRA.png"
-              alt="arrow-right"
-              className="favourites__nav-icon" />
-
-            <span className="favourites__nav-text">
-              Favourites
-            </span> */}
-            <PageNavigation productsType='Favorites' />
+            <PageNavigation links={[{ link: 'favourites', text: 'Favourites' }]} />
           </div>
 
           <h1 className='favourites__title'>

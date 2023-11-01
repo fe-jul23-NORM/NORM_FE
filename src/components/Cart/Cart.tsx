@@ -7,6 +7,7 @@ import { CartProduct } from "../../types/product.types";
 import { setStateCart, getTotalQuantity } from "../../store/cart/slice";
 import BackButton from '../BackButton/BackButton';
 import Button from '../Button/Button';
+import PageNavigation from "../PageNavigation/PageNavigation";
 import { selectUser } from "../../store/auth/selectors";
 import Input from "../Input/Input";
 import { EMAIL_REGEX } from "../../constants/regex";
@@ -44,7 +45,9 @@ const Cart: React.FC = () => {
 
   return (
     <div className="cart">
-
+      <div className="cart__nav">
+        <PageNavigation links={[{ link: 'cart', text: 'Cart' }]} />
+      </div>
       <BackButton />
 
       <h1 className="cart__title">Cart</h1>
@@ -68,7 +71,6 @@ const Cart: React.FC = () => {
                 <span className="cart__number">{`$${totalPrice}`}</span>
                 <span className="cart__total">{`Total for ${numberOfProducts} ${numberOfProducts === 1 ? 'item' : 'items'}`}</span>
               </div>
-
               {!user &&
                 <div className="cart__input">
                   <Input
@@ -81,7 +83,6 @@ const Cart: React.FC = () => {
                   />
                 </div>
               }
-
               <Button
                 handleClick={handleCheckout}
                 text='Checkout'
