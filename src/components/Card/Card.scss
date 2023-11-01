@@ -14,7 +14,8 @@
   font-style: normal;
 
   &__img {
-    margin: 0 32px;
+    display: block;
+    margin: 0 auto;
     max-width: 208px;
     max-height: 196px;
     cursor: pointer;
