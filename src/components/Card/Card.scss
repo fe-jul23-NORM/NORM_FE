@@ -1,13 +1,7 @@
 @import '../../utils/variable.scss';
 @import '../../utils/normalize.scss';
+@import '../../utils/mixins.scss';
 
-@mixin hover($property, $toValue) {
-  transition: #{$property} 0.3s;
-
-  &:hover {
-    #{$property}: $toValue;
-  }
-}
 
 .card {
   box-sizing: border-box;
@@ -35,6 +29,10 @@
     line-height: 21px;
     padding-top: 24px;
     padding-bottom: 8px;
+    cursor: pointer;
+
+    @include hover(color, $Accent);
+
   }
 
   &__price {  

@@ -23,6 +23,6 @@
     font-weight: 500;
     align-items: center;
 
-    @include hover(transform, scale(1.2));
+    @include hover(color, $Primary);
   }
 }

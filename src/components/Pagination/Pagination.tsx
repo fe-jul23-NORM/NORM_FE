@@ -67,10 +67,6 @@ const Pagination: React.FC<Props> = (props: Props) => {
     });
   };
 
-  const handleClick = () => {
-    scrollToTop();
-  }
-
   return (
     <section className="pagination">
       <Link

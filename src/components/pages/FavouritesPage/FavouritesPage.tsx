@@ -2,6 +2,7 @@ import React from 'react';
 import Card from '../../Card/Card';
 import './FavouritesPage.scss';
 import { useAppSelector } from '../../../store';
+import PageNavigation from '../../PageNavigation/PageNavigation';
 
 const FavouritesPage: React.FC = () => {
   const favourites = useAppSelector(state => state.product.favourites);
@@ -14,7 +15,7 @@ const FavouritesPage: React.FC = () => {
         <div className="favourites__top">
           <div className="favourites__nav">
 
-            <a href="/" className="favourites__nav-icon">
+            {/* <a href="/" className="favourites__nav-icon">
               <img src="https://i.imgur.com/WmTuk3L.png" alt="home" />
             </a>
 
@@ -25,7 +26,8 @@ const FavouritesPage: React.FC = () => {
 
             <span className="favourites__nav-text">
               Favourites
-            </span>
+            </span> */}
+            <PageNavigation productsType='Favorites' />
           </div>
 
           <h1 className='favourites__title'>
