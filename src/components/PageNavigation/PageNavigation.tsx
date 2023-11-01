@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from 'react';
 import './PageNavigation.scss'
 import { normalizeQuery } from "../../utils/functions";
 import { NavLink } from "react-router-dom";
@@ -9,13 +9,13 @@ type NavigationPrpos = {
 };
 
 type Props = {
-  productsType?: string;
-  productName?: string;
   links?: NavigationPrpos[],
 }
 
 
 const PageNavigation: React.FC<Props> = ({ links }) => {
+  const id = useId();
+  
   return (
     <div className="catalog__nav">
       <NavLink to="/" className="catalog__nav-icon">
@@ -24,12 +24,12 @@ const PageNavigation: React.FC<Props> = ({ links }) => {
 
       {links?.map(link => {
         return (
-          <>
+          <React.Fragment key={`${id}-${link.text}`}>
             <span className="icon-right" aria-hidden="true"></span>
             <NavLink to={link.link} className="catalog__nav-text">
               {normalizeQuery(link.text)}
             </NavLink>
-          </>
+          </React.Fragment>
         )
       })}
     </div>

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AuthState } from "./types";
-import { login, refresh, register } from './thunks';
+import { login, logout, refresh, register } from './thunks';
 import { initThunk } from '../core/thunks';
 
 const initialState: AuthState = {
@@ -42,6 +42,9 @@ export const authSlice = createSlice({
       })
       .addCase(refresh.rejected, (state) => {
         state.isLoading = false;
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.user = null;
       })
       .addCase(refresh.fulfilled, (state, { payload }) => {
         state.isLoading = false;

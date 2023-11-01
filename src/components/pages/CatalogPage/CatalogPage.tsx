@@ -49,7 +49,7 @@ const CatalogPage: React.FC<Props> = ({ product }) => {
       <div className="head-container">
 
         <div className="title-container">
-          <PageNavigation links={[{ link: productsType, text: productsType }]} />
+          <PageNavigation links={[{ link: `/${productsType}`, text: productsType }]} />
           <h1 className='page__title'>
             {normalizeQuery(productsType)}
           </h1>

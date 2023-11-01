@@ -8,6 +8,8 @@ import { getRegisterValidation } from '../../../validation/auth.validation';
 import { IRegister } from '../../../types/auth.types';
 import { selectAuthLoading, selectUser } from '../../../store/auth/selectors';
 import { useNavigate } from 'react-router';
+import { NavLink } from 'react-router-dom';
+import { errorManager } from '../../../utils/errorManager';
 
 const initialValues = {
   firstName: '',
@@ -57,8 +59,7 @@ const RegisterPage: React.FC = () => {
       navigate('/')
       })
       .catch((e) => {
-        //TODO
-        console.log(e);
+        errorManager(e);
       })
     
   };
@@ -138,7 +139,7 @@ const RegisterPage: React.FC = () => {
             
             <div className="register-page-link-wrapper">
               <span>Already have an account?</span>
-              <a href="/login" className="register-page-link">Sign in</a>
+              <NavLink to="/login" className="register-page-link">Sign in</NavLink>
             </div>
           </form>
         </div>

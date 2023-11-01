@@ -1,0 +1,31 @@
+@import "../../../utils/variable";
+@import "../../../utils/mixins";
+
+.checkout {
+  padding: 20px;
+  min-width: 320px;
+
+  &__title {
+    @include title();
+    font-size: 18px;
+    margin: 10px 0 15px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  &__text {
+    color: $Secondary;
+    margin-bottom: 20px;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+
+    @include onTablet() {
+      flex-direction: row;
+    }
+  }
+}

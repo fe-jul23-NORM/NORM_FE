@@ -14,7 +14,7 @@ const FavouritesPage: React.FC = () => {
 
         <div className="favourites__top">
           <div className="favourites__nav">
-            <PageNavigation links={[{ link: 'favourites', text: 'Favourites' }]} />
+            <PageNavigation links={[{ link: '/favourites', text: 'Favourites' }]} />
           </div>
 
           <h1 className='favourites__title'>

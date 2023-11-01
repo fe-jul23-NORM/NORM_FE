@@ -7,13 +7,17 @@ type Props = {
   handleClick: (e: React.MouseEvent) => void,
   disabled?: boolean,
   isSelected?: boolean,
+  isDanger?: boolean,
 }
 
-const Button: React.FC<Props> = ({ text, handleClick, disabled, isSelected }) => {
-
+const Button: React.FC<Props> = ({text, handleClick, disabled, isSelected, isDanger}) => {
+  
   return (
     <button
-      className={classNames("cart-button", {"cart-button--selected": isSelected})}
+      className={classNames('cart-button', {
+        'cart-button--selected': isSelected,
+        'cart-button--danger': isDanger,
+      })}
       onClick={handleClick}
       disabled={disabled}
     >

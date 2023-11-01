@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import CartItem from "./CartItem/CartItem";
 import './Cart.scss';
 import { useAppDispatch, useAppSelector } from "../../store";
-import { createOrderByGuest, createOrderByUser } from "../../store/cart/thunks";
-import { CartProduct } from "../../types/product.types";
 import { setStateCart, getTotalQuantity } from "../../store/cart/slice";
 import BackButton from '../BackButton/BackButton';
 import Button from '../Button/Button';
@@ -11,11 +9,16 @@ import PageNavigation from "../PageNavigation/PageNavigation";
 import { selectUser } from "../../store/auth/selectors";
 import Input from "../Input/Input";
 import { EMAIL_REGEX } from "../../constants/regex";
+import { selectCartLoading } from '../../store/cart/selectors';
+import Modal from '../Modal/Modal';
+import CheckoutModal from './CheckoutModal/CheckoutModal';
 
 const Cart: React.FC = () => {
+  const isLoading = useAppSelector(selectCartLoading)
   const cart = useAppSelector(state => state.cart.cart);
   const numberOfProducts = useAppSelector((state) => state.cart.totalQuantity);
   const user = useAppSelector(selectUser);
+  const [isCheckoutOpen, setCheckoutModal] = useState(false);
   const [guestEmail, setGuestEmail] = useState('');
   const [isError, setIsError] = useState(true);
 
@@ -29,13 +32,9 @@ const Cart: React.FC = () => {
     dispatch(setStateCart(cart));
     dispatch(getTotalQuantity());
   }, []);
-
-  const handleCheckout = () => {
-    if (user) {
-      dispatch(createOrderByUser())
-    } else {
-      dispatch(createOrderByGuest(guestEmail))
-    }
+  
+  const handleOpenCheckout = () => {
+    setCheckoutModal(!isCheckoutOpen);
   }
 
   const handleGuestEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,8 +44,18 @@ const Cart: React.FC = () => {
 
   return (
     <div className="cart">
+      {isCheckoutOpen && (
+        <Modal
+          outsideHandler={handleOpenCheckout}
+          closeFunc={handleOpenCheckout}
+          withCloseIcon
+        >
+          <CheckoutModal onClose={handleOpenCheckout} email={guestEmail}/>
+        </Modal>
+      )}
+      
       <div className="cart__nav">
-        <PageNavigation links={[{ link: 'cart', text: 'Cart' }]} />
+        <PageNavigation links={[{ link: '/cart', text: 'Cart' }]} />
       </div>
       <BackButton />
 
@@ -84,9 +93,9 @@ const Cart: React.FC = () => {
                 </div>
               }
               <Button
-                handleClick={handleCheckout}
+                handleClick={handleOpenCheckout}
                 text='Checkout'
-                disabled={!user ? isError : false}
+                disabled={isLoading ? true : !user ? isError : false}
               />
             </div>
           </div>
