@@ -122,7 +122,7 @@ const Card: React.FC<Props> = ({ product }) => {
       <div className="card__footer">
         <Button
           isSelected={isSelected}
-          text={'Add to cart'}
+          text={isSelected ? 'Added to to cart' : 'Add to cart'}
           handleClick={addItemToCart}
         />
 
