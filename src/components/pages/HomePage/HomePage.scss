@@ -1,5 +1,13 @@
 @import "../../../utils/mixins";
 
+@mixin hover($property, $toValue) {
+    transition: #{$property} 0.3s;
+
+    &:hover {
+        #{$property}: $toValue;
+    }
+}
+
 .main {
     box-sizing: border-box;
     display: flex;
@@ -105,14 +113,6 @@
         font-style: normal;
         font-weight: 700;
         cursor: pointer;
-
-        @media screen and (min-width: 916px) {
-            &:hover {
-                transition: transform 1s ease;
-
-                transform: scale(1.05);
-            }
-        }
     }
 
     &__count {
@@ -148,11 +148,8 @@
             width: 288px;
             height: 288px;
 
-            &:hover {
-                transition: transform 1s ease;
-
-                transform: scale(1.05);
-            }
+            @include hover(box-shadow, scale(1.2));
+            @include hover(transform, scale(1.05));
         }
 
         @media screen and (min-width: 1170px) {
@@ -160,11 +157,23 @@
             height: 368px;
             border-radius: 0;
 
-            &:hover {
-                transition: transform 1s ease;
-
-                transform: scale(1.05);
-            }
+            @include hover(box-shadow, scale(1.2));
+            @include hover(transform, scale(1.05));
         }
     }
+}
+
+// .swiper-container {
+//     // overflow: visible;
+// }
+
+// .swiper-slide {
+//     opacity: 0;
+//     visibility: hidden;
+// }
+
+.swiper-slide.swiper-slide-active,
+.swiper-slide.swiper-slide-next,
+.swiper-slide.swiper-slide-prev {
+    overflow: visible;
 }

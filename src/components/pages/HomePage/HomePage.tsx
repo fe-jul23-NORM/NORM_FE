@@ -60,7 +60,7 @@ const HomePage = () => {
                 <div className="new-models__swiper">
                     <Swiper
                         modules={[Navigation, A11y, Autoplay]}
-                        autoplay
+                        // autoplay
                         loop
                         breakpoints={SLIDER_BREAKPOINTS}
                         navigation={{
@@ -77,7 +77,7 @@ const HomePage = () => {
                 </div>
             </section>
             <section className="categories">
-                <h1 className="categories__title title">Shop by category</h1>
+                <h1 className="categories__main--title title">Shop by category</h1>
                 <div className="categories__wrapper">
                     <article className="categories__phones block">
                         <img
@@ -143,6 +143,7 @@ const HomePage = () => {
                         modules={[Navigation, A11y, Autoplay]}
                         autoplay
                         loop
+                        spaceBetween={20}
                         breakpoints={SLIDER_BREAKPOINTS}
                         navigation={{
                             nextEl: '.hot-prices__button-right',
