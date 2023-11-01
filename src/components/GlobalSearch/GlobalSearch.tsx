@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectGlobalSearchProducts } from '../../store/products/selectors';
 import { BASE_URI } from '../../constants/core';
 import { PrimeReactProvider } from 'primereact/api';
-import { AutoComplete } from "primereact/autocomplete";
+import { AutoComplete, AutoCompleteCompleteEvent, AutoCompleteSelectEvent } from "primereact/autocomplete";
 import { Product } from '../../types/product.types';
 import { useNavigate } from 'react-router';
 
@@ -15,23 +15,23 @@ const GlobalSearch: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const products = useSelector(selectGlobalSearchProducts);
-  const handleChange = (value: string) => {
-    const searchStr = value;
+  const handleChange = (event: AutoCompleteCompleteEvent) => {
+    event.originalEvent.preventDefault();
+    const searchStr = event.query;
 
     if (searchStr) {
-      setValue(() => {
-        return {
-          name: searchStr,
-        }
-      })
+      setValue({ name: searchStr })
     }
   };
 
   useEffect(() => {
-    const delay = setTimeout(() => {
-      dispatch(getFoundProductsThunk(value.name));  
-    });  
-    return () => clearTimeout(delay);
+    if (value.name) {
+      const delay = setTimeout(() => {
+        dispatch(getFoundProductsThunk(value.name));  
+      });  
+
+      return () => clearTimeout(delay);
+    }
   }, [value]);
 
   const itemTemplate = (item: Product) => {
@@ -50,7 +50,10 @@ const GlobalSearch: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const hendleSelectItem = (item: Product) => {
+  const handleSelectItem = (event: AutoCompleteSelectEvent) => {
+    event.originalEvent?.preventDefault();
+    setValue({ name: '' });
+    const item = event.value;
     navigate(`/${item.itemId}`);
   }
 
@@ -60,8 +63,8 @@ const GlobalSearch: React.FC = () => {
         <AutoComplete field="name" 
           value={value}   
           suggestions={products} 
-          completeMethod={(event => (handleChange(event.query)))} 
-          onChange={(e) => hendleSelectItem(e.value)} 
+          completeMethod={handleChange} 
+          onSelect={handleSelectItem} 
           placeholder="Search"
           itemTemplate={itemTemplate}
         />      
