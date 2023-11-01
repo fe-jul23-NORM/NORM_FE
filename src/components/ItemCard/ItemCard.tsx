@@ -18,7 +18,7 @@ import { normalizeQuery } from '../../utils/functions';
 import { CartProduct, CurrentProduct, Product } from '../../types/product.types';
 import BackButton from '../BackButton/BackButton';
 import { addToFavourites, removeFromFavourites } from '../../store/products/slice';
-import { shallowEqual, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { addToCart } from '../../store/cart/slice';
 import { errorManager } from '../../utils/errorManager';
 import { getNotification } from '../../utils/notification';
@@ -46,11 +46,13 @@ const ItemCard: React.FC = () => {
   }) || [''];
 
   const cart: CartProduct[] = useAppSelector(selectCart);
-  const isSelected = useMemo(() => cart.some(({ id }) => id === product?.productPassport.id), [cart]);
-  const favourites: Product[] = useSelector(selectFavorites, shallowEqual);
+  console.log(cart, 'cart')
+  const isSelected = useMemo(() => cart.some(({ id }) => id === product?.productPassport.id), [cart, id, product]);
+  console.log(isSelected, 'isSelected');
+  const favourites: Product[] = useSelector(selectFavorites);
   const isFavourite = useMemo(() => {
     return favourites.some(({ id }) => id === product?.productPassport.id);
-  }, [favourites, id]);
+  }, [favourites, id, product]);
   const user = useAppSelector(state => state.auth.user);
 
   const addItemToCart = (e: React.MouseEvent) => {
@@ -60,7 +62,7 @@ const ItemCard: React.FC = () => {
       getNotification(NotificationEnum.ProductInCart, NotificationTypeEnum.success)
       dispatch(addToCart(product.productPassport));
       
-      const updatedCart = [...cart, { ...product, quantity: 1 }];
+      const updatedCart = [...cart, { ...product.productPassport, quantity: 1 }];
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
   }
