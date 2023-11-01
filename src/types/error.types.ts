@@ -20,7 +20,7 @@ export enum ErrorEnum {
 
 export enum ErrorNotificationEnum {
   InvalidData = 'Invalid data',
-  WrongLoginPassword = 'Wrong login or password',
+  WrongLoginPassword = 'Wrong email or password',
   UserAlreadyExist = 'User already exists',
   UndefinedToken = 'Undefined token',
   TokenExpired = 'Token expired',

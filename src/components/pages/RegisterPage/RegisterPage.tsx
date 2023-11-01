@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './RegisterPage.scss';
 import Input from '../../Input/Input';
 import Button from '../../Button/Button';
@@ -36,7 +36,7 @@ const RegisterPage: React.FC = () => {
     }
   }, [user])
   
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues(prev => {
       const newState = {
         ...prev,
@@ -48,7 +48,7 @@ const RegisterPage: React.FC = () => {
         errors: getRegisterValidation(newState)
       }
     })
-  }, []);
+  };
   
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
