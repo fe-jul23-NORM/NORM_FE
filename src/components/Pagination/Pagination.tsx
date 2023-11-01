@@ -76,7 +76,7 @@ const Pagination: React.FC<Props> = (props: Props) => {
           { 'pagination__button--disabled': +page === 1 },
         )}
       >
-        <span>&#60;</span>
+        <span className="icon-left" aria-hidden="true"></span>
       </Link>
 
       <ul className="pagination__list">
@@ -109,7 +109,7 @@ const Pagination: React.FC<Props> = (props: Props) => {
           },
         )}
       >
-        <span>&#62;</span>
+        <span className="icon-right" aria-hidden="true"></span>
       </Link>
     </section>
   );

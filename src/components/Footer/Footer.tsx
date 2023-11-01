@@ -31,11 +31,12 @@ const Footer: React.FC = () => {
           onClick={() => scrollToTop()}
         >
           <p className='button_scroll--text'>Back to top</p>
-          <img
+          {/* <img
             src="https://i.imgur.com/43nHath.png"
             className="button__scroll--icon"
             alt="Go To Top button"
-          />
+          /> */}
+          <span className="icon-up button__scroll--icon" aria-hidden="true"></span>
         </button>
       </div>
     </>

@@ -68,7 +68,7 @@ $Elements: #E2E6E9;
   display: flex;
   flex-direction: row;
   column-gap: 16px;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 0;
 
@@ -84,6 +84,12 @@ $Elements: #E2E6E9;
   cursor: pointer;
 
   &--icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $Secondary;
+    color: $Secondary;
+    border-radius: 50%;
     height: 32px;
     width: 32px;
 
@@ -122,9 +128,5 @@ $Elements: #E2E6E9;
     justify-content: space-between;
 
     @include hover(transform, scale(1.2));
-  }
-
-  .button__scroll {
-    justify-content: center;
   }
 }

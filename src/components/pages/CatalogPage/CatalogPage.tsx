@@ -1,57 +1,22 @@
 import React, { useEffect } from 'react';
-import './Catalog.scss';
-import Card from '../Card/Card';
-import { useAppDispatch, useAppSelector } from '../../store';
-import { selectAllProducts, selectProductsCount } from '../../store/products/selectors';
-import { getProductsThunk } from '../../store/products/thunks';
-import { ProductTypesEnum, SortProductByEnum } from '../../types/product.types';
-import Pagination from '../Pagination/Pagination';
+import './CatalogPage.scss';
+import Card from '../../Card/Card';
+import { useAppDispatch, useAppSelector } from '../../../store';
+import { selectAllProducts, selectProductsCount } from '../../../store/products/selectors';
+import { getProductsThunk } from '../../../store/products/thunks';
+import { SortProductByEnum } from '../../../types/product.types';
+import Pagination from '../../Pagination/Pagination';
 import { useSearchParams } from 'react-router-dom';
-import { Dropdown } from '../Dropdown/Dropdown';
-
-const itemsOnPageOptions = ['8', '16', '32', 'All'];
-
-const isPlural = (number: number) => {
-  const stringTotal = number.toString();
-
-  if (stringTotal[stringTotal.length - 1] !== '1') {
-    return true;
-  }
-
-  return false;
-};
-
-const normalizeQuery = (query: string) => {
-  return `${query[0].toUpperCase()}${query.slice(1)}`
-};
-
-const setSortBy = (value: string) => {
-  if (value === 'age') {
-    return SortProductByEnum.Age;
-  }
-  if (value === 'name') {
-    return SortProductByEnum.Name;
-  }
-
-  return SortProductByEnum.Price;
-};
-
-const setProductsType = (product: string) => {
-  if (product === ProductTypesEnum.Phones) {
-    return ProductTypesEnum.Phones;
-  }
-  if (product === ProductTypesEnum.Accessories) {
-    return ProductTypesEnum.Accessories;
-  }
-
-  return ProductTypesEnum.Tablets;
-};
+import { Dropdown } from '../../Dropdown/Dropdown';
+import PageNavigation from '../../PageNavigation/PageNavigation';
+import { isPlural, normalizeQuery, setProductsType, setSortBy } from '../../../utils/functions';
+import { itemsOnPageOptions } from '../../../utils/constants';
 
 type Props = {
   product: string,
 }
 
-const Catalog: React.FC<Props> = ({ product }) => {
+const CatalogPage: React.FC<Props> = ({ product }) => {
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts);
   const totalProducts = useAppSelector(selectProductsCount);
@@ -84,19 +49,7 @@ const Catalog: React.FC<Props> = ({ product }) => {
       <div className="head-container">
 
         <div className="title-container">
-          <div className="catalog__nav">
-            <a href="/" className="catalog__nav-icon">
-              <img src="https://i.imgur.com/WmTuk3L.png" alt="home" />
-            </a>
-            <img
-              src="https://i.imgur.com/zNeLDRA.png"
-              alt="arrow-right"
-              className="catalog__nav-icon" />
-
-            <a href="/" className="catalog__nav-text">
-              {normalizeQuery(productsType)}
-            </a>
-          </div>
+          <PageNavigation productsType={normalizeQuery(productsType)} />
           <h1 className='page__title'>
             {normalizeQuery(productsType)}
           </h1>
@@ -144,4 +97,4 @@ const Catalog: React.FC<Props> = ({ product }) => {
   )
 }
 
-export default Catalog;
+export default CatalogPage;

@@ -3,10 +3,9 @@ import './App.scss';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from '../HOC/Layout/Layout';
-import Catalog from '../Catalog/Catalog';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import Cart from '../Cart/Cart';
-import { useAppDispatch } from '../../store';
+import { useAppDispatch, useAppSelector } from '../../store';
 import FavouritesPage from '../pages/FavouritesPage/FavouritesPage';
 import '../../utils/_reset.scss';
 import HomePage from '../pages/HomePage/HomePage';
@@ -15,12 +14,19 @@ import RegisterPage from '../pages/RegisterPage/RegisterPage'
 import { refresh } from '../../store/auth/thunks';
 import AuthLayout from '../HOC/AuthLayout/AuthLayout';
 import { Loader } from '../Loader/Loader';
+import { selectAllProducts } from '../../store/products/selectors';
+import { Product } from '../../types/product.types';
+import { addToFavorites } from '../../store/products/slice';
+import { selectAuthLoading } from '../../store/auth/selectors';
+import CatalogPage from '../pages/CatalogPage/CatalogPage';
+import AboutUs from '../About-us/About-us';
 
 function App() {
   const dispatch = useAppDispatch();
 
   const allProducts = useAppSelector(selectAllProducts)
-  const isLoading = useAppSelector((state) => state.product.isLoading)
+  const [isLoading, setLoading] = useState(true);
+
   
 
   // const handleClick = (product: IProduct) => {
@@ -51,11 +57,12 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route path='/' element={<HomePage />} />
-            <Route path='/phones' element={<Catalog product={'phones'} />} />
-            <Route path='/tablets' element={<Catalog product={'tablets'} />} />
-            <Route path='/accessories' element={<Catalog product={'accessories'} />} />
+            <Route path='/phones' element={<CatalogPage product={'phones'} />} />
+            <Route path='/tablets' element={<CatalogPage product={'tablets'} />} />
+            <Route path='/accessories' element={<CatalogPage product={'accessories'} />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/favourites' element={<FavouritesPage />} />
+            <Route path='/about' element={<AboutUs />} />
             <Route path='*' element={<NotFoundPage />} />
           </Route>
           <Route path='/' element={<AuthLayout/>}>
