@@ -8,10 +8,9 @@ import { useAppDispatch } from "../../../store";
 
 type Props = {
   item: CartProduct,
-  handleSetCart: (items: CartProduct[]) => void;
 }
 
-const CartItem: React.FC<Props> = ({ item, handleSetCart }) => {
+const CartItem: React.FC<Props> = ({ item }) => {
   const { name, quantity, image, price } = item;
   const totalProductPrice = price * quantity;
   const dispatch = useAppDispatch();
@@ -23,7 +22,6 @@ const CartItem: React.FC<Props> = ({ item, handleSetCart }) => {
 
     const updatedCart = cart.filter(({ id }) => id !== item.id);
     localStorage.setItem('cart', JSON.stringify(updatedCart));
-    handleSetCart(updatedCart);
   }
 
   const handeleIncrementQuantity = () => {
@@ -35,7 +33,6 @@ const CartItem: React.FC<Props> = ({ item, handleSetCart }) => {
       const updatedProduct = {...currentProduct, quantity: currentProduct?.quantity + 1}
       const updatedCart = cart.map((product) => product.id !== currentProduct.id ? product : updatedProduct);
       localStorage.setItem('cart', JSON.stringify(updatedCart));
-      handleSetCart(updatedCart);
     }
   }
 
@@ -48,7 +45,6 @@ const CartItem: React.FC<Props> = ({ item, handleSetCart }) => {
       const updatedProduct = {...currentProduct, quantity: currentProduct?.quantity - 1}
       const updatedCart = cart.map((product) => product.id !== currentProduct.id ? product : updatedProduct);
       localStorage.setItem('cart', JSON.stringify(updatedCart));
-      handleSetCart(updatedCart);
     }
   }
 

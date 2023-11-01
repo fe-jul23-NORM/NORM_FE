@@ -8,6 +8,7 @@ import {
   getRecommendedProductsThunk,
   getFoundProductsThunk,
   removeFavouriteThunk,
+  getProductsCategoryCountThunk,
 } from './thunks';
 
 const initialState: ProductState = {
@@ -20,6 +21,11 @@ const initialState: ProductState = {
   recommended: [],
   globalSearchProducts: [],
   favourites: [],
+  productsCount: {
+    phones: 0,
+    tablets: 0,
+    accessories: 0
+  },
 };
 
 
@@ -84,6 +90,9 @@ export const productSlice = createSlice({
       })
       .addCase(removeFavouriteThunk.fulfilled, (state, {payload}) => {
         state.favourites = state.favourites.filter(({ id }) => id !== payload);
+      })
+      .addCase(getProductsCategoryCountThunk.fulfilled, (state, {payload}) => {
+        state.productsCount = {...payload};
       });
   }
 })

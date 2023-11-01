@@ -78,6 +78,12 @@ export interface ProductsQuery {
   sortBy?: SortProductByEnum
 }
 
+export interface ProductsCount {
+  phones: number,
+  tablets: number,
+  accessories: number,
+}
+
 export enum OrderStatusEnum {
   Created = 'created',
   Processing = 'processing',
