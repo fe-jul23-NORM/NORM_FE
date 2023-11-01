@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AuthState } from "./types";
 import { login, refresh, register } from './thunks';
+import { initThunk } from '../core/thunks';
 
 const initialState: AuthState = {
   isLoading: true,
@@ -35,6 +36,9 @@ export const authSlice = createSlice({
       })
       .addCase(refresh.pending, (state) => {
         state.isLoading = true;
+      })
+      .addCase(initThunk.fulfilled, (state) => {
+        state.isLoading = false;
       })
       .addCase(refresh.rejected, (state) => {
         state.isLoading = false;

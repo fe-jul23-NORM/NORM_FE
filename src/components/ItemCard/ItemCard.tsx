@@ -1,16 +1,72 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './ItemCard.scss';
 import Button from '../Button/Button';
 import Heart from '../Heart/Heart';
-import { AvailableColors } from '../../types/availableColors';
-import { Capacity } from '../../types/capacity';
+import { getCurrentProductThunk, getDiscountProductsThunk } from '../../store/products/thunks';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { useNavigate, useParams } from 'react-router-dom';
+import { selectCurrentProduct, selectDiscountProducts } from '../../store/products/selectors';
+import { BASE_URI, SLIDER_BREAKPOINTS } from '../../constants/core';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Navigation, A11y, Autoplay } from 'swiper/modules';
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import Card from '../Card/Card';
+import { selectCart } from '../../store/cart/selectors';
+import { CartProduct } from '../../types/product.types';
 
 
 const ItemCard: React.FC = () => {
-  const availableColors = Object.entries(AvailableColors);
-  const capacity = Object.entries(Capacity);
+  const dispatch = useAppDispatch();
+  const product = useAppSelector(selectCurrentProduct);
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const capacityWithColor = product?.id.split(product.namespaceId) || ['', ''];
+  const hotPrices = useAppSelector(selectDiscountProducts);
 
+  let currentColor = product?.color || 'null';
+
+  if (product?.color.includes(' ')) {
+    currentColor = product?.color.split(' ').join('-');
+  }
+
+  const availibleColors = product?.colorsAvailable.map(color => {
+    if (color.includes(' ')) {
+      return color.split(' ').join('-');
+    }
+    return color;
+  }) || [''];
+
+  // const isSelected = useMemo(() => cart.some(({ id }) => id === product.id), [cart]);
+
+  // const addItemToCart = useCallback(() => {
+  //   if (!isSelected) {
+  //     dispatch(addToCart(product));
+
+  //     const updatedCart = [...cart, { ...product, quantity: 1 }];
+  //     localStorage.setItem('cart', JSON.stringify(updatedCart));
+  //   }
+  // }, [isSelected, cart])
+
+
+  const actualCapacity = capacityWithColor[1].split('-')[1];
+  console.log(product);
+
+
+  useEffect(() => {
+    dispatch(getCurrentProductThunk(id as string))
+      .unwrap()
+      .catch(e => {
+        // TODO
+        console.log(e);
+        navigate('/');
+      });
+    dispatch(getDiscountProductsThunk());
+  }, []);
+
+  const [mainImage, setMainImage] = useState(0);
   return (
+    product && (
       <div className='item-card'>
         <div className="item-card__nav">
           <a href="/" className="item-card__nav-icon">
@@ -30,7 +86,7 @@ const ItemCard: React.FC = () => {
             className="item-card__nav-icon" />
 
           <a href="#" className="item-card__nav-textPhone">
-            Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
+            {product?.name}
           </a>
         </div>
         <div className="item-card__back">
@@ -44,47 +100,47 @@ const ItemCard: React.FC = () => {
           </a>
         </div>
         <p className="item-card__title">
-          Apple iPhone 11 Pro Max  64GB Gold (iMT9G2FS/A)
+          {product?.name}
         </p>
 
         <div className="container">
           <div className="container__images">
-            <img className="container__images-main"
-              src="/images/card/item-card-main.png"
-              alt="phone"
-            />
+            <div className="container__images-main-img">
+              <img className="container__images-main"
+                src={`${BASE_URI}/${product.images[mainImage]}`}
+                alt="phone"
+              />
+            </div>
+            {/* // {mainImage === index && } */}
 
             <div className="container__images-miniatures">
-              <img
-                className="container__images-miniatures-item"
-                src="/images/card/miniature.png"
-                alt="phone"
-              />
+              {product?.images.map((image, index) => {
+                if (mainImage === index) {
+                  return (
+                    <div key={index} className="container__images-miniatures-cont">
+                      <img
+                        className="container__images-miniatures-item"
+                        style={{ border: `1px solid #000` }}
+                        src={`${BASE_URI}/${image}`}
+                        alt="phone"
+                        onClick={() => { setMainImage(index) }}
+                      />
+                    </div>
+                  )
+                }
+                return (
+                  <div key={index} className="container__images-miniatures-cont">
+                    <img
+                      className="container__images-miniatures-item"
+                      src={`${BASE_URI}/${image}`}
+                      alt="phone"
+                      onClick={() => { setMainImage(index) }}
+                    />
+                  </div>
+                )
+              })}
 
-              <img
-                className="container__images-miniatures-item"
-                src="/images/card/miniature.png"
-                alt="phone"
-              />
 
-              <img
-                className="container__images-miniatures-item"
-                src="/images/card/miniature.png"
-                alt="phone"
-              />
-
-
-              <img
-                className="container__images-miniatures-item"
-                src="/images/card/miniature.png"
-                alt="phone"
-              />
-
-              <img
-                className="container__images-miniatures-item"
-                src="/images/card/miniature.png"
-                alt="phone"
-              />
             </div>
           </div>
 
@@ -94,18 +150,38 @@ const ItemCard: React.FC = () => {
                 Available colors
               </span>
               <span className="container__info-availible-Id">
-                ID: 802390
+                {`ID: ${id}`}
               </span>
             </div>
 
             <div className="container__info-colors">
-              {availableColors.map(([key, value]) => (
-                <button 
-                  className="container__info-colors-color"
-                  style={{backgroundColor: `${value}`}}
-                  key={key}
-                />
-              ))}
+              {availibleColors.map((color, ind) => {
+                if (color === currentColor) {
+                  return (
+                    <button
+                      className="container__info-colors-color"
+                      style={{ 
+                        backgroundColor: `${color}`,
+                        border: `2px solid #000`,
+                        cursor: 'not-allowed',
+                      }}
+                      disabled
+                      key={ind}
+                    />
+                  )
+                }
+                return (
+                  <button
+                    className="container__info-colors-color"
+                    onClick={() => {
+                      navigate(`/${product.namespaceId}-${actualCapacity}-${color}`);
+                      window.location.reload();
+                    }}
+                    style={{ backgroundColor: `${color}` }}
+                    key={ind}
+                  />
+                )
+              })}
             </div>
 
             <hr />
@@ -116,14 +192,37 @@ const ItemCard: React.FC = () => {
               </div>
 
               <div className="container__info-capcity-set">
-                {capacity.map(([key, value]) => (
-                  <button
-                    className="gB"
-                    key={key}
-                  >
-                    {value}
-                  </button>
-                ))}
+                {product?.capacityAvailable.map((value, ind) => {
+                  if (actualCapacity === value.toLowerCase()) {
+                    return (
+                      <button
+                        className="gB"
+                        key={ind}
+                        style={{ 
+                          border: `2px solid #000`,
+                          cursor: 'not-allowed',
+                        }}
+                      >
+                        {value}
+                      </button>
+                    )
+                  }
+                  return (
+                    <button
+                      className="gB"
+                      key={ind}
+                      onClick={() => {
+                        navigate(`/${product.namespaceId}-${value.toLowerCase()}-${product.color}`);
+                        window.location.reload();
+                      }}
+                      style={{ 
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {value}
+                    </button>
+                  )
+                })}
               </div>
             </div>
 
@@ -131,17 +230,21 @@ const ItemCard: React.FC = () => {
 
             <div className="container__info-price">
               <p className="container__info-price-actual">
-                $999
+                {`$${product?.priceDiscount}`}
               </p>
 
               <p className="container__info-price-sale">
-                $999
+                {`$${product?.priceRegular}`}
               </p>
             </div>
 
             <div className="container__info-cart">
               <div className="container__info-cart-button">
-              {/* <Button /> */}
+                {/* <Button
+                  isSelected={isSelected}
+                  text={isSelected ? 'Added to to cart' : 'Add to cart'}
+                  handleClick={addItemToCart}
+                /> */}
               </div>
 
               <div className="container__info-cart-favourite">
@@ -155,7 +258,7 @@ const ItemCard: React.FC = () => {
                   Screen
                 </span>
                 <span className="description-item-value">
-                  6.5” OLED
+                  {product?.screen}
                 </span>
               </div>
 
@@ -164,7 +267,7 @@ const ItemCard: React.FC = () => {
                   Resolution
                 </span>
                 <span className="description-item-value">
-                  2688x1242
+                  {product?.resolution}
                 </span>
               </div>
 
@@ -173,7 +276,7 @@ const ItemCard: React.FC = () => {
                   Processor
                 </span>
                 <span className="description-item-value">
-                  Apple A12 Bionic
+                  {product?.processor}
                 </span>
               </div>
 
@@ -182,89 +285,50 @@ const ItemCard: React.FC = () => {
                   RAM
                 </span>
                 <span className="description-item-value">
-                  3 GB
+                  {product?.ram}
                 </span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="main">
-          <div className="main__about">
-            <p className="main__about-title">
+        <div className="main-item">
+          <div className="main-item__about">
+            <p className="main-item__about-title">
               About
             </p>
 
             <hr />
 
-            <div className="main__about-chapter">
-              <p className="main__about-chapter-title">
-                And then there was Pro
-              </p>
+            {product?.description.map((descript, ind) => {
+              return (
+                <div key={ind} className="main-item__about-chapter">
+                  <p className="main-item__about-chapter-title">
+                    {descript.title}
+                  </p>
 
-              <p className="main__about-chapter-description">
-                A transformative triple-camera system
-                that adds tons of capability withoutu
-                complexity.
-                <br />
-                <br />
-                An unprecedented leap in battery life.
-                And a mind-blowing chip that doubles
-                down on machine learning and pushes
-                the boundaries of what a smartphone
-                can do. Welcome to the first iPhone
-                powerful enough to be called Pro.
-              </p>
-            </div>
-
-            <div className="main__about-chapter">
-              <p className="main__about-chapter-title">
-                Camera
-              </p>
-
-              <p className="main__about-chapter-description">
-                Meet the first triple-camera system to combine
-                cutting-edge technology with the legendary
-                simplicity of iPhone. Capture up to four times more
-                scene. Get beautiful images in drastically lower light.
-                Shoot the highest-quality video in a smartphone — then
-                edit with the same tools you love for photos.
-                You`&#39;`ve never shot with anything like it.
-              </p>
-            </div>
-
-            <div className="main__about-chapter">
-              <p className="main__about-chapter-title">
-                Shoot it. Flip it. Zoom it. Crop it. Cut it.
-                Light it. Tweak it. Love it.
-              </p>
-
-              <p className="main__about-chapter-description">
-                iPhone 11 Pro lets you capture videos that are
-                beautifully true to life, with greater detail
-                and smoother motion. Epic processing power means
-                it can shoot 4K video with extended dynamic range
-                and cinematic video stabilization — all at 60 fps.
-                You get more creative control, too, with four times
-                more scene and powerful new editing tools to play with.
-              </p>
-            </div>
+                  <p className="main-item__about-chapter-description">
+                    {descript.text}
+                  </p>
+                </div>
+              )
+            })}
           </div>
 
-          <div className="main__specs">
-            <p className="main__specs-title">
+          <div className="main-item__specs">
+            <p className="main-item__specs-title">
               Tech specs
             </p>
 
             <hr />
 
-            <div className="main__specs-description">
+            <div className="main-item__specs-description">
               <div className="description-item">
                 <span className="description-item-title">
                   Screen
                 </span>
                 <span className="description-item-value">
-                  6.5” OLED
+                  {product?.screen}
                 </span>
               </div>
 
@@ -273,7 +337,7 @@ const ItemCard: React.FC = () => {
                   Resolution
                 </span>
                 <span className="description-item-value">
-                  2688x1242
+                  {product?.resolution}
                 </span>
               </div>
 
@@ -282,7 +346,7 @@ const ItemCard: React.FC = () => {
                   Processor
                 </span>
                 <span className="description-item-value">
-                  Apple A12 Bionic
+                  {product?.processor}
                 </span>
               </div>
 
@@ -291,7 +355,7 @@ const ItemCard: React.FC = () => {
                   RAM
                 </span>
                 <span className="description-item-value">
-                  3 GB
+                  {product?.ram}
                 </span>
               </div>
 
@@ -300,27 +364,31 @@ const ItemCard: React.FC = () => {
                   Built in memory
                 </span>
                 <span className="description-item-value">
-                  64 GB
+                  {product?.capacity}
                 </span>
               </div>
 
-              <div className="description-item">
-                <span className="description-item-title">
-                  Camera
-                </span>
-                <span className="description-item-value">
-                  12 Mp + 12 Mp + 12 Mp (Triple)
-                </span>
-              </div>
+              {product?.camera && (
+                <div className="description-item">
+                  <span className="description-item-title">
+                    Camera
+                  </span>
+                  <span className="description-item-value">
+                    {product?.camera}
+                  </span>
+                </div>
+              )}
 
-              <div className="description-item">
-                <span className="description-item-title">
-                  Zoom
-                </span>
-                <span className="description-item-value">
-                  Optical, 2x
-                </span>
-              </div>
+              {product?.zoom && (
+                <div className="description-item">
+                  <span className="description-item-title">
+                    Zoom
+                  </span>
+                  <span className="description-item-value">
+                    {product?.zoom}
+                  </span>
+                </div>
+              )}
 
               <div className="description-item">
                 <span className="description-item-title">
@@ -328,13 +396,45 @@ const ItemCard: React.FC = () => {
                 </span>
 
                 <span className="description-item-value">
-                  GSM, LTE, UMTS
+                  {product?.cell}
                 </span>
               </div>
             </div>
           </div>
         </div>
+        <section className="hot-prices">
+          <div className="hot-prices__title title">
+            <h1 className="hot-prices__title--value">You may also like!</h1>
+            <div className="hot-prices__title--buttons">
+              <div className="hot-prices__button-left">
+                <MdOutlineKeyboardArrowLeft />
+              </div>
+              <div className="hot-prices__button-right">
+                <MdOutlineKeyboardArrowRight />
+              </div>
+            </div>
+          </div>
+          <div className="hot-prices__swiper">
+            <Swiper
+              modules={[Navigation, A11y, Autoplay]}
+              autoplay
+              loop
+              breakpoints={SLIDER_BREAKPOINTS}
+              navigation={{
+                nextEl: '.hot-prices__button-right',
+                prevEl: '.hot-prices__button-left',
+              }}
+            >
+              {hotPrices.map(productt => (
+                <SwiperSlide key={product.id}>
+                  <Card product={productt} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </section>
       </div>
+    )
   )
 };
 

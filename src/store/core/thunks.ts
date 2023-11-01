@@ -18,7 +18,6 @@ export const initThunk = createAsyncThunk(
       dispatch(setStateCart(cart));
 
       const user = (getState() as RootState).auth.user;
-      console.log(user);
 
       if (user) {
         dispatch(getFavouritesProductsThunk());

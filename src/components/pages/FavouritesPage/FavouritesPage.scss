@@ -2,12 +2,6 @@
 @import '../../../utils/mixins.scss';
 
 .favourites {
-  display: flex;
-  justify-content: center;
-
-  @include onDeskTop {
-    justify-content: center;
-  }
 
   &__wrapper {
     display: flex;

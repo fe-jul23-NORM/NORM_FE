@@ -18,6 +18,7 @@ span {
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
+  background-color: $White;
 
   @include onTablet {
     flex-direction: row;
@@ -44,12 +45,17 @@ span {
   }
 
   &__delete {
-    height: 16px;
+    display: block;
     width: 16px;
-    background-image: url(../../../images/icons/close-disabled-icon.svg);
-    background-position: center;
-    background-repeat: no-repeat;
+    height: 16px;
+    font-size: 16px;
     cursor: pointer;
+    color: $Secondary;
+    transition: all 0.2s;
+
+    &:hover {
+      color: $Primary;
+    }
   }
 
   &__picture {
@@ -57,9 +63,18 @@ span {
   }
 
   &__number {
+    width: 120px;
     display: flex;
-    gap: 14px;
+    gap: 10px;
     align-items: center;
+    margin-right: 10px;
+  }
+
+  &__number-text {
+    width: 20px;
+    display: inline-block;
+    text-align: center;
+    font-weight: 400;
   }
 
   &__button {
@@ -69,21 +84,41 @@ span {
     border-radius: 50%;
     background: #fff;
     font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      border-color: $Primary;
+      span {
+        color: $Primary;
+      }
+    }
 
     &--disabled {
       border: 1px solid $Elements;
       color: $Elements;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: #fff;
-      font-size: 16px;
+      cursor: default;
+
+      &:hover {
+        border-color: $Elements;
+        span {
+          color: $Icons;
+        }
+      }
+
+      span {
+        color: $Icons;
+      }
     }
   }
 
   &__price {
-    font-weight: 800;
-    font-size: 22px;
+    text-align: right;
+    width: 100px;
+    font-weight: 700;
+    font-size: 20px;
     line-height: 30.8px;
   }
 }

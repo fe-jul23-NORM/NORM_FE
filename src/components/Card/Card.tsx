@@ -11,6 +11,7 @@ import { addFavouriteThunk, removeFavouriteThunk } from '../../store/products/th
 import { selectCart } from '../../store/cart/selectors';
 import { shallowEqual, useSelector } from 'react-redux';
 import { selectFavorites } from '../../store/products/selectors';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
   product: Product,
@@ -26,10 +27,12 @@ const Card: React.FC<Props> = ({ product }) => {
     capacity,
     image,
     id,
+    itemId,
   } = product;
 
   const dispatch = useAppDispatch();
   const cart: CartProduct[] = useAppSelector(selectCart);
+  const navigate = useNavigate();
   const isSelected = useMemo(() => cart.some(({ id }) => id === product.id), [cart]);
   const favourites: Product[] = useSelector(selectFavorites, shallowEqual);
   const isFavourite = useMemo(() => {
@@ -67,9 +70,15 @@ const Card: React.FC<Props> = ({ product }) => {
   }, [user, isFavourite]);
 
   return (
-    <div className="card">
+    <div 
+      className="card"
+    >
       <img
         className="card__img"
+        onClick={() => {
+          navigate(`/${itemId}`);
+          window.location.reload();
+        }}
         src={`${BASE_URI}/${image}`}
         alt=""
       />
