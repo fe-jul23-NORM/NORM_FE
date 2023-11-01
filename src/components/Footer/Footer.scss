@@ -1,16 +1,8 @@
 @import "../../utils/mixins";
 @import "../../utils/variable";
 
-@mixin hover($property, $toValue) {
-  transition: #{$property} 0.3s;
-
-  &:hover {
-    #{$property}: $toValue;
-  }
-}
 
 .footer {
-  font-family: 'Rubik', sans-serif;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -18,10 +10,6 @@
   padding-inline: 19px;
   background-color: $White;
   border-top: 1px solid $Elements;
-
-  //@include onDeskTop() {
-  //  padding-inline: 152px;
-  //}
 
   &__logo {
     height: 32px;
@@ -36,7 +24,7 @@
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.48px;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 12px;
 
     transition: color 300ms;
@@ -88,7 +76,7 @@
     height: 32px;
     width: 32px;
 
-    @include hover(transform, scale(1.2));
+    @include hover(border-color, $Primary);
   }
 
   &--text {

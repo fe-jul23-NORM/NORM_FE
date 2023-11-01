@@ -13,6 +13,8 @@ import { Navigation, A11y, Autoplay } from 'swiper/modules';
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import Card from '../Card/Card';
 import { selectCart } from '../../store/cart/selectors';
+import PageNavigation from '../PageNavigation/PageNavigation';
+import { normalizeQuery } from '../../utils/functions';
 import { CartProduct, CurrentProduct, Product } from '../../types/product.types';
 import BackButton from '../BackButton/BackButton';
 import { addToFavourites, removeFromFavourites } from '../../store/products/slice';
@@ -27,6 +29,7 @@ const ItemCard: React.FC = () => {
   const { id } = useParams();
   const capacityWithColor = product?.id.split(product.namespaceId) || ['', ''];
   const hotPrices = useAppSelector(selectDiscountProducts);
+  console.log(product)
 
   let currentColor = product?.color || 'null';
 
@@ -102,7 +105,7 @@ const ItemCard: React.FC = () => {
     product && (
       <div className='item-card'>
         <div className="item-card__nav">
-          <a href="/" className="item-card__nav-icon">
+          {/* <a href="/" className="item-card__nav-icon">
             <img src="https://i.imgur.com/WmTuk3L.png" alt="home" />
           </a>
           <img
@@ -120,7 +123,8 @@ const ItemCard: React.FC = () => {
 
           <a href="#" className="item-card__nav-textPhone">
             {product?.name}
-          </a>
+          </a> */}
+          <PageNavigation productsType={normalizeQuery('phones')} productName={product?.name} />
         </div>
         <div className="item-card__back-wrapper">
           <BackButton />

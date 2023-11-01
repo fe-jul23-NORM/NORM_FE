@@ -48,28 +48,6 @@
   background-color: $HoverBg;
   justify-content: center;
 
-  &__nav {
-    display: flex;
-    column-gap: 8px;
-    height: 16px;
-    min-width: 272px;
-
-
-    &-icon {
-      @include hover(transform, scale(1.2));
-    }
-
-    &-text {
-      display: block;
-      text-decoration: none;
-      color: $Secondary;
-      font-size: 12px;
-      line-height: 18px;
-      font-weight: 500;
-      align-items: center;
-    }
-  }
-
   &__form {
     &-wrapper {
       display: flex;

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { getSearchWith } from "../../utils/searchHelper";
 import './Pagination.scss';
+import { scrollToTop } from "../../utils/constants";
 
 type Props = {
   total: number,
@@ -70,7 +71,10 @@ const Pagination: React.FC<Props> = (props: Props) => {
     <section className="pagination">
       <Link
         to={{ search: onPrev(page) }}
-        onClick={() => paginationHandlePrev(+page)}
+        onClick={() => {
+          paginationHandlePrev(+page);
+          scrollToTop();
+        }}
         className={classNames(
           'pagination__button',
           { 'pagination__button--disabled': +page === 1 },
@@ -87,7 +91,10 @@ const Pagination: React.FC<Props> = (props: Props) => {
             to={{
               search: getSearchParams(String(el)),
             }}
-            onClick={() => paginationHandleNext(el)}
+            onClick={() => {
+              paginationHandleNext(el);
+              scrollToTop();
+            }}
             className={classNames(
               'pagination__item',
               { 'pagination__item--active': el === +page },
@@ -100,7 +107,10 @@ const Pagination: React.FC<Props> = (props: Props) => {
 
       <Link
         to={{ search: onNext(page) }}
-        onClick={() => paginationHandleNext(+page)}
+        onClick={() => {
+          paginationHandleNext(+page)
+          scrollToTop();
+        }}
         className={classNames(
           'pagination__button',
           {
