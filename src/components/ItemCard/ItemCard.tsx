@@ -2,11 +2,18 @@ import React, { useEffect, useState } from 'react';
 import './ItemCard.scss';
 import Button from '../Button/Button';
 import Heart from '../Heart/Heart';
-import { getCurrentProductThunk } from '../../store/products/thunks';
+import { getCurrentProductThunk, getDiscountProductsThunk } from '../../store/products/thunks';
 import { useAppDispatch, useAppSelector } from '../../store';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { selectCurrentProduct } from '../../store/products/selectors';
-import { BASE_URI } from '../../constants/core';
+import { useNavigate, useParams } from 'react-router-dom';
+import { selectCurrentProduct, selectDiscountProducts } from '../../store/products/selectors';
+import { BASE_URI, SLIDER_BREAKPOINTS } from '../../constants/core';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Navigation, A11y, Autoplay } from 'swiper/modules';
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import Card from '../Card/Card';
+import { selectCart } from '../../store/cart/selectors';
+import { CartProduct } from '../../types/product.types';
 
 
 const ItemCard: React.FC = () => {
@@ -15,8 +22,33 @@ const ItemCard: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const capacityWithColor = product?.id.split(product.namespaceId) || ['', ''];
-  
- 
+  const hotPrices = useAppSelector(selectDiscountProducts);
+
+  let currentColor = product?.color || 'null';
+
+  if (product?.color.includes(' ')) {
+    currentColor = product?.color.split(' ').join('-');
+  }
+
+  const availibleColors = product?.colorsAvailable.map(color => {
+    if (color.includes(' ')) {
+      return color.split(' ').join('-');
+    }
+    return color;
+  }) || [''];
+
+  // const isSelected = useMemo(() => cart.some(({ id }) => id === product.id), [cart]);
+
+  // const addItemToCart = useCallback(() => {
+  //   if (!isSelected) {
+  //     dispatch(addToCart(product));
+
+  //     const updatedCart = [...cart, { ...product, quantity: 1 }];
+  //     localStorage.setItem('cart', JSON.stringify(updatedCart));
+  //   }
+  // }, [isSelected, cart])
+
+
   const actualCapacity = capacityWithColor[1].split('-')[1];
   console.log(product);
 
@@ -28,7 +60,8 @@ const ItemCard: React.FC = () => {
         // TODO
         console.log(e);
         navigate('/');
-      })
+      });
+    dispatch(getDiscountProductsThunk());
   }, []);
 
   const [mainImage, setMainImage] = useState(0);
@@ -72,21 +105,38 @@ const ItemCard: React.FC = () => {
 
         <div className="container">
           <div className="container__images">
-            <img className="container__images-main"
-              src={`${BASE_URI}/${product.images[mainImage]}`}
-              alt="phone"
-            />
+            <div className="container__images-main-img">
+              <img className="container__images-main"
+                src={`${BASE_URI}/${product.images[mainImage]}`}
+                alt="phone"
+              />
+            </div>
+            {/* // {mainImage === index && } */}
 
             <div className="container__images-miniatures">
               {product?.images.map((image, index) => {
+                if (mainImage === index) {
+                  return (
+                    <div key={index} className="container__images-miniatures-cont">
+                      <img
+                        className="container__images-miniatures-item"
+                        style={{ border: `1px solid #000` }}
+                        src={`${BASE_URI}/${image}`}
+                        alt="phone"
+                        onClick={() => { setMainImage(index) }}
+                      />
+                    </div>
+                  )
+                }
                 return (
-                  <img
-                    key={index}
-                    className="container__images-miniatures-item"
-                    src={`${BASE_URI}/${image}`}
-                    alt="phone"
-                    onClick={() => { setMainImage(index) }}
-                  />
+                  <div key={index} className="container__images-miniatures-cont">
+                    <img
+                      className="container__images-miniatures-item"
+                      src={`${BASE_URI}/${image}`}
+                      alt="phone"
+                      onClick={() => { setMainImage(index) }}
+                    />
+                  </div>
                 )
               })}
 
@@ -105,17 +155,33 @@ const ItemCard: React.FC = () => {
             </div>
 
             <div className="container__info-colors">
-              {product?.colorsAvailable.map((color, ind) => (
-                <button
-                  className="container__info-colors-color"
-                  onClick={() => {
-                    navigate(`/${product.namespaceId}-${actualCapacity}-${color}`);
-                    window.location.reload();
-                  }}
-                  style={{ backgroundColor: `${color}` }}
-                  key={ind}
-                />
-              ))}
+              {availibleColors.map((color, ind) => {
+                if (color === currentColor) {
+                  return (
+                    <button
+                      className="container__info-colors-color"
+                      style={{ 
+                        backgroundColor: `${color}`,
+                        border: `2px solid #000`,
+                        cursor: 'not-allowed',
+                      }}
+                      disabled
+                      key={ind}
+                    />
+                  )
+                }
+                return (
+                  <button
+                    className="container__info-colors-color"
+                    onClick={() => {
+                      navigate(`/${product.namespaceId}-${actualCapacity}-${color}`);
+                      window.location.reload();
+                    }}
+                    style={{ backgroundColor: `${color}` }}
+                    key={ind}
+                  />
+                )
+              })}
             </div>
 
             <hr />
@@ -126,18 +192,37 @@ const ItemCard: React.FC = () => {
               </div>
 
               <div className="container__info-capcity-set">
-                {product?.capacityAvailable.map((value, ind) => (
-                  <button
-                    className="gB"
-                    key={ind}
-                    onClick={() => {
-                      navigate(`/${product.namespaceId}-${value.toLowerCase()}-${product.color}`);
-                      window.location.reload();
-                    }}
-                  >
-                    {value}
-                  </button>
-                ))}
+                {product?.capacityAvailable.map((value, ind) => {
+                  if (actualCapacity === value.toLowerCase()) {
+                    return (
+                      <button
+                        className="gB"
+                        key={ind}
+                        style={{ 
+                          border: `2px solid #000`,
+                          cursor: 'not-allowed',
+                        }}
+                      >
+                        {value}
+                      </button>
+                    )
+                  }
+                  return (
+                    <button
+                      className="gB"
+                      key={ind}
+                      onClick={() => {
+                        navigate(`/${product.namespaceId}-${value.toLowerCase()}-${product.color}`);
+                        window.location.reload();
+                      }}
+                      style={{ 
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {value}
+                    </button>
+                  )
+                })}
               </div>
             </div>
 
@@ -155,7 +240,11 @@ const ItemCard: React.FC = () => {
 
             <div className="container__info-cart">
               <div className="container__info-cart-button">
-                {/* <Button /> */}
+                {/* <Button
+                  isSelected={isSelected}
+                  text={isSelected ? 'Added to to cart' : 'Add to cart'}
+                  handleClick={addItemToCart}
+                /> */}
               </div>
 
               <div className="container__info-cart-favourite">
@@ -313,6 +402,37 @@ const ItemCard: React.FC = () => {
             </div>
           </div>
         </div>
+        <section className="hot-prices">
+          <div className="hot-prices__title title">
+            <h1 className="hot-prices__title--value">You may also like!</h1>
+            <div className="hot-prices__title--buttons">
+              <div className="hot-prices__button-left">
+                <MdOutlineKeyboardArrowLeft />
+              </div>
+              <div className="hot-prices__button-right">
+                <MdOutlineKeyboardArrowRight />
+              </div>
+            </div>
+          </div>
+          <div className="hot-prices__swiper">
+            <Swiper
+              modules={[Navigation, A11y, Autoplay]}
+              autoplay
+              loop
+              breakpoints={SLIDER_BREAKPOINTS}
+              navigation={{
+                nextEl: '.hot-prices__button-right',
+                prevEl: '.hot-prices__button-left',
+              }}
+            >
+              {hotPrices.map(productt => (
+                <SwiperSlide key={product.id}>
+                  <Card product={productt} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </section>
       </div>
     )
   )

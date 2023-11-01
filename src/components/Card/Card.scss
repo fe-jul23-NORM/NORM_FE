@@ -24,6 +24,7 @@
     margin: 0px 32px;
     max-width: 208px;
     max-height: 196px;
+    cursor: pointer;
   }
 
   &__title {
@@ -73,10 +74,11 @@
   }
 
   @include hover(box-shadow, scale(1.2));
+  @include hover(transform, scale(1.02));
 
   &:hover {
     border-color: $Icons;
-    box-shadow: 0 8px 7px $Icons; 
+    box-shadow: 0 8px 7px $Icons;
   }
 }
 
