@@ -3,6 +3,11 @@
 
 .favourites {
 
+  &__title {
+    @include title();
+    margin-top: 20px;
+  }
+
   &__wrapper {
     display: flex;
     flex-direction: column;
@@ -20,24 +25,16 @@
     align-items: center;
     column-gap: 8px;
     height: 16px;
-    margin-bottom: 24px;
-
-    @include onTablet {
-      margin-bottom: 40px;
-    }
   }
 
   &__nav-text {
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     color: $Secondary;
   }
 
   &__amount {
-    margin-top: 8px;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 21px;
+    margin: 0 0 32px;
     color: $Secondary;
   }
 

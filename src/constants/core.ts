@@ -9,6 +9,7 @@ export const SLIDER_BREAKPOINTS = {
     slidesPerView: 1.3,
   },
   450: {
+    slidesPerView: 1.5,
   },
   550: {
     slidesPerView: 1.9,
