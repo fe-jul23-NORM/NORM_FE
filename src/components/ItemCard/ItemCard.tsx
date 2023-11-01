@@ -29,7 +29,6 @@ const ItemCard: React.FC = () => {
   const { id } = useParams();
   const capacityWithColor = product?.id.split(product.namespaceId) || ['', ''];
   const hotPrices = useAppSelector(selectDiscountProducts);
-  console.log(product)
 
   let currentColor = product?.color || 'null';
 
@@ -43,8 +42,6 @@ const ItemCard: React.FC = () => {
     }
     return color;
   }) || [''];
-
-  console.log(product)
 
   const cart: CartProduct[] = useAppSelector(selectCart);
   const isSelected = useMemo(() => cart.some(({ id }) => id === product?.productPassport.id), [cart]);
@@ -87,7 +84,6 @@ const ItemCard: React.FC = () => {
 
 
   const actualCapacity = capacityWithColor[1].split('-')[1];
-  console.log(product);
 
 
   useEffect(() => {
@@ -170,7 +166,7 @@ const ItemCard: React.FC = () => {
                 Available colors
               </span>
               <span className="container__info-availible-Id">
-                {`ID: ${id}`}
+                {`ID: ${product.productPassport.id}`}
               </span>
             </div>
 
