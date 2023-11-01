@@ -62,3 +62,9 @@ export interface ProductsQuery {
   query?: string,
   sortBy?: SortProductByEnum
 }
+
+export interface ProductsCount {
+  phones: number,
+  tablets: number,
+  accessories: number,
+}

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ProductState } from './types';
 import {
+  getProductsCategoryCountThunk,
   getCurrentProductThunk,
   getDiscountProductsThunk, getNewProductsThunk,
   getProductsThunk,
@@ -16,6 +17,11 @@ const initialState: ProductState = {
   discount: [],
   recommended: [],
   favorites: [],
+  productsCount: {
+    phones: 0,
+    tablets: 0,
+    accessories: 0
+  },
 }
 
 export const productSlice = createSlice({
@@ -58,6 +64,11 @@ export const productSlice = createSlice({
       })
       .addCase(getNewProductsThunk.fulfilled, (state, {payload}) => {
         state.new = payload;
+      })
+      .addCase(getProductsCategoryCountThunk.fulfilled, (state, {payload}) => {
+        state.productsCount.phones = payload.phones;
+        state.productsCount.tablets = payload.tablets;
+        state.productsCount.accessories = payload.accessories;
       });
   }
 })

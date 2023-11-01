@@ -60,19 +60,19 @@
 }
 
 .phones {
-    background-image: url('../../../images/home/image-6.png');
+    // background-image: url('../../../images/home/image-6.png');
     background-color: #6D6474;
     border-radius: 8px;
 }
 
 .tablets {
-    background-image: url('../../../images/home/image-5.png');
+    // background-image: url('../../../images/home/image-5.png');
     background-color: #8d8d92;
     border-radius: 8px;
 }
 
 .accessories {
-    background-image: url('../../../images/home/image-7.png');
+    // background-image: url('../../../images/home/image-7.png');
     background-color: #973d5f;
     border-radius: 8px;
 }
@@ -106,9 +106,9 @@
 
 .block {
     &__image {
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
+        // background-repeat: no-repeat;
+        // background-position: center;
+        // background-size: cover;
         cursor: pointer;
 
         @media screen and (max-width: 355px) {
@@ -131,12 +131,24 @@
         @media screen and (min-width: 916px) and (max-width: 1170px) {
             width: 288px;
             height: 288px;
+
+            &:hover {
+                transition: transform 1s ease;
+            
+                transform: scale(1.05);
+            }
         }
 
         @media screen and (min-width: 1170px) {
             width: 368px;
             height: 368px;
             border-radius: 0;
+
+            &:hover {
+                transition: transform 1s ease;
+            
+                transform: scale(1.05);
+            }
         }
     }
 }

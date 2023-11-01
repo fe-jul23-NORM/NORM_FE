@@ -2,11 +2,7 @@ export const PRODUCT_ROUTES = {
   GET: '/products',
   GET_NEW: '/products/new',
   GET_DISCOUNT: '/products/discount',
-}
-
-export const AUTH_ROUTES = {
-  REGISTER: '/auth/register',
-  REFRESH: '/auth/refresh',
+  GET_CATEGORY_COUNT: '/products/get-category-count',
 }
 
 export const ORDER_ROUTES = {

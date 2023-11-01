@@ -6,19 +6,21 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation, A11y, Autoplay } from 'swiper/modules';
 import { useAppDispatch, useAppSelector } from '../../../store';
-import { selectDiscountProducts, selectNewProducts } from '../../../store/products/selectors';
-import { getDiscountProductsThunk, getNewProductsThunk } from '../../../store/products/thunks';
+import { selectDiscountProducts, selectNewProducts, selectProductsCategoryCount } from '../../../store/products/selectors';
+import { getDiscountProductsThunk, getNewProductsThunk, getProductsCategoryCountThunk } from '../../../store/products/thunks';
 import Card from '../../Card/Card';
+import { STATIC_URL } from '../../../constants/core';
 
-
-const RebuildHomePage = () => {
+const HomePage = () => {
     const dispatch = useAppDispatch();
     const newProducts = useAppSelector(selectNewProducts)
     const hotPrices = useAppSelector(selectDiscountProducts);
-
+    const { phones, tablets, accessories} = useAppSelector(selectProductsCategoryCount)
+    
     useEffect(() => {
         dispatch(getNewProductsThunk())
         dispatch(getDiscountProductsThunk());
+        dispatch(getProductsCategoryCountThunk());
     }, []);
 
     return (
@@ -62,22 +64,33 @@ const RebuildHomePage = () => {
                 <h1 className="categories__title title">Shop by category</h1>
                 <div className="categories__wrapper">
                     <article className="categories__phones block">
-                        <div className="categories__phones--image block__image phones"></div>
+                        <img
+                            className="categories__phones--image block__image phones"
+                            src={`${STATIC_URL}/home/image-6.png`}
+                            alt="Phones category"
+                        />
                         <h3 className="categories__phones--title categories__title">Phones</h3>
-                        <p className="categories__phones--count categories__count">Count models</p>
+                        <p className="categories__phones--count categories__count">{phones} models</p>
                     </article>
                     <article className="categories__tablets block">
-                        <div className="categories__tablets--image block__image tablets"></div>
+                        <img
+                            className="categories__tablets--image block__image tablets"
+                            src={`${STATIC_URL}/home/image-5.png`}
+                            alt="Tablets category"
+                        />
                         <h3 className="categories__tablets--title categories__title">Tablets</h3>
-                        <p className="categories__tablets--count categories__count">Count models</p>
+                        <p className="categories__tablets--count categories__count">{tablets} models</p>
                     </article>
                     <article className="categories__accessories block">
-                        <div className="categories__accessories--image block__image accessories"></div>
+                        <img
+                            className="categories__accessories--image block__image accessories"
+                            src={`${STATIC_URL}/home/image-7.png`}
+                            alt="Accessories category"
+                        />
                         <h3 className="categories__accessories--title categories__title">Accessories</h3>
-                        <p className="categories__accessories--count categories__count">Count models</p>
+                        <p className="categories__accessories--count categories__count">{accessories} models</p>
                     </article>
                 </div>
-
             </section>
             <section className="hot-prices">
                 <div className="hot-prices__title title">
@@ -114,4 +127,4 @@ const RebuildHomePage = () => {
     )
 }
 
-export default RebuildHomePage;
+export default HomePage;

@@ -1,4 +1,4 @@
-import { CurrentProduct, Product } from '../../types/product.types';
+import { CurrentProduct, Product, ProductsCount } from '../../types/product.types';
 
 export interface ProductState {
   isLoading: boolean,
@@ -8,5 +8,6 @@ export interface ProductState {
   recommended: Product[],
   all: Product[],
   currentProduct: CurrentProduct | null,
-  favorites: Product[]
+  favorites: Product[],
+  productsCount: ProductsCount,
 }
