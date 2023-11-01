@@ -3,6 +3,9 @@ export const PRODUCT_ROUTES = {
   GET_NEW: '/products/new',
   GET_DISCOUNT: '/products/discount',
   GET_BY_NAME: '/products/get-by-name',
+  GET_FAVOURITES: '/products/favorites',
+  ADD_TO_FAVOURITES: '/products/add-to-favorite',
+  REMOVE_FROM_FAVORITES: '/products/remove-from-favorite',
 }
 
 export const ORDER_ROUTES = {

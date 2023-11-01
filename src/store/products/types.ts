@@ -10,4 +10,5 @@ export interface ProductState {
   currentProduct: CurrentProduct | null,
   favorites: Product[],
   globalSearchProducts: Product[],
+  favourites: Product[],
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './Card.scss';
 import { CartProduct, Product } from '../../types/product.types';
 import Button from '../Button/Button';
@@ -6,6 +6,8 @@ import { BASE_URI } from '../../constants/core';
 import Heart from '../Heart/Heart';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { addToCart } from '../../store/cart/slice';
+import { addToFavourites, removeFromFavourites } from '../../store/products/slice';
+import { addFavouriteThunk, removeFavouriteThunk } from '../../store/products/thunks';
 
 type Props = {
   product: Product,
@@ -23,14 +25,44 @@ const Card: React.FC<Props> = ({ product }) => {
   } = product;
 
   const dispatch = useAppDispatch();
-  const cart: CartProduct[] = useAppSelector(state => state.cart.cart)
+  const cart: CartProduct[] = useAppSelector(state => state.cart.cart);
+  const favourites: Product[] = useAppSelector(state => state.product.favourites);
+  const isFavourite = favourites.some(({ id }) => id === product.id);
+  const user = useAppSelector(state => state.auth.user);
 
-  const addItemToCart = () => {
+  const addItemToCart = useCallback(() => {
     dispatch(addToCart(product));
 
     const updatedCart = [...cart, { ...product, quantity: 1 }];
     localStorage.setItem('cart', JSON.stringify(updatedCart));
-  }
+  }, [])
+
+  const handleFavourites = () => {
+    if (user) {
+      if (isFavourite) {
+        dispatch(removeFavouriteThunk(product.id));
+      } else {
+        dispatch(addFavouriteThunk(product.id));
+      }
+    } else {
+      if (isFavourite) {
+        dispatch(removeFromFavourites(product));
+        const updatedFavourites = favourites.filter((favProduct) => favProduct.id !== product.id);
+        localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
+      } else {
+        dispatch(addToFavourites(product));
+        const updatedFavourites = [...favourites, product];
+        localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
+      }
+    }
+  };
+
+  // const addItemToFavourites = () => {
+  //   dispatch(addToFavourites(product));
+
+  //   const updatedFavourites = [...favourites, product]
+  //   localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
+  // }
 
   return (
     <div className="card">
@@ -92,9 +124,7 @@ const Card: React.FC<Props> = ({ product }) => {
           handleClick={addItemToCart}
         />
 
-        <div className="card__footer-favourite" >
-          <Heart />
-        </div>
+        <Heart handleClick={handleFavourites} isFavourite={isFavourite} />
       </div>
     </div>
   )
