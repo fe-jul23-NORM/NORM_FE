@@ -71,7 +71,6 @@ const Card: React.FC<Props> = ({ product }) => {
 
   const handleNavigate = () => {
     navigate(`/${itemId}`);
-    window.location.reload();
   }
 
   return (

@@ -44,8 +44,6 @@ const ItemCard: React.FC = () => {
     return color;
   }) || [''];
 
-  console.log(product)
-
   const cart: CartProduct[] = useAppSelector(selectCart);
   const isSelected = useMemo(() => cart.some(({ id }) => id === product?.productPassport.id), [cart]);
   const favourites: Product[] = useSelector(selectFavorites, shallowEqual);
