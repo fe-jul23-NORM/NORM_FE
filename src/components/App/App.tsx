@@ -11,15 +11,17 @@ import '../../utils/_reset.scss';
 import HomePage from '../pages/HomePage/HomePage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import RegisterPage from '../pages/RegisterPage/RegisterPage'
-import { refresh } from '../../store/auth/thunks';
 import AuthLayout from '../HOC/AuthLayout/AuthLayout';
 import { Loader } from '../Loader/Loader';
 import { selectAllProducts } from '../../store/products/selectors';
 import { Product } from '../../types/product.types';
-import { addToFavorites } from '../../store/products/slice';
+// import { addToFavorites } from '../../store/products/slice';
 import { selectAuthLoading } from '../../store/auth/selectors';
 import CatalogPage from '../pages/CatalogPage/CatalogPage';
 import AboutUs from '../About-us/About-us';
+
+import { initThunk } from '../../store/core/thunks';
+import RequiredAuth from '../HOC/RequiredAuth/RequiredAuth';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -28,16 +30,8 @@ function App() {
   const [isLoading, setLoading] = useState(true);
 
   
-
-  // const handleClick = (product: IProduct) => {
-  //   dispatch(addToFavorites(product))
-  // }
-  const handleClick = (product: Product) => {
-    dispatch(addToFavorites(product))
-  }
-
   useEffect(() => {
-    dispatch(refresh())
+    dispatch(initThunk())
       .unwrap()
       .catch((e) => {
         // TODO
@@ -64,6 +58,10 @@ function App() {
             <Route path='/favourites' element={<FavouritesPage />} />
             <Route path='/about' element={<AboutUs />} />
             <Route path='*' element={<NotFoundPage />} />
+            
+            <Route path='/' element={<RequiredAuth/>}>
+              <Route path='/orders' element={<p >Orders</p>} />
+            </Route>
           </Route>
           <Route path='/' element={<AuthLayout/>}>
             <Route path='/login' element={<LoginPage />} />

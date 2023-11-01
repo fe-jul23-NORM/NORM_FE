@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -11,6 +10,7 @@ import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
 } from 'react-icons/md';
+import React from 'react';
 
 const Banner: React.FC = () => {
   return (
@@ -28,6 +28,7 @@ const Banner: React.FC = () => {
           el: '.custom-pagination',
           clickable: true,
         }}
+        
       >
         <SwiperSlide>
           <img src="https://github.com/mate-academy/product_catalog/blob/main/public/img/banner-phones.png?raw=true" alt="banner" />

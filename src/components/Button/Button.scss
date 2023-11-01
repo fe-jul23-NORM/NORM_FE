@@ -22,10 +22,15 @@
   }
 
   &--selected {
-    border-radius: 8px;
     border: 1px solid  $Elements;
     background: $White;
     color: $Accent;
+
+    &:hover {
+      border: 1px solid  $Elements;
+      background: $White;
+      color: $Accent;
+    }
   }
 
   &:disabled,

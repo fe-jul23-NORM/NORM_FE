@@ -2,6 +2,8 @@ body {
   font-family: 'Rubik', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #FAFBFC;
+  overflow-y: scroll;
 }
 
 @font-face {
