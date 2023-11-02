@@ -1,8 +1,8 @@
 import React from 'react';
 import './AboutUsPage.scss';
-import PageNavigation from '../../PageNavigation/PageNavigation';
+import { PageNavigation } from '../../PageNavigation';
 
-const AboutUsPage: React.FC = () => {
+export const AboutUsPage: React.FC = () => {
   return (
     <body className='about'>
       <PageNavigation links={[{ link: '/about', text: 'About us' }]} />
@@ -18,13 +18,13 @@ const AboutUsPage: React.FC = () => {
           </p>
           <br />
           <p>
-          On the client side, we&#x27;ve harnessed the power of the React library, incorporating additional technologies like React-Router, Redux (Redux-Toolkit), TypeScript, LocalStorage, Fetch, and HTML5/CSS3 (SASS) to ensure a seamless and dynamic user experience.
-          For the backend, we&#x27;ve employed Node.js with Express, creating a robust foundation for our application&#x27;s server-side functionality.
+            On the client side, we&#x27;ve harnessed the power of the React library, incorporating additional technologies like React-Router, Redux (Redux-Toolkit), TypeScript, LocalStorage, Fetch, and HTML5/CSS3 (SASS) to ensure a seamless and dynamic user experience.
+            For the backend, we&#x27;ve employed Node.js with Express, creating a robust foundation for our application&#x27;s server-side functionality.
           </p>
           <br />
           <p>
-          In the client development process, we emphasize a component-based approach, coupled with strong typing via TypeScript, ensuring clean and maintainable code.
-          On the server side, our architecture adheres to the Model-View-Controller (MVC) pattern, functioning in accordance with the principles of RESTful API design.
+            In the client development process, we emphasize a component-based approach, coupled with strong typing via TypeScript, ensuring clean and maintainable code.
+            On the server side, our architecture adheres to the Model-View-Controller (MVC) pattern, functioning in accordance with the principles of RESTful API design.
           </p>
         </p>
       </div>
@@ -128,5 +128,3 @@ const AboutUsPage: React.FC = () => {
     </body>
   )
 };
-
-export default AboutUsPage;

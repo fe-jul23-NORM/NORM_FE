@@ -1,17 +1,17 @@
 import { Outlet } from 'react-router-dom'
 import React from 'react';
 
-import Header from '../../Header/Header';
-import Footer from '../../Footer/Footer';
 import './Layout.scss';
+import { Header } from '../../Header';
+import { Footer } from '../../Footer';
 
-const Layout:React.FC = () => {
+const Layout: React.FC = () => {
   return (
     <div className='layout-wrapper'>
       <Header />
-        <div className='outlet-wrapper'>
-          <Outlet />
-        </div>
+      <div className='outlet-wrapper'>
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );

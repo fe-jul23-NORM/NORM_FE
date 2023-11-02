@@ -11,7 +11,7 @@ type Props = {
   page: string,
 }
 
-const Pagination: React.FC<Props> = (props: Props) => {
+export const Pagination: React.FC<Props> = (props: Props) => {
   const {
     total,
     perPage,
@@ -60,7 +60,6 @@ const Pagination: React.FC<Props> = (props: Props) => {
 
   const preparedPageItems = pageItems.slice(paginationStart, paginationEnd);
 
-
   const getSearchParams = (params: string) => {
     return getSearchWith(searchParams, {
       'page': params,
@@ -89,10 +88,8 @@ const Pagination: React.FC<Props> = (props: Props) => {
       >
         <span className="icon-left" aria-hidden="true"></span>
       </Link>
-
       <ul className="pagination__list">
         {preparedPageItems.map((el) => (
-
           <Link
             key={el}
             to={{
@@ -108,7 +105,6 @@ const Pagination: React.FC<Props> = (props: Props) => {
           </Link>
         ))}
       </ul>
-
       <Link
         to={{ search: onNext(page) }}
         onClick={() => handleNextPage(+page)}
@@ -125,5 +121,3 @@ const Pagination: React.FC<Props> = (props: Props) => {
     </section>
   );
 }
-
-export default Pagination;

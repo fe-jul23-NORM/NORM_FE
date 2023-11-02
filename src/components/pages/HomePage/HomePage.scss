@@ -17,6 +17,10 @@
     h1 {
         font-size: 22px;
 
+        @media screen and (max-width: 640px) {
+            text-align: center;
+        }
+
         @media screen and (min-width: 640px) {
             font-size: 32px;
         }
@@ -81,18 +85,114 @@
 }
 
 .phones {
-    background-color: #6D6474;
-    border-radius: 8px;
+    &__wrapper {
+        background-color: #6D6474;
+        border-radius: 8px;
+        overflow: hidden;
+        object-fit: cover;
+
+        @media screen and (max-width: 355px) {
+            margin: 0 auto;
+            width: 188px;
+            height: 188px;
+        }
+
+        @media screen and (min-width: 355px) and (max-width: 640px) {
+            margin: 0 auto;
+            width: 288px;
+            height: 288px;
+        }
+
+        @media screen and (min-width: 641px) and (max-width: 916px) {
+            width: 188px;
+            height: 188px;
+        }
+
+        @media screen and (min-width: 916px) and (max-width: 1170px) {
+            width: 288px;
+            height: 288px;
+        }
+
+        @media screen and (min-width: 1170px) {
+            width: 368px;
+            height: 368px;
+            border-radius: 0;
+        }
+    }
 }
 
 .tablets {
-    background-color: #8d8d92;
-    border-radius: 8px;
+    &__wrapper {
+        background-color: #8d8d92;
+        border-radius: 8px;
+        overflow: hidden;
+        object-fit: cover;
+
+        @media screen and (max-width: 355px) {
+            margin: 0 auto;
+            width: 188px;
+            height: 188px;
+        }
+
+        @media screen and (min-width: 355px) and (max-width: 640px) {
+            margin: 0 auto;
+            width: 288px;
+            height: 288px;
+        }
+
+        @media screen and (min-width: 641px) and (max-width: 916px) {
+            width: 188px;
+            height: 188px;
+        }
+
+        @media screen and (min-width: 916px) and (max-width: 1170px) {
+            width: 288px;
+            height: 288px;
+        }
+
+        @media screen and (min-width: 1170px) {
+            width: 368px;
+            height: 368px;
+            border-radius: 0;
+        }
+    }
 }
 
 .accessories {
-    background-color: #973d5f;
-    border-radius: 8px;
+    &__wrapper {
+        background-color: #973d5f;
+        border-radius: 8px;
+        overflow: hidden;
+        object-fit: cover;
+
+        @media screen and (max-width: 355px) {
+            margin: 0 auto;
+            width: 188px;
+            height: 188px;
+        }
+
+        @media screen and (min-width: 355px) and (max-width: 640px) {
+            margin: 0 auto;
+            width: 288px;
+            height: 288px;
+        }
+
+        @media screen and (min-width: 641px) and (max-width: 916px) {
+            width: 188px;
+            height: 188px;
+        }
+
+        @media screen and (min-width: 916px) and (max-width: 1170px) {
+            width: 288px;
+            height: 288px;
+        }
+
+        @media screen and (min-width: 1170px) {
+            width: 368px;
+            height: 368px;
+            border-radius: 0;
+        }
+    }
 }
 
 .categories {
@@ -121,6 +221,13 @@
         font-weight: 500;
         color: var(--gray-secondary, #89939A);
     }
+
+    &__title,
+    &__count {
+        @media screen and (max-width: 640px) {
+            text-align: center;
+        }
+    }
 }
 
 .block {
@@ -128,13 +235,11 @@
         cursor: pointer;
 
         @media screen and (max-width: 355px) {
-            margin: 0 auto;
             width: 188px;
             height: 188px;
         }
 
         @media screen and (min-width: 355px) and (max-width: 640px) {
-            margin: 0 auto;
             width: 288px;
             height: 288px;
         }
@@ -148,17 +253,24 @@
             width: 288px;
             height: 288px;
 
-            @include hover(box-shadow, scale(1.2));
             @include hover(transform, scale(1.05));
         }
 
         @media screen and (min-width: 1170px) {
             width: 368px;
             height: 368px;
-            border-radius: 0;
 
-            @include hover(box-shadow, scale(1.2));
             @include hover(transform, scale(1.05));
         }
+    }
+
+    @media screen and (max-width: 355px) {
+        margin: 0 auto;
+        width: 188px;
+    }
+
+    @media screen and (min-width: 355px) and (max-width: 640px) {
+        margin: 0 auto;
+        width: 288px;
     }
 }

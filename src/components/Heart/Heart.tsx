@@ -6,7 +6,7 @@ type Props = {
   isFavourite: boolean;
 };
 
-const Heart: React.FC<Props> = ({ handleClick, isFavourite }) => {
+export const Heart: React.FC<Props> = ({ handleClick, isFavourite }) => {
   const iconClass = isFavourite ? 'icon-heartheart-filled' : 'icon-heart';
   return (
     <div className="icon__favourite" onClick={handleClick}>
@@ -16,5 +16,3 @@ const Heart: React.FC<Props> = ({ handleClick, isFavourite }) => {
     </div>
   )
 };
-
-export default Heart;
