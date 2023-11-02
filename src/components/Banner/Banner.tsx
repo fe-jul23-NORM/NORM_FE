@@ -11,6 +11,9 @@ import {
   MdOutlineKeyboardArrowRight,
 } from 'react-icons/md';
 import React from 'react';
+import { STATIC_URL } from '../../constants/core';
+
+const banners = ['banner1.png', 'banner2.jpg', 'banner3.jpeg', 'banner4.png', 'banner5.png'];
 
 const Banner: React.FC = () => {
   return (
@@ -30,24 +33,13 @@ const Banner: React.FC = () => {
         }}
 
       >
-        <SwiperSlide>
-          <img
-            src="https://github.com/mate-academy/product_catalog/blob/main/public/img/banner-phones.png?raw=true"
-            alt="banner"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src=
-            "https://i.imgur.com/fO6RD9f.jpg"
-            alt="banner"
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="https://github.com/mate-academy/product_catalog/blob/main/public/img/category-accessories.png?raw=true"
-            alt="banner"
-          />
-        </SwiperSlide>
+        {banners.map((banner) => {
+          return (
+            <SwiperSlide key={banner}>
+              <img src={`${STATIC_URL}/${banner}`} alt="banner" />
+            </SwiperSlide>
+          )
+        })}
       </Swiper>
 
       <div className="arrow-left">
