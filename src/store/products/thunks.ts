@@ -104,7 +104,7 @@ export const getFoundProductsThunk = createAsyncThunk(
     if (name) {
       try {
         const response = await axiosPublic.get<Product[]>(`${PRODUCT_ROUTES.GET_BY_NAME}?name=${name}`);
-            
+        
       return response.data;
       } catch (e: any) {
         return rejectWithValue(e?.response?.data?.message);
