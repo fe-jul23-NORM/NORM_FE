@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './RegisterPage.scss';
-import Input from '../../Input/Input';
-import Button from '../../Button/Button';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { register } from '../../../store/auth/thunks';
 import { getRegisterValidation } from '../../../validation/auth.validation';
@@ -10,6 +8,8 @@ import { selectAuthLoading, selectUser } from '../../../store/auth/selectors';
 import { useNavigate } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { errorManager } from '../../../utils/errorManager';
+import { Input } from '../../Input';
+import { Button } from '../../Button';
 
 const initialValues = {
   firstName: '',
@@ -20,7 +20,7 @@ const initialValues = {
   errors: {},
 }
 
-const RegisterPage: React.FC = () => {
+export const RegisterPage: React.FC = () => {
   const [values, setValues] = useState<IRegister>({
     ...initialValues,
     errors: getRegisterValidation(initialValues)
@@ -139,5 +139,3 @@ const RegisterPage: React.FC = () => {
     </div>
   )
 }
-
-export default RegisterPage;

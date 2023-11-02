@@ -1,19 +1,19 @@
 import React from 'react';
 import './CheckoutModal.scss';
 import { useAppDispatch, useAppSelector } from '../../../store';
-import Button from '../../Button/Button';
 import { createOrderByGuest, createOrderByUser } from '../../../store/cart/thunks';
 import { selectUser } from '../../../store/auth/selectors';
 import { errorManager } from '../../../utils/errorManager';
 import { getNotification } from '../../../utils/notification';
 import { NotificationEnum, NotificationTypeEnum } from '../../../types/notification.types';
+import { Button } from '../../Button';
 
 type Props = {
   onClose: () => void;
   email: string,
 }
 
-const CheckoutModal: React.FC<Props> = ({onClose, email}) => {
+export const CheckoutModal: React.FC<Props> = ({onClose, email}) => {
   const isLoading = useAppSelector((state) => state.cart.isLoading)
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
@@ -65,5 +65,3 @@ const CheckoutModal: React.FC<Props> = ({onClose, email}) => {
     </div>
   );
 };
-
-export default CheckoutModal;

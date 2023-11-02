@@ -1,11 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 import 'swiper/css';
-
 import './Banner.scss';
-
 import { Pagination, Navigation, Autoplay, A11y } from 'swiper/modules';
-
 import {
   MdOutlineKeyboardArrowLeft,
   MdOutlineKeyboardArrowRight,
@@ -13,9 +9,9 @@ import {
 import React from 'react';
 import { STATIC_URL } from '../../constants/core';
 
-const banners = ['banner1.png', 'banner2.jpg', 'banner3.jpeg', 'banner4.png', 'banner5.png'];
+export const Banner: React.FC = () => {
+  const banners = ['banner1.png', 'banner2.jpg', 'banner3.jpeg', 'banner4.png', 'banner5.png'];
 
-const Banner: React.FC = () => {
   return (
     <div className="banner__slider">
       <Swiper
@@ -52,5 +48,3 @@ const Banner: React.FC = () => {
     </div>
   );
 };
-
-export default Banner;

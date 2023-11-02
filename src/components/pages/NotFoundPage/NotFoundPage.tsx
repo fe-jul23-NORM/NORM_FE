@@ -3,7 +3,7 @@ import React from 'react';
 import './NotFoundPage.scss';
 import { STATIC_URL } from '../../../constants/core';
 
-const NotFoundPage: React.FC = () => {
+export const NotFoundPage: React.FC = () => {
   return (
     <div className='container_notFoundPage'>
       <img
@@ -15,5 +15,3 @@ const NotFoundPage: React.FC = () => {
     </div>
   )
 };
-
-export default NotFoundPage;

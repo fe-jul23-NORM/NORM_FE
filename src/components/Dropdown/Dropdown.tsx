@@ -20,9 +20,9 @@ export function useOutsideClick(ref: RefObject<HTMLElement>, func: () => void, s
         func();
       }
     }
-    
+
     document.addEventListener('mousedown', handleClick);
-    
+
     return () => {
       document.removeEventListener('mousedown', handleClick);
     };

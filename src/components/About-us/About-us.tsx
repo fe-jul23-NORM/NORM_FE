@@ -1,8 +1,8 @@
 import React from 'react';
 import './About-us.scss';
-import PageNavigation from '../PageNavigation/PageNavigation';
+import { PageNavigation } from '../PageNavigation';
 
-const AboutUs: React.FC = () => {
+export const AboutUs: React.FC = () => {
   return (
     <body className='about'>
       <PageNavigation links={[{link: '/about', text: 'About us'}]} />
@@ -68,5 +68,3 @@ const AboutUs: React.FC = () => {
     </body>
   )
 };
-
-export default AboutUs;

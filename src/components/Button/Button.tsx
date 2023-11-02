@@ -10,7 +10,7 @@ type Props = {
   isDanger?: boolean,
 }
 
-const Button: React.FC<Props> = ({text, handleClick, disabled, isSelected, isDanger}) => {
+export const Button: React.FC<Props> = ({text, handleClick, disabled, isSelected, isDanger}) => {
   
   return (
     <button
@@ -25,5 +25,3 @@ const Button: React.FC<Props> = ({text, handleClick, disabled, isSelected, isDan
     </button>
   )
 };
-
-export default Button;

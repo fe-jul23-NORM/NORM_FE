@@ -3,7 +3,7 @@ import './Footer.scss';
 import { scrollToTop } from '../../utils/constants';
 import { STATIC_URL } from '../../constants/core';
 
-const Footer: React.FC = () => {
+export const Footer: React.FC = () => {
   return (
     <>
       <div className="footer">
@@ -32,5 +32,3 @@ const Footer: React.FC = () => {
     </>
   )
 };
-
-export default Footer;

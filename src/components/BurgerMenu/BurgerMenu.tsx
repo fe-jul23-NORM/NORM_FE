@@ -15,7 +15,7 @@ const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
   { 'menu__link--active': isActive },
 );
 
-const BurgerMenu: React.FC<Props> = ({ setIsMenuVisible }) => {
+export const BurgerMenu: React.FC<Props> = ({ setIsMenuVisible }) => {
   const user = useAppSelector(selectUser);
   
   return (
@@ -51,5 +51,3 @@ const BurgerMenu: React.FC<Props> = ({ setIsMenuVisible }) => {
     </div>
   )
 };
-
-export default BurgerMenu;

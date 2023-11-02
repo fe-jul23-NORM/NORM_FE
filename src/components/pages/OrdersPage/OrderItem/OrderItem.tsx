@@ -7,7 +7,7 @@ type Props = {
   order: Order,
 }
 
-const OrderItem: React.FC<Props> = ({order}) => {
+export const OrderItem: React.FC<Props> = ({order}) => {
   
   const price = order.products.reduce((acc, item) => {
     return acc + item.quantity * item.product.price;
@@ -37,5 +37,3 @@ const OrderItem: React.FC<Props> = ({order}) => {
     </li>
   );
 };
-
-export default OrderItem;

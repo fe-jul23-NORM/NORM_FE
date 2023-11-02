@@ -12,7 +12,7 @@ type Props = {
   links?: NavigationPrpos[],
 }
 
-const PageNavigation: React.FC<Props> = ({ links }) => {
+export const PageNavigation: React.FC<Props> = ({ links }) => {
   const id = useId();
   
   return (
@@ -34,5 +34,3 @@ const PageNavigation: React.FC<Props> = ({ links }) => {
     </div>
   );
 };
-
-export default PageNavigation;

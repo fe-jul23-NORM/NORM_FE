@@ -5,10 +5,10 @@ import { useAppDispatch, useAppSelector } from '../../../store';
 import { selectAllProducts, selectProductsCount } from '../../../store/products/selectors';
 import { getProductsThunk } from '../../../store/products/thunks';
 import { SortProductByEnum } from '../../../types/product.types';
-import Pagination from '../../Pagination/Pagination';
+import { Pagination } from '../../Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { Dropdown } from '../../Dropdown/Dropdown';
-import PageNavigation from '../../PageNavigation/PageNavigation';
+import { PageNavigation } from '../../PageNavigation';
 import { isPlural, normalizeQuery, setProductsType, setSortBy } from '../../../utils/functions';
 import { itemsOnPageOptions } from '../../../utils/constants';
 
@@ -16,7 +16,7 @@ type Props = {
   product: string,
 }
 
-const CatalogPage: React.FC<Props> = ({ product }) => {
+export const CatalogPage: React.FC<Props> = ({ product }) => {
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts);
   const totalProducts = useAppSelector(selectProductsCount);
@@ -90,5 +90,3 @@ const CatalogPage: React.FC<Props> = ({ product }) => {
     </section>
   )
 }
-
-export default CatalogPage;

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './LoginPage.scss';
-import Button from '../../Button/Button';
 import { ILogin } from '../../../types/auth.types';
 import { login } from '../../../store/auth/thunks';
 import { useAppDispatch, useAppSelector } from '../../../store';
 import { useNavigate } from 'react-router';
 import { selectAuthLoading, selectUser } from '../../../store/auth/selectors';
-import Input from '../../Input/Input';
 import { NavLink } from 'react-router-dom';
 import { errorManager } from '../../../utils/errorManager';
 import { getNotification } from '../../../utils/notification';
 import { NotificationEnum, NotificationTypeEnum } from '../../../types/notification.types';
+import { Input } from '../../Input';
+import { Button } from '../../Button';
 
-const LoginPage: React.FC = () => {
+export const LoginPage: React.FC = () => {
   const [values, setValues] = useState<ILogin>({
     email: '',
     password: '',
@@ -91,5 +91,3 @@ const LoginPage: React.FC = () => {
     </div>
   )
 }
-
-export default LoginPage;

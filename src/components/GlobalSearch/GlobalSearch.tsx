@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect } from 'react';
 import './GlobalSearch.scss';
 import { useAppDispatch } from '../../store';
 import { getFoundProductsThunk } from '../../store/products/thunks';
@@ -10,7 +10,7 @@ import { AutoComplete, AutoCompleteCompleteEvent, AutoCompleteSelectEvent } from
 import { Product } from '../../types/product.types';
 import { useNavigate } from 'react-router';
 
-const GlobalSearch: React.FC = () => {
+export const GlobalSearch: React.FC = () => {
   const [value, setValue] = useState({name: ''});
 
   const dispatch = useAppDispatch();
@@ -69,5 +69,3 @@ const GlobalSearch: React.FC = () => {
     </div>
   )
 };
-
-export default memo(GlobalSearch);

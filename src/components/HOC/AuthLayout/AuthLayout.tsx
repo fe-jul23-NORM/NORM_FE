@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import './AuthLayout.scss'
 import { STATIC_URL } from '../../../constants/core';
 
-const AuthLayout: React.FC = () => {
+export const AuthLayout: React.FC = () => {
   return (
     <div>
       <div className='auth-header'>
@@ -15,5 +15,3 @@ const AuthLayout: React.FC = () => {
     </div>
   );
 };
-
-export default AuthLayout;

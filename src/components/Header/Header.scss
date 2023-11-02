@@ -188,6 +188,7 @@
 }
 .number {
   position: relative;
+  cursor: pointer;
 
   &--disabled {
     display: none;

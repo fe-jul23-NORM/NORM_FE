@@ -11,7 +11,7 @@ type Props = {
   page: string,
 }
 
-const Pagination: React.FC<Props> = (props: Props) => {
+export const Pagination: React.FC<Props> = (props: Props) => {
   const {
     total,
     perPage,
@@ -121,5 +121,3 @@ const Pagination: React.FC<Props> = (props: Props) => {
     </section>
   );
 }
-
-export default Pagination;

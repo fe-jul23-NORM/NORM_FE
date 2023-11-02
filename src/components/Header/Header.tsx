@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import classNames from 'classnames';
-import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import { selectUser } from '../../store/auth/selectors';
 import { HEADER_LINKS } from '../../constants/core';
 import { CartProduct } from '../../types/product.types';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { getTotalQuantity } from '../../store/cart/slice';
-import Search from '../GlobalSearch/GlobalSearch';
+import { GlobalSearch } from '../GlobalSearch';
+import { BurgerMenu } from '../BurgerMenu';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
   'nav__link',
@@ -24,7 +24,7 @@ const getIconClass = (isActive: boolean, icon: string) => {
   )
 };
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const user = useAppSelector(selectUser);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
@@ -78,7 +78,7 @@ const Header: React.FC = () => {
           </div>
         </nav>
         <div className='header__icons'>
-          <Search />
+          <GlobalSearch />
           <NavLink
             className={({ isActive }) => getIconClass(isActive, 'icon-user')}
             to={user ? '/orders' : '/login'}
@@ -108,5 +108,3 @@ const Header: React.FC = () => {
     </>
   )
 };
-
-export default Header;

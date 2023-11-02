@@ -5,7 +5,7 @@ type Props = {
   text: string,
 }
 
-const ErrorMessage: React.FC<Props> = ({ text }) => {
+export const ErrorMessage: React.FC<Props> = ({ text }) => {
   return (
     <div className='error-wrapper'>
       <span className='error-icon'/>
@@ -13,5 +13,3 @@ const ErrorMessage: React.FC<Props> = ({ text }) => {
     </div>
   );
 };
-
-export default ErrorMessage;

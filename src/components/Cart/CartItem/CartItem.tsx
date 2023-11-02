@@ -10,7 +10,7 @@ type Props = {
   item: CartProduct,
 }
 
-const CartItem: React.FC<Props> = ({ item }) => {
+export const CartItem: React.FC<Props> = ({ item }) => {
   const { name, quantity, image, price } = item;
   const totalProductPrice = price * quantity;
   const dispatch = useAppDispatch();
@@ -87,5 +87,3 @@ const CartItem: React.FC<Props> = ({ item }) => {
     </div>
   )
 }
-
-export default CartItem;

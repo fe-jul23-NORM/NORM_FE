@@ -1,9 +1,7 @@
 import React, { memo, useMemo } from 'react';
 import './Card.scss';
 import { CartProduct, Product } from '../../types/product.types';
-import Button from '../Button/Button';
 import { BASE_URI } from '../../constants/core';
-import Heart from '../Heart/Heart';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { addToCart } from '../../store/cart/slice';
 import { addToFavourites, removeFromFavourites } from '../../store/products/slice';
@@ -14,6 +12,8 @@ import { selectFavorites } from '../../store/products/selectors';
 import { useNavigate } from 'react-router-dom';
 import { getNotification } from '../../utils/notification';
 import { NotificationEnum, NotificationTypeEnum } from '../../types/notification.types';
+import { Button } from '../Button';
+import { Heart } from '../Heart';
 
 type Props = {
   product: Product,
@@ -45,10 +45,10 @@ const Card: React.FC<Props> = ({ product }) => {
   const addItemToCart = () => {
     if (!isSelected) {
       dispatch(addToCart(product));
-      
+
       const updatedCart = [...cart, { ...product, quantity: 1 }];
       localStorage.setItem('cart', JSON.stringify(updatedCart));
-      
+
       getNotification(NotificationEnum.ProductInCart, NotificationTypeEnum.success)
     }
   }
@@ -74,7 +74,7 @@ const Card: React.FC<Props> = ({ product }) => {
   };
 
   const handleNavigate = () => {
-    window.scrollTo({top: 0, behavior: 'auto'})
+    window.scrollTo({ top: 0, behavior: 'auto' })
     navigate(`/${itemId}`);
     console.log(itemId)
   }
@@ -94,19 +94,15 @@ const Card: React.FC<Props> = ({ product }) => {
         {name}
       </p>
 
-
       <div className="card__price">
         <p className="card__price-actual">
           {`$${price}`}
         </p>
-
         <p className="card__price-sale">
           {`$${fullPrice}`}
         </p>
       </div>
-
       <hr />
-
       <div className="card__description">
         <div className="description-item">
           <span className="description-item-title">
@@ -135,14 +131,12 @@ const Card: React.FC<Props> = ({ product }) => {
           </span>
         </div>
       </div>
-
       <div className="card__footer">
         <Button
           isSelected={isSelected}
           text={isSelected ? 'Added to to cart' : 'Add to cart'}
           handleClick={addItemToCart}
         />
-
         <Heart handleClick={handleFavourites} isFavourite={isFavourite} />
       </div>
     </div>

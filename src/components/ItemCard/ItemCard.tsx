@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import './ItemCard.scss';
-import Button from '../Button/Button';
-import Heart from '../Heart/Heart';
 import {
   addFavouriteThunk,
   getCurrentProductThunk,
@@ -22,10 +20,8 @@ import { Navigation, A11y, Autoplay } from 'swiper/modules';
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import Card from '../Card/Card';
 import { selectCart } from '../../store/cart/selectors';
-import PageNavigation from '../PageNavigation/PageNavigation';
 import { normalizeQuery } from '../../utils/functions';
 import { CartProduct, CurrentProduct, Product } from '../../types/product.types';
-import BackButton from '../BackButton/BackButton';
 import { addToFavourites, removeFromFavourites } from '../../store/products/slice';
 import { useSelector } from 'react-redux';
 import { addToCart } from '../../store/cart/slice';
@@ -34,8 +30,12 @@ import { getNotification } from '../../utils/notification';
 import { NotificationEnum, NotificationTypeEnum } from '../../types/notification.types';
 import { Loader } from '../Loader/Loader';
 import cn from 'classnames';
+import { PageNavigation } from '../PageNavigation';
+import { BackButton } from '../BackButton';
+import { Button } from '../Button';
+import { Heart } from '../Heart';
 
-const ItemCard: React.FC = () => {
+export const ItemCard: React.FC = () => {
   const dispatch = useAppDispatch();
   const product = useAppSelector(selectCurrentProduct) as CurrentProduct;
   const navigate = useNavigate();
@@ -434,5 +434,3 @@ const ItemCard: React.FC = () => {
     )
   )
 };
-
-export default ItemCard;

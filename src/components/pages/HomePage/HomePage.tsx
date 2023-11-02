@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import './HomePage.scss';
-import Banner from '../../Banner/Banner';
 import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -12,8 +11,9 @@ import Card from '../../Card/Card';
 import { STATIC_URL } from '../../../constants/core';
 import { SLIDER_BREAKPOINTS } from '../../../constants/core';
 import { useNavigate } from 'react-router-dom';
+import { Banner } from '../../Banner';
 
-const HomePage = () => {
+export const HomePage = () => {
     const dispatch = useAppDispatch();
     const newProducts = useAppSelector(selectNewProducts)
     const hotPrices = useAppSelector(selectDiscountProducts);
@@ -28,14 +28,17 @@ const HomePage = () => {
     }, []);
 
     const handleNavigateToPhones = () => {
+        window.scrollTo({ top: 0 });
         navigate(`/phones`);
     };
 
     const handleNavigateToTablets = () => {
+        window.scrollTo({ top: 0 });
         navigate(`/tablets`);
     };
 
     const handleNavigateToAccessories = () => {
+        window.scrollTo({ top: 0 });
         navigate(`/accessories`);
     };
 
@@ -165,5 +168,3 @@ const HomePage = () => {
         </main>
     )
 }
-
-export default HomePage;

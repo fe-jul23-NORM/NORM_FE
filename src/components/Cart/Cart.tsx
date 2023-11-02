@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import CartItem from "./CartItem/CartItem";
 import './Cart.scss';
 import { useAppDispatch, useAppSelector } from "../../store";
 import { setStateCart, getTotalQuantity } from "../../store/cart/slice";
-import BackButton from '../BackButton/BackButton';
-import Button from '../Button/Button';
-import PageNavigation from "../PageNavigation/PageNavigation";
 import { selectUser } from "../../store/auth/selectors";
-import Input from "../Input/Input";
 import { EMAIL_REGEX } from "../../constants/regex";
 import { selectCartLoading } from '../../store/cart/selectors';
-import Modal from '../Modal/Modal';
-import CheckoutModal from './CheckoutModal/CheckoutModal';
+import { CheckoutModal } from "./CheckoutModal";
+import { Modal } from "../Modal";
+import { PageNavigation } from "../PageNavigation";
+import { BackButton } from "../BackButton";
+import { CartItem } from "./CartItem";
+import { Input } from "../Input";
+import { Button } from "../Button";
 
-const Cart: React.FC = () => {
+export const Cart: React.FC = () => {
   const isLoading = useAppSelector(selectCartLoading)
   const cart = useAppSelector(state => state.cart.cart);
   const numberOfProducts = useAppSelector((state) => state.cart.totalQuantity);
@@ -45,7 +45,7 @@ const Cart: React.FC = () => {
   return (
     <div className="cart">
       {isCheckoutOpen && (
-        <Modal
+        <Modal  
           outsideHandler={handleOpenCheckout}
           closeFunc={handleOpenCheckout}
           withCloseIcon
@@ -101,5 +101,3 @@ const Cart: React.FC = () => {
     </div>
   )
 }
-
-export default Cart;

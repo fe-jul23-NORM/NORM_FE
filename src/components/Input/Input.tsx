@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useId, useState } from 'react';
 import cn from 'classnames';
 import './Input.scss';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { ErrorMessage } from '../ErrorMessage';
 
 type Props = {
   name: string,
@@ -15,7 +15,7 @@ type Props = {
   disabled?: boolean,
 }
 
-const Input: React.FC<Props> = ({ name, placeholder, onChange, value, error, isInvalid, label, isSecure, disabled }) => {
+export const Input: React.FC<Props> = ({ name, placeholder, onChange, value, error, isInvalid, label, isSecure, disabled }) => {
   const [show, setShow] = useState(false);
   const [touched, setTouched] = useState(false);
   const showError = error && touched;
@@ -70,5 +70,3 @@ const Input: React.FC<Props> = ({ name, placeholder, onChange, value, error, isI
     </div>
   );
 };
-
-export default Input;

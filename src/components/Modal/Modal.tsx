@@ -12,7 +12,7 @@ type Props = {
   withCloseIcon?: boolean,
 }
 
-const Modal: React.FC<Props> = ({ children, outsideHandler, withCloseIcon, closeFunc }) => {
+export const Modal: React.FC<Props> = ({ children, outsideHandler, withCloseIcon, closeFunc }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   useOutsideClick(modalRef, outsideHandler || (() => null));
   
@@ -76,5 +76,3 @@ const Modal: React.FC<Props> = ({ children, outsideHandler, withCloseIcon, close
     mount as HTMLElement,
   );
 };
-
-export default Modal;

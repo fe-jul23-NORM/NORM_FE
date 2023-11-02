@@ -2,9 +2,9 @@ import React from 'react';
 import Card from '../../Card/Card';
 import './FavouritesPage.scss';
 import { useAppSelector } from '../../../store';
-import PageNavigation from '../../PageNavigation/PageNavigation';
+import { PageNavigation } from '../../PageNavigation';
 
-const FavouritesPage: React.FC = () => {
+export const FavouritesPage: React.FC = () => {
   const favourites = useAppSelector(state => state.product.favourites);
 
   return (
@@ -36,5 +36,3 @@ const FavouritesPage: React.FC = () => {
     </div>
   )
 }
-
-export default FavouritesPage;
