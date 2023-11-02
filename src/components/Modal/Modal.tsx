@@ -2,8 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import cn from 'classnames';
 import { createPortal } from 'react-dom';
 import './Modal.scss';
-import { useOutsideClick } from '../Dropdown/Dropdown';
-import { hideScrollbar, showScrollbar } from '../../utils/functions';
+import { hideScrollbar, showScrollbar, useOutsideClick } from '../../utils/functions';
 
 type Props = {
   children?: React.ReactNode

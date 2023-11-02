@@ -1,5 +1,5 @@
-@import '../../utils/mixins.scss';
-@import '../../utils/variable.scss';
+@import '../../../utils/mixins.scss';
+@import '../../../utils/variable.scss';
 
 @mixin pageGrid {
   --columns: 1;
@@ -20,10 +20,9 @@
 }
 
 .about {
-  @include pageGrid;
   background-color: $HoverBg;
   width: 100%;
-  padding: 72px;
+  padding: 0;
   justify-self: center;
   line-height: 21px;
 }
@@ -64,7 +63,23 @@
   }
 }
 
+.features-container {
+  grid-column: span 1;
+
+  @include onTablet() {
+    grid-column: span 1;
+  }
+
+  @include onDeskTop() {
+    grid-column: span 2;
+  }
+}
+
 .page__title {
+  display: flex;
+  align-items: center;
+  height: 38px;
+
   grid-column: span 1;
 
   @include onTablet() {
@@ -85,6 +100,10 @@
     size: 20px;
     font-weight: 400;
   }
+
+  &--team {
+    margin-left: 20px;
+  }
 }
 
 .section__text {
@@ -94,4 +113,19 @@
 .team__list {
   list-style: none;
   text-align: left;
+  font-size: 16px;
+
+  @include onTablet {
+    font-size: 18px;
+  }
+
+  &--links {
+    text-decoration: none;
+    font-weight: 400;
+    color: $Primary;
+    font-size: 20px;
+    line-height: 40px;
+
+    @include hover(color, $Accent);
+  }
 }

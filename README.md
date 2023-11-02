@@ -1,6 +1,6 @@
 # FE-JUL23-NORM
 
-An online store for electronic goods, created using cutting-edge technologies along with the implementation of Redux and many other libraries to enhance the application's functionality and its responsiveness to user actions. [NORM](https://github.com/facebook/create-react-app).
+An online store for electronic goods, created using cutting-edge technologies along with the implementation of Redux and many other libraries to enhance the application's functionality and its responsiveness to user actions. [NORM](https://nice-gadgets-be-etof.onrender.com).
 
 ## Description
 
@@ -8,10 +8,10 @@ An online store with a home page designed to provide users with an overall impre
 
 ## Local development
 
-### Local development
+### Dependencies
 
-Node v18 and higher
-NPM v6 and higher
+1. Node v18 and higher
+2. NPM v6 and higher
 
 ### installing
 

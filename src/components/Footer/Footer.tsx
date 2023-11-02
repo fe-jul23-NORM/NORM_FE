@@ -1,10 +1,16 @@
 import React from 'react';
 import './Footer.scss';
-import { scrollToTop } from '../../utils/constants';
 import { STATIC_URL } from '../../constants/core';
 import { NavLink } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
+   const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <>
       <div className="footer">

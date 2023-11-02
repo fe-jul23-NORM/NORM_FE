@@ -8,11 +8,7 @@ import {
 } from '../../store/products/thunks';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { useNavigate, useParams } from 'react-router-dom';
-import {
-  selectCurrentProduct,
-  selectFavorites,
-  selectRecommended
-} from '../../store/products/selectors';
+import { selectCurrentProduct, selectDiscountProducts, selectFavorites } from '../../store/products/selectors';
 import { BASE_URI, SLIDER_BREAKPOINTS } from '../../constants/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -23,7 +19,7 @@ import { selectCart } from '../../store/cart/selectors';
 import { normalizeQuery } from '../../utils/functions';
 import { CartProduct, CurrentProduct, Product } from '../../types/product.types';
 import { addToFavourites, removeFromFavourites } from '../../store/products/slice';
-import { useSelector } from 'react-redux';
+import { shallowEqual, useSelector } from 'react-redux';
 import { addToCart } from '../../store/cart/slice';
 import { errorManager } from '../../utils/errorManager';
 import { getNotification } from '../../utils/notification';
@@ -35,7 +31,6 @@ import { BackButton } from '../BackButton';
 import { Button } from '../Button';
 import { Heart } from '../Heart';
 import { selectUser } from '../../store/auth/selectors';
-import { ColorRing } from 'react-loader-spinner';
 
 export const ItemCard: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -43,8 +38,9 @@ export const ItemCard: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const capacityWithColor = product?.id.split(product.namespaceId) || ['', ''];
-  const hotPrices = useAppSelector(selectRecommended);
+  const hotPrices = useAppSelector(selectDiscountProducts);
   const [isLoading, setLoading] = useState(false);
+
   let currentColor = product?.color || 'null';
 
   if (product?.color.includes(' ')) {
@@ -59,8 +55,8 @@ export const ItemCard: React.FC = () => {
   }) || [''];
 
   const cart: CartProduct[] = useAppSelector(selectCart);
-  const isSelected = useMemo(() => cart.some(({ id }) => id === product?.productPassport.id), [cart, id, product]);
-  const favourites: Product[] = useSelector(selectFavorites);
+  const isSelected = useMemo(() => cart.some(({ id }) => id === product?.productPassport.id), [cart]);
+  const favourites: Product[] = useSelector(selectFavorites, shallowEqual);
   const isFavourite = useMemo(() => {
     return favourites.some(({ id }) => id === product?.productPassport.id);
   }, [favourites, id, product]);
@@ -72,8 +68,9 @@ export const ItemCard: React.FC = () => {
     if (!isSelected) {
       getNotification(NotificationEnum.ProductInCart, NotificationTypeEnum.success)
       dispatch(addToCart(product.productPassport));
-
+      
       const updatedCart = [...cart, { ...product.productPassport, quantity: 1 }];
+      
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
   }
@@ -111,7 +108,7 @@ export const ItemCard: React.FC = () => {
       .finally(() => {
         setLoading(false);
       });
-
+    
     if (id) dispatch(getRecommendedProductsThunk(id));
   }, [id]);
 
@@ -128,11 +125,8 @@ export const ItemCard: React.FC = () => {
   return (
     product && (
       <div className='item-card'>
-        <div className={cn(
-          'item-card__filler',
-          isLoading && 'item-card__filler--active',
-        )}>
-          <Loader />
+        <div className={cn('item-card__filler', isLoading && 'item-card__filler--active' )}>
+          <Loader/>
         </div>
         <div className="item-card__nav">
           <PageNavigation links={[
@@ -236,7 +230,7 @@ export const ItemCard: React.FC = () => {
                         className="gB"
                         key={ind}
                         style={{
-                          border: `1px solid #000`,
+                          border: `2px solid #000`,
                           cursor: 'not-allowed',
                         }}
                       >

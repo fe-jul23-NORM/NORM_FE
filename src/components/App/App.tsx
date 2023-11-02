@@ -8,6 +8,7 @@ import { Cart } from '../Cart/Cart';
 import { useAppDispatch } from '../../store';
 import '../../utils/_reset.scss';
 import 'react-toastify/dist/ReactToastify.css';
+// import CatalogPage from '../pages/CatalogPage/CatalogPage';
 import { initThunk } from '../../store/core/thunks';
 import { errorManager } from '../../utils/errorManager';
 import { Loader } from '../Loader';
@@ -15,12 +16,13 @@ import { HomePage } from '../pages/HomePage';
 import { CatalogPage } from '../pages/CatalogPage';
 import { FavouritesPage } from '../pages/FavouritesPage';
 import { ItemCard } from '../ItemCard';
-import { AboutUs } from '../About-us';
+// import { AboutUs } from '../About-us';
 import { RequiredAuth } from '../HOC/RequiredAuth';
 import { OrdersPage } from '../pages/OrdersPage';
 import { AuthLayout } from '../HOC/AuthLayout';
 import { LoginPage } from '../pages/LoginPage';
 import { RegisterPage } from '../pages/RegisterPage';
+import { AboutUsPage } from '../pages/AboutUsPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -52,7 +54,7 @@ function App() {
           <Route path='/cart' element={<Cart />} />
           <Route path='/favourites' element={<FavouritesPage />} />
           <Route path='/:id' element={<ItemCard />} />
-          <Route path='/about' element={<AboutUs />} />
+          <Route path='/about' element={<AboutUsPage />} />
           <Route path='*' element={<NotFoundPage />} />
 
           <Route path='/' element={<RequiredAuth />}>

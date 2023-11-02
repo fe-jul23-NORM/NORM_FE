@@ -57,13 +57,13 @@ export const CheckoutModal: React.FC<Props> = ({ onClose, email }) => {
       <div className="checkout__buttons">
         <Button
           text="Confirm"
-          isDanger
           handleClick={handleCheckout}
           disabled={isLoading}
         />
         <Button
           text="Cancel"
           handleClick={onClose}
+          isDanger
         />
       </div>
     </div>
