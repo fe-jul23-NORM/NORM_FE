@@ -19,12 +19,8 @@
     margin: 0 16px;
     display: block;
     box-sizing: border-box;
-
     height: 22px;
     width: 68px;
-    background-image: url(../../images/logo.svg);
-    background-repeat: no-repeat;
-    background-position: center;
 
     @include onDeskTop() {
       height: 28px;
