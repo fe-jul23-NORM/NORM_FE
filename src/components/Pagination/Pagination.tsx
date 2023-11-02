@@ -82,10 +82,8 @@ const Pagination: React.FC<Props> = (props: Props) => {
       >
         <span className="icon-left" aria-hidden="true"></span>
       </Link>
-
       <ul className="pagination__list">
         {preparedPageItems.map((el) => (
-
           <Link
             key={el}
             to={{
@@ -104,7 +102,6 @@ const Pagination: React.FC<Props> = (props: Props) => {
           </Link>
         ))}
       </ul>
-
       <Link
         to={{ search: onNext(page) }}
         onClick={() => {

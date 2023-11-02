@@ -1,5 +1,4 @@
 @import '../../utils/mixins.scss';
-// @import '../../utils/reset.scss';
 @import '../../utils/variable.scss';
 
 @mixin pageGrid {
@@ -12,8 +11,6 @@
 
   @include onTablet {
     --columns: 2;
-    // max-width: 560px;
-    // max-width: 100vw;
   }
 
   @include onDeskTop {
@@ -26,11 +23,9 @@
   @include pageGrid;
   background-color: $HoverBg;
   width: 100%;
-  // margin: 72px auto;
   padding: 72px;
   justify-self: center;
   line-height: 21px;
-  // text-align: center;
 }
 
 .about-container {
@@ -99,5 +94,4 @@
 .team__list {
   list-style: none;
   text-align: left;
-  // padding-left: 124px;
 }

@@ -32,7 +32,7 @@ const Cart: React.FC = () => {
     dispatch(setStateCart(cart));
     dispatch(getTotalQuantity());
   }, []);
-  
+
   const handleOpenCheckout = () => {
     setCheckoutModal(!isCheckoutOpen);
   }
@@ -50,15 +50,13 @@ const Cart: React.FC = () => {
           closeFunc={handleOpenCheckout}
           withCloseIcon
         >
-          <CheckoutModal onClose={handleOpenCheckout} email={guestEmail}/>
+          <CheckoutModal onClose={handleOpenCheckout} email={guestEmail} />
         </Modal>
       )}
-      
       <div className="cart__nav">
         <PageNavigation links={[{ link: '/cart', text: 'Cart' }]} />
       </div>
       <BackButton />
-
       <h1 className="cart__title">Cart</h1>
 
       {cart.length
@@ -73,9 +71,7 @@ const Cart: React.FC = () => {
                 )
               })}
             </div>
-
             <div className="cart__checkout">
-
               <div className="cart__price">
                 <span className="cart__number">{`$${totalPrice}`}</span>
                 <span className="cart__total">{`Total for ${numberOfProducts} ${numberOfProducts === 1 ? 'item' : 'items'}`}</span>

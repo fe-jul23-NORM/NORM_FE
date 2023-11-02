@@ -9,25 +9,20 @@ const FavouritesPage: React.FC = () => {
 
   return (
     <div className="favourites">
-
       <section className="favourites__wrapper">
-
         <div className="favourites__top">
           <div className="favourites__nav">
             <PageNavigation links={[{ link: '/favourites', text: 'Favourites' }]} />
           </div>
-
           <h1 className='favourites__title'>
             Favourites
           </h1>
-
           <p className="favourites__amount">
             {favourites.length > 1
             ? `${favourites.length} items`
             : `${favourites.length} item`}
           </p>
         </div>
-
         <div className="favourites__container">
           {favourites.map(product => {
             return (

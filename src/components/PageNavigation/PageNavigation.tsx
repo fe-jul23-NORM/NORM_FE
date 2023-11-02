@@ -12,7 +12,6 @@ type Props = {
   links?: NavigationPrpos[],
 }
 
-
 const PageNavigation: React.FC<Props> = ({ links }) => {
   const id = useId();
   

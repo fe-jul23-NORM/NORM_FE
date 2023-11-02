@@ -55,10 +55,8 @@ const LoginPage: React.FC = () => {
     <div className="login-page-wrapper">
       <div className="login-content-wrapper">
         <h2 className="login-title">Sign In</h2>
-        
         <div className="login-content-holder">
           <form className="login-form">
-            
             <div className="input-container">
               <Input
                 name="email"
@@ -67,7 +65,6 @@ const LoginPage: React.FC = () => {
                 value={values.email}
               />
             </div>
-            
             <div className="input-container">
               <Input
                 name="password"
@@ -77,7 +74,6 @@ const LoginPage: React.FC = () => {
                 isSecure
               />
             </div>
-            
             <div className="login-button-container">
               <Button
                 text="Sign In"
@@ -85,7 +81,6 @@ const LoginPage: React.FC = () => {
                 disabled={isLoading || !values.email.length || !values.password.length}
               />
             </div>
-            
             <div className="login-page-link-wrapper">
               <span>Don&lsquo;t have an account yet?</span>
               <NavLink to='/register' className="register-page-link">Sign up</NavLink>

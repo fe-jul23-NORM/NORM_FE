@@ -37,22 +37,18 @@ const OrdersPage: React.FC = () => {
           <LogoutModal onClose={handleLogoutModal}/>
         </Modal>
       )}
-      
       <BackButton/>
-      
       <div className='orders__title-wrapper'>
         <h1 className="orders__title">{`${user.firstName} ${user.lastName}`}</h1>
         <div className="orders__button">
           <Button handleClick={handleLogoutModal} text='Logout'/>
         </div>
       </div>
-      
       <p className="orders__amount">
         {orders.length > 1
           ? `${orders.length} orders`
           : `${orders.length} order`}
       </p>
-      
       <OrderList/>
     </div>
   );

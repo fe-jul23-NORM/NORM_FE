@@ -57,7 +57,6 @@ const Header: React.FC = () => {
             className='header__logo'
             to="/"
           />
-
           <div className="nav__list">
             <NavLink
               className={getLinkClass}
@@ -65,7 +64,6 @@ const Header: React.FC = () => {
             >
               Home
             </NavLink>
-
             {HEADER_LINKS.map((link) => {
               return (
                 <NavLink
@@ -77,19 +75,14 @@ const Header: React.FC = () => {
                 </NavLink>
               )
             })}
-
           </div>
         </nav>
-
         <div className='header__icons'>
-
           <Search />
-
           <NavLink
             className={({ isActive }) => getIconClass(isActive, 'icon-user')}
             to={user ? '/orders' : '/login'}
           />
-
           <div className={classNames({ 'number': favourites.length > 0 })}>
             <div className={favourites.length ? 'number--active' : 'number--disabled'}>{favourites.length}</div>
             <NavLink
@@ -97,22 +90,19 @@ const Header: React.FC = () => {
               to='/favourites'
             />
           </div>
-
-            <div className={classNames({ 'number': cart.length > 0 })}>
-              <div className={cart.length ? 'number--active' : 'number--disabled'}>{numberOfProducts}</div>
-              <NavLink
-                className={({ isActive }) => getIconClass(isActive, 'icon-cart')}
-                to="/cart"
-              />
-            </div>
-
-            <span
-              className={classNames('icon', 'icon-close-button', { 'icon--menu': !isMenuVisible, 'icon-close': isMenuVisible })}
-              onClick={toggleMenu}
+          <div className={classNames({ 'number': cart.length > 0 })}>
+            <div className={cart.length ? 'number--active' : 'number--disabled'}>{numberOfProducts}</div>
+            <NavLink
+              className={({ isActive }) => getIconClass(isActive, 'icon-cart')}
+              to="/cart"
             />
           </div>
+          <span
+            className={classNames('icon', 'icon-close-button', { 'icon--menu': !isMenuVisible, 'icon-close': isMenuVisible })}
+            onClick={toggleMenu}
+          />
+        </div>
       </header>
-
       {isMenuVisible
         && <BurgerMenu setIsMenuVisible={toggleMenu} />}
     </>

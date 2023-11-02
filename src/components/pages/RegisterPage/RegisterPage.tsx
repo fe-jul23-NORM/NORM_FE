@@ -68,10 +68,8 @@ const RegisterPage: React.FC = () => {
     <div className="register-page-wrapper">
       <div className="register-content-wrapper">
         <h2 className="register-title">Sign up</h2>
-        
         <div className="register-content-holder">
           <form className="register-form">
-            
             <div className="input-container">
               <Input
                 name="firstName"
@@ -82,7 +80,6 @@ const RegisterPage: React.FC = () => {
                 isInvalid={Boolean(values.errors.firstName)}
               />
             </div>
-            
             <div className="input-container">
               <Input
                 name="lastName"
@@ -93,7 +90,6 @@ const RegisterPage: React.FC = () => {
                 isInvalid={Boolean(values.errors.lastName)}
               />
             </div>
-            
             <div className="input-container">
               <Input
                 name="email"
@@ -104,7 +100,6 @@ const RegisterPage: React.FC = () => {
                 isInvalid={Boolean(values.errors.email)}
               />
             </div>
-            
             <div className="input-container">
               <Input
                 name="password"
@@ -116,7 +111,6 @@ const RegisterPage: React.FC = () => {
                 isSecure
               />
             </div>
-            
             <div className="input-container">
               <Input
                 name="confirmPassword"
@@ -128,7 +122,6 @@ const RegisterPage: React.FC = () => {
                 isSecure
               />
             </div>
-            
             <div className="register-button-container">
               <Button
                 text="Sign Up"
@@ -136,7 +129,6 @@ const RegisterPage: React.FC = () => {
                 disabled={Object.values(values.errors).length > 0 || isLoading}
               />
             </div>
-            
             <div className="register-page-link-wrapper">
               <span>Already have an account?</span>
               <NavLink to="/login" className="register-page-link">Sign in</NavLink>

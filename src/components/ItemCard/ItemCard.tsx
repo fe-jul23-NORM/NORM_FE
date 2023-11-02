@@ -66,11 +66,11 @@ const ItemCard: React.FC = () => {
 
   const addItemToCart = (e: React.MouseEvent) => {
     e.stopPropagation()
-    
+
     if (!isSelected) {
       getNotification(NotificationEnum.ProductInCart, NotificationTypeEnum.success)
       dispatch(addToCart(product.productPassport));
-      
+
       const updatedCart = [...cart, { ...product.productPassport, quantity: 1 }];
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
@@ -96,9 +96,7 @@ const ItemCard: React.FC = () => {
     }
   };
 
-
   const actualCapacity = capacityWithColor[1].split('-')[1];
-
 
   useEffect(() => {
     setLoading(true);
@@ -111,7 +109,7 @@ const ItemCard: React.FC = () => {
       .finally(() => {
         setLoading(false);
       });
-    
+
     if (id) dispatch(getRecommendedProductsThunk(id));
   }, [id]);
 
@@ -120,8 +118,8 @@ const ItemCard: React.FC = () => {
   return (
     product && (
       <div className='item-card'>
-        <div className={cn('item-card__filler', isLoading && 'item-card__filler--active' )}>
-          <Loader/>
+        <div className={cn('item-card__filler', isLoading && 'item-card__filler--active')}>
+          <Loader />
         </div>
         <div className="item-card__nav">
           <PageNavigation links={[
@@ -130,8 +128,8 @@ const ItemCard: React.FC = () => {
               text: `${normalizeQuery(product.productPassport?.category)}`
             }, {
               link: `/${id}`, text: `${product?.name}`
-              }
-            ]}
+            }
+          ]}
           />
         </div>
         <div className="item-card__back-wrapper">
@@ -149,7 +147,6 @@ const ItemCard: React.FC = () => {
                 alt="phone"
               />
             </div>
-
             <div className="container__images-miniatures">
               {product?.images.map((image, index) => {
                 if (mainImage === index) {
@@ -176,11 +173,8 @@ const ItemCard: React.FC = () => {
                   </div>
                 )
               })}
-
-
             </div>
           </div>
-
           <div className="container__info">
             <div className="container__info-availible">
               <span className="container__info-availible-title">
@@ -190,7 +184,6 @@ const ItemCard: React.FC = () => {
                 {`ID: ${product.productPassport.id}`}
               </span>
             </div>
-
             <div className="container__info-colors">
               {availibleColors.map((color, ind) => {
                 if (color === currentColor) {
@@ -219,14 +212,11 @@ const ItemCard: React.FC = () => {
                 )
               })}
             </div>
-
             <hr />
-
             <div className="container__info-capcity">
               <div className="container__info-capcity-title">
                 Select capacity
               </div>
-
               <div className="container__info-capcity-set">
                 {product?.capacityAvailable.map((value, ind) => {
                   if (actualCapacity === value.toLowerCase()) {
@@ -260,19 +250,15 @@ const ItemCard: React.FC = () => {
                 })}
               </div>
             </div>
-
             <hr />
-
             <div className="container__info-price">
               <p className="container__info-price-actual">
                 {`$${product?.priceDiscount}`}
               </p>
-
               <p className="container__info-price-sale">
                 {`$${product?.priceRegular}`}
               </p>
             </div>
-
             <div className="container__info-cart">
               <Button
                 isSelected={isSelected}
@@ -281,7 +267,6 @@ const ItemCard: React.FC = () => {
               />
               <Heart handleClick={handleFavourites} isFavourite={isFavourite} />
             </div>
-
             <div className="container__info-description">
               <div className="description-item">
                 <span className="description-item-title">
@@ -291,7 +276,6 @@ const ItemCard: React.FC = () => {
                   {product?.screen}
                 </span>
               </div>
-
               <div className="description-item">
                 <span className="description-item-title">
                   Resolution
@@ -300,7 +284,6 @@ const ItemCard: React.FC = () => {
                   {product?.resolution}
                 </span>
               </div>
-
               <div className="description-item">
                 <span className="description-item-title">
                   Processor
@@ -309,7 +292,6 @@ const ItemCard: React.FC = () => {
                   {product?.processor}
                 </span>
               </div>
-
               <div className="description-item">
                 <span className="description-item-title">
                   RAM
@@ -321,22 +303,18 @@ const ItemCard: React.FC = () => {
             </div>
           </div>
         </div>
-
         <div className="main-item">
           <div className="main-item__about">
             <p className="main-item__about-title">
               About
             </p>
-
             <hr />
-
             {product?.description.map((descript, ind) => {
               return (
                 <div key={ind} className="main-item__about-chapter">
                   <p className="main-item__about-chapter-title">
                     {descript.title}
                   </p>
-
                   <p className="main-item__about-chapter-description">
                     {descript.text}
                   </p>
@@ -344,14 +322,11 @@ const ItemCard: React.FC = () => {
               )
             })}
           </div>
-
           <div className="main-item__specs">
             <p className="main-item__specs-title">
               Tech specs
             </p>
-
             <hr />
-
             <div className="main-item__specs-description">
               <div className="description-item">
                 <span className="description-item-title">
@@ -361,7 +336,6 @@ const ItemCard: React.FC = () => {
                   {product?.screen}
                 </span>
               </div>
-
               <div className="description-item">
                 <span className="description-item-title">
                   Resolution
@@ -370,7 +344,6 @@ const ItemCard: React.FC = () => {
                   {product?.resolution}
                 </span>
               </div>
-
               <div className="description-item">
                 <span className="description-item-title">
                   Processor
@@ -379,7 +352,6 @@ const ItemCard: React.FC = () => {
                   {product?.processor}
                 </span>
               </div>
-
               <div className="description-item">
                 <span className="description-item-title">
                   RAM
@@ -388,7 +360,6 @@ const ItemCard: React.FC = () => {
                   {product?.ram}
                 </span>
               </div>
-
               <div className="description-item">
                 <span className="description-item-title">
                   Built in memory
@@ -397,7 +368,6 @@ const ItemCard: React.FC = () => {
                   {product?.capacity}
                 </span>
               </div>
-
               {product?.camera && (
                 <div className="description-item">
                   <span className="description-item-title">
@@ -408,7 +378,6 @@ const ItemCard: React.FC = () => {
                   </span>
                 </div>
               )}
-
               {product?.zoom && (
                 <div className="description-item">
                   <span className="description-item-title">
@@ -419,12 +388,10 @@ const ItemCard: React.FC = () => {
                   </span>
                 </div>
               )}
-
               <div className="description-item">
                 <span className="description-item-title">
                   Cell
                 </span>
-
                 <span className="description-item-value">
                   {product?.cell}
                 </span>
