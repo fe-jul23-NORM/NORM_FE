@@ -67,14 +67,21 @@ const Pagination: React.FC<Props> = (props: Props) => {
     });
   };
 
+  const handleNextPage = (el: number) => {
+    paginationHandleNext(el);
+    scrollToTop();
+  };
+
+  const handlePrevPage = (page: number) => {
+    paginationHandlePrev(page);
+    scrollToTop();
+  };
+
   return (
     <section className="pagination">
       <Link
         to={{ search: onPrev(page) }}
-        onClick={() => {
-          paginationHandlePrev(+page);
-          scrollToTop();
-        }}
+        onClick={() => handlePrevPage(+page)}
         className={classNames(
           'pagination__button',
           { 'pagination__button--disabled': +page === 1 },
@@ -91,10 +98,7 @@ const Pagination: React.FC<Props> = (props: Props) => {
             to={{
               search: getSearchParams(String(el)),
             }}
-            onClick={() => {
-              paginationHandleNext(el);
-              scrollToTop();
-            }}
+            onClick={() => handleNextPage(el)}
             className={classNames(
               'pagination__item',
               { 'pagination__item--active': el === +page },
@@ -107,10 +111,7 @@ const Pagination: React.FC<Props> = (props: Props) => {
 
       <Link
         to={{ search: onNext(page) }}
-        onClick={() => {
-          paginationHandleNext(+page)
-          scrollToTop();
-        }}
+        onClick={() => handleNextPage(+page)}
         className={classNames(
           'pagination__button',
           {
