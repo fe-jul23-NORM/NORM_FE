@@ -25,7 +25,6 @@ import { errorManager } from '../../utils/errorManager';
 function App() {
   const dispatch = useAppDispatch();
   const [isLoading, setLoading] = useState(true);
-
   
   useEffect(() => {
     dispatch(initThunk())
