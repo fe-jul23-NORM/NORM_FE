@@ -1,46 +1,24 @@
-# Getting Started with Create React App
+# FE-JUL23-NORM
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An online store for electronic goods, created using cutting-edge technologies along with the implementation of Redux and many other libraries to enhance the application's functionality and its responsiveness to user actions. [NORM](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+An online store with a home page designed to provide users with an overall impression of the application. It features three main catalog pages for Phones, Tablets, and Accessories (smartwatches). Users have the ability to add items to their favorites or shopping cart from the product page or directly from the product card. The storage location for items depends on whether you are authenticated on the site or not. In the first scenario, data is stored in local storage, while in the other, it goes into the user object on the server. Additionally, users can log in, perform a general search within the application, and receive notifications about successful and unsuccessful operations.
 
-### `npm start`
+## Local development
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Local development
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Node v18 and higher
+NPM v6 and higher
 
-### `npm test`
+### installing
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Fork and clone this repository
+2. Run `npm install` in your terminal
+3. Run `npm start`
 
-### `npm run build`
+## Troubleshooting
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Any advise for common problems or issues. For any contributing or problem solving you could find me [here](https://www.linkedin.com/in/ivan-khutorovyi-35ba0a292/) or [here](https://www.youtube.com/watch?v=dQw4w9WgXcQ).
