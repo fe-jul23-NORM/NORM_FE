@@ -15,23 +15,18 @@ const GlobalSearch: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const products = useSelector(selectGlobalSearchProducts);
+
   const handleChange = (event: AutoCompleteCompleteEvent) => {
     event.originalEvent.preventDefault();
-    const searchStr = event.query;
-
-    if (searchStr) {
-      setValue({ name: searchStr })
-    }
+    setValue({ name: event.query })
   };
 
-  useEffect(() => {
-    if (value.name) {
-      const delay = setTimeout(() => {
-        dispatch(getFoundProductsThunk(value.name));  
-      });  
+  const handleOnHide = () => {
+    setValue({ name: '' })
+  }
 
-      return () => clearTimeout(delay);
-    }
+  useEffect(() => {
+    dispatch(getFoundProductsThunk(value.name));    
   }, [value]);
 
   const itemTemplate = (item: Product) => {
@@ -67,6 +62,8 @@ const GlobalSearch: React.FC = () => {
           onSelect={handleSelectItem} 
           placeholder="Search"
           itemTemplate={itemTemplate}
+          onHide={handleOnHide}
+          delay={200}
         />      
       </PrimeReactProvider>
     </div>
