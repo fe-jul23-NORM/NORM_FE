@@ -129,7 +129,7 @@ const ItemCard: React.FC = () => {
               link: `/${product.productPassport?.category}`,
               text: `${normalizeQuery(product.productPassport?.category)}`
             }, {
-              link: `/${id}`, text: `${product?.name}`
+              link: `/products/${id}`, text: `${product?.name}`
               }
             ]}
           />
@@ -211,7 +211,7 @@ const ItemCard: React.FC = () => {
                   <button
                     className="container__info-colors-color"
                     onClick={() => {
-                      navigate(`/${product.namespaceId}-${actualCapacity}-${color}`);
+                      navigate(`/products/${product.namespaceId}-${actualCapacity}-${color}`);
                     }}
                     style={{ backgroundColor: `${color}` }}
                     key={ind}
@@ -248,7 +248,7 @@ const ItemCard: React.FC = () => {
                       className="gB"
                       key={ind}
                       onClick={() => {
-                        navigate(`/${product.namespaceId}-${value.toLowerCase()}-${product.color}`);
+                        navigate(`/products/${product.namespaceId}-${value.toLowerCase()}-${product.color}`);
                       }}
                       style={{
                         cursor: 'pointer',
