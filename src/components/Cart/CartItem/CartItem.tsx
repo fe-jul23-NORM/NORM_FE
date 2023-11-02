@@ -58,8 +58,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
 
   const handleNavigate = () => {
     window.scrollTo({ top: 0, behavior: 'auto' })
-    navigate(`/${itemId}`);
-    console.log(itemId)
+    navigate(`/products/${itemId}`);
   }
 
   return (
