@@ -60,7 +60,7 @@ const ItemCard: React.FC = () => {
       getNotification(NotificationEnum.ProductInCart, NotificationTypeEnum.success)
       dispatch(addToCart(product.productPassport));
 
-      const updatedCart = [...cart, { ...product, quantity: 1 }];
+      const updatedCart = [...cart, { ...product.productPassport, quantity: 1 }];
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
   }, [isSelected, cart])
