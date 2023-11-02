@@ -71,7 +71,6 @@
   }
 
   @include hover(box-shadow, scale(1.2));
-  @include hover(transform, scale(1.02));
 
   &:hover {
     border-color: $Icons;
