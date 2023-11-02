@@ -46,11 +46,7 @@ const AboutUs: React.FC = () => {
             <li>User Accounts: Create and manage your account, store favorite products, and track your order history effortlessly.</li>
             <li>Shopping Cart: Easily add and remove products from your cart and proceed to secure checkout with multiple payment options.</li>
             <li>Search and Filter: Quickly find the products you want using powerful search and filter options.</li>
-            <li>User Reviews: Read and leave reviews and ratings for products, helping others make informed decisions.</li>
             <li>Responsive Design: Enjoy a consistent shopping experience across desktop and mobile devices, thanks to our responsive design.</li>
-            <li>Secure Transactions: We prioritize security, ensuring that your personal and financial information is protected with the latest encryption technologies.</li>
-            <li>Real-Time Updates: Stay informed about your order`&lsquo;`s status and receive real-time notifications on the latest deals and promotions.</li>
-            <li>Order Tracking: Keep track of your orders from shipment to delivery, so you`&lsquo;`re always in the loop.</li>
           </ul>
         </div>
       </div>

@@ -1,8 +1,14 @@
 import React from 'react';
 import './Footer.scss';
-import { scrollToTop } from '../../utils/constants';
 
 const Footer: React.FC = () => {
+   const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <>
       <div className="footer">
