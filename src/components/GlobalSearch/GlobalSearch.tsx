@@ -4,9 +4,11 @@ import { useAppDispatch } from '../../store';
 import { getFoundProductsThunk } from '../../store/products/thunks';
 import { useSelector } from 'react-redux';
 import { selectGlobalSearchProducts } from '../../store/products/selectors';
-import { AutoComplete } from 'rsuite';
-import 'rsuite/dist/rsuite-no-reset.min.css';
 import { BASE_URI } from '../../constants/core';
+import { PrimeReactProvider } from 'primereact/api';
+import { AutoComplete } from "primereact/autocomplete";
+import { Product } from '../../types/product.types';
+
 
 const GlobalSearch: React.FC = () => {
   const [value, setValue] = useState({
@@ -15,60 +17,55 @@ const GlobalSearch: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const products = useSelector(selectGlobalSearchProducts);
-
   const handleChange = (value: string) => {
     const searchStr = value;
 
-    if (value) {
-      const delay = setTimeout(() => {
-        setValue(() => {
-          return {
-            name: searchStr,
-          }
-        })
-    });
-    
-    return () => clearTimeout(delay);
+    if (searchStr) {
+      setValue(() => {
+        return {
+          name: searchStr,
+        }
+      })
     }
   };
 
   useEffect(() => {
-    dispatch(getFoundProductsThunk(value.name));    
+    console.log('use effect');
+    const delay = setTimeout(() => {
+      console.log('dispatch');
+      dispatch(getFoundProductsThunk(value.name));  
+    });  
+    return () => clearTimeout(delay);
   }, [value]);
 
-  const productCards: ItemDataType[] = products.slice(0, 5).map(product => {
-    return ({
-      value: product.name, 
-      label: product.name, 
-      product: product
-    });
-  })
+  const itemTemplate = (item: Product) => {
+    return (
+        <div className="search-item">
+            <img
+                alt={item.name}
+                src={`${BASE_URI}/${item.image}`}
+                
+                style={{width: '18px'}}
+            />
+            <div>{item.name}</div>
+        </div>
+      );
+    };
 
-  return (
-    <div className="search-container">
-      <AutoComplete
-        placeholder="Search ..."
-        data={productCards}
-        onChange={handleChange}
-        style={{ width: 224 }}
-        renderMenuItem={(item: any, itemData: any) => {
-        return (
-          <div className='search-item'>
-            <span>
-              <img 
-                src={`${BASE_URI}/${itemData.product.image}`} 
-                className="img-mini"
-              />
-            </span>
+    return (
+      <PrimeReactProvider value={{ unstyled: true }}>
+        <div className="search-container">
+          <AutoComplete field="name" 
+            value={value}   
+            suggestions={products} 
+            completeMethod={(event => (handleChange(event.query)))} 
+            //onChange={(e) => setSelectedCountry(e.value)} 
 
-            <span>
-              {item}
-            </span> 
-          </div>
-        );
-        }}
-      />
-    </div>
+            placeholder="Search"
+            itemTemplate={itemTemplate}
+          />
+        </div>
+    </PrimeReactProvider>
   )
 };
 
