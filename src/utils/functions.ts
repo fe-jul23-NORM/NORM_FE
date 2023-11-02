@@ -1,3 +1,4 @@
+import { RefObject, useEffect } from "react";
 import { ProductTypesEnum, SortProductByEnum } from "../types/product.types";
 
 export const isPlural = (number: number) => {
@@ -54,4 +55,21 @@ export function hideScrollbar(): void {
 export function showScrollbar(): void {
   document.body.style.overflowY = 'auto';
   document.body.style.paddingRight = '0';
+}
+
+export function useOutsideClick(ref: RefObject<HTMLElement>, func: () => void, spectate: any = null): void {
+  useEffect(() => {
+    function handleClick(event: MouseEvent) {
+      const target = event.target as Node;
+      if (ref.current && !ref.current.contains(target)) {
+        func();
+      }
+    }
+    
+    document.addEventListener('mousedown', handleClick);
+    
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, [ref, spectate]);
 }

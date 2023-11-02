@@ -16,11 +16,11 @@ import { Loader } from '../Loader/Loader';
 import ItemCard from '../ItemCard/ItemCard';
 import 'react-toastify/dist/ReactToastify.css';
 import CatalogPage from '../pages/CatalogPage/CatalogPage';
-import AboutUs from '../About-us/About-us';
 import { initThunk } from '../../store/core/thunks';
 import RequiredAuth from '../HOC/RequiredAuth/RequiredAuth';
 import OrdersPage from '../pages/OrdersPage/OrdersPage';
 import { errorManager } from '../../utils/errorManager';
+import AboutUsPage from '../pages/AboutUsPage/AboutUsPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -53,7 +53,7 @@ function App() {
             <Route path='/cart' element={<Cart />} />
             <Route path='/favourites' element={<FavouritesPage />} />
             <Route path='/:id' element={<ItemCard />} />
-            <Route path='/about' element={<AboutUs />} />
+            <Route path='/about' element={<AboutUsPage />} />
             <Route path='*' element={<NotFoundPage />} />
             
             <Route path='/' element={<RequiredAuth/>}>

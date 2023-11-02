@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.scss';
+import { STATIC_URL } from '../../constants/core';
 
 const Footer: React.FC = () => {
    const scrollToTop = () => {
@@ -14,7 +15,7 @@ const Footer: React.FC = () => {
       <div className="footer">
         <img
           className="footer__logo"
-          src="https://i.imgur.com/3XBExxM.png"
+          src={`${STATIC_URL}/logo.svg`}
           alt="NICE GAGETS logo" />
 
         <div className="footer__nav">
