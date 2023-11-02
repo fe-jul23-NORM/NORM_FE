@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from 'react';
+import React, { memo, useMemo } from 'react';
 import './Card.scss';
 import { CartProduct, Product } from '../../types/product.types';
 import Button from '../Button/Button';
@@ -42,18 +42,18 @@ const Card: React.FC<Props> = ({ product }) => {
   }, [favourites, id]);
   const user = useAppSelector(state => state.auth.user);
 
-  const addItemToCart = useCallback(() => {
+  const addItemToCart = () => {
     if (!isSelected) {
       dispatch(addToCart(product));
-
+      
       const updatedCart = [...cart, { ...product, quantity: 1 }];
       localStorage.setItem('cart', JSON.stringify(updatedCart));
       
       getNotification(NotificationEnum.ProductInCart, NotificationTypeEnum.success)
     }
-  }, [isSelected, cart])
+  }
 
-  const handleFavourites = useCallback(() => {
+  const handleFavourites = () => {
     if (user) {
       if (isFavourite) {
         dispatch(removeFavouriteThunk(product.id));
@@ -71,11 +71,12 @@ const Card: React.FC<Props> = ({ product }) => {
         localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
       }
     }
-  }, [user, isFavourite]);
+  };
 
   const handleNavigate = () => {
     window.scrollTo({top: 0, behavior: 'auto'})
     navigate(`/${itemId}`);
+    console.log(itemId)
   }
 
   return (

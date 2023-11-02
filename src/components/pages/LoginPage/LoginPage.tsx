@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './LoginPage.scss';
 import Button from '../../Button/Button';
 import { ILogin } from '../../../types/auth.types';
@@ -28,14 +28,14 @@ const LoginPage: React.FC = () => {
     }
   }, [user])
   
-  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues((prev) => {
       return {
         ...prev,
         [e.target.name]: e.target.value,
       }
     })
-  }, []);
+  };
   
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
