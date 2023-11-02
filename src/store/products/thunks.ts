@@ -101,11 +101,17 @@ export const getNewProductsThunk = createAsyncThunk(
 export const getFoundProductsThunk = createAsyncThunk(
   `${MODULE_NAME}/getByName`,
   async (name: string, { rejectWithValue }) => {
-    try {
-      const response = await axiosPublic.get<Product[]>(`${PRODUCT_ROUTES.GET_BY_NAME}?name=${name}`);
-            return response.data;
-    } catch (e: any) {
-      return rejectWithValue(e?.response?.data?.message);
+    if (name) {
+      try {
+        const response = await axiosPublic.get<Product[]>(`${PRODUCT_ROUTES.GET_BY_NAME}?name=${name}`);
+            
+      return response.data;
+      } catch (e: any) {
+        return rejectWithValue(e?.response?.data?.message);
+      }
+    }
+    else {
+      return [];
     }
   },
 );
@@ -127,7 +133,6 @@ export const addFavouriteThunk = createAsyncThunk(
   async (id: number | string, { rejectWithValue }) => {
     try {
       const response = await axiosPrivate.post(`${PRODUCT_ROUTES.ADD_TO_FAVOURITES}/${id}`);
-      console.log(response);
       
       return response.data.product;
     } catch (e: any) {

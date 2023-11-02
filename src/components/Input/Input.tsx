@@ -1,4 +1,4 @@
-import React, { ChangeEvent, memo, useCallback, useId, useState } from 'react';
+import React, { ChangeEvent, useId, useState } from 'react';
 import cn from 'classnames';
 import './Input.scss';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -25,10 +25,10 @@ const Input: React.FC<Props> = ({ name, placeholder, onChange, value, error, isI
     setTouched(true);
   }
   
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e);
     setTouched(true);
-  }, []);
+  };
   
   const toggleShow = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
@@ -71,4 +71,4 @@ const Input: React.FC<Props> = ({ name, placeholder, onChange, value, error, isI
   );
 };
 
-export default memo(Input);
+export default Input;

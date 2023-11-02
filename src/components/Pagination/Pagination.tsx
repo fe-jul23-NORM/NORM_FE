@@ -58,7 +58,7 @@ const Pagination: React.FC<Props> = (props: Props) => {
     return getSearchParams(String(+el - 1));
   };
 
-  const preparetedPageItems = pageItems.slice(paginationStart, paginationEnd);
+  const preparedPageItems = pageItems.slice(paginationStart, paginationEnd);
 
 
   const getSearchParams = (params: string) => {
@@ -84,7 +84,7 @@ const Pagination: React.FC<Props> = (props: Props) => {
       </Link>
 
       <ul className="pagination__list">
-        {preparetedPageItems.map((el) => (
+        {preparedPageItems.map((el) => (
 
           <Link
             key={el}

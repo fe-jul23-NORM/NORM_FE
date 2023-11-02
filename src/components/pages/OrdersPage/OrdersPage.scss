@@ -5,9 +5,21 @@
 .orders {
   padding-top: 10px;
 
+  &__title-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0 8px;
+
+  }
+
+  &__button {
+    width: 200px;
+  }
+
   &__title {
     @include title();
-    margin-top: 20px;
+    margin: 0;
   }
 
   &__amount {

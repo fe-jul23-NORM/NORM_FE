@@ -5,6 +5,7 @@ import App from './components/App/App';
 import { BrowserRouter } from 'react-router-dom';
 import { store } from './store';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,6 +14,18 @@ root.render(
   <BrowserRouter>
     <Provider store={store}>
       <App/>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover={false}
+        theme="light"
+      />
     </Provider>
   </BrowserRouter>
 );

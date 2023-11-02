@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { axiosPublic } from "../../api/api";
+import { axiosPrivate, axiosPublic } from '../../api/api';
 import { AUTH_ROUTES } from "../../constants/routes";
 import { getFavouritesProductsThunk } from "../products/thunks";
+import { setStateFavourites } from '../products/slice';
 
 const MODULE_NAME = 'auth';
 
@@ -22,9 +23,11 @@ export const register = createAsyncThunk(
 
 export const logout = createAsyncThunk(
   `${MODULE_NAME}/logout`,
-  async (values: any, { rejectWithValue, dispatch }) => {
+  async (_, { rejectWithValue, dispatch }) => {
     try {
-      await axiosPublic.post(AUTH_ROUTES.LOGOUT, values);
+      await axiosPrivate.get(AUTH_ROUTES.LOGOUT);
+      
+      dispatch(setStateFavourites(JSON.parse(localStorage.getItem('favourites') || '[]')));
       
     } catch(e: any) {
       return rejectWithValue(e?.response?.data?.message);

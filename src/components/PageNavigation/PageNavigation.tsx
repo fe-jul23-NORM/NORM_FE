@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useId } from 'react';
 import './PageNavigation.scss'
 import { normalizeQuery } from "../../utils/functions";
+import { NavLink } from "react-router-dom";
 
 type NavigationPrpos = {
   link: string,
@@ -8,44 +9,29 @@ type NavigationPrpos = {
 };
 
 type Props = {
-  productsType?: string;
-  productName?: string;
   links?: NavigationPrpos[],
 }
 
 
-const PageNavigation: React.FC<Props> = ({ productsType, productName, links }) => {
+const PageNavigation: React.FC<Props> = ({ links }) => {
+  const id = useId();
+  
   return (
     <div className="catalog__nav">
-      <a href="/" className="catalog__nav-icon">
+      <NavLink to="/" className="catalog__nav-icon">
         <span className="icon-home" aria-hidden="true"></span>
-      </a>
+      </NavLink>
 
       {links?.map(link => {
         return (
-          <>
+          <React.Fragment key={`${id}-${link.text}`}>
             <span className="icon-right" aria-hidden="true"></span>
-            <a href={link.link} className="catalog__nav-text">
+            <NavLink to={link.link} className="catalog__nav-text">
               {normalizeQuery(link.text)}
-            </a>
-          </>
+            </NavLink>
+          </React.Fragment>
         )
       })}
-      {/* <span className="icon-right" aria-hidden="true"></span>
-
-      <a href={`/${productsType}`} className="catalog__nav-text">
-        {productsType}
-      </a>
-
-      {productName && (
-        <>
-          <span className="icon-right" aria-hidden="true"></span>
-
-          <a href="/" className="catalog__nav-text">
-            {productName}
-          </a>
-        </>
-      )} */}
     </div>
   );
 };
