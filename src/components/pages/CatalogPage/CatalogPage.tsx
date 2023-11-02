@@ -5,10 +5,10 @@ import { useAppDispatch, useAppSelector } from '../../../store';
 import { selectAllProducts, selectProductsCount } from '../../../store/products/selectors';
 import { getProductsThunk } from '../../../store/products/thunks';
 import { SortProductByEnum } from '../../../types/product.types';
-import Pagination from '../../Pagination/Pagination';
+import { Pagination } from '../../Pagination';
 import { useSearchParams } from 'react-router-dom';
 import { Dropdown } from '../../Dropdown/Dropdown';
-import PageNavigation from '../../PageNavigation/PageNavigation';
+import { PageNavigation } from '../../PageNavigation';
 import { isPlural, normalizeQuery, setProductsType, setSortBy } from '../../../utils/functions';
 import { itemsOnPageOptions } from '../../../utils/constants';
 
@@ -16,7 +16,7 @@ type Props = {
   product: string,
 }
 
-const CatalogPage: React.FC<Props> = ({ product }) => {
+export const CatalogPage: React.FC<Props> = ({ product }) => {
   const dispatch = useAppDispatch();
   const allProducts = useAppSelector(selectAllProducts);
   const totalProducts = useAppSelector(selectProductsCount);
@@ -47,18 +47,15 @@ const CatalogPage: React.FC<Props> = ({ product }) => {
   return (
     <section className="catalog">
       <div className="head-container">
-        
         <div className="title-container">
           <PageNavigation links={[{ link: `/${productsType}`, text: productsType }]} />
           <h1 className='page__title'>
             {normalizeQuery(productsType)}
           </h1>
-          
           <p className="page__items-amount">
             {`${totalProducts} ${isPlural(totalProducts) ? 'models' : 'model'}`}
           </p>
         </div>
-        
         <div className="catalog__form-wrapper">
           <Dropdown
             label="Sort by"
@@ -67,7 +64,6 @@ const CatalogPage: React.FC<Props> = ({ product }) => {
             startValue={normalizeQuery(sortedBy)}
             searchParamsKey="sort"
           />
-          
           <Dropdown
             label="Items on page"
             classModificator="items"
@@ -77,7 +73,6 @@ const CatalogPage: React.FC<Props> = ({ product }) => {
           />
         </div>
       </div>
-      
       <div className="catalog__container">
         {allProducts.map(product => {
           return (
@@ -85,7 +80,6 @@ const CatalogPage: React.FC<Props> = ({ product }) => {
           )
         })}
       </div>
-      
       <div className="page__pagination">
         <Pagination
           page={String(currentPage)}
@@ -96,5 +90,3 @@ const CatalogPage: React.FC<Props> = ({ product }) => {
     </section>
   )
 }
-
-export default CatalogPage;

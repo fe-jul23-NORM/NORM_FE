@@ -11,10 +11,15 @@ type Props = {
   withCloseIcon?: boolean,
 }
 
-const Modal: React.FC<Props> = ({ children, outsideHandler, withCloseIcon, closeFunc }) => {
+export const Modal: React.FC<Props> = ({
+  children,
+  outsideHandler,
+  withCloseIcon,
+  closeFunc,
+}) => {
   const modalRef = useRef<HTMLDivElement>(null);
   useOutsideClick(modalRef, outsideHandler || (() => null));
-  
+
   const handleEscapeKeyPress = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
       if (outsideHandler) {
@@ -26,7 +31,7 @@ const Modal: React.FC<Props> = ({ children, outsideHandler, withCloseIcon, close
       }
     }
   };
-  
+
   const handleClose = () => {
     if (outsideHandler) {
       outsideHandler();
@@ -36,27 +41,27 @@ const Modal: React.FC<Props> = ({ children, outsideHandler, withCloseIcon, close
       closeFunc();
     }
   };
-  
+
   useEffect(() => {
     const hasScroll = document.documentElement.scrollHeight > window.innerHeight;
     window.addEventListener('keydown', handleEscapeKeyPress);
-    
+
     if (hasScroll) {
       hideScrollbar();
-      
+
       return () => {
         showScrollbar();
         window.removeEventListener('keydown', handleEscapeKeyPress);
       };
     }
-    
+
     return () => {
       window.removeEventListener('keydown', handleEscapeKeyPress);
     };
   }, []);
-  
+
   const mount = document.getElementById('portal-root');
-  
+
   return createPortal(
     <div className='modal'>
       <div
@@ -75,5 +80,3 @@ const Modal: React.FC<Props> = ({ children, outsideHandler, withCloseIcon, close
     mount as HTMLElement,
   );
 };
-
-export default Modal;

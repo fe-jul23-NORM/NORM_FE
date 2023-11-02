@@ -11,7 +11,7 @@ type Props = {
   item: CartProduct,
 }
 
-const CartItem: React.FC<Props> = ({ item }) => {
+export const CartItem: React.FC<Props> = ({ item }) => {
   const {
     name,
     quantity,
@@ -59,7 +59,6 @@ const CartItem: React.FC<Props> = ({ item }) => {
   const handleNavigate = () => {
     window.scrollTo({ top: 0, behavior: 'auto' })
     navigate(`/${itemId}`);
-    console.log(itemId)
   }
 
   return (
@@ -82,9 +81,7 @@ const CartItem: React.FC<Props> = ({ item }) => {
           {name}
         </p>
       </div>
-
       <div className="cart-item__bottom">
-
         <div className="cart-item__number">
           <button
             className={classNames("cart-item__button", quantity <= 1 && "cart-item__button--disabled")}
@@ -106,11 +103,8 @@ const CartItem: React.FC<Props> = ({ item }) => {
             <span className='icon-plus' />
           </button>
         </div>
-
         <p className="cart-item__price">{`$${totalProductPrice}`}</p>
       </div>
     </div>
   )
 }
-
-export default CartItem;

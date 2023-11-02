@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import classNames from 'classnames';
-import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import { selectUser } from '../../store/auth/selectors';
 import { HEADER_LINKS, STATIC_URL } from '../../constants/core';
 import { CartProduct } from '../../types/product.types';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { getTotalQuantity } from '../../store/cart/slice';
-import Search from '../GlobalSearch/GlobalSearch';
+import { GlobalSearch } from '../GlobalSearch';
+import { BurgerMenu } from '../BurgerMenu';
+import { selectFavorites } from '../../store/products/selectors';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
   'nav__link',
@@ -24,10 +25,13 @@ const getIconClass = (isActive: boolean, icon: string) => {
   )
 };
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const user = useAppSelector(selectUser);
-  const favourites = useAppSelector(state => state.product.favourites);
+  const favourites = useAppSelector(selectFavorites);
   const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+
+  // need to check
+
   const numberOfProducts = useAppSelector(state => state.cart.totalQuantity);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
@@ -66,31 +70,26 @@ const Header: React.FC = () => {
             >
               Home
             </NavLink>
-
             {HEADER_LINKS.map((link) => {
+              const normalizedLink = link.toLowerCase();
               return (
                 <NavLink
                   key={link}
                   className={getLinkClass}
-                  to={`/${link.toLowerCase()}`}
+                  to={`/${normalizedLink}`}
                 >
                   {link}
                 </NavLink>
               )
             })}
-
           </div>
         </nav>
-
         <div className='header__icons'>
-
-          <Search />
-
+          <GlobalSearch />
           <NavLink
             className={({ isActive }) => getIconClass(isActive, 'icon-user')}
             to={user ? '/orders' : '/login'}
           />
-
           <div className={classNames({ 'number': favourites.length > 0 })}>
             <div className={favourites.length ? 'number--active' : 'number--disabled'}>{favourites.length}</div>
             <NavLink
@@ -113,11 +112,8 @@ const Header: React.FC = () => {
           />
         </div>
       </header>
-
       {isMenuVisible
         && <BurgerMenu setIsMenuVisible={toggleMenu} />}
     </>
   )
 };
-
-export default Header;

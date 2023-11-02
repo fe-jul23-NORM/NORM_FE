@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect } from 'react';
 import './GlobalSearch.scss';
 import { useAppDispatch } from '../../store';
 import { getFoundProductsThunk } from '../../store/products/thunks';
@@ -10,8 +10,8 @@ import { AutoComplete, AutoCompleteCompleteEvent, AutoCompleteSelectEvent } from
 import { Product } from '../../types/product.types';
 import { useNavigate } from 'react-router';
 
-const GlobalSearch: React.FC = () => {
-  const [value, setValue] = useState({name: ''});
+export const GlobalSearch: React.FC = () => {
+  const [value, setValue] = useState({ name: '' });
 
   const dispatch = useAppDispatch();
   const products = useSelector(selectGlobalSearchProducts);
@@ -26,7 +26,7 @@ const GlobalSearch: React.FC = () => {
   }
 
   useEffect(() => {
-    dispatch(getFoundProductsThunk(value.name));    
+    dispatch(getFoundProductsThunk(value.name));
   }, [value]);
 
   const itemTemplate = (item: Product) => {
@@ -36,12 +36,12 @@ const GlobalSearch: React.FC = () => {
           className='item-img'
           alt={item.name}
           src={`${BASE_URI}/${item.image}`}
-          style={{width: '18px'}}
+          style={{ width: '18px' }}
         />
         <div className='item-name' title={item.name}>{item.name}</div>
       </div>
-      );
-    };
+    );
+  };
 
   const navigate = useNavigate();
 
@@ -65,10 +65,8 @@ const GlobalSearch: React.FC = () => {
           itemTemplate={itemTemplate}
           onHide={handleOnHide}
           delay={200}
-        />      
+        />
       </PrimeReactProvider>
     </div>
   )
 };
-
-export default memo(GlobalSearch);

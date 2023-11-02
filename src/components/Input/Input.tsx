@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useId, useState } from 'react';
 import cn from 'classnames';
 import './Input.scss';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { ErrorMessage } from '../ErrorMessage';
 
 type Props = {
   name: string,
@@ -15,30 +15,45 @@ type Props = {
   disabled?: boolean,
 }
 
-const Input: React.FC<Props> = ({ name, placeholder, onChange, value, error, isInvalid, label, isSecure, disabled }) => {
+export const Input: React.FC<Props> = ({
+  name,
+  placeholder,
+  onChange,
+  value,
+  error,
+  isInvalid,
+  label,
+  isSecure,
+  disabled,
+}) => {
   const [show, setShow] = useState(false);
   const [touched, setTouched] = useState(false);
   const showError = error && touched;
   const id = useId();
-  
+
   const handleBlur = () => {
     setTouched(true);
   }
-  
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e);
     setTouched(true);
   };
-  
+
   const toggleShow = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setShow(!show);
   }
-  
+
   return (
     <div className='input-wrapper'>
       {label && (
-        <label htmlFor={id} className='input-label'>{label as string}</label>
+        <label
+          htmlFor={id}
+          className='input-label'
+        >
+          {label as string}
+        </label>
       )}
       <div className='input-holder'>
         <input
@@ -58,7 +73,7 @@ const Input: React.FC<Props> = ({ name, placeholder, onChange, value, error, isI
         />
         {isSecure && (
           <span
-            className={cn('input-secure-icon',{
+            className={cn('input-secure-icon', {
               'icon-show': show,
               'icon-hide': !show,
             })}
@@ -66,9 +81,7 @@ const Input: React.FC<Props> = ({ name, placeholder, onChange, value, error, isI
           />
         )}
       </div>
-      {showError && <ErrorMessage text={error}/>}
+      {showError && <ErrorMessage text={error} />}
     </div>
   );
 };
-
-export default Input;

@@ -6,10 +6,8 @@ $height-mobile: 320px;
 
 .banner__slider {
   box-sizing: border-box;
-  //max-width: 100%;
   position: relative;
   margin: 0 auto 66px;
-  //width: auto;
   padding: 0;
   height: 189px;
   max-width: 100%;
@@ -20,7 +18,6 @@ $height-mobile: 320px;
   }
 
   @include onDeskTop() {
-    // margin-bottom: 90px;
     max-width: 1136px;
     padding: 0 50px;
     height: 400px;

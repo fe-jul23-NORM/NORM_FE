@@ -19,7 +19,6 @@ export const Loader: React.FC<Props> = ({ size }) => (
       secondaryColor="#cfd2d5"
       strokeWidth={2}
       strokeWidthSecondary={2}
-    
     />
   </div>
 );

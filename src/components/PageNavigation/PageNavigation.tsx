@@ -12,10 +12,9 @@ type Props = {
   links?: NavigationPrpos[],
 }
 
-
-const PageNavigation: React.FC<Props> = ({ links }) => {
+export const PageNavigation: React.FC<Props> = ({ links }) => {
   const id = useId();
-  
+
   return (
     <div className="catalog__nav">
       <NavLink to="/" className="catalog__nav-icon">
@@ -35,5 +34,3 @@ const PageNavigation: React.FC<Props> = ({ links }) => {
     </div>
   );
 };
-
-export default PageNavigation;

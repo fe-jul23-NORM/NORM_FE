@@ -1,20 +1,20 @@
 import React from 'react';
 import './LogoutModal.scss';
-import Button from '../../../Button/Button';
 import { logout } from '../../../../store/auth/thunks';
 import { useAppDispatch } from '../../../../store';
+import { Button } from '../../../Button';
 
 type Props = {
   onClose: () => void;
 }
 
-const LogoutModal: React.FC<Props> = ({onClose}) => {
+export const LogoutModal: React.FC<Props> = ({ onClose }) => {
   const dispatch = useAppDispatch();
-  
+
   const handleLogout = () => {
     dispatch(logout());
   }
-  
+
   return (
     <div className='logout'>
       <h3 className='logout__title'>Are you sure?</h3>
@@ -33,5 +33,3 @@ const LogoutModal: React.FC<Props> = ({onClose}) => {
     </div>
   );
 };
-
-export default LogoutModal;

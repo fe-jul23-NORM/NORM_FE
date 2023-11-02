@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
-import CartItem from "./CartItem/CartItem";
 import './Cart.scss';
 import { useAppDispatch, useAppSelector } from "../../store";
 import { setStateCart, getTotalQuantity } from "../../store/cart/slice";
-import BackButton from '../BackButton/BackButton';
-import Button from '../Button/Button';
-import PageNavigation from "../PageNavigation/PageNavigation";
 import { selectUser } from "../../store/auth/selectors";
-import Input from "../Input/Input";
 import { EMAIL_REGEX } from "../../constants/regex";
-import { selectCartLoading } from '../../store/cart/selectors';
-import Modal from '../Modal/Modal';
-import CheckoutModal from './CheckoutModal/CheckoutModal';
+import { selectCart, selectCartLoading } from '../../store/cart/selectors';
+import { CheckoutModal } from "./CheckoutModal";
+import { Modal } from "../Modal";
+import { PageNavigation } from "../PageNavigation";
+import { BackButton } from "../BackButton";
+import { CartItem } from "./CartItem";
+import { Input } from "../Input";
+import { Button } from "../Button";
 
-const Cart: React.FC = () => {
+export const Cart: React.FC = () => {
   const isLoading = useAppSelector(selectCartLoading)
-  const cart = useAppSelector(state => state.cart.cart);
+
+  // need to check
+
+  const cart = useAppSelector(selectCart);
   const numberOfProducts = useAppSelector((state) => state.cart.totalQuantity);
   const user = useAppSelector(selectUser);
   const [isCheckoutOpen, setCheckoutModal] = useState(false);
@@ -32,7 +35,7 @@ const Cart: React.FC = () => {
     dispatch(setStateCart(cart));
     dispatch(getTotalQuantity());
   }, []);
-  
+
   const handleOpenCheckout = () => {
     setCheckoutModal(!isCheckoutOpen);
   }
@@ -50,15 +53,13 @@ const Cart: React.FC = () => {
           closeFunc={handleOpenCheckout}
           withCloseIcon
         >
-          <CheckoutModal onClose={handleOpenCheckout} email={guestEmail}/>
+          <CheckoutModal onClose={handleOpenCheckout} email={guestEmail} />
         </Modal>
       )}
-      
       <div className="cart__nav">
         <PageNavigation links={[{ link: '/cart', text: 'Cart' }]} />
       </div>
       <BackButton />
-
       <h1 className="cart__title">Cart</h1>
 
       {cart.length
@@ -73,9 +74,7 @@ const Cart: React.FC = () => {
                 )
               })}
             </div>
-
             <div className="cart__checkout">
-
               <div className="cart__price">
                 <span className="cart__number">{`$${totalPrice}`}</span>
                 <span className="cart__total">{`Total for ${numberOfProducts} ${numberOfProducts === 1 ? 'item' : 'items'}`}</span>
@@ -105,5 +104,3 @@ const Cart: React.FC = () => {
     </div>
   )
 }
-
-export default Cart;

@@ -3,7 +3,7 @@ import './Footer.scss';
 import { STATIC_URL } from '../../constants/core';
 import { NavLink } from 'react-router-dom';
 
-const Footer: React.FC = () => {
+export const Footer: React.FC = () => {
    const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -57,5 +57,3 @@ const Footer: React.FC = () => {
     </>
   )
 };
-
-export default Footer;
