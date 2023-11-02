@@ -5,6 +5,7 @@ import { CartProduct } from "../../../types/product.types";
 import { BASE_URI } from "../../../constants/core";
 import { decrementQuantity, incrementQuantity, removeFromCart } from "../../../store/cart/slice";
 import { useAppDispatch } from "../../../store";
+import { useNavigate } from "react-router";
 
 type Props = {
   item: CartProduct,
@@ -15,6 +16,7 @@ export const CartItem: React.FC<Props> = ({ item }) => {
   const totalProductPrice = price * quantity;
   const dispatch = useAppDispatch();
   const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+  const navigate = useNavigate();
 
   const handleRemoveFromCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -48,6 +50,12 @@ export const CartItem: React.FC<Props> = ({ item }) => {
     }
   }
 
+  const handleNavigate = () => {
+    window.scrollTo({ top: 0, behavior: 'auto' })
+    navigate(`/${itemId}`);
+    console.log(itemId)
+  }
+
   return (
     <div className="cart-item">
 
@@ -56,10 +64,16 @@ export const CartItem: React.FC<Props> = ({ item }) => {
           className="cart-item__delete icon-close"
           onClick={handleRemoveFromCart}
         />
-        <img src={`${BASE_URI}/${image}`} alt="iPhone" className="cart-item__picture" />
-        <p>
+
+        <img
+          src={`${BASE_URI}/${image}`}
+          alt="iPhone"
+          className="cart-item__picture"
+          onClick={handleNavigate}
+        />
+
+        <p className="cart-item__name" onClick={handleNavigate}>
           {name}
-          <br />
         </p>
       </div>
       <div className="cart-item__bottom">
@@ -71,9 +85,11 @@ export const CartItem: React.FC<Props> = ({ item }) => {
           >
             <span className='icon-minus' />
           </button>
+
           <span className="cart-item__number-text">
             {quantity}
           </span>
+
           <button
             type="button"
             className="cart-item__button"

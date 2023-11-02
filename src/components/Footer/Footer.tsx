@@ -2,6 +2,7 @@ import React from 'react';
 import './Footer.scss';
 import { scrollToTop } from '../../utils/constants';
 import { STATIC_URL } from '../../constants/core';
+import { NavLink } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
   return (
@@ -14,16 +15,33 @@ export const Footer: React.FC = () => {
 
         <div className="footer__nav">
           <div className="nav__links">
-            <a className="footer__link" href="https://github.com/fe-jul23-NORM">Github</a>
-            <a className="footer__link" href="/about">About</a>
-            <a className="footer__link" href="/rights">Rights</a>
+            <NavLink
+              className="footer__link"
+              to="https://github.com/fe-jul23-NORM"
+            >
+              Github
+            </NavLink>
+
+            <NavLink
+              className="footer__link"
+              to="/about"
+            >
+              About
+            </NavLink>
+
+            <NavLink
+              className="footer__link"
+              to="/rights"
+            >
+              Rights
+            </NavLink>
           </div>
         </div>
 
         <button
           type="button"
           className="button__scroll"
-          onClick={() => scrollToTop()}
+          onClick={scrollToTop}
         >
           <p className='button_scroll--text'>Back to top</p>
           <span className="icon-up button__scroll--icon" aria-hidden="true"></span>

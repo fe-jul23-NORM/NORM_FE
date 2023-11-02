@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './Header.scss';
 import classNames from 'classnames';
 import { selectUser } from '../../store/auth/selectors';
-import { HEADER_LINKS } from '../../constants/core';
+import { HEADER_LINKS, STATIC_URL } from '../../constants/core';
 import { CartProduct } from '../../types/product.types';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { getTotalQuantity } from '../../store/cart/slice';
@@ -26,6 +26,9 @@ const getIconClass = (isActive: boolean, icon: string) => {
 
 export const Header: React.FC = () => {
   const user = useAppSelector(selectUser);
+  const favourites = useAppSelector(state => state.product.favourites);
+  const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+  const numberOfProducts = useAppSelector(state => state.cart.totalQuantity);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
   const toggleMenu = () => {
@@ -38,8 +41,6 @@ export const Header: React.FC = () => {
       document.documentElement.style.overflow = 'hidden';
     }
   }
-  const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
-  const numberOfProducts = useAppSelector(state => state.cart.totalQuantity);
 
   const dispatch = useAppDispatch();
 
@@ -47,16 +48,17 @@ export const Header: React.FC = () => {
     dispatch(getTotalQuantity());
   }, []);
 
-  const favourites = useAppSelector(state => state.product.favourites);
-
   return (
     <>
       <header className="header">
         <nav className="nav">
-          <NavLink
-            className='header__logo'
-            to="/"
-          />
+          <NavLink to="/">
+            <img
+              className="header__logo"
+              src={`${STATIC_URL}/logo.svg`}
+              alt="NICE GAGETS logo" />
+          </NavLink>
+
           <div className="nav__list">
             <NavLink
               className={getLinkClass}
@@ -90,6 +92,7 @@ export const Header: React.FC = () => {
               to='/favourites'
             />
           </div>
+
           <div className={classNames({ 'number': cart.length > 0 })}>
             <div className={cart.length ? 'number--active' : 'number--disabled'}>{numberOfProducts}</div>
             <NavLink
@@ -97,6 +100,7 @@ export const Header: React.FC = () => {
               to="/cart"
             />
           </div>
+
           <span
             className={classNames('icon', 'icon-close-button', { 'icon--menu': !isMenuVisible, 'icon-close': isMenuVisible })}
             onClick={toggleMenu}
