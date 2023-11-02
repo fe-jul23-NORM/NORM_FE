@@ -94,6 +94,9 @@ export const Dropdown: React.FC<Props> = ({
             <li
               key={option}
               className="dropdown__item"
+
+              // need to check
+
               onClick={() => handleChangeValue(option)}
             >
               <Link

@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../store';
 import { getTotalQuantity } from '../../store/cart/slice';
 import { GlobalSearch } from '../GlobalSearch';
 import { BurgerMenu } from '../BurgerMenu';
+import { selectFavorites } from '../../store/products/selectors';
 
 const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
   'nav__link',
@@ -26,8 +27,11 @@ const getIconClass = (isActive: boolean, icon: string) => {
 
 export const Header: React.FC = () => {
   const user = useAppSelector(selectUser);
-  const favourites = useAppSelector(state => state.product.favourites);
+  const favourites = useAppSelector(selectFavorites);
   const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+
+  // need to check
+
   const numberOfProducts = useAppSelector(state => state.cart.totalQuantity);
   const [isMenuVisible, setIsMenuVisible] = useState(false);
 
@@ -67,11 +71,12 @@ export const Header: React.FC = () => {
               Home
             </NavLink>
             {HEADER_LINKS.map((link) => {
+              const normalizedLink = link.toLowerCase();
               return (
                 <NavLink
                   key={link}
                   className={getLinkClass}
-                  to={`/${link.toLowerCase()}`}
+                  to={`/${normalizedLink}`}
                 >
                   {link}
                 </NavLink>

@@ -18,6 +18,7 @@ export const Footer: React.FC = () => {
             <NavLink
               className="footer__link"
               to="https://github.com/fe-jul23-NORM"
+              target='blank'
             >
               Github
             </NavLink>

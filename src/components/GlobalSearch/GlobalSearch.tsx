@@ -11,7 +11,7 @@ import { Product } from '../../types/product.types';
 import { useNavigate } from 'react-router';
 
 export const GlobalSearch: React.FC = () => {
-  const [value, setValue] = useState({name: ''});
+  const [value, setValue] = useState({ name: '' });
 
   const dispatch = useAppDispatch();
   const products = useSelector(selectGlobalSearchProducts);
@@ -26,7 +26,7 @@ export const GlobalSearch: React.FC = () => {
   }
 
   useEffect(() => {
-    dispatch(getFoundProductsThunk(value.name));    
+    dispatch(getFoundProductsThunk(value.name));
   }, [value]);
 
   const itemTemplate = (item: Product) => {
@@ -35,13 +35,13 @@ export const GlobalSearch: React.FC = () => {
         <img
           alt={item.name}
           src={`${BASE_URI}/${item.image}`}
-          style={{width: '18px'}}
+          style={{ width: '18px' }}
         />
 
         <div>{item.name}</div>
       </div>
-      );
-    };
+    );
+  };
 
   const navigate = useNavigate();
 
@@ -55,16 +55,16 @@ export const GlobalSearch: React.FC = () => {
   return (
     <div className="search-container">
       <PrimeReactProvider value={{ unstyled: true }}>
-        <AutoComplete field="name" 
-          value={value}   
-          suggestions={products} 
-          completeMethod={handleChange} 
-          onSelect={handleSelectItem} 
+        <AutoComplete field="name"
+          value={value}
+          suggestions={products}
+          completeMethod={handleChange}
+          onSelect={handleSelectItem}
           placeholder="Search"
           itemTemplate={itemTemplate}
           onHide={handleOnHide}
           delay={200}
-        />      
+        />
       </PrimeReactProvider>
     </div>
   )

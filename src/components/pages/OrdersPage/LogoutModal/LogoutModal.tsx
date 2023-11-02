@@ -8,13 +8,13 @@ type Props = {
   onClose: () => void;
 }
 
-export const LogoutModal: React.FC<Props> = ({onClose}) => {
+export const LogoutModal: React.FC<Props> = ({ onClose }) => {
   const dispatch = useAppDispatch();
-  
+
   const handleLogout = () => {
     dispatch(logout());
   }
-  
+
   return (
     <div className='logout'>
       <h3 className='logout__title'>Are you sure?</h3>

@@ -60,7 +60,6 @@ export const Pagination: React.FC<Props> = (props: Props) => {
 
   const preparedPageItems = pageItems.slice(paginationStart, paginationEnd);
 
-
   const getSearchParams = (params: string) => {
     return getSearchWith(searchParams, {
       'page': params,

@@ -17,7 +17,7 @@ const getLinkClass = ({ isActive }: { isActive: boolean }) => classNames(
 
 export const BurgerMenu: React.FC<Props> = ({ setIsMenuVisible }) => {
   const user = useAppSelector(selectUser);
-  
+
   return (
     <div className='menu'>
       <div className="menu__navigation">
@@ -28,13 +28,15 @@ export const BurgerMenu: React.FC<Props> = ({ setIsMenuVisible }) => {
         >
           Home
         </NavLink>
-        
+
         {HEADER_LINKS.map((link) => {
+          const normalizedLink = link.toLowerCase();
+
           return (
             <NavLink
               key={link}
               className={getLinkClass}
-              to={`/${link.toLowerCase()}`}
+              to={`/${normalizedLink}`}
               onClick={setIsMenuVisible}
             >
               {link}
@@ -45,8 +47,8 @@ export const BurgerMenu: React.FC<Props> = ({ setIsMenuVisible }) => {
 
       <div className='menu__icons'>
         <a href="/favourites" className='menu__icon icon-heart' />
-        <a href={user ? '/orders' : '/login'} className='icon-user menu__icon icon-user'/>
-        <a href="/cart" className='menu__icon icon-cart'/>
+        <a href={user ? '/orders' : '/login'} className='icon-user menu__icon icon-user' />
+        <a href="/cart" className='menu__icon icon-cart' />
       </div>
     </div>
   )

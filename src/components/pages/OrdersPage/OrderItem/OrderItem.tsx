@@ -7,12 +7,12 @@ type Props = {
   order: Order,
 }
 
-export const OrderItem: React.FC<Props> = ({order}) => {
-  
+export const OrderItem: React.FC<Props> = ({ order }) => {
+
   const price = order.products.reduce((acc, item) => {
     return acc + item.quantity * item.product.price;
   }, 0);
-  
+
   return (
     <li className='order-item'>
       <div className="order-item__header">

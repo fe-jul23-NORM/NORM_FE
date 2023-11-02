@@ -19,8 +19,8 @@ export const FavouritesPage: React.FC = () => {
           </h1>
           <p className="favourites__amount">
             {favourites.length > 1
-            ? `${favourites.length} items`
-            : `${favourites.length} item`}
+              ? `${favourites.length} items`
+              : `${favourites.length} item`}
           </p>
         </div>
         <div className="favourites__container">

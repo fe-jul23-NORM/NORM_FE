@@ -12,7 +12,13 @@ type Props = {
 }
 
 export const CartItem: React.FC<Props> = ({ item }) => {
-  const { name, quantity, image, price } = item;
+  const {
+    name,
+    quantity,
+    image,
+    price,
+    itemId,
+  } = item;
   const totalProductPrice = price * quantity;
   const dispatch = useAppDispatch();
   const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
@@ -53,7 +59,6 @@ export const CartItem: React.FC<Props> = ({ item }) => {
   const handleNavigate = () => {
     window.scrollTo({ top: 0, behavior: 'auto' })
     navigate(`/${itemId}`);
-    console.log(itemId)
   }
 
   return (

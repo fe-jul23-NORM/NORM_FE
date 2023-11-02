@@ -6,10 +6,10 @@ import { OrderItem } from '../OrderItem';
 
 export const OrderList: React.FC = () => {
   const orders = useAppSelector(selectOrders);
-  
+
   return (
     <ul className='order-list'>
-      {orders.map((order) => <OrderItem key={`ORDER-${order.id}`} order={order}/>)}
+      {orders.map((order) => <OrderItem key={`ORDER-${order.id}`} order={order} />)}
     </ul>
   );
 };

@@ -8,10 +8,10 @@ export const AuthLayout: React.FC = () => {
     <div>
       <div className='auth-header'>
         <a className='auth-logo' href='/'>
-          <img src={`${STATIC_URL}/logo.svg`} alt='logo'/>
+          <img src={`${STATIC_URL}/logo.svg`} alt='logo' />
         </a>
       </div>
-      <Outlet/>
+      <Outlet />
     </div>
   );
 };

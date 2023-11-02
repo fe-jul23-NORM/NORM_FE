@@ -21,13 +21,13 @@ export const LoginPage: React.FC = () => {
   const isLoading = useAppSelector(selectAuthLoading);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (user) {
       navigate('/')
     }
   }, [user])
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues((prev) => {
       return {
@@ -36,10 +36,10 @@ export const LoginPage: React.FC = () => {
       }
     })
   };
-  
+
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
-    
+
     dispatch(login(values))
       .unwrap()
       .then(() => {
@@ -50,7 +50,7 @@ export const LoginPage: React.FC = () => {
         errorManager(e);
       });
   };
-  
+
   return (
     <div className="login-page-wrapper">
       <div className="login-content-wrapper">

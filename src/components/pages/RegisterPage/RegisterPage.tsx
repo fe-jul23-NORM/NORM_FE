@@ -29,41 +29,40 @@ export const RegisterPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectAuthLoading);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (user) {
       navigate('/')
     }
   }, [user])
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValues(prev => {
       const newState = {
         ...prev,
         [e.target.name]: e.target.value,
       }
-      
+
       return {
         ...newState,
         errors: getRegisterValidation(newState)
       }
     })
   };
-  
+
   const handleSubmit = (e: React.MouseEvent) => {
     e.preventDefault();
-    
+
     dispatch(register(values))
       .unwrap()
       .then(() => {
-      navigate('/')
+        navigate('/')
       })
       .catch((e) => {
         errorManager(e);
       })
-    
   };
-  
+
   return (
     <div className="register-page-wrapper">
       <div className="register-content-wrapper">

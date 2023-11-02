@@ -7,17 +7,21 @@ import { errorManager } from '../../../utils/errorManager';
 import { getNotification } from '../../../utils/notification';
 import { NotificationEnum, NotificationTypeEnum } from '../../../types/notification.types';
 import { Button } from '../../Button';
+import { selectCartLoading } from '../../../store/cart/selectors';
 
 type Props = {
   onClose: () => void;
   email: string,
 }
 
-export const CheckoutModal: React.FC<Props> = ({onClose, email}) => {
-  const isLoading = useAppSelector((state) => state.cart.isLoading)
+export const CheckoutModal: React.FC<Props> = ({ onClose, email }) => {
+
+  // need to check
+
+  const isLoading = useAppSelector(selectCartLoading)
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
-  
+
   const handleCheckout = () => {
     if (user) {
       dispatch(createOrderByUser())
@@ -45,7 +49,7 @@ export const CheckoutModal: React.FC<Props> = ({onClose, email}) => {
         })
     }
   }
-  
+
   return (
     <div className="checkout">
       <h3 className="checkout__title">Confirm your order</h3>

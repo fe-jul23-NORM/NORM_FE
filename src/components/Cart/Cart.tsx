@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../store";
 import { setStateCart, getTotalQuantity } from "../../store/cart/slice";
 import { selectUser } from "../../store/auth/selectors";
 import { EMAIL_REGEX } from "../../constants/regex";
-import { selectCartLoading } from '../../store/cart/selectors';
+import { selectCart, selectCartLoading } from '../../store/cart/selectors';
 import { CheckoutModal } from "./CheckoutModal";
 import { Modal } from "../Modal";
 import { PageNavigation } from "../PageNavigation";
@@ -15,7 +15,10 @@ import { Button } from "../Button";
 
 export const Cart: React.FC = () => {
   const isLoading = useAppSelector(selectCartLoading)
-  const cart = useAppSelector(state => state.cart.cart);
+
+  // need to check
+
+  const cart = useAppSelector(selectCart);
   const numberOfProducts = useAppSelector((state) => state.cart.totalQuantity);
   const user = useAppSelector(selectUser);
   const [isCheckoutOpen, setCheckoutModal] = useState(false);
@@ -45,7 +48,7 @@ export const Cart: React.FC = () => {
   return (
     <div className="cart">
       {isCheckoutOpen && (
-        <Modal  
+        <Modal
           outsideHandler={handleOpenCheckout}
           closeFunc={handleOpenCheckout}
           withCloseIcon

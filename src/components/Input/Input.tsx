@@ -15,30 +15,45 @@ type Props = {
   disabled?: boolean,
 }
 
-export const Input: React.FC<Props> = ({ name, placeholder, onChange, value, error, isInvalid, label, isSecure, disabled }) => {
+export const Input: React.FC<Props> = ({
+  name,
+  placeholder,
+  onChange,
+  value,
+  error,
+  isInvalid,
+  label,
+  isSecure,
+  disabled,
+}) => {
   const [show, setShow] = useState(false);
   const [touched, setTouched] = useState(false);
   const showError = error && touched;
   const id = useId();
-  
+
   const handleBlur = () => {
     setTouched(true);
   }
-  
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e);
     setTouched(true);
   };
-  
+
   const toggleShow = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setShow(!show);
   }
-  
+
   return (
     <div className='input-wrapper'>
       {label && (
-        <label htmlFor={id} className='input-label'>{label as string}</label>
+        <label
+          htmlFor={id}
+          className='input-label'
+        >
+          {label as string}
+        </label>
       )}
       <div className='input-holder'>
         <input
@@ -58,7 +73,7 @@ export const Input: React.FC<Props> = ({ name, placeholder, onChange, value, err
         />
         {isSecure && (
           <span
-            className={cn('input-secure-icon',{
+            className={cn('input-secure-icon', {
               'icon-show': show,
               'icon-hide': !show,
             })}
@@ -66,7 +81,7 @@ export const Input: React.FC<Props> = ({ name, placeholder, onChange, value, err
           />
         )}
       </div>
-      {showError && <ErrorMessage text={error}/>}
+      {showError && <ErrorMessage text={error} />}
     </div>
   );
 };

@@ -34,6 +34,8 @@ import { PageNavigation } from '../PageNavigation';
 import { BackButton } from '../BackButton';
 import { Button } from '../Button';
 import { Heart } from '../Heart';
+import { selectUser } from '../../store/auth/selectors';
+import { ColorRing } from 'react-loader-spinner';
 
 export const ItemCard: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -62,7 +64,7 @@ export const ItemCard: React.FC = () => {
   const isFavourite = useMemo(() => {
     return favourites.some(({ id }) => id === product?.productPassport.id);
   }, [favourites, id, product]);
-  const user = useAppSelector(state => state.auth.user);
+  const user = useAppSelector(selectUser);
 
   const addItemToCart = (e: React.MouseEvent) => {
     e.stopPropagation()
@@ -115,10 +117,21 @@ export const ItemCard: React.FC = () => {
 
   const [mainImage, setMainImage] = useState(0);
 
+  const handleSetMainImage = (index: number) => {
+    setMainImage(index);
+  }
+
+  const handleChangeColor = (color: string) => {
+    navigate(`/${product.namespaceId}-${actualCapacity}-${color}`);
+  };
+
   return (
     product && (
       <div className='item-card'>
-        <div className={cn('item-card__filler', isLoading && 'item-card__filler--active')}>
+        <div className={cn(
+          'item-card__filler',
+          isLoading && 'item-card__filler--active',
+        )}>
           <Loader />
         </div>
         <div className="item-card__nav">
@@ -157,7 +170,7 @@ export const ItemCard: React.FC = () => {
                         style={{ border: `1px solid #000` }}
                         src={`${BASE_URI}/${image}`}
                         alt="phone"
-                        onClick={() => { setMainImage(index) }}
+                        onClick={() => handleSetMainImage(index)}
                       />
                     </div>
                   )
@@ -168,7 +181,7 @@ export const ItemCard: React.FC = () => {
                       className="container__images-miniatures-item"
                       src={`${BASE_URI}/${image}`}
                       alt="phone"
-                      onClick={() => { setMainImage(index) }}
+                      onClick={() => handleSetMainImage(index)}
                     />
                   </div>
                 )
@@ -203,9 +216,7 @@ export const ItemCard: React.FC = () => {
                 return (
                   <button
                     className="container__info-colors-color"
-                    onClick={() => {
-                      navigate(`/${product.namespaceId}-${actualCapacity}-${color}`);
-                    }}
+                    onClick={() => handleChangeColor(color)}
                     style={{ backgroundColor: `${color}` }}
                     key={ind}
                   />
@@ -237,6 +248,9 @@ export const ItemCard: React.FC = () => {
                     <button
                       className="gB"
                       key={ind}
+
+                      // need to check
+
                       onClick={() => {
                         navigate(`/${product.namespaceId}-${value.toLowerCase()}-${product.color}`);
                       }}

@@ -14,7 +14,7 @@ type Props = {
 
 export const PageNavigation: React.FC<Props> = ({ links }) => {
   const id = useId();
-  
+
   return (
     <div className="catalog__nav">
       <NavLink to="/" className="catalog__nav-icon">

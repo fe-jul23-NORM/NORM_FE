@@ -25,7 +25,7 @@ import { RegisterPage } from '../pages/RegisterPage';
 function App() {
   const dispatch = useAppDispatch();
   const [isLoading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     dispatch(initThunk())
       .unwrap()
