@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import './CartItem.scss';
 import classNames from "classnames";
 import { CartProduct } from "../../../types/product.types";
@@ -97,4 +97,4 @@ const CartItem: React.FC<Props> = ({ item }) => {
   )
 }
 
-export default memo(CartItem);
+export default CartItem;

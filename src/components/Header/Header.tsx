@@ -79,7 +79,7 @@ const Header: React.FC = () => {
             })}
 
           </div>
-        </nav>   
+        </nav>
 
         <div className='header__icons'>
 
@@ -107,7 +107,7 @@ const Header: React.FC = () => {
             </div>
 
             <span
-              className={classNames('icon', { 'icon--menu': !isMenuVisible, 'icon-close': isMenuVisible })}
+              className={classNames('icon', 'icon-close-button', { 'icon--menu': !isMenuVisible, 'icon-close': isMenuVisible })}
               onClick={toggleMenu}
             />
           </div>

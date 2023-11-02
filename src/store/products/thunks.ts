@@ -127,7 +127,6 @@ export const addFavouriteThunk = createAsyncThunk(
   async (id: number | string, { rejectWithValue }) => {
     try {
       const response = await axiosPrivate.post(`${PRODUCT_ROUTES.ADD_TO_FAVOURITES}/${id}`);
-      console.log(response);
       
       return response.data.product;
     } catch (e: any) {

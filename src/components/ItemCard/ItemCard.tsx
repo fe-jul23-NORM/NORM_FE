@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import './ItemCard.scss';
 import Button from '../Button/Button';
 import Heart from '../Heart/Heart';
@@ -20,7 +20,9 @@ import BackButton from '../BackButton/BackButton';
 import { addToFavourites, removeFromFavourites } from '../../store/products/slice';
 import { shallowEqual, useSelector } from 'react-redux';
 import { addToCart } from '../../store/cart/slice';
-
+import { errorManager } from '../../utils/errorManager';
+import { getNotification } from '../../utils/notification';
+import { NotificationEnum, NotificationTypeEnum } from '../../types/notification.types';
 
 const ItemCard: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -51,18 +53,19 @@ const ItemCard: React.FC = () => {
   }, [favourites, id]);
   const user = useAppSelector(state => state.auth.user);
 
-  const addItemToCart = useCallback((e: any) => {
+  const addItemToCart = (e: React.MouseEvent) => {
     e.stopPropagation()
-
+    
     if (!isSelected) {
+      getNotification(NotificationEnum.ProductInCart, NotificationTypeEnum.success)
       dispatch(addToCart(product.productPassport));
-
+      
       const updatedCart = [...cart, { ...product, quantity: 1 }];
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
-  }, [isSelected, cart])
+  }
 
-  const handleFavourites = useCallback(() => {
+  const handleFavourites = () => {
     if (user) {
       if (isFavourite) {
         dispatch(removeFavouriteThunk(product.productPassport.id));
@@ -80,7 +83,7 @@ const ItemCard: React.FC = () => {
         localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
       }
     }
-  }, [user, isFavourite]);
+  };
 
 
   const actualCapacity = capacityWithColor[1].split('-')[1];
@@ -90,8 +93,8 @@ const ItemCard: React.FC = () => {
     dispatch(getCurrentProductThunk(id as string))
       .unwrap()
       .catch(e => {
-        // TODO
         console.log(e);
+        errorManager(e);
         navigate('/');
       });
     dispatch(getDiscountProductsThunk());
@@ -105,10 +108,10 @@ const ItemCard: React.FC = () => {
         <div className="item-card__nav">
           <PageNavigation links={[
             {
-              link: `${product.productPassport.category}`,
-              text: `${normalizeQuery(product.productPassport.category)}`
+              link: `/${product.productPassport?.category}`,
+              text: `${normalizeQuery(product.productPassport?.category)}`
             }, {
-              link: `${id}`, text: `${product?.name}`
+              link: `/${id}`, text: `${product?.name}`
               }
             ]}
           />
@@ -434,9 +437,9 @@ const ItemCard: React.FC = () => {
                 prevEl: '.hot-prices__button-left',
               }}
             >
-              {hotPrices.map(productt => (
-                <SwiperSlide key={`${product.id}123`}>
-                  <Card product={productt} />
+              {hotPrices.map(product => (
+                <SwiperSlide key={`${product.id}-hot`}>
+                  <Card product={product} />
                 </SwiperSlide>
               ))}
             </Swiper>
