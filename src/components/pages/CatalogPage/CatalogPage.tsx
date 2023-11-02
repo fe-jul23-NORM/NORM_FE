@@ -47,18 +47,18 @@ const CatalogPage: React.FC<Props> = ({ product }) => {
   return (
     <section className="catalog">
       <div className="head-container">
-
+        
         <div className="title-container">
           <PageNavigation links={[{ link: `/${productsType}`, text: productsType }]} />
           <h1 className='page__title'>
             {normalizeQuery(productsType)}
           </h1>
-
+          
           <p className="page__items-amount">
             {`${totalProducts} ${isPlural(totalProducts) ? 'models' : 'model'}`}
           </p>
         </div>
-
+        
         <div className="catalog__form-wrapper">
           <Dropdown
             label="Sort by"
@@ -67,7 +67,7 @@ const CatalogPage: React.FC<Props> = ({ product }) => {
             startValue={normalizeQuery(sortedBy)}
             searchParamsKey="sort"
           />
-
+          
           <Dropdown
             label="Items on page"
             classModificator="items"
@@ -77,7 +77,7 @@ const CatalogPage: React.FC<Props> = ({ product }) => {
           />
         </div>
       </div>
-
+      
       <div className="catalog__container">
         {allProducts.map(product => {
           return (
@@ -85,7 +85,7 @@ const CatalogPage: React.FC<Props> = ({ product }) => {
           )
         })}
       </div>
-
+      
       <div className="page__pagination">
         <Pagination
           page={String(currentPage)}
