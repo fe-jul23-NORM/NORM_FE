@@ -52,7 +52,7 @@ function App() {
             <Route path='/accessories' element={<CatalogPage product={'accessories'} />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/favourites' element={<FavouritesPage />} />
-            <Route path='/:id' element={<ItemCard />} />
+            <Route path='/products/:id' element={<ItemCard />} />
             <Route path='/about' element={<AboutUs />} />
             <Route path='*' element={<NotFoundPage />} />
             
