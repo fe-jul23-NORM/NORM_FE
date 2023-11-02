@@ -34,8 +34,8 @@
   }
 
   &--danger {
-    border: 1px solid  $DangerColor;
-    background: $DangerColor;
+    border: 1px solid  $BorderColorActive;
+    background: $BorderColorActive;
     color: $White;
 
     &:hover {
