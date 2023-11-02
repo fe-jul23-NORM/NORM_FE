@@ -11,6 +11,7 @@ import { Dropdown } from '../../Dropdown/Dropdown';
 import { PageNavigation } from '../../PageNavigation';
 import { isPlural, normalizeQuery, setProductsType, setSortBy } from '../../../utils/functions';
 import { itemsOnPageOptions } from '../../../utils/constants';
+import { BackButton } from '../../BackButton';
 
 type Props = {
   product: string,
@@ -49,6 +50,9 @@ export const CatalogPage: React.FC<Props> = ({ product }) => {
       <div className="head-container">
         <div className="title-container">
           <PageNavigation links={[{ link: `/${productsType}`, text: productsType }]} />
+          <div className="item-card__back-wrapper">
+            <BackButton />
+          </div>
           <h1 className='page__title'>
             {normalizeQuery(productsType)}
           </h1>

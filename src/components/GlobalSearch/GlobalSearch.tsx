@@ -49,7 +49,7 @@ export const GlobalSearch: React.FC = () => {
     event.originalEvent?.preventDefault();
     setValue({ name: '' });
     const item = event.value;
-    navigate(`/${item.itemId}`);
+    navigate(`/products/${item.itemId}`);
   }
 
   return (

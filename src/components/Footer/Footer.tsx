@@ -14,10 +14,12 @@ export const Footer: React.FC = () => {
   return (
     <>
       <div className="footer">
-        <img
-          className="footer__logo"
-          src={`${STATIC_URL}/logo.svg`}
-          alt="NICE GAGETS logo" />
+        <NavLink to="/">
+          <img
+            className="footer__logo"
+            src={`${STATIC_URL}/logo.svg`}
+            alt="NICE GAGETS logo" />
+        </NavLink>
 
         <div className="footer__nav">
           <div className="nav__links">

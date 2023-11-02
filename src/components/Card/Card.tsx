@@ -74,8 +74,9 @@ const Card: React.FC<Props> = ({ product }) => {
   };
 
   const handleNavigate = () => {
-    window.scrollTo({ top: 0, behavior: 'auto' })
-    navigate(`/${itemId}`);
+    window.scrollTo({top: 0, behavior: 'auto'})
+    navigate(`/products/${itemId}`);
+    console.log(itemId)
   }
 
   return (

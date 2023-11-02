@@ -1,11 +1,15 @@
 import React from 'react';
 import './AboutUsPage.scss';
 import { PageNavigation } from '../../PageNavigation';
+import { BackButton } from '../../BackButton';
 
 export const AboutUsPage: React.FC = () => {
   return (
     <body className='about'>
       <PageNavigation links={[{ link: '/about', text: 'About us' }]} />
+      <div className="item-card__back-wrapper">
+          <BackButton />
+        </div>
       <h1 className='page__title'>About Us</h1>
       <div className="about-container">
         <p className='section__text'>

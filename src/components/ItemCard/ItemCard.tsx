@@ -8,7 +8,7 @@ import {
 } from '../../store/products/thunks';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { useNavigate, useParams } from 'react-router-dom';
-import { selectCurrentProduct, selectDiscountProducts, selectFavorites } from '../../store/products/selectors';
+import { selectCurrentProduct, selectDiscountProducts, selectFavorites, selectRecommended } from '../../store/products/selectors';
 import { BASE_URI, SLIDER_BREAKPOINTS } from '../../constants/core';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -38,7 +38,7 @@ export const ItemCard: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const capacityWithColor = product?.id.split(product.namespaceId) || ['', ''];
-  const hotPrices = useAppSelector(selectDiscountProducts);
+  const hotPrices = useAppSelector(selectRecommended);
   const [isLoading, setLoading] = useState(false);
 
   let currentColor = product?.color || 'null';
@@ -84,11 +84,11 @@ export const ItemCard: React.FC = () => {
       }
     } else {
       if (isFavourite) {
-        dispatch(removeFromFavourites(product));
+        dispatch(removeFromFavourites(product.productPassport));
         const updatedFavourites = favourites.filter((favProduct) => favProduct.id !== product.productPassport.id);
         localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
       } else {
-        dispatch(addToFavourites(product));
+        dispatch(addToFavourites(product.productPassport));
         const updatedFavourites = [...favourites, product.productPassport];
         localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
       }
@@ -131,10 +131,10 @@ export const ItemCard: React.FC = () => {
         <div className="item-card__nav">
           <PageNavigation links={[
             {
-              link: `/${product.productPassport?.category}`,
+              link: `/${product.productPassport?.category}?sort=age&itemsOnPage=8`,
               text: `${normalizeQuery(product.productPassport?.category)}`
             }, {
-              link: `/${id}`, text: `${product?.name}`
+              link: `/products/${id}`, text: `${product?.name}`
             }
           ]}
           />
@@ -210,7 +210,9 @@ export const ItemCard: React.FC = () => {
                 return (
                   <button
                     className="container__info-colors-color"
-                    onClick={() => handleChangeColor(color)}
+                    onClick={() => {
+                      navigate(`/products/${product.namespaceId}-${actualCapacity}-${color}`);
+                    }}
                     style={{ backgroundColor: `${color}` }}
                     key={ind}
                   />
@@ -246,7 +248,7 @@ export const ItemCard: React.FC = () => {
                       // need to check
 
                       onClick={() => {
-                        navigate(`/${product.namespaceId}-${value.toLowerCase()}-${product.color}`);
+                        navigate(`/products/${product.namespaceId}-${value.toLowerCase()}-${product.color}`);
                       }}
                       style={{
                         cursor: 'pointer',
