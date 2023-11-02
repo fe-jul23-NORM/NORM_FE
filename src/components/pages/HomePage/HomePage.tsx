@@ -27,15 +27,15 @@ const HomePage = () => {
         dispatch(getProductsCategoryCountThunk());
     }, []);
 
-    const handleRoutePhones = () => {
+    const handleNavigateToPhones = () => {
         navigate(`/phones`);
     };
 
-    const handleRouteTablets = () => {
+    const handleNavigateToTablets = () => {
         navigate(`/tablets`);
     };
 
-    const handleRouteAccessories = () => {
+    const handleNavigateToAccessories = () => {
         navigate(`/accessories`);
     };
 
@@ -60,7 +60,6 @@ const HomePage = () => {
                 <div className="new-models__swiper">
                     <Swiper
                         modules={[Navigation, A11y, Autoplay]}
-                        // autoplay
                         loop
                         breakpoints={SLIDER_BREAKPOINTS}
                         navigation={{
@@ -80,45 +79,51 @@ const HomePage = () => {
                 <h1 className="categories__main--title title">Shop by category</h1>
                 <div className="categories__wrapper">
                     <article className="categories__phones block">
-                        <img
-                            onClick={handleRoutePhones}
-                            className="categories__phones--image block__image phones"
-                            src={`${STATIC_URL}/home/image-6.png`}
-                            alt="Phones category"
-                        />
+                        <div className="phones__wrapper">
+                            <img
+                                onClick={handleNavigateToPhones}
+                                className="categories__phones--image block__image phones"
+                                src={`${STATIC_URL}/home/image-6.png`}
+                                alt="Phones category"
+                            />
+                        </div>
                         <h3
                             className="categories__phones--title categories__title"
-                            onClick={handleRoutePhones}
+                            onClick={handleNavigateToPhones}
                         >
                             Phones
                         </h3>
                         <p className="categories__phones--count categories__count">{phones} models</p>
                     </article>
                     <article className="categories__tablets block">
-                        <img
-                            onClick={handleRouteTablets}
-                            className="categories__tablets--image block__image tablets"
-                            src={`${STATIC_URL}/home/image-5.png`}
-                            alt="Tablets category"
-                        />
+                        <div className="tablets__wrapper">
+                            <img
+                                onClick={handleNavigateToTablets}
+                                className="categories__tablets--image block__image tablets__image"
+                                src={`${STATIC_URL}/home/image-5.png`}
+                                alt="Tablets category"
+                            />
+                        </div>
                         <h3
                             className="categories__tablets--title categories__title"
-                            onClick={handleRouteTablets}
+                            onClick={handleNavigateToTablets}
                         >
                             Tablets
                         </h3>
                         <p className="categories__tablets--count categories__count">{tablets} models</p>
                     </article>
                     <article className="categories__accessories block">
-                        <img
-                            onClick={handleRouteAccessories}
-                            className="categories__accessories--image block__image accessories"
-                            src={`${STATIC_URL}/home/image-7.png`}
-                            alt="Accessories category"
-                        />
+                        <div className="accessories__wrapper">
+                            <img
+                                onClick={handleNavigateToAccessories}
+                                className="categories__accessories--image block__image accessories__image"
+                                src={`${STATIC_URL}/home/image-7.png`}
+                                alt="Accessories category"
+                            />
+                        </div>
                         <h3
                             className="categories__accessories--title categories__title"
-                            onClick={handleRouteAccessories}
+                            onClick={handleNavigateToAccessories}
                         >
                             Accessories
                         </h3>
@@ -141,7 +146,6 @@ const HomePage = () => {
                 <div className="hot-prices__swiper">
                     <Swiper
                         modules={[Navigation, A11y, Autoplay]}
-                        autoplay
                         loop
                         spaceBetween={20}
                         breakpoints={SLIDER_BREAKPOINTS}

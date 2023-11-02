@@ -28,16 +28,25 @@ const Banner: React.FC = () => {
           el: '.custom-pagination',
           clickable: true,
         }}
-        
+
       >
         <SwiperSlide>
-          <img src="https://github.com/mate-academy/product_catalog/blob/main/public/img/banner-phones.png?raw=true" alt="banner" />
+          <img
+            src="https://github.com/mate-academy/product_catalog/blob/main/public/img/banner-phones.png?raw=true"
+            alt="banner"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://i.imgur.com/fO6RD9f.jpg" alt="banner" />
+          <img src=
+            "https://i.imgur.com/fO6RD9f.jpg"
+            alt="banner"
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://github.com/mate-academy/product_catalog/blob/main/public/img/category-accessories.png?raw=true" alt="banner" />
+          <img
+            src="https://github.com/mate-academy/product_catalog/blob/main/public/img/category-accessories.png?raw=true"
+            alt="banner"
+          />
         </SwiperSlide>
       </Swiper>
 
