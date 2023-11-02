@@ -5,16 +5,24 @@ import { CartProduct } from "../../../types/product.types";
 import { BASE_URI } from "../../../constants/core";
 import { decrementQuantity, incrementQuantity, removeFromCart } from "../../../store/cart/slice";
 import { useAppDispatch } from "../../../store";
+import { useNavigate } from "react-router";
 
 type Props = {
   item: CartProduct,
 }
 
 const CartItem: React.FC<Props> = ({ item }) => {
-  const { name, quantity, image, price } = item;
+  const {
+    name,
+    quantity,
+    image,
+    price,
+    itemId,
+  } = item;
   const totalProductPrice = price * quantity;
   const dispatch = useAppDispatch();
   const cart: CartProduct[] = JSON.parse(localStorage.getItem('cart') || '[]');
+  const navigate = useNavigate();
 
   const handleRemoveFromCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -28,9 +36,9 @@ const CartItem: React.FC<Props> = ({ item }) => {
     dispatch(incrementQuantity(item));
 
     const currentProduct = cart.find(({ id }) => id === item.id);
-    
+
     if (currentProduct) {
-      const updatedProduct = {...currentProduct, quantity: currentProduct?.quantity + 1}
+      const updatedProduct = { ...currentProduct, quantity: currentProduct?.quantity + 1 }
       const updatedCart = cart.map((product) => product.id !== currentProduct.id ? product : updatedProduct);
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
@@ -40,12 +48,18 @@ const CartItem: React.FC<Props> = ({ item }) => {
     dispatch(decrementQuantity(item));
 
     const currentProduct = cart.find(({ id }) => id === item.id);
-    
+
     if (currentProduct) {
-      const updatedProduct = {...currentProduct, quantity: currentProduct?.quantity - 1}
+      const updatedProduct = { ...currentProduct, quantity: currentProduct?.quantity - 1 }
       const updatedCart = cart.map((product) => product.id !== currentProduct.id ? product : updatedProduct);
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
+  }
+
+  const handleNavigate = () => {
+    window.scrollTo({ top: 0, behavior: 'auto' })
+    navigate(`/${itemId}`);
+    console.log(itemId)
   }
 
   return (
@@ -57,11 +71,15 @@ const CartItem: React.FC<Props> = ({ item }) => {
           onClick={handleRemoveFromCart}
         />
 
-        <img src={`${BASE_URI}/${image}`} alt="iPhone" className="cart-item__picture" />
+        <img
+          src={`${BASE_URI}/${image}`}
+          alt="iPhone"
+          className="cart-item__picture"
+          onClick={handleNavigate}
+        />
 
-        <p>
+        <p className="cart-item__name" onClick={handleNavigate}>
           {name}
-          <br />
         </p>
       </div>
 
@@ -73,21 +91,19 @@ const CartItem: React.FC<Props> = ({ item }) => {
             onClick={handleDecrementQuantity}
             disabled={quantity === 1}
           >
-            <span className='icon-minus'/>
+            <span className='icon-minus' />
           </button>
-          
+
           <span className="cart-item__number-text">
             {quantity}
           </span>
-
-          
 
           <button
             type="button"
             className="cart-item__button"
             onClick={handeleIncrementQuantity}
           >
-            <span className='icon-plus'/>
+            <span className='icon-plus' />
           </button>
         </div>
 

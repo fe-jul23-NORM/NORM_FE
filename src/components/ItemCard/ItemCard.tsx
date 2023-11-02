@@ -70,7 +70,7 @@ const ItemCard: React.FC = () => {
     if (!isSelected) {
       getNotification(NotificationEnum.ProductInCart, NotificationTypeEnum.success)
       dispatch(addToCart(product.productPassport));
-      
+
       const updatedCart = [...cart, { ...product.productPassport, quantity: 1 }];
       localStorage.setItem('cart', JSON.stringify(updatedCart));
     }
@@ -90,15 +90,13 @@ const ItemCard: React.FC = () => {
         localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
       } else {
         dispatch(addToFavourites(product));
-        const updatedFavourites = [...favourites, product];
+        const updatedFavourites = [...favourites, product.productPassport];
         localStorage.setItem('favourites', JSON.stringify(updatedFavourites));
       }
     }
   };
 
-
   const actualCapacity = capacityWithColor[1].split('-')[1];
-
 
   useEffect(() => {
     setLoading(true);

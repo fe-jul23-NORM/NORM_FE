@@ -25,7 +25,6 @@ import AboutUsPage from '../pages/AboutUsPage/AboutUsPage';
 function App() {
   const dispatch = useAppDispatch();
   const [isLoading, setLoading] = useState(true);
-
   
   useEffect(() => {
     dispatch(initThunk())

@@ -20,7 +20,6 @@
 }
 
 .about {
-  @include pageGrid;
   background-color: $HoverBg;
   width: 100%;
   padding: 0;
@@ -77,6 +76,10 @@
 }
 
 .page__title {
+  display: flex;
+  align-items: center;
+  height: 38px;
+
   grid-column: span 1;
 
   @include onTablet() {
