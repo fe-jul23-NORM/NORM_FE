@@ -33,12 +33,12 @@ const GlobalSearch: React.FC = () => {
     return (
       <div className="search-item">
         <img
+          className='item-img'
           alt={item.name}
           src={`${BASE_URI}/${item.image}`}
           style={{width: '18px'}}
         />
-
-        <div>{item.name}</div>
+        <div className='item-name' title={item.name}>{item.name}</div>
       </div>
       );
     };
@@ -55,7 +55,8 @@ const GlobalSearch: React.FC = () => {
   return (
     <div className="search-container">
       <PrimeReactProvider value={{ unstyled: true }}>
-        <AutoComplete field="name" 
+        <AutoComplete 
+          field="name" 
           value={value}   
           suggestions={products} 
           completeMethod={handleChange} 

@@ -3,19 +3,94 @@
 
 .search-container {
   box-sizing: border-box;
-    @include onDeskTop() {
-      box-sizing: border-box;
-      width: 192px;
-      margin-right: 20px;
-    }
+  width: 256px;
+  margin-right: 25px;  
+  justify-content: center;
+}
+
+#pr_id_1_list {
+  cursor: pointer;
+  margin-top: 5px;  
+  padding-left: 0;
+  max-width: 256px;
+  background-color: $White;
+  box-shadow: 0 8px 15px #41414129;  
+  border: 1px solid #E2E6E9;
+  
+}
+
+#pr_id_1 {
+  font-weight: 500;
+  font-size: 14px;
+  color: $Secondary;
+  line-height: 21px;
+  border: none;
+  position: relative;
+}
+
+.enter-done {
+  margin: 0;
+}
+
+[data-pc-name="inputtext"] {
+  font-weight: 500;
+  font-size: 14px;
+  color: $Secondary;
+  line-height: 21px;
+  width: 100%;
+  padding-left: 15px;
+  margin-right: 5px;
+}
+
+[data-pc-name="inputtext"]:focus-visible {
+  border: 1px solid $Primary;
+  outline: none;
+}
+
+[data-pc-name="inputtext"]::placeholder {
+  font-size: 14px;
+}
+
+[data-pc-name] {
+  height: 40px;
+  border: 1px solid $Elements;
+  border-radius: 8px;
+  background: $HoverBg;
+}
+
+.p-icon-spin {
+  position: absolute;
+  top: 3px;
+}
+
+[data-pc-section="item"] {
+  list-style-type:  none;
 }
 
 .search-item {
-  max-width: 100px;
-  background-color: white;;
+  width: 100%;
+  background-color: $White;
+  display: flex;
+  font-size: 12px;
+  padding: 15px 20px;
+
+  &:hover {
+    background-color: $Elements;
+  }
 }
 
-.img-mini {
-  width: 20px;
+.item-img {
+  width: 30px;
   height: 20px;
+  margin-right: 10px;
+}
+
+.item-name {
+  width: 100%;
+  font-size: 14px;
+  color: $Primary;
+  line-height: 21px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
