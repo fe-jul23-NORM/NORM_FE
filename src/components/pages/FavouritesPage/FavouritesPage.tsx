@@ -3,6 +3,7 @@ import Card from '../../Card/Card';
 import './FavouritesPage.scss';
 import { useAppSelector } from '../../../store';
 import { PageNavigation } from '../../PageNavigation';
+import { BackButton } from '../../BackButton';
 
 export const FavouritesPage: React.FC = () => {
   const favourites = useAppSelector(state => state.product.favourites);
@@ -11,8 +12,9 @@ export const FavouritesPage: React.FC = () => {
     <div className="favourites">
       <section className="favourites__wrapper">
         <div className="favourites__top">
-          <div className="favourites__nav">
-            <PageNavigation links={[{ link: '/favourites', text: 'Favourites' }]} />
+          <PageNavigation links={[{ link: '/favourites', text: 'Favourites' }]} />
+          <div className="item-card__back-wrapper">
+            <BackButton />
           </div>
           <h1 className='favourites__title'>
             Favourites

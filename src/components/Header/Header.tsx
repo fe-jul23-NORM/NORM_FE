@@ -71,7 +71,7 @@ export const Header: React.FC = () => {
               Home
             </NavLink>
             {HEADER_LINKS.map((link) => {
-              const normalizedLink = link.toLowerCase();
+              const normalizedLink = `${link.toLowerCase()}?sort=age&itemsOnPage=8`;
               return (
                 <NavLink
                   key={link}

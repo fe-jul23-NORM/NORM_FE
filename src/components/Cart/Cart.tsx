@@ -59,7 +59,9 @@ export const Cart: React.FC = () => {
       <div className="cart__nav">
         <PageNavigation links={[{ link: '/cart', text: 'Cart' }]} />
       </div>
-      <BackButton />
+      <div className="item-card__back-wrapper">
+        <BackButton />
+      </div>
       <h1 className="cart__title">Cart</h1>
 
       {cart.length
